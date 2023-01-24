@@ -31,4 +31,5 @@ if [ "$(uname)" == "Darwin" ] ; then
     #fnm
 	export PATH="$HOME/Library/Application Support/fnm:$PATH"
     eval "`fnm env`"
+
 fi
