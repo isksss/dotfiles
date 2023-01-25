@@ -26,6 +26,7 @@ alias zs='source ~/.zshrc'
 export PATH="$PATH:$HOME/dotfiles/.bin"
 ## for MacOS
 if [ "$(uname)" == "Darwin" ] ; then
+
 	echo "macOS!"
 
     #fnm
