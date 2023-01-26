@@ -1,3 +1,16 @@
 # test.sh
 # コマンドテスト用ファイル
 test.sh
+
+# dotfiles
+## files
+!.zshrc
+!mac.sh
+!installer.sh
+!README.md
+
+## dir
+!installer/
+!.bin/
+!.config/
+!.nvim/
