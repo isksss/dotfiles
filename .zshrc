@@ -11,8 +11,11 @@ alias ll='ls -al'
 # git
 alias g='git'
 alias gs='git status'
+alias ga='git add -A'
+alias gc='git commit'
 alias gcm='git commit -m'
 alias gl='git log'
+alias gla='git log --oneline --graph'
 
 # docker
 alias d='docker'
