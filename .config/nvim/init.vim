@@ -119,3 +119,7 @@ endif
 
 " NERDTree
 nmap <C-f> :NERDTreeToggle<CR>
+let NERDTreeShowHidden = 1
+
+" airline
+let g:airline#extensions#tabline#enabled = 1
