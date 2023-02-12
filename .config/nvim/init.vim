@@ -116,3 +116,6 @@ if len(s:removed_plugins) > 0
   call map(s:removed_plugins, "delete(v:val, 'rf')")
   call dein#recache_runtimepath()
 endif
+
+" NERDTree
+nmap <C-f> :NERDTreeToggle<CR>

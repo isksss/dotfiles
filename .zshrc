@@ -24,6 +24,9 @@ alias dc='docker compose'
 # zsh
 alias zs='source ~/.zshrc'
 
+# nvim
+alias n='nvim'
+
 # PATH
 ## for all OS
 export PATH="$PATH:$HOME/dotfiles/.bin"
