@@ -123,3 +123,16 @@ let NERDTreeShowHidden = 1
 
 " airline
 let g:airline#extensions#tabline#enabled = 1
+
+" terminal 
+" 新規タブでターミナルモードを起動
+nnoremap <silent> tt <cmd>terminal<CR>
+" 下分割でターミナルモードを起動
+nnoremap <silent> tx <cmd>belowright new<CR><cmd>terminal<CR>
+" ターミナルを開いたらに常にinsertモードに入る
+autocmd TermOpen * :startinsert
+" ターミナルモードで行番号を非表示
+autocmd TermOpen * setlocal norelativenumber
+autocmd TermOpen * setlocal nonumber
+
+tnoremap <ESC> <C-\><C-n>
