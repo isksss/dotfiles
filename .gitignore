@@ -1,6 +1,6 @@
 # test.sh
 # コマンドテスト用ファイル
-test.sh
+test.*
 
 # dotfiles
 ## files
@@ -14,3 +14,7 @@ test.sh
 !.bin/
 !.config/
 !.nvim/
+
+## error
+## 一時的な処置
+.config/nvim/nvim

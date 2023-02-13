@@ -136,3 +136,16 @@ autocmd TermOpen * setlocal norelativenumber
 autocmd TermOpen * setlocal nonumber
 
 tnoremap <ESC> <C-\><C-n>
+
+
+" , キーで次タブのバッファを表示
+nnoremap <silent> , :bprev<CR>
+" . キーで前タブのバッファを表示
+nnoremap <silent> . :bnext<CR>
+" bdで現在のバッファを削除
+nnoremap bd :bd<CR>
+
+
+function! InstallCocExtentions()
+  CocInstall -sync coc-actions coc-jedi
+endfunction

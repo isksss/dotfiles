@@ -1,8 +1,13 @@
 # zshrc
 
+# update dotfiles
+#dotfiles
+
 #########################
 # alias 
 #########################
+
+alias cl='clear'
 
 # ls
 alias la='ls -a'
@@ -29,16 +34,30 @@ alias zs='source ~/.zshrc'
 # nvim
 alias n='nvim'
 
+# pyenv virtualenv
+alias py='pyenv'
+alias pyv='pyenv virtualenv'
+alias pyg='pyenv global'
+
 # PATH
-## for all OS
+## my bin
 export PATH="$PATH:$HOME/dotfiles/.bin"
+## go bin
+export PATH="$PATH:$HOME/go/bin"
+
 ## for MacOS
 if [ "$(uname)" = "Darwin" ] ; then
 
-	echo "macOS!"
+	# echo "macOS!"
 
     #fnm
 	export PATH="$HOME/Library/Application Support/fnm:$PATH"
-    eval "`fnm env`"
+  eval "`fnm env`"
+
+  # pyenv
+  export PYENV_ROOT="$HOME/.pyenv"
+  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
 
 fi

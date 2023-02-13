@@ -40,3 +40,15 @@ if [ $? -gt 0 ]; then
     brew install neovim >> /dev/null
     nvim --version
 fi
+
+# pyenv
+pyenv --version >> /dev/null
+if [ $? -gt 0 ]; then
+  echo 'pyenv is not installed.'
+  brew install pyenv
+  pyenv --version
+fi
+
+brew tap homebrew/cask-fonts
+brew install font-hack-nerd-font
+brew install --cask iterm2

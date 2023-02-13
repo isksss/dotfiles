@@ -7,7 +7,7 @@ cd $DOTFILES_DIR
 # create link
 ####################
 ln -sf $DOTFILES_DIR/.zshrc $HOME/.zshrc # zsh
-ln -sf $DOTFILES_DIR/.zshrc $HOME/.zshenv # zsh
+ln -sf $DOTFILES_DIR/.zshenv $HOME/.zshenv # zsh
 
 mkdir -p $HOME/.config
 ln -sf $DOTFILES_DIR/.config/nvim $HOME/.config/nvim # nvim
