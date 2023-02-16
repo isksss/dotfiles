@@ -10,3 +10,6 @@ temp/*
 !.config/
 !zsh/
 !docker/
+
+# 除外
+!.gitkeep
