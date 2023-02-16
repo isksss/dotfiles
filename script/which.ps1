@@ -1,4 +1,8 @@
 # for powershell
 Param($arg)
 
-gcm $arg | fl
+## full info
+# gcm $arg | fl
+
+## only file path
+(gcm $arg).Definition
