@@ -1,85 +1,9 @@
-" setting
-"文字コードをUFT-8に設定
-set fenc=utf-8
-" バックアップファイルを作らない
-set nobackup
-" スワップファイルを作らない
-set noswapfile
-" 編集中のファイルが変更されたら自動で読み直す
-set autoread
-" バッファが編集中でもその他のファイルを開けるように
-set hidden
-" 入力中のコマンドをステータスに表示する
-set showcmd
-
-
-" 見た目系
-" 行番号を表示
-set number
-" 現在の行を強調表示
-set cursorline
-" 現在の行を強調表示（縦）
-set cursorcolumn
-" 行末の1文字先までカーソルを移動できるように
-set virtualedit=onemore
-" インデントはスマートインデント
-set smartindent
-" ビープ音を可視化
-set visualbell
-" 括弧入力時の対応する括弧を表示
-set showmatch
-" ステータスラインを常に表示
-set laststatus=2
-" コマンドラインの補完
-set wildmode=list:longest
-" 折り返し時に表示行単位での移動できるようにする
-nnoremap j gj
-nnoremap k gk
-" シンタックスハイライトの有効化
-syntax enable
-
-
-" Tab系
-" 不可視文字を可視化(タブが「▸-」と表示される)
-set list listchars=tab:\▸\-
-" Tab文字を半角スペースにする
-set expandtab
-" 行頭以外のTab文字の表示幅（スペースいくつ分）
-set tabstop=2
-" 行頭でのTab文字の表示幅
-set shiftwidth=2
-
-
-" 検索系
-" 検索文字列が小文字の場合は大文字小文字を区別なく検索する
-set ignorecase
-" 検索文字列に大文字が含まれている場合は区別して検索する
-set smartcase
-" 検索文字列入力時に順次対象文字列にヒットさせる
-set incsearch
-" 検索時に最後まで行ったら最初に戻る
-set wrapscan
-" 検索語をハイライト表示
-set hlsearch
-" ESC連打でハイライト解除
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
-
-" ヤンクするとクリップボードに保存される
-set clipboard+=unnamed
-
-" 自動でカッコ等を閉じる
-inoremap { {}<LEFT>
-inoremap [ []<LEFT>
-inoremap ( ()<LEFT>
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
-
-"""""" dein.vim """"""
-
+""""" """"" """"" """"" """"" """"" """""
+"" dein.vim
+""""" """"" """"" """"" """"" """"" """""
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-" dein installation check
 if &runtimepath !~# '/dein.vim'
   if !isdirectory(s:dein_repo_dir)
     execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
@@ -96,7 +20,7 @@ if dein#load_state(s:dein_dir)
     call mkdir(s:rc_dir, 'p')
   endif
   let s:toml = s:rc_dir . '/dein.toml'
-  let s:lazy = s:rc_dir . '/dein_lazy.toml'
+  let s:lazy = s:rc_dir . '/lazy.toml'
 
   call dein#load_toml(s:toml, {'lazy': 0})
   call dein#load_toml(s:lazy, {'lazy': 1})
@@ -117,35 +41,62 @@ if len(s:removed_plugins) > 0
   call dein#recache_runtimepath()
 endif
 
-" NERDTree
-nmap <C-f> :NERDTreeToggle<CR>
-let NERDTreeShowHidden = 1
+""""" """"" """"" """"" """"" """"" """""
+"" settings
+""""" """"" """"" """"" """"" """"" """""
+set fenc=utf-8 
+set nobackup
+set noswapfile
+set autoread
+set hidden
 
-" airline
-let g:airline#extensions#tabline#enabled = 1
+set showcmd " show commands you are typing
+set number " show line number
+set cursorline
+set cursorcolumn
+set virtualedit=onemore
 
-" terminal 
-" 新規タブでターミナルモードを起動
-nnoremap <silent> tt <cmd>terminal<CR>
-" 下分割でターミナルモードを起動
-nnoremap <silent> tx <cmd>belowright new<CR><cmd>terminal<CR>
-" ターミナルを開いたらに常にinsertモードに入る
-autocmd TermOpen * :startinsert
-" ターミナルモードで行番号を非表示
-autocmd TermOpen * setlocal norelativenumber
-autocmd TermOpen * setlocal nonumber
+set smartindent
+set visualbell
+set showmatch
+set laststatus=2
+set wildmode=list:longest
 
-tnoremap <ESC> <C-\><C-n>
+syntax enable
+set list listchars=tab:\▸\-
+set expandtab
+set tabstop=2
+set shiftwidth=2
 
+set ignorecase
+set incsearch
+set wrapscan
+set hlsearch
+set clipboard+=unnamed
 
-" , キーで次タブのバッファを表示
+""""" """"" """"" """"" """"" """"" """""
+"" key mapping
+""""" """"" """"" """"" """"" """"" """""
+nnoremap j gj
+nnoremap k gk
 nnoremap <silent> , :bprev<CR>
-" . キーで前タブのバッファを表示
 nnoremap <silent> . :bnext<CR>
-" bdで現在のバッファを削除
 nnoremap bd :bd<CR>
 
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
-function! InstallCocExtentions()
-  CocInstall -sync coc-actions coc-jedi
-endfunction
+nnoremap <silent> tt <cmd>terminal<CR>
+nnoremap <silent> tx <cmd>belowright new<CR><cmd>terminal<CR>
+autocmd TermOpen * :startinsert
+autocmd TermOpen * setlocal norelativenumber
+autocmd TermOpen * setlocal nonumber
+tnoremap <ESC> <C-\><C-n>
+
+""""" """"" """"" """"" """"" """"" """""
+"" utils
+""""" """"" """"" """"" """"" """"" """""
+inoremap { {}<LEFT>
+inoremap [ []<LEFT>
+inoremap ( ()<LEFT>
+inoremap " ""<LEFT>
+inoremap ' ''<LEFT>

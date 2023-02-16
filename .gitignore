@@ -1,20 +1,12 @@
-# test.sh
 # コマンドテスト用ファイル
 test.*
 
 # dotfiles
-## files
-!.zshrc
-!mac.sh
-!installer.sh
-!README.md
-
+!setup.sh
+temp/*
 ## dir
 !installer/
-!.bin/
+!script/
 !.config/
-!.nvim/
-
-## error
-## 一時的な処置
-.config/nvim/nvim
+!zsh/
+!docker/

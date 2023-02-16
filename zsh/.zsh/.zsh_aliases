@@ -1,0 +1,32 @@
+#########################
+# alias 
+#########################
+alias cl='clear'
+alias la='ls -a'
+alias ll='ls -al'
+
+# git
+alias g='git'
+alias gs='git status'
+alias ga='git add -A'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gl='git log'
+alias gla='git log --oneline --graph'
+alias gp='git push'
+alias gd='git diff'
+
+# docker
+alias d='docker'
+alias dc='docker compose'
+
+# pyenv virtualenv
+alias py='pyenv'
+alias pyv='pyenv virtualenv'
+alias pyg='pyenv global'
+
+# nvim
+alias n='nvim'
+
+# zsh
+alias zs='source ~/.zshrc'

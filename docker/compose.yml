@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - UID=${UID}
+        - GID=${GID}
+        - USERNAME=${USERNAME}
+        - PASSWORD=${PASSWORD}
+    tty: true
+    volumes:
+      - ../:/home/${USERNAME}/dotfiles

@@ -1,28 +1,47 @@
 #!/bin/sh
-DOTFILES_DIR=$(cd $(dirname $0); pwd)
+## env
+export DOTFILES=$(cd $(dirname $0); pwd)
 
-cd $DOTFILES_DIR
+XDG_CONFIG_HOME=$HOME/.config
+XDG_CACHE_HOME=$HOME/.cache
 
-####################
-# create link
-####################
-ln -sf $DOTFILES_DIR/.zshrc $HOME/.zshrc # zsh
-ln -sf $DOTFILES_DIR/.zshenv $HOME/.zshenv # zsh
+## add +x
+chmod +x $DOTFILES/script/*
+chmod +x $DOTFILES/installer/*
 
-mkdir -p $HOME/.config
-ln -sf $DOTFILES_DIR/.config/nvim $HOME/.config/nvim # nvim
+## ln
+ln -sf $DOTFILES/zsh/.zshrc $HOME/.zshrc
+ln -sf $DOTFILES/zsh/.zshenv $HOME/.zshenv
+ln -sf $DOTFILES/zsh/.zsh $HOME/.zsh
 
-####################
-# zshrc
-####################
-source $HOME/.zshrc
+### nvim
+if [ ! -d $XDG_CONFIG_HOME/nvim ]; then
+    echo 'make dir: nvim'
+    mkdir $XDG_CONFIG_HOME/nvim
+fi
 
-####################
-# OS
-####################
+if [ ! -d $XDG_CONFIG_HOME/nvim/toml ]; then
+    echo 'make dir: nvim/toml'
+    mkdir $XDG_CONFIG_HOME/nvim/toml
+fi
 
-# +x
-chmod +x ./installer/*
-chmod +x ./.bin/*
+NVIM_DIR=$DOTFILES/.config/nvim
+NVIM_HOME=$XDG_CONFIG_HOME/nvim
 
-./installer/mac.sh
+ln -sf $NVIM_DIR/init.vim $NVIM_HOME/init.vim
+ln -sf $NVIM_DIR/toml/dein.toml $NVIM_HOME/toml/dein.toml
+ln -sf $NVIM_DIR/toml/lazy.toml $NVIM_HOME/toml/lazy.toml
+
+## args
+while (( $# > 0 ))
+do
+  case $1 in
+    # ...
+    -i | --install)
+      INSTALL=1
+      $DOTFILES/installer/_installer.sh
+      ;;
+    # ...
+  esac
+  shift
+done

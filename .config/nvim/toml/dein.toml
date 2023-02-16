@@ -3,24 +3,13 @@ repo = 'Shougo/dein.vim'
 
 [[plugins]]
 repo = 'preservim/nerdtree'
-
-[[plugins]]
-repo = 'vim-airline/vim-airline'
-
-[[plugins]]
-repo = 'vim-airline/vim-airline-themes'
-depends = 'vim-airline'
 hook_add = '''
-    let g:airline_theme = 'onedark'
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#buffer_idx_mode = 1
-    let g:airline#extensions#tabline#fnamemod = ':t'
+    nmap <C-f> :NERDTreeToggle<CR>
+    let NERDTreeShowHidden = 1
 '''
 
 [[plugins]]
-repo = 'neoclide/coc.nvim'
-rev = 'release'
-merged = '0'
+repo = 'vim-airline/vim-airline'
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
@@ -35,6 +24,10 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'ryanoasis/vim-devicons'
-
-
+repo = 'neoclide/coc.nvim'
+hook_add = '''
+    augroup coc
+      autocmd!
+      autocmd User CocStarted call coc#util#install()
+    augroup END
+'''
