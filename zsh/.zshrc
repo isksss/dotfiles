@@ -6,7 +6,7 @@ CURRENT_DIR=$(cd $(dirname $0); pwd)
 #########################
 # history
 #########################
-HISTFILE=$HOME/.zsh-history
+HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
 SAVEHIST=1000000
 setopt inc_append_history
