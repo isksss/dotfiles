@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+## mac and linux
+OS=$(uname)
+
+echo "OS:$OS"
+if [ $OS = "Linux" ];then
+    # del
+fi
+
+if [ $OS = "Darwin" ];then
+    rm -rf ~/Downloads/*
+fi
