@@ -32,6 +32,9 @@ ln -sf $NVIM_DIR/init.vim $NVIM_HOME/init.vim
 ln -sf $NVIM_DIR/toml/dein.toml $NVIM_HOME/toml/dein.toml
 ln -sf $NVIM_DIR/toml/lazy.toml $NVIM_HOME/toml/lazy.toml
 
+## link
+ln -sf $DOTFILES/git/.gitignore_global $HOME/.gitignore_global
+
 ## args
 while (( $# > 0 ))
 do
