@@ -12,8 +12,11 @@ chmod +x $DOTFILES/installer/*
 ## ln
 ln -sf $DOTFILES/zsh/.zshrc $HOME/.zshrc
 ln -sf $DOTFILES/zsh/.zshenv $HOME/.zshenv
-ln -sf $DOTFILES/zsh/.zsh $HOME/.zsh
-
+if [ ! -d $HOME/.zsh ]; then
+    mkdir $HOME/.zsh
+    ln -sf $DOTFILES/zsh/.zsh/.zsh_aliases $HOME/.zsh/.zsh_aliases
+    ln -sf $DOTFILES/zsh/.zsh/.zsh_path $HOME/.zsh/.zsh_path
+fi
 ### nvim
 if [ ! -d $XDG_CONFIG_HOME/nvim ]; then
     echo 'make dir: nvim'
@@ -34,17 +37,20 @@ ln -sf $NVIM_DIR/toml/lazy.toml $NVIM_HOME/toml/lazy.toml
 
 ## link
 ln -sf $DOTFILES/git/.gitignore_global $HOME/.gitignore_global
+if [ $(uname) != "Darwin" ]; then
+  ln -sf $DOTFILES/git/.gitconfig $HOME/.gitconfig
+fi
 
 ## args
-while (( $# > 0 ))
-do
-  case $1 in
-    # ...
-    -i | --install)
-      INSTALL=1
-      $DOTFILES/installer/_installer.sh
-      ;;
-    # ...
-  esac
-  shift
-done
+# while (( $# > 0 ))
+# do
+#   case $1 in
+#     # ...
+#     -i | --install)
+#       INSTALL=1
+#       $DOTFILES/installer/_installer.sh
+#       ;;
+#     # ...
+#   esac
+#   shift
+# done

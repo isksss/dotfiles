@@ -1,8 +1,8 @@
 #!/bin/sh
-
+C_DIR=$(cd $(dirname $0); pwd)
 OS=$(uname)
 
 echo "OS:$OS"
 if [ $OS = "Linux" ];then
-    $DOTFILES/installer/linux/_install.sh
+    $C_DIR/linux/_install.sh
 fi
