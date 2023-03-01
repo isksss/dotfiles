@@ -5,6 +5,11 @@ CURRENT_DIR=$(cd $(dirname $0); pwd)
 export LANG=ja_JP.UTF-8
 
 #########################
+# plugins
+#########################
+source $HOME/.zsh/.zsh_plugins
+
+#########################
 # history
 #########################
 HISTFILE=$HOME/.zsh_history
