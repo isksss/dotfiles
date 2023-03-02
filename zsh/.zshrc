@@ -54,3 +54,38 @@ autoload -Uz colors ; colors
 
 # ()
 setopt auto_param_keys
+
+#########################
+# prompt
+#########################
+autoload -U promptinit
+local p_color="%(?.%{${fg[cyan]}%}.%{${fg[magenta]}%})"
+##########
+# left
+
+##########
+# right
+autoload -Uz vcs_info
+setopt prompt_subst
+
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
+zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+precmd(){ vcs_info }
+
+RPROMPT='${memotxt}''${vcs_info_msg_0_}'"$p_color return:[%?]%{${reset_color}%}"
+##########
+# memo
+# `% memo {text}`でrpromptにメモできる
+function memo(){
+    if [ $# -eq 0 ]; then
+        unset memotxt
+        return
+    fi
+    for str in $@
+    do
+    memotxt="${memotxt} ${str}"
+    done
+}

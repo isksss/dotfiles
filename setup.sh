@@ -13,19 +13,21 @@ chmod +x $DOTFILES/installer/*
 ln -sf $DOTFILES/zsh/.zshrc $HOME/.zshrc
 ln -sf $DOTFILES/zsh/.zshenv $HOME/.zshenv
 if [ ! -d $HOME/.zsh ]; then
-    mkdir $HOME/.zsh
+    mkdir -p $HOME/.zsh
     ln -sf $DOTFILES/zsh/.zsh/.zsh_aliases $HOME/.zsh/.zsh_aliases
     ln -sf $DOTFILES/zsh/.zsh/.zsh_path $HOME/.zsh/.zsh_path
+    ln -sf $DOTFILES/zsh/.zsh/.zsh_plugins $HOME/.zsh/.zsh_plugins
 fi
+
 ### nvim
 if [ ! -d $XDG_CONFIG_HOME/nvim ]; then
     echo 'make dir: nvim'
-    mkdir $XDG_CONFIG_HOME/nvim
+    mkdir -p $XDG_CONFIG_HOME/nvim
 fi
 
 if [ ! -d $XDG_CONFIG_HOME/nvim/toml ]; then
     echo 'make dir: nvim/toml'
-    mkdir $XDG_CONFIG_HOME/nvim/toml
+    mkdir -p $XDG_CONFIG_HOME/nvim/toml
 fi
 
 NVIM_DIR=$DOTFILES/.config/nvim
