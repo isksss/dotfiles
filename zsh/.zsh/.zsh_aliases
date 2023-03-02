@@ -2,8 +2,18 @@
 # alias 
 #########################
 alias cl='clear'
+
+# ls
+alias ls='ls --color=auto'
+alias ls='ls -G'
 alias la='ls -a'
 alias ll='ls -al'
+
+# cd
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias cdd='cd ~/dotfiles'
 
 # git
 alias g='git'
@@ -15,6 +25,12 @@ alias gl='git log'
 alias gla='git log --oneline --graph'
 alias gp='git push'
 alias gd='git diff'
+alias gf='git fetch'
+
+# safe
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
 
 # docker
 alias d='docker'
@@ -29,4 +45,13 @@ alias pyg='pyenv global'
 alias n='nvim'
 
 # zsh
-alias zs='source ~/.zshrc'
+alias zs='clear && source ~/.zshrc'
+
+# 
+if [ $(uname) = "Linux" ]; then
+    alias pbcopy='xclip -selection c'
+    alias pbpaste='xclip -selection c -o'
+fi
+
+alias c='pbcopy'
+alias p='pbpaste'

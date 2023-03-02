@@ -1,5 +1,5 @@
 #!/bin/sh
-sudo apt update
+sudo apt update > /dev/null
 
 #########
 # utils #
@@ -8,13 +8,19 @@ sudo apt update
 ## git
 git --version
 if [ $? -gt 0 ]; then
-    sudo apt install -y git
+    sudo apt install -y git > /dev/null
 fi
 
 ## wget
 wget --version >> /dev/null
 if [ $? -gt 0 ]; then
-    sudo apt install -y wget
+    sudo apt install -y wget > /dev/null
+fi
+
+## xclip
+which xclip >> /dev/null
+if [ $? -gt 0 ]; then
+    sudo apt install -y clip > /dev/null
 fi
 
 ## etc
@@ -26,7 +32,7 @@ fi
 #######
 which zsh >> /dev/null
 if [ $? -gt 0 ]; then
-    sudo apt install -y zsh
+    sudo apt install -y zsh > /dev/null
 fi
 
 if [ $SHELL != $(which zsh) ];then
@@ -38,9 +44,9 @@ fi
 ########
 code --version >> /dev/null
 if [ $? -gt 0 ]; then
-    wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-    sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-    sudo apt update
-    sudo apt install -y code 
+    wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add - > /dev/null
+    sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /dev/null
+    sudo apt update > /dev/null
+    sudo apt install -y code > /dev/null
 fi
 
