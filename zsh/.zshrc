@@ -5,11 +5,6 @@ CURRENT_DIR=$(cd $(dirname $0); pwd)
 export LANG=ja_JP.UTF-8
 
 #########################
-# plugins
-#########################
-source $HOME/.zsh/.zsh_plugins
-
-#########################
 # history
 #########################
 HISTFILE=$HOME/.zsh_history
@@ -20,6 +15,21 @@ setopt share_history
 setopt hist_ignore_all_dups
 setopt share_history
 setopt hist_reduce_blanks
+
+#########################
+# plugins
+#########################
+source $HOME/.zsh/.zsh_plugins
+
+#########################
+# alias 
+#########################
+source $HOME/.zsh/.zsh_aliases
+
+#########################
+# path
+#########################
+source $HOME/.zsh/.zsh_path
 
 #########################
 # completions
@@ -44,20 +54,3 @@ autoload -Uz colors ; colors
 
 # ()
 setopt auto_param_keys
-
-#########################
-# alias 
-#########################
-source $HOME/.zsh/.zsh_aliases
-
-#########################
-# path
-#########################
-source $HOME/.zsh/.zsh_path
-
-# for mac os
-if [ "$(uname)" = "Darwin" ] ; then
-    # fnm
-    export PATH="$PATH:$HOME/Library/Application Support/fnm"
-    eval "$(fnm env --use-on-cd)"
-fi
