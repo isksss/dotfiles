@@ -60,22 +60,27 @@ setopt auto_param_keys
 #########################
 autoload -U promptinit
 local p_color="%(?.%{${fg[cyan]}%}.%{${fg[magenta]}%})"
-##########
-# left
 
 ##########
-# right
+# left
 autoload -Uz vcs_info
 setopt prompt_subst
 
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
-zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
+zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
+zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
+
 precmd(){ vcs_info }
 
-RPROMPT='${memotxt}''${vcs_info_msg_0_}'"$p_color return:[%?]%{${reset_color}%}"
+PROMPT='
+[%B%F{red}%n@%m%f%b:%F{green}%~%f]%F{cyan}$vcs_info_msg_0_%f
+%F{yellow}$%f '
+
+##########
+# right
+RPROMPT='${memotxt}'"$p_color return:[%?]%{${reset_color}%}"
 ##########
 # memo
 # `% memo {text}`でrpromptにメモできる
