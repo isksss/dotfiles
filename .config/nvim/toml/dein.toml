@@ -25,9 +25,20 @@ hook_add = '''
 
 [[plugins]]
 repo = 'neoclide/coc.nvim'
+rev = 'release'
+build = '''
+  git checkout release
+'''
 hook_add = '''
-    augroup coc
-      autocmd!
-      autocmd User CocStarted call coc#util#install()
-    augroup END
+let g:coc_global_extensions = [
+    \ 'coc-sql',
+    \ 'coc-go',
+    \ 'coc-vimlsp',
+    \ 'coc-docker',
+    \ 'coc-markdownlint',
+    \ 'coc-json',
+    \ 'coc-spell-checker',
+    \ 'coc-snippets',
+    
+\ ]
 '''

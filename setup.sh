@@ -36,6 +36,7 @@ NVIM_HOME=$XDG_CONFIG_HOME/nvim
 ln -sf $NVIM_DIR/init.vim $NVIM_HOME/init.vim
 ln -sf $NVIM_DIR/toml/dein.toml $NVIM_HOME/toml/dein.toml
 ln -sf $NVIM_DIR/toml/lazy.toml $NVIM_HOME/toml/lazy.toml
+ln -sf $NVIM_DIR/coc-settings.json $NVIM_HOME/coc-settings.json
 
 ## link
 ln -sf $DOTFILES/git/.gitignore_global $HOME/.gitignore_global

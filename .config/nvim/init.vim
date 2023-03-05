@@ -74,6 +74,8 @@ set wrapscan
 set hlsearch
 set clipboard+=unnamed
 
+set completeopt=menuone,noinsert
+
 """"" """"" """"" """"" """"" """"" """""
 "" key mapping
 """"" """"" """"" """"" """"" """"" """""
@@ -91,6 +93,10 @@ autocmd TermOpen * :startinsert
 autocmd TermOpen * setlocal norelativenumber
 autocmd TermOpen * setlocal nonumber
 tnoremap <ESC> <C-\><C-n>
+
+inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
+inoremap <expr><C-n> pumvisible() ? "<Down>" : "<C-n>"
+inoremap <expr><C-p> pumvisible() ? "<Up>" : "<C-p>"
 
 """"" """"" """"" """"" """"" """"" """""
 "" utils
