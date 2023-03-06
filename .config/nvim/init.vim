@@ -98,6 +98,10 @@ inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
 inoremap <expr><C-n> pumvisible() ? "<Down>" : "<C-n>"
 inoremap <expr><C-p> pumvisible() ? "<Up>" : "<C-p>"
 
+nnoremap x "_x
+nnoremap s "_s
+
+nnoremap ww <C-w>w
 """"" """"" """"" """"" """"" """"" """""
 "" utils
 """"" """"" """"" """"" """"" """"" """""

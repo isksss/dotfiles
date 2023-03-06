@@ -4,8 +4,8 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'preservim/nerdtree'
 hook_add = '''
-    nmap <C-f> :NERDTreeToggle<CR>
-    let NERDTreeShowHidden = 1
+    noremap <silent><C-f> :NERDTreeToggle<CR>
+    let NERDTreeShowHidden=1
 '''
 
 [[plugins]]
@@ -39,6 +39,5 @@ let g:coc_global_extensions = [
     \ 'coc-json',
     \ 'coc-spell-checker',
     \ 'coc-snippets',
-    
-\ ]
+    \ ]
 '''
