@@ -4,37 +4,19 @@ sudo apt update > /dev/null
 #########
 # utils #
 #########
+APP_LIST="git wget xclip tree neovim zsh"
 
-## git
-git --version
-if [ $? -gt 0 ]; then
-    sudo apt install -y git > /dev/null
-fi
-
-## wget
-wget --version >> /dev/null
-if [ $? -gt 0 ]; then
-    sudo apt install -y wget > /dev/null
-fi
-
-## xclip
-which xclip >> /dev/null
-if [ $? -gt 0 ]; then
-    sudo apt install -y clip > /dev/null
-fi
-
-## etc
-# sudo apt install -y tree curl nvim zsh
-# sudo apt upgrade -y
+for APP in $APP_LIST
+do
+    which $APP
+    if [ $? -gt 0 ]; then
+        sudo apt install -y $APP > /dev/null
+    fi
+done
 
 #######
 # zsh #
 #######
-which zsh >> /dev/null
-if [ $? -gt 0 ]; then
-    sudo apt install -y zsh > /dev/null
-fi
-
 if [ $SHELL != $(which zsh) ];then
     chsh -s $(which zsh)
 fi
