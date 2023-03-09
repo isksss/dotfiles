@@ -94,14 +94,20 @@ autocmd TermOpen * setlocal norelativenumber
 autocmd TermOpen * setlocal nonumber
 tnoremap <ESC> <C-\><C-n>
 
+" 
 inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
 inoremap <expr><C-n> pumvisible() ? "<Down>" : "<C-n>"
 inoremap <expr><C-p> pumvisible() ? "<Up>" : "<C-p>"
 
+" not copy
 nnoremap x "_x
 nnoremap s "_s
 
+" move next window
 nnoremap ww <C-w>w
+" close window
+nnoremap wc <C-w>c
+
 """"" """"" """"" """"" """"" """"" """""
 "" utils
 """"" """"" """"" """"" """"" """"" """""
