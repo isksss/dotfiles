@@ -102,6 +102,8 @@ nnoremap x "_x
 nnoremap s "_s
 
 nnoremap ww <C-w>w
+
+nmap <silent><S-t> tx
 """"" """"" """"" """"" """"" """"" """""
 "" utils
 """"" """"" """"" """"" """"" """"" """""
