@@ -50,8 +50,8 @@ set noswapfile
 set autoread
 set hidden
 
-set showcmd " show commands you are typing
-set number " show line number
+set showcmd 
+set number 
 set cursorline
 set cursorcolumn
 set virtualedit=onemore
@@ -94,17 +94,22 @@ autocmd TermOpen * setlocal norelativenumber
 autocmd TermOpen * setlocal nonumber
 tnoremap <ESC> <C-\><C-n>
 
-" 
+" completion
 inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
 inoremap <expr><C-n> pumvisible() ? "<Down>" : "<C-n>"
 inoremap <expr><C-p> pumvisible() ? "<Up>" : "<C-p>"
+
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-H> <Left>
+inoremap <C-L> <Right>
 
 " not copy
 nnoremap x "_x
 nnoremap s "_s
 
 " move next window
-nnoremap ww <C-w>w
+" nnoremap ww <C-w>w
 " close window
 nnoremap wc <C-w>c
 
