@@ -9,7 +9,7 @@ chmod +x $DOTFILES/_script/*
 
 echo $DOTFILES
 ##############################
-# for Ubuntu
+# for ArchLinux
 
 ##############################
 # for Mac
