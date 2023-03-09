@@ -32,3 +32,14 @@ if [ $? -gt 0 ]; then
     sudo apt install -y code > /dev/null
 fi
 
+############
+# OTHER APP
+
+### chrome
+if [ -d ~/dotfiles/temp/app ]; then
+  mkdir -p ~/dotfiles/temp/app
+fi
+
+if ! [ -f ~/dotfiles/temp/app/google-chrome-stable_current_amd64.deb ]; then
+  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o ~/dotfiles/temp/app/
+fi
