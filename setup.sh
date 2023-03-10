@@ -6,6 +6,7 @@ export DOTFILES=$(cd $(dirname $0); pwd)
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 chmod -R +x $DOTFILES/_script/*
+chmod -R +x $DOTFILES/_bin/*
 
 echo $DOTFILES
 ##############################
