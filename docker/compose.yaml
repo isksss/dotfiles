@@ -1,13 +1,6 @@
 services:
-  app:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-      args:
-        - UID=${UID}
-        - GID=${GID}
-        - USERNAME=${USERNAME}
-        - PASSWORD=${PASSWORD}
-    tty: true
+  arch:
+    image: archlinux
+    command: sleep infinity
     volumes:
-      - ../:/home/${USERNAME}/dotfiles
+      - ../:/root/dotfiles

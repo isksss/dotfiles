@@ -1,3 +1,7 @@
 [user]
 	name = isksss
 	email = 104404522+isksss@users.noreply.github.com
+[color]
+	diff = auto
+	status = auto
+	branch = auto

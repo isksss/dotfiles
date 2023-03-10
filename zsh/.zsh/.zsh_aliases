@@ -19,7 +19,8 @@ alias cdd='cd ~/dotfiles'
 alias g='git'
 alias gs='git status'
 alias ga='git add -A'
-alias gc='git commit'
+alias gc='git checkout'
+alias gcb='gc -b'
 alias gcm='git commit -m'
 alias gl='git log'
 alias gla='git log --oneline --graph'
@@ -31,7 +32,7 @@ alias gf='git fetch'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
-
+alias mkdir='mkdir -p'
 # docker
 alias d='docker'
 alias dc='docker compose'
@@ -43,6 +44,7 @@ alias pyg='pyenv global'
 
 # nvim
 alias n='nvim'
+alias n.='n .'
 
 # zsh
 alias zs='clear && source ~/.zshrc'
