@@ -1,0 +1,4 @@
+#!/bin/sh
+
+sed -e
+nvim ~/todo

@@ -11,5 +11,9 @@ temp/*
 !zsh/
 !docker/
 
+# env
+.env
+
 # 除外
 !.gitkeep
+!docker/.env
