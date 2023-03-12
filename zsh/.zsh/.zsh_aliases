@@ -44,7 +44,6 @@ alias pyg='pyenv global'
 
 # nvim
 alias n='nvim'
-alias n.='n .'
 
 # zsh
 alias zs='clear && source ~/.zshrc'

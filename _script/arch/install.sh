@@ -12,5 +12,6 @@ pacman -S which --noconfirm
 # pacman
 
 pacman -S git --noconfirm
+pacman -S zsh --noconfirm
 pacman -S tree --noconfirm
 pacman -S neovim --noconfirm
