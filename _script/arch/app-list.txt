@@ -1,0 +1,16 @@
+#
+sudo
+which
+
+git
+zsh
+tree
+neovim
+xclip
+github-cli
+
+vivaldi
+
+ttf-sazanami
+otf-ipafont
+otf-ipamjfont
