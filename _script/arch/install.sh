@@ -1,17 +1,27 @@
 #!/bin/sh
 set -e
 
-if [ "$(uname)"!= "Linux"];then
+if [ "$(uname)" != "Linux" ];then
     exit 1
 fi
 
-pacman -Syy
+if [ ! $(which pacman) ]; then
+    exit 1
+fi
 
-pacman -S sudo --noconfirm
-pacman -S which --noconfirm
-# pacman
+# pacman --noconfirm -Syy
 
-pacman -S git --noconfirm
-pacman -S zsh --noconfirm
-pacman -S tree --noconfirm
-pacman -S neovim --noconfirm
+pacman --noconfirm -S sudo
+pacman --noconfirm -S which
+
+pacman --noconfirm -S git
+pacman --noconfirm -S zsh
+pacman --noconfirm -S tree
+pacman --noconfirm -S neovim
+pacman --noconfirm -S xclip
+pacman --noconfirm -S github-cli
+
+pacman --noconfirm -S vivaldi
+
+pacman --noconfirm -S ttf-sazanami
+pacman --noconfirm -S otf-ipafont otf-ipamjfont

@@ -4,7 +4,7 @@ my dotfiles.
 
 ## setup
 
-`./setup.sh`
+`sudo ./setup.sh `
 
 ## todo
 

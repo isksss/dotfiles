@@ -2,13 +2,19 @@
 ############################################################
 # Setup Shell Script
 ############################################################
+echo "#############################################"
+echo "#            Setup Shell Script             #"
+echo "#############################################"
+
 export DOTFILES=$(cd $(dirname $0); pwd)
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
+
+echo "dotfiles_dir: $DOTFILES"
+
 chmod -R +x $DOTFILES/_script/*
 chmod -R +x $DOTFILES/_bin/*
 
-echo $DOTFILES
 ##############################
 # for ArchLinux
 $DOTFILES/_script/arch/install.sh
