@@ -4,8 +4,8 @@
 alias cl='clear'
 
 # ls
-alias ls='ls --color=auto'
-alias ls='ls -G'
+alias ls='ls --color -G'
+# alias ls='ls -G'
 alias la='ls -a'
 alias ll='ls -al'
 
@@ -14,6 +14,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias cdd='cd ~/dotfiles'
+alias cdw='cd ~/workspace'
 
 # git
 alias g='git'
@@ -33,6 +34,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 alias mkdir='mkdir -p'
+
 # docker
 alias d='docker'
 alias dc='docker compose'

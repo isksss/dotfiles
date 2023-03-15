@@ -1,6 +1,7 @@
 ######APP_LIST######
 sudo
 which
+make
 
 ######app######
 git
@@ -11,6 +12,9 @@ xclip
 github-cli
 docker
 docker-compose
+
+######lang######
+go
 
 ######utils######
 vivaldi

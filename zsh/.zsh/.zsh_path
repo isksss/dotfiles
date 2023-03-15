@@ -15,12 +15,16 @@ if [ -d $PYENV_ROOT ]; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
+# volta
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
 # OS diff
-if [ "$(uname)" = "Darwin" ] ; then
-    # fnm
-    export PATH="$PATH:$HOME/Library/Application Support/fnm"
-    eval "$(fnm env --use-on-cd)"
-elif [ "$(uname)" = "Linux" ] ; then
-    export PATH="$HOME/.local/share/fnm:$PATH"
-    eval "$(fnm env --use-on-cd)"
-fi
+# if [ "$(uname)" = "Darwin" ] ; then
+#     # fnm
+#     export PATH="$PATH:$HOME/Library/Application Support/fnm"
+#     eval "$(fnm env --use-on-cd)"
+# elif [ "$(uname)" = "Linux" ] ; then
+#     export PATH="$HOME/.local/share/fnm:$PATH"
+#     eval "$(fnm env --use-on-cd)"
+# fi
