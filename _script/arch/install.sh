@@ -9,13 +9,20 @@ if [ ! $(which pacman) ]; then
     exit 1
 fi
 
+echo "#####################"
+echo "### pacman update ###"
+echo "#####################"
 pacman --noconfirm -Syu
 
+echo "###################"
+echo "### app install ###"
+echo "###################"
 for app in `cat $DOTFILES/_script/arch/app-list.txt`
 do
     if [[ "${app}" =~ [\#]+ ]];then
         continue
     fi
+    
     if !(which ${app} > /dev/null 2>&1); then
         echo ">>> ${app} is not installed. so, now install..."
         pacman --noconfirm -S ${app} > /dev/null 2>&1

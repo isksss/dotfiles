@@ -12,6 +12,9 @@ github-cli
 docker
 docker-compose
 
+######lang######
+go
+
 ######utils######
 vivaldi
 
