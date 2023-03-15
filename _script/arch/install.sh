@@ -32,6 +32,7 @@ do
         printf ">>> ${GREEN}INSTALLED${NC}: ${app}\n"
     else
         printf ">>> ${RED}NOT INSTALLED${NC}: ${app}\n"
+        printf ">>> ${YELLOW}INSTALL START${NC}: ${app}...\n"
         pacman --noconfirm -S ${app} > /dev/null 2>&1
     fi
 done

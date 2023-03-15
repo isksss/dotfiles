@@ -1,6 +1,7 @@
 ######APP_LIST######
 sudo
 which
+make
 
 ######app######
 git
