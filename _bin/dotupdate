@@ -1,0 +1,16 @@
+#!/bin/sh
+# dotfilesをアップデートするコマンド
+set -e
+export DOTFILES=$(cd $(dirname $0); pwd)
+
+cd "$DOTFILES" || exit 1
+
+# 現在のブランチ名を取得する
+CURRENT_BRANCH=$(git branch --show-current)
+
+git checkout main
+git pull origin main
+
+sudo "$DOTFILES/../setup.sh" > /dev/null
+
+git checkout "$CURRENT_BRANCH"

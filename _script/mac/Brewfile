@@ -11,10 +11,11 @@ brew "pyenv"
 brew "pyenv-virtualenv"
 # brew "python@3.10"
 brew "tree"
+brew "flutter"
 
 cask "thunderbird"
 cask "google-chrome"
 cask "zoom"
-cask "1password"
+# cask "1password"
 cask "virtualbox"
 

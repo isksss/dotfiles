@@ -1,5 +1,5 @@
 # my_bin
-export PATH="$PATH:$HOME/dotfiles/script"
+export PATH="$HOME/dotfiles/_bin:$PATH"
 # golang
 which go > /dev/null
 if [ $? -eq 0 ]; then

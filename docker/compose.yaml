@@ -1,6 +1,0 @@
-services:
-  arch:
-    image: archlinux
-    command: sleep infinity
-    volumes:
-      - ../:/root/dotfiles
