@@ -35,6 +35,5 @@ if !(getent group docker | grep "$(whoami)" > /dev/null 2>&1);then
     sudo usermod -aG docker "$(whoami)"
 fi
 
-
 # perl, locale
-cat /etc/locale.gen| sed "s/\#ja_JP.UTF-8 UTF-8/ja_JP.UTF-8 UTF-8/g"
+cat /etc/locale.gen| sed "s/\#ja_JP.UTF-8 UTF-8/ja_JP.UTF-8 UTF-8/g" > /dev/null 2>&1
