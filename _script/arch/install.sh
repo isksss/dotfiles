@@ -8,23 +8,30 @@ fi
 if [ ! $(which pacman) ]; then
     exit 1
 fi
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
 
-echo "#####################"
-echo "### pacman update ###"
-echo "#####################"
+printf "#####################\n"
+printf "#   ${YELLOW}pacman update${NC}   #\n"
+printf "#####################\n"
 pacman --noconfirm -Syu
 
-echo "###################"
-echo "### app install ###"
-echo "###################"
+printf "###################\n"
+printf "#   ${YELLOW}app install${NC}   #\n"
+printf "###################\n"
+
 for app in `cat $DOTFILES/_script/arch/app-list.txt`
 do
     if [[ "${app}" =~ [\#]+ ]];then
         continue
     fi
-    
-    if !(which ${app} > /dev/null 2>&1); then
-        echo ">>> ${app} is not installed. so, now install..."
+
+    if (pacman -Qi ${app} > /dev/null 2>&1); then
+        printf ">>> ${GREEN}INSTALLED${NC}: ${app}\n"
+    else
+        printf ">>> ${RED}NOT INSTALLED${NC}: ${app}\n"
         pacman --noconfirm -S ${app} > /dev/null 2>&1
     fi
 done

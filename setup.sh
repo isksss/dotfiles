@@ -26,4 +26,9 @@ $DOTFILES/_script/arch/install.sh
 # for ALL OS
 $DOTFILES/_script/app.sh
 
+# make project dir
+if [ ! -d "$HOME/workspace" ]; then
+    mkdir -p $HOME/workspace
+fi
+
 
