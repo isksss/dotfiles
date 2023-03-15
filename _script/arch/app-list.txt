@@ -1,16 +1,21 @@
-#
+######APP_LIST######
 sudo
 which
 
+######app######
 git
 zsh
 tree
 neovim
 xclip
 github-cli
+docker
+docker-compose
 
+######utils######
 vivaldi
 
+######font#####
 ttf-sazanami
 otf-ipafont
 otf-ipamjfont

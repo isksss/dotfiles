@@ -11,6 +11,10 @@ ln -sf $DOTFILES/zsh/.zsh/ $HOME/.zsh
 ZSH_SHELL=$(which zsh)
 if [ $SHELL != $ZSH_SHELL ]; then
     echo "change shell: $SHELL to $ZSH_SHELL"
+
+    if !(cat /etc/shells | grep $ZSH_SHELL); then 
+        echo $ZSH_SHELL >> /etc/shells
+    fi
     chsh -s $ZSH_SHELL
 fi
 
