@@ -23,6 +23,14 @@ require("packer").startup(function()
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/vim-vsnip"
+
+  -- filer
+  use "lambdalisue/fern.vim"
+  use "lambdalisue/nerdfont.vim"
+  use "lambdalisue/fern-renderer-nerdfont.vim"
+
+  -- git
+  use "lambdalisue/fern-git-status.vim"
 end)
 
 -- 1. LSP Sever management
@@ -81,8 +89,6 @@ cmp.setup({
   },
   sources = {
     { name = "nvim_lsp" },
-    -- { name = "buffer" },
-    -- { name = "path" },
   },
   mapping = cmp.mapping.preset.insert({
     ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -95,16 +101,16 @@ cmp.setup({
     ghost_text = true,
   },
 })
--- cmp.setup.cmdline('/', {
---   mapping = cmp.mapping.preset.cmdline(),
---   sources = {
---     { name = 'buffer' }
---   }
--- })
--- cmp.setup.cmdline(":", {
---   mapping = cmp.mapping.preset.cmdline(),
---   sources = {
---     { name = "path" },
---     { name = "cmdline" },
---   },
--- })
+
+-- require('fern.vim').setup()
+-- require('fzf.vim').setup()
+-- require('fern-git-status.vim').setup()
+
+
+
+
+augroup('FernEvents', function()
+    autocmd('!', 'FileType', 'fern', 'call FernInit()')
+end)
+vim.cmd('let g:fern#default_hidden=0')
+  

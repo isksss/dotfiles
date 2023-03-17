@@ -14,8 +14,10 @@ vim.g.maplocalleader = " "
 --   visual_block_mode = 'x',
 --   term_mode = 't',
 --   command_mode = 'c',
-keymap('i','<C-k>','<Up>', opts)
-keymap('i','<C-j>','<Down>', opts)
+keymap('i', '<C-k>', '<Up>', opts)
+keymap('i', '<C-j>', '<Down>', opts)
+keymap('i', '<C-h>', '<Left>', opts)
+keymap('i', '<C-l>', '<Right>', opts)
 
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
@@ -27,7 +29,7 @@ keymap("i", ",", ",<Space>", opts)
 keymap("n", "x", '"_x', opts)
 
 -- Tab
-keymap("n", "<Leader>n", ":tabnew<Return>", opts)
+keymap("n", "<Leader>t", ":tabnew<Return>", opts)
 
 -- Split window
 keymap("n", "ss", ":split<Return><C-w>w", opts)
@@ -42,5 +44,8 @@ keymap("n", "<Space>l", "$", opts)
 
 -- terminal
 keymap("t", "<ESC>", "<C-\\><C-n>", term_opts)
-keymap("n", "<Leader>@","<cmd>belowright new<CR><cmd>terminal<CR>", opts)
+keymap("n", "<Leader>@", "<cmd>belowright new<CR><cmd>terminal<CR>", opts)
 
+-- fern
+keymap("n", "<Leader>e", "<cmd>Fern . -reveal=% -drawer<CR>", opts)
+-- keymap("n",  "<Leader>")
