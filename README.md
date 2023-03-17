@@ -2,13 +2,16 @@
 
 my dotfiles.  
 
-## setup
+## Setup
 
 `sudo ./setup.sh `
 
-## todo
+## 使用環境
+- Mac OS
+- manjaro
 
-- arch linuxへの対応
-- ubuntu auto setup
-- install scriptの充実
-- nvim設定
+## memo
+- そのうちArch Linuxへ移行したい。
+  - 自動インストールスクリプトを書く。
+- Mozcのセットアップスクリプトを書く。
+- Xfce4の設定ファイルも追加したい。
