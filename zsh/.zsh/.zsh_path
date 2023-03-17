@@ -28,3 +28,8 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 #     export PATH="$HOME/.local/share/fnm:$PATH"
 #     eval "$(fnm env --use-on-cd)"
 # fi
+
+# manjaro jp input
+export GTK_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export QT_IM_MODULE=fcitx
