@@ -42,3 +42,5 @@ keymap("n", "<Space>l", "$", opts)
 
 -- terminal
 keymap("t", "<ESC>", "<C-\\><C-n>", term_opts)
+keymap("n", "<Leader>@","<cmd>belowright new<CR><cmd>terminal<CR>", opts)
+
