@@ -4,7 +4,7 @@ my dotfiles.
 
 ## Setup
 
-`sudo ./setup.sh `
+`sudo ./install.sh`
 
 ## 使用環境
 - Mac OS
