@@ -47,7 +47,10 @@ alias pyv='pyenv virtualenv'
 alias pyg='pyenv global'
 
 # nvim
-alias n='nvim'
+for app in 'n' 'vi' 'vim' 'emacs'
+do
+    alias $app='nvim'
+done
 
 # zsh
 alias zs='clear && source ~/.zshrc'

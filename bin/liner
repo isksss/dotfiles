@@ -1,0 +1,52 @@
+#!/usr/bin/env zsh
+set -e
+#--------------------
+# variables
+#--------------------
+local Length=10
+local Line=""
+local Char="#"
+#--------------------
+# functions
+#--------------------
+Usage(){
+    cat <<EOF
+#--------------------------------------------------
+# liner
+#--------------------------------------------------
+Usage:
+    liner [OPTION]
+
+OPTION:
+    -l:
+        line length (default: 10)
+    -c:
+        char (default: #)
+EOF
+}
+
+MakeLine(){
+    for len in {1..${Length}}
+    do
+        Line+="${Char}"
+    done
+}
+#--------------------
+# getopts
+#--------------------
+while getopts ':l:c:h' opt; do
+    case "${opt}" in
+        l) Length=${OPTARG};;
+        s) Char=${OPTARG};;
+        h) Usage;;
+        ?) Usage;;
+    esac
+done
+
+#--------------------
+# main
+#--------------------
+
+MakeLine
+
+echo -n $Line| pbcopy

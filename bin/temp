@@ -2,6 +2,9 @@
 set -e
 # make temp dir and cd temp
 CURRENT_DIR=$(pwd)
+cat <<EOF
+#    
+EOF
 
 if [ -d "$WORKSPACE/temp" ];then
     rm -rf "$WORKSPACE/temp"
