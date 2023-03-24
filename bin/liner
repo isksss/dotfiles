@@ -37,7 +37,7 @@ MakeLine(){
 while getopts ':l:c:h' opt; do
     case "${opt}" in
         l) Length=${OPTARG};;
-        s) Char=${OPTARG};;
+        c) Char=${OPTARG};;
         h) Usage;;
         ?) Usage;;
     esac

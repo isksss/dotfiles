@@ -1,0 +1,24 @@
+#!/usr/bin/env zsh
+set -e
+# make temp dir and cd temp
+clear
+CURRENT_DIR=$(pwd)
+cat <<EOF
+#--------------------------------------------------#
+CURRENT_DIR: $CURRENT_DIR
+Temporary Dir: $WORKSPACE/temp
+If you want to leave this workspace, 
+use \`exit\` command.
+#--------------------------------------------------#
+EOF
+
+if [ -d "$WORKSPACE/temp" ];then
+    rm -rf "$WORKSPACE/temp"
+fi
+mkdir -p "$WORKSPACE/temp"
+
+cd $WORKSPACE/temp
+
+zsh
+
+cd $CURRENT_DIR

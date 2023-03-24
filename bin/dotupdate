@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 # dotfilesをアップデートするコマンド
 set -e
 export DOTFILES=$(cd $(dirname $0); pwd)
