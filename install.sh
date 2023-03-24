@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 clear && cat <<EOF
 #--------------------------------------------------
 # My Dotfiles Script.
