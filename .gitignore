@@ -2,18 +2,15 @@
 test.*
 
 # dotfiles
-!setup.sh
-temp/*
 ## dir
-!installer/
-!script/
-!.config/
 !zsh/
 !docker/
+!git/
+!bin/
 
 # env
 .env
 
 # 除外
 !.gitkeep
-!docker/.env
+!install.sh
