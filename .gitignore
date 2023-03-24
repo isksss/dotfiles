@@ -1,5 +1,6 @@
 # コマンドテスト用ファイル
 test.*
+*.bak
 
 # dotfiles
 ## dir

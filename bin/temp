@@ -1,21 +1,15 @@
 #!/usr/bin/env zsh
 set -e
-
 # make temp dir and cd temp
 CURRENT_DIR=$(pwd)
 
-cd ~/workspace
-if [ -d "temp" ];then
-    rm -rf temp
+if [ -d "$WORKSPACE/temp" ];then
+    rm -rf "$WORKSPACE/temp"
 fi
-mkdir -p temp
+mkdir -p "$WORKSPACE/temp"
 
-cd temp
+cd $WORKSPACE/temp
 
 zsh
-
-if [ -d "temp" ];then
-    rm -rf temp
-fi
 
 cd $CURRENT_DIR
