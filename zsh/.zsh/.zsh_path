@@ -1,5 +1,6 @@
 # my_bin
-export PATH="$HOME/dotfiles/_bin:$PATH"
+export PATH="$HOME/dotfiles/bin:$PATH"
+
 # golang
 which go > /dev/null
 if [ $? -eq 0 ]; then
@@ -17,7 +18,9 @@ fi
 
 # volta
 export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+if [ -d $VOLTA_HOME ]; then
+    export PATH="$VOLTA_HOME/bin:$PATH"
+fi
 
 # OS diff
 # if [ "$(uname)" = "Darwin" ] ; then

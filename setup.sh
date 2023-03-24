@@ -13,7 +13,7 @@ export XDG_CACHE_HOME=$HOME/.cache
 echo "dotfiles_dir: $DOTFILES"
 
 chmod -R +x $DOTFILES/_script/*
-chmod -R +x $DOTFILES/_bin/*
+chmod -R +x $DOTFILES/bin/*
 
 ##############################
 # for ArchLinux

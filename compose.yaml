@@ -4,14 +4,14 @@ services:
     build:
       context: ./docker
       dockerfile: ./Dockerfile
-      args:
-        - UID=1000
-        - GID=1000
-        - USERNAME=isksss
-        - PASSWORD=password
+      # args:
+      #   - UID=1000
+      #   - GID=1000
+      #   - USERNAME=isksss
+      #   - PASSWORD=password
     command: sleep infinity
     volumes:
-      - ./:/home/isksss/dotfiles
+      - ./:/root/dotfiles
       - ~/.ssh/:/home/isksss/.ssh
     # env_file:
     #   - ./docker/.env
