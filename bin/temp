@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+set -e
+# make temp dir and cd temp
+CURRENT_DIR=$(pwd)
+cat <<EOF
+#    
+EOF
+
+if [ -d "$WORKSPACE/temp" ];then
+    rm -rf "$WORKSPACE/temp"
+fi
+mkdir -p "$WORKSPACE/temp"
+
+cd $WORKSPACE/temp
+
+zsh
+
+cd $CURRENT_DIR

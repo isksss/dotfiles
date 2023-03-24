@@ -11,6 +11,6 @@ CURRENT_BRANCH=$(git branch --show-current)
 git checkout main
 git pull origin main
 
-sudo "$DOTFILES/../setup.sh" > /dev/null
+$DOTFILES/../install.sh
 
 git checkout "$CURRENT_BRANCH"

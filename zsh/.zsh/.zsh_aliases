@@ -47,7 +47,10 @@ alias pyv='pyenv virtualenv'
 alias pyg='pyenv global'
 
 # nvim
-alias n='nvim'
+for app in 'n' 'vi' 'vim' 'emacs'
+do
+    alias $app='nvim'
+done
 
 # zsh
 alias zs='clear && source ~/.zshrc'
@@ -56,6 +59,9 @@ alias zs='clear && source ~/.zshrc'
 if [ $(uname) = "Linux" ]; then
     alias pbcopy='xclip -selection c'
     alias pbpaste='xclip -selection c -o'
+
+    alias paci='sudo pacman -S'
+    alias pacs='pacman -Ss'
 fi
 
 alias c='pbcopy'
