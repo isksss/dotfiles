@@ -1,0 +1,42 @@
+#!/usr/bin/env zsh
+set -e
+#--------------------
+# variables
+#--------------------
+local target=$1
+local CURRENT_DIR=$(pwd)
+
+#--------------------
+# functions
+#--------------------
+Usage(){
+    cat <<EOF
+#--------------------------------------------------
+# bak
+#--------------------------------------------------
+Usage:
+    bak [file || dir]
+OPTION:
+    -h:
+        help
+EOF
+}
+
+#--------------------
+# getopts
+#--------------------
+while getopts ':h' opt; do
+    case "${opt}" in
+        h) Usage;;
+        ?) Usage;;
+    esac
+done
+
+#--------------------
+# main
+#--------------------
+if [ $# -eq 0 ]; then
+    exit 1
+fi
+cd $CURRENT_DIR || exit 1
+mv $target $target.bak
