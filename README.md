@@ -4,8 +4,12 @@ my dotfiles.
 
 ## Setup
 
+### main
 - `./install.sh`
 - `curl https://raw.githubusercontent.com/isksss/dotfiles/main/install.sh | bash`
+
+### dev
+- `curl https://raw.githubusercontent.com/isksss/dotfiles/dev/etc/scripts/install.sh | bash`
 
 ## 使用環境
 - Mac OS
