@@ -23,10 +23,12 @@ EOF
 #--------------------------------------------------
 # variables
 #--------------------------------------------------
-export DOTFILES=$(cd "$(dirname $0)"; pwd)
+export DOTFILES="$HOME/dotfiles"
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 OS=""
+DOT_URL="https://github.com/isksss/dotfiles.git"
+DOT_SSH="git@github.com:isksss/dotfiles.git"
 
 #--------------------------------------------------
 # functions
@@ -75,6 +77,11 @@ Manjaro(){
     Arch
 }
 
+# ubuntu
+Ubuntu(){
+    #todo: 
+}
+
 #------------------------------
 # Utils
 #------------------------------
@@ -86,6 +93,9 @@ getRepo(){
     else
         echo "Dotfiles Repository is not exists."
         #todo: リポジトリを持ってくる操作
+        git clone $DOT_URL $HOME/dotfiles
+        cd $DOTFILES
+        git remote set-url origin $DOT_SSH
     fi
 }
 
@@ -229,6 +239,7 @@ main(){
         Darwin) Darwin;;
         Arch) Arch;;
         Manjaro) Manjaro;;
+        Ubuntu) Ubuntu;;
         *) echo "$OS is not supported.";;
     esac
 }
