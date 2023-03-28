@@ -4,11 +4,14 @@ my dotfiles.
 
 ## Setup
 
-`sudo ./install.sh`
+- `./install.sh`
+- `curl https://raw.githubusercontent.com/isksss/dotfiles/main/install.sh | sh`
 
 ## 使用環境
 - Mac OS
 - manjaro
+- Ubuntu
+- Arch
 
 ## memo
 - そのうちArch Linuxへ移行したい。
