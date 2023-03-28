@@ -29,6 +29,7 @@ export XDG_CACHE_HOME=$HOME/.cache
 OS=""
 DOT_URL="https://github.com/isksss/dotfiles.git"
 DOT_SSH="git@github.com:isksss/dotfiles.git"
+RELEASE_FILE=/etc/os-release
 
 #--------------------------------------------------
 # functions
@@ -237,6 +238,17 @@ main(){
     # get git repo
     getRepo
     
+    if [ "$(uname)" == 'Darwin' ]; then
+        OS='Darwin'
+    elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
+        # OS='Linux'
+        if grep '^NAME="Arch' "${RELEASE_FILE}" >/dev/null; then
+            OS=Arch
+        elif grep '^NAME="Ubuntu' "${RELEASE_FILE}" >/dev/null; then
+            OS=Arch
+        fi
+    fi
+    echo "$OS"
     case $OS in
         Darwin) Darwin;;
         Arch) Arch;;

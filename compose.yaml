@@ -1,5 +1,5 @@
 services:
-  arch:
+  dev:
     # image: archlinux
     build:
       context: ./docker
@@ -11,7 +11,7 @@ services:
       #   - PASSWORD=password
     command: sleep infinity
     volumes:
-      - ./:/root/dotfiles
+      # - ./:/root/dotfiles
       - ~/.ssh/:/home/isksss/.ssh
     # env_file:
     #   - ./docker/.env
