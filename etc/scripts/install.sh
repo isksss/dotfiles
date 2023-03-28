@@ -35,9 +35,9 @@ checkOS(){
     if [ "$(uname)" == 'Darwin' ]; then
         OS='Darwin'
     elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
-        if grep '^NAME="Arch' "$RELEASE_FILE" $devnull; then
+        if grep '^NAME="Arch' "$RELEASE_FILE" > /dev/null; then
             OS=Arch
-        elif grep '^NAME="Ubuntu' "$RELEASE_FILE" $devnull; then
+        elif grep '^NAME="Ubuntu' "$RELEASE_FILE" > /dev/null; then
             OS=Ubuntu
         fi
     fi
@@ -59,25 +59,25 @@ cloneRepo(){
     else
         warn "Dotfiles Repository is not exists."
         #todo: リポジトリを持ってくる操作
-        git clone $DOT_URL $HOME/dotfiles $devnull
+        git clone $DOT_URL $HOME/dotfiles > /dev/null
         cd $DOTFILES
-        git remote set-url origin $DOT_SSH $devnull
+        git remote set-url origin $DOT_SSH > /dev/null
     fi
 }
 
 # Arch
 Arch(){
     info "Arch Install"
-    sudo pacman -Syy $devnull
+    sudo pacman -Syy > /dev/null
     pacInstall git zsh
 }
 
 pacInstall(){
     for app in "$@"
     do
-        if ! pacman -Qs "$app" $devnull;then
+        if ! pacman -Qs "$app" > /dev/null;then
             info ">>> Install $app"
-            sudo pacman --noconfirm -S "$@" $devnull
+            sudo pacman --noconfirm -S "$@" > /dev/null
         else
             warn ">>> Installed $app"
         fi
