@@ -28,6 +28,15 @@ warn() {
 }
 
 devnull="> /dev/null"
+
+AppExists(){
+    local app_name="$1"
+    if command -v "$app_name" > /dev/null 2>&1; then
+        return 1
+    else
+        return 0
+    fi
+}
 #--------------------------------------------------
 # functions
 #--------------------------------------------------
@@ -69,7 +78,14 @@ cloneRepo(){
 Arch(){
     info "Arch Install"
     sudo pacman -Syy > /dev/null
-    pacInstall git zsh
+    pacInstall git zsh neovim
+
+    if AppExists "yay" ; then
+        warn "Yay is not exists."
+        yayDownload
+    fi
+    yay -Syy
+    # yayInstall
 }
 
 pacInstall(){
@@ -84,6 +100,46 @@ pacInstall(){
     done
 }
 
+yayDownload(){
+    pacInstall base-devel
+    git clone --depth 1 https://aur.archlinux.org/yay.git ~/yay
+    CURRENT_DIR="$(pwd)"
+    cd ~/yay
+    makepkg -si
+    cd $CURRENT_DIR
+    rm -rf "~/yay"
+}
+
+yayInstall(){
+    for app in "$@"
+    do
+        if ! yay -Qs "$app" > /dev/null;then
+            info ">>> Install $app"
+            yay --noconfirm -S "$@" > /dev/null
+        else
+            warn ">>> Installed $app"
+        fi
+    done
+}
+
+nvimSetup(){
+    NVIM_HOME=$XDG_CONFIG_HOME/nvim
+    rm -rf $NVIM_HOME
+
+    if [ ! -d "$NVIM_HOME" ]; then
+        mkdir -p "$NVIM_HOME" &>/dev/null
+    fi
+
+    # Clone required repositories
+    packer_dir="$HOME/.local/share/nvim/site/pack/packer/opt/packer.nvim"
+    if [ ! -d $packer_dir ]; then
+        git clone --depth 1 https://github.com/wbthomason/packer.nvim $packer_dir > /dev/null
+    fi
+
+    ln -sf $DOTFILES/nvim/init.lua $NVIM_HOME/init.lua
+    ln -sf $DOTFILES/nvim/lua $NVIM_HOME/lua
+}
+
 #--------------------------------------------------
 # main
 #--------------------------------------------------
@@ -95,6 +151,20 @@ main(){
 
     # Download dotfiles
     cloneRepo
+
+    # zsh
+    ZSH_BIN=$(which zsh)
+    if [ "$SHELL" != "$ZSH_BIN" ];then
+        echo "Change Shell: $SHELL to $ZSH_BIN"
+        chsh -s "$ZSH_BIN"
+    fi
+
+    # git
+    ln -sf "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
+    ln -sf "$DOTFILES/git/.gitignore_global" "$HOME/.gitignore_global"
+
+    # nvim
+    nvimSetup
 }
 
 main
