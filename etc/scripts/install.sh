@@ -78,7 +78,7 @@ pacInstall(){
         if ! pacman -Qs "$app" $devnull;then
             info ">>> Install $app"
             sudo pacman --noconfirm -S "$@" $devnull
-        elif
+        else
             warn ">>> Installed $app"
         fi
     done
