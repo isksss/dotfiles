@@ -92,6 +92,9 @@ main(){
     checkOS
     # インストーラー
     setUp
+
+    # Download dotfiles
+    cloneRepo
 }
 
 main
