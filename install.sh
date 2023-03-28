@@ -80,6 +80,7 @@ Manjaro(){
 # ubuntu
 Ubuntu(){
     #todo: 
+    echo "Ubuntu"
 }
 
 #------------------------------
@@ -172,6 +173,7 @@ NvimSetting(){
     fi
 
     ln -sf $DOTFILES/nvim/init.lua $NVIM_HOME/init.lua
+    ln -sf $DOTFILES/nvim/lua $NVIM_HOME/lua
 }
 
 DockerGroup(){
