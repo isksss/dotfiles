@@ -41,6 +41,7 @@ alias mkdir='mkdir -p'
 # docker
 alias d='docker'
 alias dc='docker compose'
+alias dcex='docker compose exec dev bash'
 
 # pyenv virtualenv
 alias py='pyenv'
