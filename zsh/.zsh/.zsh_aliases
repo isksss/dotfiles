@@ -25,9 +25,10 @@ alias gc='git checkout'
 alias gcb='gc -b'
 alias gcm='git commit -m'
 alias gm='git merge'
-alias gl='git log'
-alias gla='git log --oneline --graph'
-alias gp='git push'
+alias gl='git log --oneline --graph'
+alias gla='git log --oneline --graph --decorate --branches --tags --remotes'
+alias gpl="git pull --all"
+alias gpu='git push origin --all'
 alias gd='git diff'
 alias gf='git fetch'
 
