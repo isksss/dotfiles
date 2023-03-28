@@ -102,10 +102,10 @@ pacInstall(){
 
 yayDownload(){
     pacInstall base-devel
-    git clone --depth 1 https://aur.archlinux.org/yay.git ~/yay
+    git clone --depth 1 https://aur.archlinux.org/yay.git ~/yay > /dev/null
     CURRENT_DIR="$(pwd)"
     cd ~/yay
-    makepkg -si
+    makepkg -si > /dev/null
     cd $CURRENT_DIR
     rm -rf "~/yay"
 }
@@ -155,7 +155,8 @@ main(){
     # zsh
     ZSH_BIN=$(which zsh)
     if [ "$SHELL" != "$ZSH_BIN" ];then
-        echo "Change Shell: $SHELL to $ZSH_BIN"
+        warn "Change Shell: $SHELL to $ZSH_BIN"
+        echo "$ZSH_BIN" >> /etc/shells
         chsh -s "$ZSH_BIN"
     fi
 
