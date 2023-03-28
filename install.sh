@@ -229,11 +229,11 @@ done
 main(){
 
     # Input OS
-    read -p "Input your OS > " OS
-    if [ -z "$OS" ];then
-            echo "Please input your OS."
-            exit 1
-    fi
+    # read -p "Input your OS > " OS
+    # if [ -z "$OS" ];then
+    #         echo "Please input your OS."
+    #         exit 1
+    # fi
 
     # get git repo
     getRepo
@@ -242,10 +242,10 @@ main(){
         OS='Darwin'
     elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
         # OS='Linux'
-        if grep '^NAME="Arch' "${RELEASE_FILE}" >/dev/null; then
+        if grep '^NAME="Arch' "$RELEASE_FILE" >/dev/null; then
             OS=Arch
-        elif grep '^NAME="Ubuntu' "${RELEASE_FILE}" >/dev/null; then
-            OS=Arch
+        elif grep '^NAME="Ubuntu' "$RELEASE_FILE" >/dev/null; then
+            OS=Ubuntu
         fi
     fi
     echo "$OS"

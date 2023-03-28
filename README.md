@@ -5,7 +5,7 @@ my dotfiles.
 ## Setup
 
 - `./install.sh`
-- `curl https://raw.githubusercontent.com/isksss/dotfiles/main/install.sh | sh`
+- `curl https://raw.githubusercontent.com/isksss/dotfiles/main/install.sh | bash`
 
 ## 使用環境
 - Mac OS
