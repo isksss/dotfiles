@@ -161,8 +161,8 @@ main(){
     fi
 
     # git
-    ln -sf "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
-    ln -sf "$DOTFILES/git/.gitignore_global" "$HOME/.gitignore_global"
+    rm -rf "$HOME/.gitconfig"
+    ln -sf "$DOTFILES/git" "$XDG_CONFIG_HOME/git"
 
     # nvim
     nvimSetup
