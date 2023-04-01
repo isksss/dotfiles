@@ -56,6 +56,7 @@ alias grss='git reset --soft'
 alias gl='git log'
 alias gls='git log --stat'
 alias glp='git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short'
+alias glg='git log --graph --oneline --decorate --all --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --abbrev-commit --date=relative'
 
 ### docker
 alias d='docker'
@@ -77,3 +78,13 @@ if [ $(uname) = "Linux" ]; then
 fi
 alias c='pbcopy'
 alias v='pbpaste'
+
+### tmux
+alias t='tmux'
+alias ta='tmux attach'
+alias tl='tmux ls'
+alias tn='tmux new -s'
+alias tk='tmux kill-session -t'
+
+### zsh
+alias zr='source ~/.zshrc'
