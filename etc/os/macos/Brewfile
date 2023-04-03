@@ -1,0 +1,27 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/core"
+
+
+brew "git"
+brew "go"
+brew "jq"
+brew "neovim"
+brew "pyenv"
+brew "pyenv-virtualenv"
+brew "python@3.10"
+brew "tmux"
+brew "tree"
+
+
+cask "font-hack-nerd-font"
+cask "iterm2"
+cask "virtualbox"
+cask "zoom"
+cask "visual-studio-code"
+cask "google-chrome"
+
+
+mas "LINE", id: 539883307
+mas "Xcode", id: 497799835

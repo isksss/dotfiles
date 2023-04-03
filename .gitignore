@@ -1,17 +1,1 @@
-# コマンドテスト用ファイル
-test.*
-*.bak
-
-# dotfiles
-## dir
-!zsh/
-!docker/
-!git/
-!bin/
-
-# env
-.env
-
-# 除外
-!.gitkeep
-!install.sh
+.congig/git/git

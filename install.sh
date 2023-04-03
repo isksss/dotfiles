@@ -1,261 +1,122 @@
 #!/usr/bin/env bash
-clear && cat <<EOF
-#--------------------------------------------------
-# My Dotfiles Script.
-#--------------------------------------------------
-EOF
 
-#--------------------------------------------------
-# usage
-#--------------------------------------------------
-usage(){
-    cat 1>&2 <<EOF
-#--------------------------------------------------
-Usage: $(basename $0) [OPTION]
+## Install script for the dotfiles
+## Author: @isksss
 
-Options:
-    -h        help
-#--------------------------------------------------
-EOF
-    exit 0
+# Variables
+DOTFILES_DIR="$HOME/dotfiles"
+DOTFILES_HTTPS_REPO="https://github.com/isksss/dotfiles"
+DOTFILES_GIT_REPO="git@github.com:isksss/dotfiles.git"
+XDG_CONFIG_HOME="$HOME/.config"
+
+# Functions
+function install_dotfiles() {
+    # Clone the dotfiles repo
+    git clone "$DOTFILES_HTTPS_REPO" "$DOTFILES_DIR"
+
+    # Install the dotfiles
+    cd "$DOTFILES_DIR" || exit
+    ./install.sh
 }
 
-#--------------------------------------------------
-# variables
-#--------------------------------------------------
-export DOTFILES="$HOME/dotfiles"
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
-OS=""
-DOT_URL="https://github.com/isksss/dotfiles.git"
-DOT_SSH="git@github.com:isksss/dotfiles.git"
-RELEASE_FILE=/etc/os-release
-
-#--------------------------------------------------
-# functions
-#--------------------------------------------------
-
-#------------------------------
-# OS
-#------------------------------
-
-# Common
-CommonOS(){
-    chmod -R +x $DOTFILES/bin/*
-    Chsh
-    NvimSetting
-    SymLink
-    Installer
-
-    if [ ! -d "$HOME/workspace" ]; then
-        mkdir -p $HOME/workspace
-    fi
-}
-# Mac Setup Script
-Darwin(){
-    echo "Darwin Setup."
-
-    CommonOS
+# httpsでcloneしたdotfilesのremoteをsshに変更
+function change_remote() {
+    cd "$DOTFILES_DIR" || exit
+    git remote set-url origin "$DOTFILES_GIT_REPO"
 }
 
-# Arch Setup Script
-Arch(){
-    echo "Arch Setup."
-    PacInstall zsh git xclip neovim go
+# DOTFILES_DIRの更新
+function update_dotfiles() {
+    cd "$DOTFILES_DIR" || exit
+    git pull
+}
+
+# DOTFILES_DIR内のファイルのシンボリックリンクをホームディレクトリに作成
+function update_symlinks() {
+    cd "$DOTFILES_DIR" || exit
     
-    if ! command -v yay;then
-        YayInstaller
-    fi
-
-    sudo pacman -Scc
-    CommonOS
-}
-
-# manjaro
-Manjaro(){
-    PacInstall yay vivaldi
-    YayInstall volta-bin google-chrome visual-studio-code-bin
-    Arch
-}
-
-# ubuntu
-Ubuntu(){
-    #todo: 
-    echo "Ubuntu"
-}
-
-#------------------------------
-# Utils
-#------------------------------
-
-# get dotfiles repository.
-getRepo(){
-    if [ -d "$HOME/dotfiles" ]; then
-        echo "Dotfiles Repository is exists."
-    else
-        echo "Dotfiles Repository is not exists."
-        #todo: リポジトリを持ってくる操作
-        git clone $DOT_URL $HOME/dotfiles
-        cd $DOTFILES
-        git remote set-url origin $DOT_SSH
-    fi
-}
-
-makeSshKey(){
-    if [ ! -d "$HOME/.ssh" ];then
-        mkdir -p "$HOME/.ssh"
-    fi
-    #todo: make ssh-key
-    CURRENT_DIR=$(pwd)
-    cd ~/.ssh
-    ssh-keygen -b 4096
-    cd $CURRENT_DIR
-}
-
-PacInstall(){
-    sudo pacman -Syy > /dev/null
-    for app in "$@"
-    do
-        if ! pacman -Qs "$app" > /dev/null;then
-            echo ">>> Install $app"
-            sudo pacman --noconfirm -S "$@" > /dev/null
+    ## ホームディレクトリにシンボリックリンクを作成
+    for file in .??*; do
+        
+        # install.shとetc/とREADME.mdはスキップ
+        IGNORE_FILES=(.git install.sh etc README.md )
+        if [[ "${IGNORE_FILES[@]}" =~ "$file" ]]; then
+            continue
         fi
+
+        # .configディレクトリの場合はそのなかのファイル、ディレクトリのシンボリックリンクを＄HOME/.configに作成
+        if [ "$file" = ".config" ]; then
+            # .configディレクトリが存在しない場合は作成
+            if [ ! -d "$XDG_CONFIG_HOME" ]; then
+                mkdir "$XDG_CONFIG_HOME"
+            fi
+            for config_file in .config/*; do
+                ln -sf "$DOTFILES_DIR/$config_file" "$HOME/$config_file"
+            done
+            continue
+        fi
+
+        # ホームディレクトリにシンボリックリンクを作成
+        ln -sf "$DOTFILES_DIR/$file" "$HOME/$file"
     done
 }
 
-YayInstall(){
-    yay -Syy > /dev/null
-    for app in "$@"
-    do
-        if ! yay -Qs "$app" > /dev/null;then
-            echo ">>> Install $app"
-            yay --noconfirm -S "$@" > /dev/null
-        fi
-    done
-}
+# OS別振り分け関数
+function os_specific() {
 
-Chsh(){
-    ZSH_BIN=$(which zsh)
-    if [ "$SHELL" != "$ZSH_BIN" ];then
-        echo "Change Shell: $SHELL to $ZSH_BIN"
-        chsh -s "$ZSH_BIN"
-    fi 
-}
+    cd "$DOTFILES_DIR" || exit
 
-SymLink(){
-    # zsh
-    if command -v zsh ;then
-        ln -sf "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
-        ln -sf "$DOTFILES/zsh/.zshenv" "$HOME/.zshenv"
-        ln -sf "$DOTFILES/zsh/.zsh/" "$HOME/.zsh"
-    fi
-
-    if [ -d /$DOTFILES/zsh/.zsh/.zsh ]; then
-        rm -rf "$DOTFILES/zsh/.zsh/.zsh"
-    fi
-
-    # git 
-    ln -sf "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
-    ln -sf "$DOTFILES/git/.gitignore_global" "$HOME/.gitignore_global"
-}
-
-NvimSetting(){
-    NVIM_HOME=$XDG_CONFIG_HOME/nvim
-    rm -rf $NVIM_HOME
-
-    if [ ! -d "$NVIM_HOME" ]; then
-        mkdir -p "$NVIM_HOME" &>/dev/null
-    fi
-
-    # Clone required repositories
-    packer_dir="$HOME/.local/share/nvim/site/pack/packer/opt/packer.nvim"
-    if [ ! -d $packer_dir ]; then
-        git clone --depth 1 https://github.com/wbthomason/packer.nvim $packer_dir > /dev/null
-    fi
-
-    ln -sf $DOTFILES/nvim/init.lua $NVIM_HOME/init.lua
-    ln -sf $DOTFILES/nvim/lua $NVIM_HOME/lua
-}
-
-DockerGroup(){
-    if ! (getent group docker > /dev/null 2>&1); then
-        groupadd docker
-    fi
-
-    if ! (getent group docker | grep "$(whoami)" > /dev/null 2>&1);then
-        sudo usermod -aG docker "$(whoami)"
-    fi
-}
-
-YayInstaller(){
-    PacInstall base-devel
-    git clone --depth 1 https://aur.archlinux.org/yay.git ~/yay
-    CURRENT_DIR="$(pwd)"
-    cd ~/yay
-    makepkg -si
-    cd $CURRENT_DIR
-    rm -rf "~/yay"
-}
-
-AppExists(){
-    local app_name="$1"
-    if command -v "$app_name" > /dev/null 2>&1; then
-        return 0
-    else
-        return 1
-    fi
-}
-
-Installer(){
-    # volta
-    if ! AppExists "volta"; then
-        curl https://get.volta.sh | bash
-    fi
-}
-
-#--------------------------------------------------
-# option
-#--------------------------------------------------
-while getopts ':o:h' opt; do
-    case "${opt}" in
-        h) usage;;
-        ?) usage;;
-    esac
-done
-
-#--------------------------------------------------
-# main
-#--------------------------------------------------
-main(){
-
-    # Input OS
-    # read -p "Input your OS > " OS
-    # if [ -z "$OS" ];then
-    #         echo "Please input your OS."
-    #         exit 1
-    # fi
-
-    # get git repo
-    getRepo
-    
+    # OS別の設定
     if [ "$(uname)" == 'Darwin' ]; then
-        OS='Darwin'
+        # Mac
+        echo "Mac"
+        chmod +x "$DOTFILES_DIR/etc/os/macos/install.sh"
+        ./etc/os/macos/install.sh
+        
     elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
-        # OS='Linux'
-        if grep '^NAME="Arch' "$RELEASE_FILE" >/dev/null; then
-            OS=Arch
-        elif grep '^NAME="Ubuntu' "$RELEASE_FILE" >/dev/null; then
-            OS=Ubuntu
+        # Linux
+        # archlinuxの場合
+        if [ -f /etc/arch-release ]; then
+            echo "Arch Linux"
+            chmod +x "$DOTFILES_DIR/etc/os/arch/install.sh"
+            ./etc/os/arch/install.sh
         fi
+
+        # ubuntuの場合
+        if [ -f /etc/lsb-release ]; then
+            echo "Ubuntu"
+        fi
+
+        # Manjaroの場合
+        if [ -f /etc/manjaro-release ]; then
+            echo "Manjaro"
+        fi
+    elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
+        # Windows
+        echo "Windows"
     fi
-    echo "$OS"
-    case $OS in
-        Darwin) Darwin;;
-        Arch) Arch;;
-        Manjaro) Manjaro;;
-        Ubuntu) Ubuntu;;
-        *) echo "$OS is not supported.";;
-    esac
+}
+
+# Main
+function main() {
+    # Install the dotfiles
+    if [ -d "$DOTFILES_DIR" ]; then
+        echo "dotfiles directory already exists."
+        update_dotfiles
+    else
+        echo "dotfiles directory does not exist."
+        install_dotfiles
+        change_remote
+    fi
+
+    # Symbolic link
+    update_symlinks
+
+    # Update the dotfiles
+    update_dotfiles
+
+    # OS specific settings
+    os_specific
 }
 
 main
