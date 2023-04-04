@@ -64,6 +64,12 @@ alias gla='git log --all --graph --decorate --oneline'
 alias gf='git fetch'
 alias gfa='git fetch --all'
 alias gfo='git fetch origin'
+alias gb='git branch'
+alias gbd='git branch -d'
+alias gba='git branch -a'
+alias gbl='git blame'
+alias gcl='git clone'
+
 
 ### docker
 alias d='docker'
