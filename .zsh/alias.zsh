@@ -57,6 +57,10 @@ alias gl='git log'
 alias gls='git log --stat'
 alias glp='git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short'
 alias glg='git log --graph --oneline --decorate --all --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --abbrev-commit --date=relative'
+alias gla='git log --all --graph --decorate --oneline'
+alias gf='git fetch'
+alias gfa='git fetch --all'
+alias gfo='git fetch origin'
 
 ### docker
 alias d='docker'
