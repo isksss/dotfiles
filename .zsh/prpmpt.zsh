@@ -1,3 +1,4 @@
+# :todo: colors仕様にする
 function left-prompt {
   name_t='179m%}'      # user name text clolr
   name_b='000m%}'    # user name background color
