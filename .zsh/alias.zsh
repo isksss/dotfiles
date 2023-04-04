@@ -11,6 +11,8 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 alias mkdir='mkdir -p'
+alias cl='clear'
+alias sudo='sudo '
 
 ### cd
 alias ..='cd ..'
@@ -46,8 +48,9 @@ alias gdc='git diff --cached'
 alias gds='git diff --staged'
 alias gpl='git pull'
 alias gps='git push'
+alias gpa='git push origin --all'
 alias gph='git push origin master'
-alias gphd='git push origin develop'
+alias gphd='git push origin dev'
 alias gm='git merge'
 alias gma='git merge --abort'
 alias grs='git reset'
@@ -92,3 +95,9 @@ alias tk='tmux kill-session -t'
 
 ### zsh
 alias zr='source ~/.zshrc'
+
+### dotfiles
+alias dot='cd $DOTFILES'
+
+### workspace
+alias ws='cd $WORKSPACE'
