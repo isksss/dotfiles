@@ -19,9 +19,9 @@ cask "font-hack-nerd-font"
 cask "iterm2"
 cask "virtualbox"
 cask "zoom"
-cask "visual-studio-code"
-cask "google-chrome"
+# cask "visual-studio-code"
+# cask "google-chrome"
 
 
 mas "LINE", id: 539883307
-mas "Xcode", id: 497799835
+# mas "Xcode", id: 497799835

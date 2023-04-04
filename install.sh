@@ -51,13 +51,13 @@ function update_symlinks() {
                 mkdir "$XDG_CONFIG_HOME"
             fi
             for config_file in .config/*; do
-                ln -sf "$DOTFILES_DIR/$config_file" "$HOME/$config_file"
+                ln -sfn "$DOTFILES_DIR/$config_file" "$HOME/$config_file"
             done
             continue
         fi
 
         # ホームディレクトリにシンボリックリンクを作成
-        ln -sf "$DOTFILES_DIR/$file" "$HOME/$file"
+        ln -sfn "$DOTFILES_DIR/$file" "$HOME/$file"
     done
 }
 
