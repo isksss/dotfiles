@@ -71,26 +71,33 @@ function os_specific() {
         # Mac
         echo "Mac"
         chmod +x "$DOTFILES_DIR/etc/os/macos/install.sh"
-        ./etc/os/macos/install.sh
+        $DOTFILES_DIR/etc/os/macos/install.sh
         
     elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
         # Linux
+
+        # Manjaroの場合
+        if [ -f /etc/manjaro-release ]; then
+            echo "Manjaro"
+            chmod +x "$DOTFILES_DIR/etc/os/manjaro/install.sh"
+            $DOTFILES_DIR/etc/os/manjaro/install.sh
+            return
+        fi
+
         # archlinuxの場合
         if [ -f /etc/arch-release ]; then
             echo "Arch Linux"
             chmod +x "$DOTFILES_DIR/etc/os/arch/install.sh"
-            ./etc/os/arch/install.sh
+            $DOTFILES_DIR/etc/os/arch/install.sh
+            return
         fi
 
         # ubuntuの場合
         if [ -f /etc/lsb-release ]; then
             echo "Ubuntu"
+            return
         fi
 
-        # Manjaroの場合
-        if [ -f /etc/manjaro-release ]; then
-            echo "Manjaro"
-        fi
     elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
         # Windows
         echo "Windows"
