@@ -11,6 +11,8 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 alias mkdir='mkdir -p'
+alias cl='clear'
+alias sudo='sudo '
 
 ### cd
 alias ..='cd ..'
@@ -92,3 +94,9 @@ alias tk='tmux kill-session -t'
 
 ### zsh
 alias zr='source ~/.zshrc'
+
+### dotfiles
+alias dot='cd $DOTFILES'
+
+### workspace
+alias ws='cd $WORKSPACE'
