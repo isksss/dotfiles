@@ -21,9 +21,22 @@ function git_link(){
     ln -sf "$DOTFILES/git/.gitignore" "$XDG_CONFIG_HOME/git/ignore"
 }
 
+function vscode_link(){
+    mkdir -p $XDG_CONFIG_HOME/Code/User
+    ln -sf "$DOTFILES/vscode/settings.json" "$XDG_CONFIG_HOME/Code/User/settings.json"
+}
+
+function neovim_link(){
+    mkdir -p $XDG_CONFIG_HOME/nvim
+    ln -sf "$DOTFILES/nvim/init.lua" "$XDG_CONFIG_HOME/nvim/init.lua"
+    ln -sf "$DOTFILES/nvim/lua" "$XDG_CONFIG_HOME/nvim/lua"
+}
+
 function main(){
     zsh_link
     git_link
+    vscode_link
+    neovim_link
 }
 
 main

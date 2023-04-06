@@ -33,6 +33,10 @@ function install_pacman(){
 		bat \
 		git \
 		go \
+		xclip \
+		exa \
+		jq \
+        tmux \
 		> /dev/null
 
 }
@@ -44,6 +48,8 @@ function install_aur_packages(){
 		visual-studio-code-bin \
 		google-chrome \
 		ttf-hackgen \
+		ttf-firge \
+		ttf-cica \
 		> /dev/null
 }
 

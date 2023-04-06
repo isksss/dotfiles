@@ -20,10 +20,12 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 ### ls
-alias l='ls -l'
-alias ls='ls -G'
+alias ls='exa --icons'
 alias la='ls -a'
 alias ll='ls -la'
+
+### cat 
+alias cat='bat'
 
 ### history
 alias h='history'
