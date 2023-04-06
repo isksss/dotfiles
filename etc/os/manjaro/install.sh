@@ -24,6 +24,8 @@ function install_packages() {
         zsh \
         xclip \
         yay \
+        fcitx-mozc \
+
 }
 
 ### AURパッケージのインストール
@@ -32,6 +34,8 @@ function install_aur_packages() {
     yay -S --noconfirm --needed \
         google-chrome \
         visual-studio-code-bin \
+        ttf-hackgen \
+        
 }
 
 ## シェルの切り替え to zsh

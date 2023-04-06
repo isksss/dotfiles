@@ -51,6 +51,13 @@ function update_symlinks() {
                 mkdir "$XDG_CONFIG_HOME"
             fi
             for config_file in .config/*; do
+
+                if [ "$file" = "Code" ];then
+                    chmod +x "$DOTFILES_DIR/etc/vscode/install.sh"
+                    $DOTFILES_DIR/etc/vscode/install.sh
+                    continue
+                fi
+
                 ln -sfn "$DOTFILES_DIR/$config_file" "$HOME/$config_file"
             done
             continue
@@ -120,7 +127,7 @@ function main() {
     update_symlinks
 
     # Update the dotfiles
-    update_dotfiles
+    # update_dotfiles
 
     # OS specific settings
     os_specific

@@ -1,0 +1,6 @@
+{
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "editor.fontFamily": "'HackGen','Droid Sans Mono', 'monospace', monospace",
+    "terminal.integrated.fontFamily": "monospace"
+}
