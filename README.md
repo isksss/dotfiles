@@ -5,7 +5,7 @@ My dotfiles.
 ## installation
 
 ```bash
-curl -Lks https://raw.githubusercontent.com/isksss/dotfiles/main/install.sh | bash
+curl -Lks https://raw.githubusercontent.com/isksss/dotfiles/main/etc/setup.sh | bash
 ```
 
 ## branches
@@ -16,13 +16,11 @@ curl -Lks https://raw.githubusercontent.com/isksss/dotfiles/main/install.sh | ba
 
 ## todo
 ### add
-- vscode_settings
 - arch_linux setup
 - tmux
 
 ### update
 - nvim
-- zsh
 
 ### etc
 - refactoring

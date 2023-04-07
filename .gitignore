@@ -1,1 +1,5 @@
 Brewfile.lock.json
+*.log
+
+zsh/.zsh/.zsh
+!zsh/.zsh/*.zsh
