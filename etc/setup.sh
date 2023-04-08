@@ -14,10 +14,12 @@
 #----- ----- ----- ----- -----
 # Variables
 #----- ----- ----- ----- -----
-# The directory where the dotfiles are located.
 export DOTFILES="$HOME/dotfiles"
 export WORKSPACE="$HOME/workspace"
+
 export XDG_CONFIG_HOME="$HOME/.config" 
+export XDG_CACHE_HOME="$HOME/.cache"
+
 export REMOTE_URL="https://github.com/isksss/dotfiles.git"
 export SSH_URL="git@github.com:isksss/dotfiles.git"
 
@@ -64,6 +66,9 @@ function os_specific_action() {
       ;;
     Darwin*)
     	info "Mac OS"
+		chmod +x "$DOTFILES/etc/setup/os/macos.sh"
+		$DOTFILES/etc/setup/os/macos.sh
+		return
     	;;
     *)
     	error "This script can only be executed on Linux or Mac OS."

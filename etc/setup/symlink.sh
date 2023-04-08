@@ -10,9 +10,12 @@ source "$DOTFILES/etc/util/colors.sh"
 source "$DOTFILES/etc/util/check.sh"
 
 function zsh_link(){
-    ln -sf "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
+    local ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+    mkdir -p $ZDOTDIR
     ln -sf "$DOTFILES/zsh/.zshenv" "$HOME/.zshenv"
-    ln -sf "$DOTFILES/zsh/.zsh" "$HOME/.zsh"
+
+    ln -sf "$DOTFILES/zsh/.zshrc" "$ZDOTDIR/.zshrc"
+    ln -sf "$DOTFILES/zsh/.zsh" "$ZDOTDIR/.zsh"
 }
 
 function git_link(){
