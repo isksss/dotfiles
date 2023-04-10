@@ -1,10 +1,16 @@
 # alias
 # ls
-alias exa='exa --icons --group-directories-first --git --git-ignore --git-branch --git-status --color-scale --color=always'
-alias ls='exa'
-alias la='ls -a'
-alias ll='ls -l'
-alias lla='ls -la'
+# if exa is installed, use exa instead of ls
+if command -v "exa" > /dev/null 2>&1; then
+    alias exa='exa --icons --group-directories-first --git --color-scale --color=always'
+    alias ls='exa'
+    alias lt='ls --tree'
+else
+    alias ls='ls --color=auto'
+    alias la='ls -a'
+    alias ll='ls -l'
+    alias lla='ls -la'
+fi
 
 # 安全策
 alias cp='cp -i'
@@ -18,5 +24,10 @@ alias ....='cd ../../..'
 
 alias cl='clear'
 
+# git
 alias g='git'
 alias gs='git status'
+alias gl='git log --oneline --graph --decorate --all'
+
+# zsh
+alias zs="source $XDG_CONFIG_HOME/zsh/.zshrc"

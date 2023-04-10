@@ -4,10 +4,17 @@
 ## Variables
 DOTFILES="$HOME/dotfiles"
 
+# colors
+autoload -U colors; colors
+
 ## Functions
 # echo info message
 function info() {
     echo -e "${GREEN}[INFO]${RESET} $1"
+}
+
+function info_no() {
+    echo -en "${GREEN}[INFO]${RESET} $1"
 }
 
 # echo error message
@@ -15,9 +22,16 @@ function error() {
     echo -e "${RED}[ERROR]${RESET} $1"
 }
 
+function error_no() {
+    echo -en "${RED}[ERROR]${RESET} $1"
+}
+
 # echo warning message
 function warning() {
     echo -e "${YELLOW}[WARNING]${RESET} $1"
+}
+function warning_no() {
+    echo -en "${YELLOW}[WARNING]${RESET} $1"
 }
 
 # check if command exists
@@ -90,17 +104,17 @@ function symlink() {
 
     if symlink_exists "$target"; then
         warning "$target is already symlinked"
-        return 1
+        link_delete $target
     fi
 
     if file_exists "$target"; then
         warning "$target is already exists"
-        return 1
+        link_delete $target
     fi
 
     if directory_exists "$target"; then
         warning "$target is already exists"
-        return 1
+        link_delete $target
     fi
 
     ln -s "$source" "$target"
@@ -149,6 +163,8 @@ function yay_install() {
             sudo pacman --noconfirm --needed -S yay >/dev/null 2>&1
             return
         fi
+
+        warning "Yay is not installed"
     else
         info "yay is already installed"
     fi
@@ -163,6 +179,58 @@ function apt_install() {
     fi
 }
 
+# symlink dotfiles
+function xdg_link(){
+    # xdg dir variables
+    local xdg_config_home=${XDG_CONFIG_HOME:-$HOME/.config}
 
+    # xdg dirs
+    local xdg_dirs=(
+        "nvim"
+        "tmux"
+        "zsh"
+        "git"
+    )
 
+    # symlink xdg dirs
+    for dir in "${xdg_dirs[@]}"; do
+        symlink "$DOTFILES/xdg/$dir" "$xdg_config_home/$dir"
+    done
+}
 
+# home dirs link
+function home_link(){
+    # home dirs
+    local home_dirs=(
+        ".bzshrc"
+        ".zshenv"
+    )
+
+    # symlink home dirs
+    for dir in "${home_dirs[@]}"; do
+        symlink "$DOTFILES/home/$dir" "$HOME/$dir"
+    done
+}
+
+# link delete
+# input: $1: link path
+# you input [Y/n] to delete link
+function link_delete(){
+    local link=$1
+    warning_no "REPLY?Delete $link? [Y/n] "
+    read $REPLY
+    if [[ "$REPLY" =~ ^[Yy]$ ]]; then
+        rm -rf "$link"
+        info "Deleted $link"
+    fi
+}
+
+# main
+function main(){
+    # home link
+    home_link
+    # xdg link
+    xdg_link
+}
+
+main
