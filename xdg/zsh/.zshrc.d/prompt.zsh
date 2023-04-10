@@ -17,4 +17,8 @@ function left_prompt(){
     local icon_arch="\uf303"
     local icon_manjaro="\uf312"
     local icon_git_branch="\ue0a0"
+
+    echo $icon_arrow
 }
+
+PROMPT=`left_prompt`

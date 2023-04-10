@@ -1,10 +1,5 @@
 # zshrc
 
-# Load all files in ~/.config/zsh/.zshrc.d
-for f in $XDG_CONFIG_HOME/zsh/.zshrc.d/*.zsh; do
-  source $f
-done
-
 # 環境変数
 export EDITOR=nvim
 
@@ -19,3 +14,11 @@ setopt hist_reduce_blanks # ヒストリに連続した空白を1つにする
 setopt inc_append_history # ヒストリに即時保存
 setopt share_history # 複数のターミナルでヒストリを共有
 setopt hist_expire_dups_first # ヒストリの重複を削除する
+
+# colors
+autoload -U colors; colors
+
+# Load all files in ~/.config/zsh/.zshrc.d
+for f in $XDG_CONFIG_HOME/zsh/.zshrc.d/*.zsh; do
+  source $f
+done
