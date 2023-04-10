@@ -3,7 +3,6 @@
 services:
   arch: 
     image: archlinux:base
-    # privileged: true
     volumes:
-      - ./:/root/dotfiles-new
+      - ./:/root/dotfiles
     tty: true
