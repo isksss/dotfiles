@@ -7,10 +7,11 @@ if command -v "exa" > /dev/null 2>&1; then
     alias lt='ls --tree'
 else
     alias ls='ls --color=auto'
-    alias la='ls -a'
-    alias ll='ls -l'
-    alias lla='ls -la'
 fi
+
+alias la='ls -a'
+alias ll='ls -l'
+alias lla='ls -la'
 
 # 安全策
 alias cp='cp -i'
