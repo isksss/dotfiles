@@ -6,14 +6,16 @@ function left_prompt(){
 
   # 256 color
   # moji
-  F_039="%F{039}" # blue
+  F_NAME="%F{039}" # blue
   F_010="%F{010}" # mint
   F_000="%F{000}" # black
-  F_002="%F{002}" # green
+  F_002="%F{040}" # green
 
-  # back
-  B_008="%K{008}" # gray
-  B_004="%K{004}" # blue
+  F_NAME="%F{000}"
+  B_NAME="%K{067}" # gray
+
+  F_DIR="%F{000}"
+  B_DIR="%K{081}"
 
   F_END="%f"
   B_END="%k"
@@ -21,13 +23,13 @@ function left_prompt(){
 
   local LINE
   # NAME
-  LINE="${F_039}${B_008} 🥹 $user ${END}"
+  LINE="${F_NAME}${B_NAME} 🥹 $user ${END}"
   # DIR
-  LINE+="${F_000}${B_004} 📁 %~ ${END}"
+  LINE+="${F_DIR}${B_DIR} 📁 %~ ${END}"
   # GIT
-  LINE+="${F_002}${B_008} 🌱 $(git_current_branch) ${END}"
+  LINE+="${F_002}${B_NAME} 🌱 $(git_current_branch) ${END}"
   # END
-  LINE+="\n${F_039}${B_008} 🐚 > ${END} "
+  LINE+="\n${F_NAME}${B_NAME} 🐚 > ${END} "
 
   echo -e $LINE
 }
