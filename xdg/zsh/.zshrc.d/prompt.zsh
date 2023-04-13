@@ -1,48 +1,44 @@
 # zsh prpmpt
 ## LEFT
 function left_prompt(){
-    # variables
-    local user=$USER
+  # variables
+  local user=$USER
 
-    # icon
-    local icon_arrow="\ue0b0"
-    local icon_manjaro="\uf312"
-    local icon_git_branch="\ue0a0"
+  # 256 color
+  # moji
+  F_039="%F{039}" # blue
+  F_010="%F{010}" # mint
+  F_000="%F{000}" # black
+  F_002="%F{002}" # green
 
-    # Get the OS mark
-    local os_mark=$(get_os_mark)
-    local OS=""
-    if [[ -n $os_mark ]]; then
-        OS="${bg[blue]}${fg[white]}$os_mark${reset_color} "
-    fi
-    local NAME=""
-    echo $OS$USER %m $icon_arrow
+  # back
+  B_008="%K{008}" # gray
+  B_004="%K{004}" # blue
+
+  F_END="%f"
+  B_END="%k"
+  END="${F_END}${B_END}"
+
+  local LINE
+  # NAME
+  LINE="${F_039}${B_008} 🥹 $user ${END}"
+  # DIR
+  LINE+="${F_000}${B_004} 📁 %~ ${END}"
+  # GIT
+  LINE+="${F_002}${B_008} 🌱 $(git_current_branch) ${END}"
+  # END
+  LINE+="\n${F_039}${B_008} 🐚 >>${END}"
+
+  echo -e $LINE
 }
 
-# Check the OS and return the corresponding OS mark
-function get_os_mark() {
-  case "$(uname)" in
-    Darwin)
-      echo -n "\ue351"  # Apple Logo
-      ;;
-    Linux)
-      if [[ -f /etc/arch-release ]]; then
-        echo -n "\ue705"  # Arch Logo
-      elif [[ -f /etc/manjaro-release ]]; then
-        echo -n "\ue738"  # Manjaro Logo
-      elif [[ -f /etc/lsb-release && "$(grep DISTRIB_ID /etc/lsb-release | cut -d= -f2)" = "Ubuntu" ]]; then
-        echo -n "\ue712"  # Ubuntu Logo
-      else
-        echo -n ""  # Not supported
-      fi
-      ;;
-    CYGWIN*|MINGW32*|MSYS*)
-      echo -n "\ue70f"  # Windows Logo
-      ;;
-    *)
-      echo -n ""  # Not supported
-      ;;
-  esac
+function git_current_branch() {
+  local branch_name=$(git branch --show-current 2> /dev/null)
+
+  if [[ -z "$branch_name" ]]; then
+    branch_name="No branch"
+  fi
+  echo "$branch_name"
 }
 
 PROMPT=`left_prompt`

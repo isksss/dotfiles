@@ -14,6 +14,10 @@ setopt hist_reduce_blanks # ヒストリに連続した空白を1つにする
 setopt inc_append_history # ヒストリに即時保存
 setopt share_history # 複数のターミナルでヒストリを共有
 setopt hist_expire_dups_first # ヒストリの重複を削除する
+setopt prompt_subst # プロンプトにコマンドの出力を埋め込む
+setopt auto_cd # ディレクトリ名のみでcdする
+setopt auto_pushd # pushd, popd, dirsを自動的に実行
+setopt pushd_ignore_dups # pushdで重複したディレクトリをスキップ
 
 # colors
 autoload -U colors; colors

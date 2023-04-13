@@ -30,5 +30,13 @@ alias g='git'
 alias gs='git status'
 alias gl='git log --oneline --graph --decorate --all'
 
+# docker
+alias d='docker'
+alias dc='docker compose'
+alias dcbuild='docker compose build --no-cache'
+
 # zsh
 alias zs="source $XDG_CONFIG_HOME/zsh/.zshrc"
+
+# dotfiles
+alias dot='cd $HOME/dotfiles'
