@@ -1,16 +1,12 @@
 # dotfiles
 
-My dotfiles.
+## Installation
 
-## installation
+1. clone this repository.
+2. cd dotfiles
+3. ./script/init.sh
 
-```bash
-curl -Lks https://raw.githubusercontent.com/isksss/dotfiles/main/etc/setup.sh | bash
-```
+## Requirements
 
-## branches
-
-| name |   |
-|:----:|:--|
-| main | main branch |
-| dev  | develop branch |
+- git
+- zsh
