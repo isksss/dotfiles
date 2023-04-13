@@ -27,7 +27,7 @@ function left_prompt(){
   # GIT
   LINE+="${F_002}${B_008} 🌱 $(git_current_branch) ${END}"
   # END
-  LINE+="\n${F_039}${B_008} 🐚 >>${END}"
+  LINE+="\n${F_039}${B_008} 🐚 > ${END} "
 
   echo -e $LINE
 }
@@ -39,6 +39,11 @@ function git_current_branch() {
     branch_name="No branch"
   fi
   echo "$branch_name"
+}
+
+# PROMPT
+precmd() {
+  PROMPT=`left_prompt`
 }
 
 PROMPT=`left_prompt`

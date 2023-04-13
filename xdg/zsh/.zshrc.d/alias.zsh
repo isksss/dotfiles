@@ -24,6 +24,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 alias cl='clear'
+alias sudo='sudo '
 
 # git
 alias g='git'
@@ -39,4 +40,5 @@ alias dcbuild='docker compose build --no-cache'
 alias zs="source $XDG_CONFIG_HOME/zsh/.zshrc"
 
 # dotfiles
-alias dot='cd $HOME/dotfiles'
+alias dot="cd $HOME/dotfiles"
+alias work="cd $HOME/workspace"
