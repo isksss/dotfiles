@@ -30,6 +30,7 @@ alias sudo='sudo '
 alias g='git'
 alias gs='git status'
 alias gl='git log --oneline --graph --decorate --all'
+alias gc='git checkout'
 
 # docker
 alias d='docker'
