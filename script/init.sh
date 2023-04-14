@@ -138,20 +138,6 @@ function symlink() {
 
 ## arch linux and manjaro
 # check if package is installed
-function pacman_install() {
-    local package=$1
-    if ! pacman -Q "$package" >/dev/null 2>&1; then
-        sudo pacman --noconfirm --needed -S "$package" >/dev/null 2>&1
-    fi
-}
-
-# check if aur package is installed
-function aur_install() {
-    local package=$1
-    if ! pacman -Q "$package" >/dev/null 2>&1; then
-        yay --noconfirm --needed -S "$package" >/dev/null 2>&1
-    fi
-}
 
 # installed yay
 function yay_install() {
@@ -218,6 +204,7 @@ function home_link(){
     local home_dirs=(
         ".bashrc"
         ".zshenv"
+        ".xprofile"
     )
 
     # symlink home dirs
@@ -254,6 +241,9 @@ function main(){
     home_link
     # xdg link
     xdg_link
+
+    # workspace
+    mkdir -p $HOME/workspace
 }
 
 main

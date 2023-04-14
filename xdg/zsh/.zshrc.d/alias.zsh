@@ -13,6 +13,11 @@ alias la='ls -a'
 alias ll='ls -l'
 alias lla='ls -la'
 
+# cat bat
+if command -v "bat" > /dev/null 2>&1; then
+    alias cat="bat"
+fi
+
 # 安全策
 alias cp='cp -i'
 alias mv='mv -i'
