@@ -30,12 +30,15 @@ alias ....='cd ../../..'
 
 alias cl='clear'
 alias sudo='sudo '
+alias h='history'
+alias rmm='rm -rf'
 
 # git
 alias g='git'
 alias gs='git status'
 alias gl='git log --oneline --graph --decorate --all'
 alias gc='git checkout'
+alias gcm='git checkout main'
 
 # docker
 alias d='docker'

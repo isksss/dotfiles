@@ -6,4 +6,4 @@
 	status = auto
 	branch = auto
 [init]
-	defaultBranch = master
+	defaultBranch = main
