@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+echo $SHELL
 ## var
 DOTFILES_DIR="$HOME/dotfiles"
 WORKSPACE_DIR="$HOME/workspace"
@@ -66,3 +66,29 @@ mkdir -p "$XDG_CACHE_HOME"
 mkdir -p "$XDG_DATA_HOME"
 mkdir -p "$XDG_STATE_HOME"
 mkdir -p "$WORKSPACE_DIR"
+
+
+# change directory to dotfiles
+info "Changing directory to dotfiles..."
+cd "$DOTFILES_DIR"
+
+# symlink
+info "Symlinking dotfiles..."
+# get xdg dirs
+contents=$(find "$DOTFILES_DIR/config" -maxdepth 1 -mindepth 1)
+for content in "${contents[@]}";do
+    # get file name
+    file_name=$(basename "$content")
+    # symlink
+    ln -sf "$content" "$XDG_CONFIG_HOME/$file_name"
+done
+
+# home
+contents=$(find "$DOTFILES_DIR/home" -maxdepth 1 -mindepth 1)
+for content in "${contents[@]}";do
+    # get file name
+    file_name=$(basename "$content")
+    # symlink
+    ln -sf "$content" "$HOME/$file_name"
+done
+

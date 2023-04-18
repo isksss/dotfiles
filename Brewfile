@@ -13,8 +13,11 @@ brew "bat"
 
 cask "font-hackgen"
 cask "font-hackgen-nerd"
-cask "iterm2"
+cask "alacritty"
 cask "zoom"
+cask "visual-studio-code"
+cask "google-chrome"
+cask "docker"
 
 mas "LINE", id: 539883307
 mas "Xcode", id: 497799835
