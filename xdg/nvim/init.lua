@@ -1,2 +1,2 @@
 -- neovim
-require('lazy')
+require('base')
