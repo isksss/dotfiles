@@ -38,7 +38,8 @@ alias g='git'
 alias gs='git status'
 alias gl='git log --oneline --graph --decorate --all'
 alias gc='git checkout'
-alias gcm='git checkout main'
+alias gco='git commit'
+alias gaa='git add --all'
 
 # docker
 alias d='docker'
@@ -51,3 +52,8 @@ alias zs="source $XDG_CONFIG_HOME/zsh/.zshrc"
 # dotfiles
 alias dot="cd $HOME/dotfiles"
 alias work="cd $HOME/workspace"
+
+# nvim
+alias n="nvim"
+alias vim="n"
+alias vi="n"

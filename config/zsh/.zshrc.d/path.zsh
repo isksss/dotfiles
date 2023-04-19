@@ -1,10 +1,12 @@
 DOTFILES="$HOME/dotfiles"
 
 # golang
-GOPATH="$HOME/go"
+export GOPATH="$HOME/go"
+export VOLTA_HOME="$HOME/.volta"
 
 path=(
     $DOTFILES/bin
     $GOPATH/bin
+    $VOLTA_HOME/bin
     $path
 )

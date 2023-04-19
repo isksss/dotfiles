@@ -1,7 +1,9 @@
 XDG_CONFIG_HOME ?= $(HOME)/.config
 
-.PHONY: all
-install: symlink dellink
+.PHONY: install
+install:
+	$(MAKE) symlink
+	$(MAKE) dellink
 
 .PHONY: symlink
 symlink:
@@ -19,14 +21,14 @@ dellink:
 	chmod +x $(CURDIR)/script/dellink.sh
 	$(CURDIR)/script/dellink.sh $(CURDIR)
 
-.PHONY: brewinstall
-brewinstall:
+.PHONY: brewsetup
+brewsetup:
 	brew bundle --file=$(CURDIR)/Brewfile
 
 .PHONY: brewdump
 brewdump:
 	brew bundle dump --force --file=$(CURDIR)/Brewfile
 
-.PHONY: brew
-brew:
+.PHONY: brewinstall
+brewinstall:
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
