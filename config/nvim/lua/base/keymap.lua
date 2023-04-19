@@ -6,4 +6,4 @@ vim.g.maplocalleader = " "
 
 -- keymap
 local keymap = vim.keymap
-keymap.set('n', '<leader>W', ':w', {noremap = true})
+keymap.set('n', '<Leader>w', '<CMD>w<CR>', {noremap = true})

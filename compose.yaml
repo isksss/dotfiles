@@ -1,8 +1,0 @@
-# macos のdocker imageを使う
-
-services:
-  arch: 
-    image: archlinux:base
-    volumes:
-      - ./:/root/dotfiles
-    tty: true

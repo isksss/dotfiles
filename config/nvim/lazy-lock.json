@@ -1,6 +1,6 @@
 {
   "fern.vim": { "branch": "main", "commit": "dae5eb2debe023fce0e3dfafbf879bd89946d6d0" },
-  "lazy.nvim": { "branch": "main", "commit": "eddee830ede0f95ced9802ca9abd3f8f662e5cc5" },
+  "lazy.nvim": { "branch": "main", "commit": "5f13f69851d2b244891d77590db9e3370197facc" },
   "lualine.nvim": { "branch": "master", "commit": "84ffb80e452d95e2c46fa29a98ea11a240f7843e" },
   "nvim-web-devicons": { "branch": "master", "commit": "4ec26d67d419c12a4abaea02f1b6c57b40c08d7e" }
 }
