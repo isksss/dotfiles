@@ -37,8 +37,8 @@ function dir() {
 }
 
 function main(){
-    install
     dir
+    install
 }
 
 main

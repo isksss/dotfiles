@@ -18,3 +18,15 @@ symlink:
 dellink:
 	chmod +x $(CURDIR)/script/dellink.sh
 	$(CURDIR)/script/dellink.sh $(CURDIR)
+
+.PHONY: brewinstall
+brewinstall:
+	brew bundle --file=$(CURDIR)/Brewfile
+
+.PHONY: brewdump
+brewdump:
+	brew bundle dump --force --file=$(CURDIR)/Brewfile
+
+.PHONY: brew
+brew:
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
