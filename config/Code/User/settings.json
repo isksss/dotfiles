@@ -1,0 +1,10 @@
+{
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "markdown": true,
+    },
+    "git.confirmSync": true,
+    "git.autofetch": true,
+    "editor.fontFamily": "'HackGen Console NF', Menlo, Monaco, 'Courier New', monospace"
+}

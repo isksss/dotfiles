@@ -8,5 +8,6 @@ path=(
     $DOTFILES/bin
     $GOPATH/bin
     $VOLTA_HOME/bin
+    $HOME/.local/bin
     $path
 )

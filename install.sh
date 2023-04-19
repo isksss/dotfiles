@@ -11,6 +11,8 @@ XDG_CACHE_HOME="$HOME/.cache"
 XDG_DATA_HOME="$HOME/.local/share"
 XDG_STATE_HOME="$HOME/.local/state"
 
+LOCAL_BIN="$HOME/.local/bin"
+
 # functions
 function install() {
     if [ -d "$dotfiles" ]; then
@@ -34,6 +36,7 @@ function install() {
 
 function dir() {
     mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME" "$XDG_STATE_HOME"
+    mkdir -p "$LOCAL_BIN"
 }
 
 function main(){
