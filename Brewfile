@@ -12,5 +12,6 @@ cask "font-hackgen-nerd"
 cask "google-chrome"
 cask "visual-studio-code"
 cask "zoom"
+cask "discord"
 mas "LINE", id: 539883307
 mas "Xcode", id: 497799835
