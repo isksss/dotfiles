@@ -10,5 +10,3 @@ services:
     tty: true
     stdin_open: true
     command: /bin/bash
-    volumes:
-      - ./:/home/isksss/dotfiles
