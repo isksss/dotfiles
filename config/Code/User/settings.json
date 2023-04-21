@@ -6,5 +6,6 @@
     },
     "git.confirmSync": true,
     "git.autofetch": true,
-    "editor.fontFamily": "'HackGen Console NF', Menlo, Monaco, 'Courier New', monospace"
+    "editor.fontFamily": "'HackGen Console NF', Menlo, Monaco, 'Courier New', monospace",
+    "editor.formatOnSave": true,
 }

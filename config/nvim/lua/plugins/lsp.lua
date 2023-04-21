@@ -14,12 +14,7 @@ return{
     {
         'williamboman/mason-lspconfig',
         config = function()
-            require('mason-lspconfig').setup({
-                ensure_installed = {
-                    'gopls',
-                },
-                automatic_installation = true,
-            })
+            require('mason-lspconfig').setup()
         end,
     },
        

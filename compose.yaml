@@ -1,0 +1,9 @@
+## arch linux docker compose
+services:
+  arch:
+    image: archlinux
+    container_name: archliunx
+    restart: always
+    tty: true
+    stdin_open: true
+    command: /bin/bash
