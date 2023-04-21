@@ -31,7 +31,7 @@ function left_prompt(){
     fi
   fi
 
-  LINE+="${fg[white]}${bg[white]}%# ${reset_color}${fg[white]}${shellmark} ${reset_color}"
+  LINE+="${fg[black]}${bg[white]}%# ${reset_color}${fg[white]}${shellmark} ${reset_color}"
   LINE+="\n${fg[black]}${bg[white]} $user ${reset_color}${fg[white]}${shellmark} ${reset_color}"
 
   echo -e $LINE
