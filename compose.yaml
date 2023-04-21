@@ -1,9 +1,14 @@
 ## arch linux docker compose
 services:
   arch:
-    image: archlinux
+    # image: archlinux
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: archliunx
     restart: always
     tty: true
     stdin_open: true
     command: /bin/bash
+    volumes:
+      - ./:/home/isksss/dotfiles

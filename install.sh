@@ -17,20 +17,20 @@ LOCAL_BIN="$HOME/.local/bin"
 function install() {
     if [ -d "$dotfiles" ]; then
         echo "dotfiles already exists"
-        exit 1
+        exit 0
     fi
 
     # git is required
     if ! command -v git &> /dev/null; then
         echo "git is required"
-        exit 1
+        exit 0
     fi
 
     # clone dotfiles
-    git clone --recursive "$remote_url" "$dotfiles" >/dev/null 2>&1
+    git clone "$remote_url" "$dotfiles" >/dev/null 2>&1
     git remote set-url origin "$ssh_url" >/dev/null 2>&1
 
-    cd "$dotfiles" || exit 1
+    cd "$dotfiles" || exit 0
     make install >/dev/null 2>&1
 }
 

@@ -45,7 +45,11 @@ alias gaa='git add --all'
 # docker
 alias d='docker'
 alias dc='docker compose'
-alias dcbuild='docker compose build --no-cache'
+alias dcb='docker compose build --no-cache'
+alias dcu='docker compose up -d'
+alias dcd='docker compose down'
+alias dcex='docker compose exec'
+alias dcx='docker compose exec arch zsh'
 
 # zsh
 alias zs="source $XDG_CONFIG_HOME/zsh/.zshrc"

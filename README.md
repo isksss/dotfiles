@@ -3,6 +3,7 @@
 ## requirements
 - git
 - zsh
+- make
 
 ## Installation
 ```sh
