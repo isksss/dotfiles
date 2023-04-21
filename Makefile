@@ -5,8 +5,10 @@ code_dir := "$(HOME)/Library/Application Support/Code/User"
 
 .PHONY: install
 install:
-	$(MAKE) symlink
-	$(MAKE) dellink
+	@chmod +x $(CURDIR)/install.sh
+	@$(CURDIR)/install.sh
+	@$(MAKE) symlink
+	@$(MAKE) dellink
 
 .PHONY: symlink
 symlink:
