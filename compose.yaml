@@ -9,4 +9,6 @@ services:
     restart: always
     tty: true
     stdin_open: true
-    command: /bin/bash
+    command: /bin/zsh
+    volumes:
+      - ~/.ssh:/home/isksss/.ssh

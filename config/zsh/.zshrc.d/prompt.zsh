@@ -27,7 +27,7 @@ function left_prompt(){
   elif [[ $(uname -s) == "Linux" ]]; then
     # archか確認
     if [[ -f /etc/arch-release ]]; then
-      LINE+="${fg[cyan]}${bg[white]}${arch} ${fg[black]}${fire} ${reset_color}"
+      LINE+="${fg[cyan]}${bg[white]}${arch}  ${fg[black]}${fire} ${reset_color}"
     fi
   fi
 
