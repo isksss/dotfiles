@@ -10,6 +10,7 @@ function left_prompt(){
   local shellmark="\uE0B0"
   local docker="\ue7b0"
   local apple="\ue711"
+  local arch="\uf303"
 
   local LINE=""
   LINE+="${fg[black]}${bg[white]} %~ ${fire} ${reset_color}"
@@ -17,12 +18,17 @@ function left_prompt(){
   # Docker
   # /.dockerenvがあるかどうかで判定
   if [[ -f /.dockerenv ]]; then
-    LINE+="${fg[blue]}${bg[white]}${docker} ${fire} ${reset_color}"
+    LINE+="${fg[black}${bg[cyan]}${docker} ${fg[black]}${fire} ${reset_color}"
   fi
 
   # mac
   if [[ $(uname -s) == "Darwin" ]]; then
-    LINE+="${fg[black]}${bg[white]}${apple} ${fire} ${reset_color}"
+    LINE+="${fg[magenta]}${bg[white]}${apple} ${fg[black]}${fire} ${reset_color}"
+  elif [[ $(uname -s) == "Linux" ]]; then
+    # archか確認
+    if [[ -f /etc/arch-release ]]; then
+      LINE+="${fg[cyan]}${bg[white]}${arch} ${fg[black]}${fire} ${reset_color}"
+    fi
   fi
 
   LINE+="${fg[white]}${bg[white]}%# ${reset_color}${fg[white]}${shellmark} ${reset_color}"
