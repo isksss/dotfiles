@@ -18,7 +18,7 @@ function left_prompt(){
   # Docker
   # /.dockerenvがあるかどうかで判定
   if [[ -f /.dockerenv ]]; then
-    LINE+="${fg[black}${bg[cyan]}${docker} ${fg[black]}${fire} ${reset_color}"
+    LINE+="${fg[blue]}${bg[white]}${docker} ${fg[black]}${fire} ${reset_color}"
   fi
 
   # mac
