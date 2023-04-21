@@ -6,6 +6,7 @@ RUN pacman -Syu --noconfirm --needed \
     zsh \
     sudo \
     make \
+    neovim \
     && rm -rf /var/cache/pacman/pkg/* \
     && useradd -m -g users -G wheel -s /bin/zsh isksss \
     && echo -e "1234\n1234\n" | passwd isksss \
