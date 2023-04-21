@@ -9,12 +9,20 @@ function left_prompt(){
 
   local shellmark="\uE0B0"
   local docker="\ue7b0"
+  local apple="\ue711"
 
   local LINE=""
   LINE+="${fg[black]}${bg[white]} %~ ${fire} ${reset_color}"
   LINE+="${fg[black]}${bg[white]}${gitmark} `git_current_branch` ${fire} ${reset_color}"
-  if [[ -n "$DOCKER_HOST" ]]; then
-    LINE+="${fg[black]}${bg[white]}${docker} ${fire} ${reset_color}"
+  # Docker
+  # /.dockerenvがあるかどうかで判定
+  if [[ -f /.dockerenv ]]; then
+    LINE+="${fg[blue]}${bg[white]}${docker} ${fire} ${reset_color}"
+  fi
+
+  # mac
+  if [[ $(uname -s) == "Darwin" ]]; then
+    LINE+="${fg[black]}${bg[white]}${apple} ${fire} ${reset_color}"
   fi
 
   LINE+="${fg[white]}${bg[white]}%# ${reset_color}${fg[white]}${shellmark} ${reset_color}"
