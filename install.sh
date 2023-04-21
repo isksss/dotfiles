@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # variables
-dotfiles="$HOME/.dotfiles"
+dotfiles="$HOME/dotfiles"
 
 remote_url="https://github.com/isksss/dotfiles.git"
 ssh_url="git@github.com:isksss/dotfiles.git"
