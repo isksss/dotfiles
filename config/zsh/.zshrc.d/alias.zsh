@@ -41,6 +41,7 @@ alias gl='git log --oneline --graph --decorate --all'
 alias gc='git checkout'
 alias gco='git commit'
 alias gaa='git add --all'
+alias gm='git merge'
 
 # docker
 alias d='docker'
