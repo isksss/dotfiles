@@ -4,7 +4,7 @@
         "*": true,
         "markdown": true,
     },
-    "git.confirmSync": true,
+    "git.confirmSync": false,
     "git.autofetch": true,
     "editor.fontFamily": "'HackGen Console NF', Menlo, Monaco, 'Courier New', monospace",
     "editor.formatOnSave": true,

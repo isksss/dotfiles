@@ -6,14 +6,6 @@ if ! grep -q "Arch Linux" /etc/os-release > /dev/null 2>&1; then
     exit 1
 fi
 
-# rootか確認
-if ! [ "$(id -u)" -ne 0 ]; then
-    pacman -S sudo zsh git
-    useradd -m -g users -G wheel -s /bin/bash isksss
-    passwd isksss
-    exit 0
-fi
-
 # pacman update
 sudo pacman -Syu
 

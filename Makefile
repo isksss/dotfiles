@@ -1,4 +1,5 @@
 XDG_CONFIG_HOME ?= $(HOME)/.config
+BIN_DIR := $(HOME)/.local/bin
 OS := $(shell uname -s)
 code_dir := "$(HOME)/Library/Application Support/Code/User"
 
@@ -17,6 +18,8 @@ symlink:
 	@ln -sf $(CURDIR)/config/tmux $(XDG_CONFIG_HOME)/tmux
 
 	@ln -sf $(CURDIR)/config/alacritty $(XDG_CONFIG_HOME)/alacritty
+
+	@ln -sf $(CURDIR)/bin $(BIN_DIR)
 
 	@test "$(OS)" = "Darwin" && ln -sf $(CURDIR)/config/Code/User/settings.json $(code_dir)/settings.json || echo "Not macOS"
 	@test "$(OS)" = "Darwin" && ln -sf $(CURDIR)/config/Code/User/keybindings.json $(code_dir)/keybindings.json || echo "Not macOS"
@@ -40,3 +43,8 @@ brewdump:
 .PHONY: brewinstall
 brewinstall:
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+.PHONY: arch
+arch:
+	@chmod +x $(CURDIR)/script/arch.sh
+	@$(CURDIR)/script/arch.sh
