@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: archliunx
+    container_name: arch
     restart: always
     tty: true
     stdin_open: true

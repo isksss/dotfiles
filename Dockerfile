@@ -9,7 +9,8 @@ RUN pacman -Syu --noconfirm --needed \
     && rm -rf /var/cache/pacman/pkg/* \
     && useradd -m -g users -G wheel -s /bin/zsh isksss \
     && echo -e "1234\n1234\n" | passwd isksss \
-    && echo -e "1234\n1234\n" | passwd root
+    && echo -e "1234\n1234\n" | passwd root \
+    && echo "isksss ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 WORKDIR /home/isksss
 USER isksss

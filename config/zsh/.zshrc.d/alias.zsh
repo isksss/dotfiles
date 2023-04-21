@@ -48,6 +48,7 @@ alias dc='docker compose'
 alias dcb='docker compose build --no-cache'
 alias dcu='docker compose up -d'
 alias dcd='docker compose down'
+alias dcp='docker compose ps'
 alias dcex='docker compose exec'
 alias dcx='docker compose exec arch zsh'
 
