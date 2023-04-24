@@ -63,5 +63,5 @@ alias work="cd $HOME/workspace"
 
 # nvim
 alias n="nvim"
-alias vim="n"
-alias vi="n"
+# alias vim="n"
+# alias vi="n"
