@@ -14,7 +14,7 @@ XDG_STATE_HOME="$HOME/.local/state"
 LOCAL_BIN="$HOME/.local/bin"
 
 # functions
-function install() {
+function install () {
     if [ -d "$dotfiles" ]; then
         echo "dotfiles already exists"
         exit 0
@@ -34,12 +34,12 @@ function install() {
     make install >/dev/null 2>&1
 }
 
-function dir() {
+function dir () {
     mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME" "$XDG_STATE_HOME"
     mkdir -p "$LOCAL_BIN"
 }
 
-function main(){
+function main (){
     dir
     install
 }
