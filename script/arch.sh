@@ -15,16 +15,24 @@ sudo pacman -S --needed --noconfirm \
     make \
     go \
     bat \
-    exa
+    exa \
+    alacritty \
+    vim \
+    neovim \
 
 # yay
-git clone https://aur.archlinux.org/yay.git
-cd yay || exit 1
-makepkg -si --noconfirm
-cd .. || exit 1
-rm -rf yay
+if ! command -v yay &>/dev/null ; then
+    git clone https://aur.archlinux.org/yay.git
+    cd yay || exit 1
+    makepkg -si --noconfirm
+    cd .. || exit 1
+    rm -rf yay
+fi
 
 # yay update
 yay -Syu
 yay -S --needed --noconfirm \
-    ttf-hackgen
+    ttf-hackgen \
+    google-chrome \
+    visual-studio-code-bin
+    
