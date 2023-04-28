@@ -14,18 +14,15 @@ install:
 symlink:
 	@ln -sf $(CURDIR)/config/zsh $(XDG_CONFIG_HOME)/zsh
 	@ln -sf $(CURDIR)/config/zsh/.zshenv $(HOME)/.zshenv
-
 	@ln -sf $(CURDIR)/config/nvim $(XDG_CONFIG_HOME)/nvim
 	@ln -sf $(CURDIR)/config/git $(XDG_CONFIG_HOME)/git
 	@ln -sf $(CURDIR)/config/tmux $(XDG_CONFIG_HOME)/tmux
-
 	@ln -sf $(CURDIR)/config/alacritty $(XDG_CONFIG_HOME)/alacritty
-
 	@ln -sf $(CURDIR)/bin $(BIN_DIR)
-
-	@test "$(OS)" = "Darwin" && ln -sf $(CURDIR)/config/Code/User/settings.json $(code_dir)/settings.json || echo "Not macOS"
+	
+	@test "$(OS)" = "Darwin" && mkdir -p $(code_dir) &&ln -sf $(CURDIR)/config/Code/User/settings.json $(code_dir)/settings.json || echo "Not macOS"
 	@test "$(OS)" = "Darwin" && ln -sf $(CURDIR)/config/Code/User/keybindings.json $(code_dir)/keybindings.json || echo "Not macOS"
-
+	@test "$(OS)" = "Linux" && mkdir -p $(XDG_CONFIG_HOME)/Code/User
 	@test "$(OS)" = "Linux" && ln -sf $(CURDIR)/config/Code/User/settings.json $(XDG_CONFIG_HOME)/Code/User/settings.json || echo "Not Linux"
 	@test "$(OS)" = "Linux" && ln -sf $(CURDIR)/config/Code/User/keybindings.json $(XDG_CONFIG_HOME)/Code/User/keybindings.json || echo "Not Linux"
 
@@ -50,3 +47,8 @@ brewinstall:
 arch:
 	@chmod +x $(CURDIR)/script/arch.sh
 	@$(CURDIR)/script/arch.sh
+
+.PHONY: ubuntu
+ubuntu:
+	@sudo apt update
+	@sudo apt install -y git zsh
