@@ -2,13 +2,12 @@
 
 ## requirements
 - git
-- zsh
 - make
 
 ## Installation
 ```sh
 # install
-$ curl -L https://raw.githubusercontent.com/isksss/dotfiles/main/install.sh | sh
+$ curl -L https://isksss.github.io/dotfiles/install.sh | sh
 $ cd ~/dotfiles
 $ make install
 
