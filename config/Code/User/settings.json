@@ -2,10 +2,13 @@
     "editor.inlineSuggest.enabled": true,
     "github.copilot.enable": {
         "*": true,
+        "plaintext": true,
         "markdown": true,
+        "scminput": false
     },
     "git.confirmSync": false,
     "git.autofetch": true,
     "editor.fontFamily": "'HackGen Console NF', Menlo, Monaco, 'Courier New', monospace",
     "editor.formatOnSave": true,
+    "hediet.vscode-drawio.resizeImages": null,
 }
