@@ -26,3 +26,8 @@ autoload -U colors; colors
 for f in $XDG_CONFIG_HOME/zsh/.zshrc.d/*.zsh; do
   source $f
 done
+
+# local settings
+if [ -f "$ZDOTDIR/zshrc.local.zsh" ]; then
+  source $ZDOTDIR/zshrc.local.zsh
+fi
