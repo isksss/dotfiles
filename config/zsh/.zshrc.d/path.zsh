@@ -1,4 +1,4 @@
-DOTFILES="$HOME/dotfiles"
+DOTFILES=$(cat $HOME/.dotfiles-path)
 
 # golang
 export GOPATH="$HOME/go"

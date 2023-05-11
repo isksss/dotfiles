@@ -7,7 +7,7 @@ target_directory=$1
 for file in $target_directory/**/*(D); do
   # シンボリックリンクの場合のみ削除
   if [[ -L $file ]]; then
-    echo "Removing symbolic link: $file"
+    # echo "Removing symbolic link: $file"
     rm $file
   fi
 done

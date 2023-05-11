@@ -1,54 +1,63 @@
+##################################################
+# DOTFILES MAKEFILE
+##################################################
+DOTFILES ?= $(CURDIR)
+OS ?= $(shell uname -s)
+# XDG
 XDG_CONFIG_HOME ?= $(HOME)/.config
-BIN_DIR := $(HOME)/.local/bin
-OS := $(shell uname -s)
-code_dir := "$(HOME)/Library/Application Support/Code/User"
+XDG_CACHE_HOME ?= $(HOME)/.cache
+XDG_DATA_HOME ?= $(HOME)/.local/share
+XDG_STATE_HOME ?= $(HOME)/.local/state
+# MY_DIR
+WORKSPACE ?= $(HOME)/workspace
+LOCAL_BIN ?= $(HOME)/.local/bin
+MAC_CODE_DIR ?= "$(HOME)/Library/Application Support/Code/User"
+# DOTFILES_URL
+REMOTE_URL ?= https://github.com/isksss/dotfiles.git
+GIT_URL ?= git@github.com:isksss/dotfiles.git
 
-.PHONY: install
-install:
-	@chmod +x $(CURDIR)/install.sh
-	@$(CURDIR)/install.sh
+##################################################
+# Make
+##################################################
+
+.PHONY: all
+all:
+	@echo "##### Dotfiles Makefile #####"
+	@$(MAKE) init
+	@$(MAKE) createDir
 	@$(MAKE) symlink
-	@$(MAKE) dellink
+
+.PHONY: createDir
+createDir:
+	@echo "#     CREATE DIRECTORY"
+	@mkdir -p $(XDG_CONFIG_HOME) $(XDG_CACHE_HOME) $(XDG_DATA_HOME) $(XDG_STATE_HOME)
+	@mkdir -p $(WORKSPACE) $(LOCAL_BIN)
+	@mkdir -p $(MAC_CODE_DIR)
+	@mkdir -p $(XDG_CONFIG_HOME)/Code/User
 
 .PHONY: symlink
 symlink:
-	@ln -sf $(CURDIR)/config/zsh $(XDG_CONFIG_HOME)/zsh
-	@ln -sf $(CURDIR)/config/zsh/.zshenv $(HOME)/.zshenv
-	@ln -sf $(CURDIR)/config/nvim $(XDG_CONFIG_HOME)/nvim
-	@ln -sf $(CURDIR)/config/git $(XDG_CONFIG_HOME)/git
-	@ln -sf $(CURDIR)/config/tmux $(XDG_CONFIG_HOME)/tmux
-	@ln -sf $(CURDIR)/config/alacritty $(XDG_CONFIG_HOME)/alacritty
-	@ln -sf $(CURDIR)/bin $(BIN_DIR)
-	
-	@test "$(OS)" = "Darwin" && mkdir -p $(code_dir) &&ln -sf $(CURDIR)/config/Code/User/settings.json $(code_dir)/settings.json || echo "Not macOS"
-	@test "$(OS)" = "Darwin" && ln -sf $(CURDIR)/config/Code/User/keybindings.json $(code_dir)/keybindings.json || echo "Not macOS"
-	@test "$(OS)" = "Linux" && mkdir -p $(XDG_CONFIG_HOME)/Code/User
-	@test "$(OS)" = "Linux" && ln -sf $(CURDIR)/config/Code/User/settings.json $(XDG_CONFIG_HOME)/Code/User/settings.json || echo "Not Linux"
-	@test "$(OS)" = "Linux" && ln -sf $(CURDIR)/config/Code/User/keybindings.json $(XDG_CONFIG_HOME)/Code/User/keybindings.json || echo "Not Linux"
+	@echo "#     CREATE SYMLINK"
+	@ln -sf $(DOTFILES)/config/zsh $(XDG_CONFIG_HOME)/zsh
+	@ln -sf $(DOTFILES)/config/zsh/.zshenv $(HOME)/.zshenv
+	@ln -sf $(DOTFILES)/config/nvim $(XDG_CONFIG_HOME)/nvim
+	@ln -sf $(DOTFILES)/config/git $(XDG_CONFIG_HOME)/git
+	@ln -sf $(DOTFILES)/config/tmux $(XDG_CONFIG_HOME)/tmux
+	@ln -sf $(DOTFILES)/config/alacritty $(XDG_CONFIG_HOME)/alacritty
+	@ln -sf $(DOTFILES)/bin $(LOCAL_BIN)
+	@ln -sf $(DOTFILES)/config/Code/User/settings.json $(MAC_CODE_DIR)/settings.json
+	@ln -sf $(DOTFILES)/config/Code/User/keybindings.json $(MAC_CODE_DIR)/keybindings.json
+	@ln -sf $(DOTFILES)/config/Code/User/settings.json $(XDG_CONFIG_HOME)/Code/User/settings.json
+	@ln -sf $(DOTFILES)/config/Code/User/keybindings.json $(XDG_CONFIG_HOME)/Code/User/keybindings.json
+	@$(MAKE) dellink
 
 .PHONY: dellink
 dellink:
-	@chmod +x $(CURDIR)/script/dellink.sh
-	@$(CURDIR)/script/dellink.sh $(CURDIR)
+	@echo "#     DELETE SYMBOLIC LINK"
+	@chmod +x $(DOTFILES)/script/dellink.sh
+	@$(DOTFILES)/script/dellink.sh $(DOTFILES)
 
-.PHONY: brewsetup
-brewsetup:
-	@brew bundle --file=$(CURDIR)/Brewfile
-
-.PHONY: brewdump
-brewdump:
-	@brew bundle dump --force --file=$(CURDIR)/Brewfile
-
-.PHONY: brewinstall
-brewinstall:
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-.PHONY: arch
-arch:
-	@chmod +x $(CURDIR)/script/arch.sh
-	@$(CURDIR)/script/arch.sh
-
-.PHONY: ubuntu
-ubuntu:
-	@sudo apt update
-	@sudo apt install -y git zsh
+.PHONY: init
+init:
+	@echo $(DOTFILES) > $(HOME)/.dotfiles-path
+	@echo "#     DOTFILES PATH = $(DOTFILES)"
