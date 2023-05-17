@@ -67,3 +67,8 @@ init:
 .PHONY: git-remote
 git-remote:
 	git remote set-url origin $(GIT_URL) >/dev/null 2>&1
+
+.PHONY: install
+install:
+	@chmod +x $(DOTFILES)/script/*
+	@$(DOTFILES)/script/volta_install.sh
