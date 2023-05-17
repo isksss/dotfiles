@@ -62,3 +62,8 @@ dellink:
 init:
 	@echo $(DOTFILES) > $(HOME)/.dotfiles-path
 	@echo "#     DOTFILES PATH = $(DOTFILES)"
+	@$(MAKE) git-remote
+
+.PHONY: git-remote
+git-remote:
+	git remote set-url origin $(GIT_URL) >/dev/null 2>&1
