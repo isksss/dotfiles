@@ -9,5 +9,6 @@ path=(
     $GOPATH/bin
     $VOLTA_HOME/bin
     $HOME/.local/bin
+    $HOME/.cargo/env
     $path
 )
