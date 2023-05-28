@@ -1,7 +1,7 @@
 # zshrc
 
 # 環境変数
-export EDITOR=nvim
+export EDITOR=code
 
 HISTFILE=$XDG_CACHE_HOME/zsh/.zsh_history
 HISTSIZE=100000
