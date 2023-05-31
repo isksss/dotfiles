@@ -7,3 +7,5 @@
 	branch = auto
 [init]
 	defaultBranch = main
+[fetch]
+	prune = true
