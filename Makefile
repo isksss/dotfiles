@@ -49,6 +49,7 @@ symlink:
 	@ln -sf $(DOTFILES)/config/Code/User/keybindings.json $(MAC_CODE_DIR)/keybindings.json
 	@ln -sf $(DOTFILES)/config/Code/User/settings.json $(XDG_CONFIG_HOME)/Code/User/settings.json
 	@ln -sf $(DOTFILES)/config/Code/User/keybindings.json $(XDG_CONFIG_HOME)/Code/User/keybindings.json
+	@ln -sf $(DOTFILES)/config/fctix5/.xprofile $(HOME)/.xprofile
 	@$(MAKE) dellink
 
 .PHONY: dellink
@@ -61,3 +62,13 @@ dellink:
 init:
 	@echo $(DOTFILES) > $(HOME)/.dotfiles-path
 	@echo "#     DOTFILES PATH = $(DOTFILES)"
+	@$(MAKE) git-remote
+
+.PHONY: git-remote
+git-remote:
+	git remote set-url origin $(GIT_URL) >/dev/null 2>&1
+
+.PHONY: install
+install:
+	@chmod +x $(DOTFILES)/script/*
+	@$(DOTFILES)/script/volta_install.sh

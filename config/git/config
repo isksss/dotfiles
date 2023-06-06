@@ -5,7 +5,16 @@
 	diff = auto
 	status = auto
 	branch = auto
+	ui = auto
 [init]
 	defaultBranch = main
+[core]
+	autocrlf = input
 [fetch]
 	prune = true
+[pull]
+	ff = only
+[rebase]
+	autostash = true
+[push]
+	default = current
