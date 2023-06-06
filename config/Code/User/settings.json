@@ -26,5 +26,6 @@
   },
   "workbench.editorAssociations": {
     "*.db": "default"
-  }
+  },
+  "go.toolsManagement.autoUpdate": true
 }
