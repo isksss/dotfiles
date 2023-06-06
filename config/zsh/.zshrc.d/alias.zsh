@@ -63,3 +63,6 @@ alias work="cd $HOME/workspace"
 
 # nvim
 alias n="nvim"
+
+# code
+alias c.="code ."

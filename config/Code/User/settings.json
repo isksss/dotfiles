@@ -20,5 +20,12 @@
       "source.fixAll.eslint": true // eslintでリント
     }
   },
-  "eslint.format.enable": true
+  "eslint.format.enable": true,
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "workbench.editorAssociations": {
+    "*.db": "default"
+  },
+  "go.toolsManagement.autoUpdate": true
 }
