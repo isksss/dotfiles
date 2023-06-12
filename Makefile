@@ -63,6 +63,7 @@ init:
 	@echo $(DOTFILES) > $(HOME)/.dotfiles-path
 	@echo "#     DOTFILES PATH = $(DOTFILES)"
 	@$(MAKE) git-remote
+	@chsh -s $(shell which zsh)
 
 .PHONY: git-remote
 git-remote:
