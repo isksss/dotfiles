@@ -65,4 +65,18 @@ alias work="cd $HOME/workspace"
 alias n="nvim"
 
 # code
+alias c="code"
 alias c.="code ."
+
+# copy and paste
+# if pbcopy is installed, use pbcopy instead of xclip
+if command -v "pbcopy" > /dev/null 2>&1; then
+    alias pbcopy='pbcopy'
+    alias pbpaste='pbpaste'
+else
+    alias pbcopy='xclip -selection clipboard'
+    alias pbpaste='xclip -selection clipboard -o'
+fi
+
+alias copy="pbcopy"
+alias paste="pbpaste"
