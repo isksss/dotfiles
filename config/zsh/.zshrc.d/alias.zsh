@@ -33,6 +33,8 @@ alias cl='clear'
 alias sudo='sudo '
 alias h='history'
 alias rmm='rm -rf'
+alias mkdir='mkdir -p'
+alias mk='mkdir -p'
 
 # git
 alias g='git'
