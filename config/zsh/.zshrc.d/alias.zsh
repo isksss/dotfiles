@@ -45,6 +45,7 @@ alias gco='git commit'
 alias gaa='git add --all'
 alias gm='git merge'
 alias gb='git branch'
+alias gf='git fetch'
 
 # docker
 alias d='docker'
