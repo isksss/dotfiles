@@ -83,3 +83,6 @@ fi
 
 alias copy="pbcopy"
 alias paste="pbpaste"
+
+# zenn
+alias zenn="cd $HOME/workspace/zenn-docs && code ."
