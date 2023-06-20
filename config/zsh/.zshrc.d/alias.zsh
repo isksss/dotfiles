@@ -86,3 +86,6 @@ alias paste="pbpaste"
 
 # zenn
 alias zenn="cd $HOME/workspace/zenn-docs && code ."
+
+# docs
+alias docs="cd $HOME/workspace/docs && code ."
