@@ -13,6 +13,6 @@ path=(
     $VOLTA_HOME/bin
     $RYE_HOME/shims
     $HOME/.local/bin
-    $HOME/.cargo/env
+    $HOME/.cargo/bin
     $path
 )
