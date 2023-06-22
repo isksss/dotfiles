@@ -33,14 +33,13 @@ function left_prompt(){
   fi
 
   LINE+="${fg[black]}${bg[white]}%# ${reset_color}${fg[white]}${shellmark} ${reset_color}"
-  LINE+="\n${fg[black]}${bg[white]} $user ${reset_color}${fg[white]}${shellmark} ${reset_color}"
+  LINE+="\n${fg[black]}${bg[white]} `git_current_user` ${reset_color}${fg[white]}${shellmark} ${reset_color}"
 
   echo -e $LINE
 }
 
 function git_current_branch() {
   local branch_name=$(git branch --show-current 2> /dev/null)
-  local git_user=$(git config --get user.name)
 
   return_code=""
 
@@ -51,6 +50,20 @@ function git_current_branch() {
     return_code="$branch_name"
   fi
   echo "$branch_name"
+}
+
+function git_current_user() {
+  local git_user=$(git config --get user.name)
+
+  return_code=""
+
+  if [[ -z "$git_user" ]]; then
+    git_user="No user"
+    return_code="$git_user"
+  else
+    return_code="$git_user"
+  fi
+  echo "$git_user"
 }
 
 # PROMPT
