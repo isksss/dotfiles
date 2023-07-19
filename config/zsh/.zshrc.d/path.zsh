@@ -4,6 +4,7 @@ DOTFILES=$(cat $HOME/.dotfiles-path)
 export GOPATH="$HOME/go"
 export VOLTA_HOME="$HOME/.volta"
 export RYE_HOME="$HOME/.rye"
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

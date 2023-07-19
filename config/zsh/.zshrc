@@ -34,3 +34,6 @@ else
   touch $ZDOTDIR/zshrc.local.zsh
   echo "# zshrc local" >> $ZDOTDIR/zshrc.local.zsh
 fi
+
+# starship
+eval "$(starship init zsh)"
