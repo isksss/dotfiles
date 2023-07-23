@@ -25,7 +25,8 @@
     "editor.defaultFormatter": "golang.go"
   },
   "workbench.editorAssociations": {
-    "*.db": "default"
+    "*.db": "sqlite-viewer.option"
   },
-  "go.toolsManagement.autoUpdate": true
+  "go.toolsManagement.autoUpdate": true,
+  "window.zoomLevel": -1
 }
