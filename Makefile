@@ -51,6 +51,8 @@ symlink:
 	@ln -sf $(DOTFILES)/config/Code/User/keybindings.json $(XDG_CONFIG_HOME)/Code/User/keybindings.json
 	@ln -sf $(DOTFILES)/config/fctix5/.xprofile $(HOME)/.xprofile
 	@ln -sf $(DOTFILES)/config/starship $(XDG_CONFIG_HOME)/starship
+	@ln -sf $(DOTFILES)/config/bash/.bashrc $(HOME)/.bashrc
+	@ln -sf $(DOTFILES)/config/bash $(XDG_CONFIG_HOME)/bash
 	@$(MAKE) dellink
 
 .PHONY: dellink
