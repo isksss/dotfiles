@@ -31,3 +31,20 @@ systemctl enable NetworkManager
 pacman -S grub efibootmgr --noconfirm
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub
 grub-mkconfig -o /boot/grub/grub.cfg
+
+pacman -S --noconfirm \
+    sudo \
+    git \
+    zsh \
+    go
+
+sed -i -e 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
+echo -e "password\npassword\n" | passwd
+
+useradd -m -g users -G wheel -s /bin/zsh isksss
+echo -e "password\npassword\n" | passwd isksss
+
+# yay
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si --noconfirm

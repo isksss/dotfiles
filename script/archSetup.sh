@@ -23,5 +23,8 @@ pacstrap /mnt base base-devel linux linux-firmware
 
 # fstab 作成
 genfstab -U /mnt >> /mnt/etc/fstab
+curl https://raw.githubusercontent.com/isksss/dotfiles/dev/script/archSetup2.sh -o /mnt/archSetup2.sh
+chmod+x /mnt/archSetup2.sh
+arch-chroot /mnt /bin/sh archSetup2.sh
 
-cp archSetup2.sh /mnt/archSetup2.sh
+reboot
