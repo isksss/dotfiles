@@ -35,4 +35,13 @@ yay -S --needed --noconfirm \
     ttf-hackgen \
     google-chrome \
     visual-studio-code-bin
-    
+
+# volta
+curl https://get.volta.sh | bash
+volta install node@latest
+
+# rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# starship
+sudo pacman -S --noconfirm starship
