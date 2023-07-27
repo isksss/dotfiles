@@ -19,3 +19,6 @@ ln -sf "$DOTFILES/config/zsh/.zshenv" "$HOME/.zshenv"
 ### bash
 ln -sf "$DOTFILES/config/bash/.bashrc" "$HOME/.bashrc"
 
+### xprofile
+ln -sf "$DOTFILES/config/x/.xprofile" "$HOME/.xprofile"
+

@@ -1,0 +1,5 @@
+
+configuration {
+    modes: "windows:~/.config/rofi/scripts/window-select.sh,drun,combi";
+    combi-modes: [windows,drun];
+}
