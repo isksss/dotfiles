@@ -4,7 +4,11 @@
 ########################################
 # variables
 ########################################
-dotfiles="$HOME/dotfiles"
+dotfiles=`pwd`
+XDG_CONFIG_HOME="${HOME}/.config"
+XDG_CACHE_HOME="${HOME}/.cache"
+XDG_DATA_HOME="${HOME}/.local/share"
+XDG_STATE_HOME="${HOME}/.local/state"
 
 ########################################
 # check requirements
@@ -64,14 +68,28 @@ install_commands() {
   esac
 }
 
+make_dir(){
+    mkdir -p $XDG_CONFIG_HOME
+    mkdir -p $XDG_CACHE_HOME
+    mkdir -p $XDG_DATA_HOME
+    mkdir -p $XDG_STATE_HOME
+
+    mkdir -p "${HOME}/.local/bin"
+    mkdir -p "${HOME}/.local/src"
+}
 ########################################
 # main
 ########################################
 main(){
+    echo "== DOTFILES SETUP =="
+    echo "This script is for Mac and Linux."
+    echo "== DOTFILES SETUP =="
+    echo ${dotfiles} > ${HOME}/.dotfiles-path
+    make_dir
+
     commands=(
         "git"
         "zsh"
-        "starship"
     )
 
     for command in "${commands[@]}"; do
@@ -80,8 +98,8 @@ main(){
         fi
     done
 
-    # Rust
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    chmod +X ./.installscript/*
+    bash ./.installscript/link.sh
 }
 
 main

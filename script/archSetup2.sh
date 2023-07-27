@@ -39,7 +39,10 @@ pacman -S --noconfirm \
     go
 
 # todo: 有効化できていない。
-sed -i -e 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
+# sed -i -e 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
+
+echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+
 echo -e "password\npassword\n" | passwd
 
 useradd -m -g users -G wheel -s /bin/zsh isksss
