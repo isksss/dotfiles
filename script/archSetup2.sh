@@ -47,8 +47,3 @@ echo -e "password\npassword\n" | passwd
 
 useradd -m -g users -G wheel -s /bin/zsh isksss
 echo -e "password\npassword\n" | passwd isksss
-
-# yay
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si --noconfirm

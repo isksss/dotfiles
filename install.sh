@@ -77,6 +77,16 @@ make_dir(){
     mkdir -p "${HOME}/.local/bin"
     mkdir -p "${HOME}/.local/src"
 }
+
+scripts(){
+    array=($(ls $dotfiles/.installscript))
+    for script in ${array[@]}; do
+        echo_success "[bash] $script"
+        chmod +X $dotfiles/.installscript/$script
+        bash $dotfiles/.installscript/$script
+    done
+}
+
 ########################################
 # main
 ########################################
@@ -98,8 +108,7 @@ main(){
         fi
     done
 
-    chmod +X ./.installscript/*
-    bash ./.installscript/link.sh
+    scripts
 }
 
 main

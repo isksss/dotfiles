@@ -22,4 +22,3 @@ ln -sf "$DOTFILES/config/bash/.bashrc" "$HOME/.bashrc"
 ### xprofile
 ln -sf "$DOTFILES/config/x/.xprofile" "$HOME/.xprofile"
 ln -sf "$DOTFILES/config/x/.Xdefault" "$HOME/.Xdefault"
-

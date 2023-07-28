@@ -1,36 +1,30 @@
+# Variables
+set $mod Mod1
+set $super Mod4
+
 
 exec_always "systemctl --user import-environment; systemctl --user start sway-session.target"
 
+
+# 画面通知
 exec mako
 
-exec swayidle -w   timeout 300 'swaylock -f -C ~/.config/swaylock/config'   timeout 1200 'systemctl suspend'
-
-bindsym Mod4+Shift+l exec swaylock -f -C ~/.config/swaylock/config
-
-# アクティブウィンドウのスクリーンショット
-bindsym Mod4+Shift+2 exec /usr/share/sway/scripts/grimshot --notify save window $HOME/Downloads/screenshot_$(date "+%y%m%d%H%M%S").png
-# 全画面のスクリーンショット
-bindsym Mod4+Shift+3 exec /usr/share/sway/scripts/grimshot --notify save output  $HOME/Downloads/screenshot_$(date "+%y%m%d%H%M%S").png
-# 選択した範囲のスクリーンショット
-bindsym Mod4+Shift+4 exec /usr/share/sway/scripts/grimshot --notify save area  $HOME/Downloads/screenshot_$(date "+%y%m%d%H%M%S").png
-
-
+# キーリピート
 input type:keyboard {
     repeat_delay 300
     repeat_rate 50
 }
 
-
+# 日本語
 exec fcitx5 -d
 
-
-# お好みの画像を選択ください
+# 壁紙
 output "*" bg /usr/share/backgrounds/archlinux/small.png fill
 
-
+# ネットワークマネージャー
 exec nm-applet --indicator
 
-
+# ランチャー
 # Window toggle
 bindsym Mod4+Tab exec "rofi -show window"
 
