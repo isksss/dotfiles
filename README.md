@@ -1,19 +1,13 @@
-# isksss's dotfiles
+# dotfiles
 
-## requirements
-- git
-- make
+## セットアップ
+1. 必要に応じて`script/common.sh`を実行
+2. OS別に`script/<OS名>.sh`を実行
+3. `setup.sh`を実行
 
-## Installation
-```sh
-# install
-$ curl -L https://isksss.github.io/dotfiles/install.sh | sh
-$ cd ~/dotfiles
-$ make install
-
-# or
-
-$ git clone git@github.com:isksss/dotfiles.git ~/dotfiles
-$ cd ~/dotfiles
-$ make install
-```
+## ディレクトリ説明
+| ディレクトリ名 | 説明                                   |
+| :------------: | :------------------------------------- |
+|    .config     | XDG_CONFIG_HOMEに入るファイル群        |
+|      home      | ホームディレクトリに配置するファイル軍 |
+|     script     | スクリプト                 |

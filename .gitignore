@@ -1,6 +1,1 @@
-Brewfile.lock.json
-.zcompdump
-lazy-lock.json
-zshrc.local.zsh
-.zsh_sessions
-.dotfiles-dir
+.config/zsh/.zcompdump

@@ -1,13 +1,11 @@
 # zshrc
 
-# 環境変数
-export EDITOR=code
+#####
+# var
+#####
+export EDITER=code
 
-HISTFILE=$XDG_CACHE_HOME/zsh/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
-
-# 共通設定
+# settings
 setopt no_beep # ベル音を鳴らさない
 setopt hist_ignore_dups # ヒストリに重複したコマンドを保存しない
 setopt hist_reduce_blanks # ヒストリに連続した空白を1つにする
@@ -30,9 +28,6 @@ done
 # local settings
 if [ -f "$ZDOTDIR/zshrc.local.zsh" ]; then
   source $ZDOTDIR/zshrc.local.zsh
-else
-  touch $ZDOTDIR/zshrc.local.zsh
-  echo "# zshrc local" >> $ZDOTDIR/zshrc.local.zsh
 fi
 
 # starship
