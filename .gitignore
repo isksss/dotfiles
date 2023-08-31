@@ -1,3 +1,5 @@
 .config/zsh/.zcompdump
 .zsh_sessions
 zshrc.local.zsh
+.zsh_history
+.zprofile
