@@ -35,7 +35,7 @@ craete_xdg_dir(){
 
 chsh_zsh(){
     if command -v zsh >/dev/null 2>&1; then
-        chsh -s $(which zsh)
+        chsh -s $(which zsh) || chsh -s "/usr/bin/zsh"
         echo "Changed default shell to zsh"
     else
         echo "zsh not found"
@@ -68,6 +68,7 @@ opt(){
 
 main(){
     # シンボリックリンクを作成
+    mkdir -p "$XDG_CONFIG_HOME"
     linkdir "$SCRIPT_DIR/home" "$HOME"
     linkdir "$SCRIPT_DIR/.config" "$XDG_CONFIG_HOME"
     remove_symlinks

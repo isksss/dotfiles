@@ -12,6 +12,7 @@ alias cl=clear
 alias rmm='rm -rf'
 
 alias mkdir="mkdir -p"
+alias mk="mkdir"
 alias ..="cd .."
 
 alias gs='git status'
