@@ -1,0 +1,10 @@
+font:
+  size: 14
+  normal:
+    family: 'HackGen'
+
+window:
+  dimensions:
+    columns: 184
+    lines: 46
+  decorations: full

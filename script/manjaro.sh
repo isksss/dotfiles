@@ -7,7 +7,8 @@ sudo pacman -S --noconfirm \
     zsh \ 
     neovim \
     starship \
-    yay
+    yay \
+    alacritty
 
 # yay
 yay -S --noconfirm \
