@@ -77,8 +77,11 @@ os-script(){
 }
 
 main(){
+    # XDGディレクトリの作成
+    craete_xdg_dir
+    # workspace
+    mkdir -p "$HOME/workspace"
     # シンボリックリンクを作成
-    mkdir -p "$XDG_CONFIG_HOME"
     linkdir "$SCRIPT_DIR/home" "$HOME"
     linkdir "$SCRIPT_DIR/.config" "$XDG_CONFIG_HOME"
     remove_symlinks
