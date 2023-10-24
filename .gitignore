@@ -1,5 +1,5 @@
 .config/zsh/.zcompdump
 .zsh_sessions
-zshrc.local.zsh
+*local.zsh
 .zsh_history
 .zprofile

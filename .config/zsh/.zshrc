@@ -26,9 +26,9 @@ for f in $XDG_CONFIG_HOME/zsh/.zshrc.d/*.zsh; do
 done
 
 # local settings
-if [ -f "$ZDOTDIR/zshrc.local.zsh" ]; then
-  source $ZDOTDIR/zshrc.local.zsh
-fi
+for f in $ZDOTDIR/local.d/*.zsh; do
+  source $f
+done
 
 # starship
 eval "$(starship init zsh)"
