@@ -57,7 +57,7 @@ opt(){
     while getopts o:rpc option
     do  
         case $option in
-            o) echo "OS:${OPTARG}. ";;
+            o) echo "OS:${OPTARG}. " && os-script $OPTARG;;
             r) echo "Rustをインストールします。" && rust-install;;
             p) echo "Ryeをインストールします。"&& rye-install;;
             c) echo "シェルを変更します。" && chsh_zsh;;
@@ -66,9 +66,22 @@ opt(){
     done
 }
 
+# os
+os-script(){
+    local os=$1
+    case $os in
+        manjaro) echo "manjaro" && sh ./script/manjaro.sh;;
+        ubuntu) echo "ubuntu";;
+        *) echo "該当なし（OS=$os）";;
+    esac
+}
+
 main(){
+    # XDGディレクトリの作成
+    craete_xdg_dir
+    # workspace
+    mkdir -p "$HOME/workspace"
     # シンボリックリンクを作成
-    mkdir -p "$XDG_CONFIG_HOME"
     linkdir "$SCRIPT_DIR/home" "$HOME"
     linkdir "$SCRIPT_DIR/.config" "$XDG_CONFIG_HOME"
     remove_symlinks
