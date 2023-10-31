@@ -26,6 +26,11 @@ for f in $XDG_CONFIG_HOME/zsh/.zshrc.d/*.zsh; do
 done
 
 # local settings
+
+## if zshrc.local.zsh not exists, create it
+if [ ! -e $XDG_CONFIG_HOME/zsh/local.d/zshrc.local.zsh ]; then
+  touch $XDG_CONFIG_HOME/zsh/local.d/zshrc.local.zsh
+fi
 for f in $ZDOTDIR/local.d/*.zsh; do
   source $f
 done
