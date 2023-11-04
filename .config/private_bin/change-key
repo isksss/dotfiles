@@ -278,6 +278,39 @@ def subcommand_set(args: argparse.Namespace):
     # ユーザを設定
     set_user(name)
     
+# checkサブコマンド
+def subcommand_check(args: argparse.Namespace):
+    # Configファイルを読み込む
+    config = load_config()
+    if config is None:
+        log("Config file is not found.")
+        return
+    
+    # ユーザがない場合
+    if "user" not in config:
+        log("User is not found.")
+        return
+    
+    # ユーザを表示
+    for user in config["user"]:
+        log(f"user: {user['name']} <{user['email']}>")
+        ssh_key_path = get_ssh_key_path(user["name"])
+        if os.path.exists(ssh_key_path):
+            # ssh-keyで接続できるか
+            log("SSH key is connecting...")
+            cmd = ["ssh", "-i", ssh_key_path, "-T", "git@github.com", "-o", "ConnectTimeout 5"]
+            result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=10)
+            # timeout
+            if result.returncode == 255:
+                log("SSH is timeout.")
+                break
+            # 出力を表示
+            if result.stdout is not None:
+                log(result.stdout.decode("utf-8"))
+            if result.stderr is not None:
+                log(result.stderr.decode("utf-8"))
+        else:
+            log("SSH key is not exists.")
 
 ##############################
 # Main
@@ -314,6 +347,9 @@ def main():
     # helpサブコマンド
     parser_help = subparsers.add_parser('help', help='Show help.')
 
+    # checkサブコマンド
+    parser_check = subparsers.add_parser('check', help='Check.')
+
     # 引数を解析
     args = parser.parse_args()
 
@@ -334,6 +370,8 @@ def main():
         subcommand_list(args)
     elif args.command == "set":
         subcommand_set(args)
+    elif args.command == "check":
+        subcommand_check(args)
     elif args.command == "help":
         parser.print_help()
     else:
