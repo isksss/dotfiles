@@ -76,6 +76,39 @@ os-script(){
     esac
 }
 
+# git
+git-config(){
+    # default branch
+    git config --global init.defaultBranch main
+
+    # push.default
+    git config --global push.default current
+
+    # pull.ff
+    git config --global pull.ff only
+
+    # core
+    git config --global core.editor vim
+    git config --global core.excludesfile $HOME/.gitignore_global
+
+    # grep
+    git config --global grep.lineNumber true
+
+    # diff
+    git config --global color.diff auto
+    git config --global color.status auto
+    git config --global color.branch auto
+
+    # prune
+    git config --global fetch.prune true
+
+    # ui
+    git config --global color.ui true
+
+    # encode
+    git config --global core.quotepath false
+}
+
 main(){
     # XDGディレクトリの作成
     craete_xdg_dir
@@ -86,6 +119,9 @@ main(){
     linkdir "$SCRIPT_DIR/.config" "$XDG_CONFIG_HOME"
     remove_symlinks
 
+    # git
+    git-config
+    
     # option
     opt "$@"
 }
