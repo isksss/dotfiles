@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# 現在のブランチ名を取得
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+main_branch="main"
+
+# mainブランチに切り替え
+git checkout $main_branch > /dev/null 2>&1
+
+# 最新の変更を取得
+git pull > /dev/null 2>&1
+
+# 元のブランチに戻る
+git checkout $current_branch > /dev/null 2>&1
+
+# mainブランチとのマージを試みる
+git merge $main_branch --no-commit --no-ff > /dev/null 2>&1
+
+# コンフリクトが起きているか確認
+if [ $? -eq 0 ]
+then
+    echo "========================="
+    echo "No conflicts between $current_branch and $main_branch branch."
+    echo "========================="
+    # マージを取り消す
+    git merge --abort
+else
+    echo "========================="
+    echo "Conflicts detected between $current_branch and $main_branch branch."
+    echo "========================="
+fi
