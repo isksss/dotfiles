@@ -61,7 +61,7 @@ opt(){
             r) echo "Rustをインストールします。" && rust-install;;
             p) echo "Ryeをインストールします。"&& rye-install;;
             c) echo "シェルを変更します。" && chsh_zsh;;
-            *) echo "該当なし（OPT=$OPT）";;
+            *) echo "該当なし(OPT=$OPT)";;
         esac
     done
 }
@@ -71,8 +71,8 @@ os-script(){
     local os=$1
     case $os in
         manjaro) echo "manjaro" && sh ./script/manjaro.sh;;
-        ubuntu) echo "ubuntu";;
-        *) echo "該当なし（OS=$os）";;
+        ubuntu) echo "ubuntu" && sh ./script/ubuntu.sh;;
+        *) echo "該当なし(OS=$os)";;
     esac
 }
 

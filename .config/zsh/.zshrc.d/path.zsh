@@ -13,5 +13,6 @@ path=(
     $HOME/.local/bin
     $HOME/.cargo/bin
     $PRIVATE_BIN
+    $HOME/bin
     $path
 )
