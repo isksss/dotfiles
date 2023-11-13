@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Pull all branches from remote
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# Fetch all branches from remote
+git fetch --all
+
+# Fetch all branches from remote
+git fetch -p
+
+# Delete local branches that do not exist on remote
+for branch in $(git branch --merged | grep -v "\*" | xargs); do
+    if [ -z "$(git branch -r --list *$branch)" ]; then
+        git branch -d $branch
+    fi
+done
+
+# Get all local branches
+branches=$(git branch -r | grep -v HEAD)
+
+# Pull all branches
+for branch in $branches
+do
+    echo "Checking out and pulling $branch"
+    git checkout ${branch#origin/}
+    git pull origin ${branch#origin/}
+done
+
+# Switch back to the original branch
+git checkout $CURRENT_BRANCH
+
