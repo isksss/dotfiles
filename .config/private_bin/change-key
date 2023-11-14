@@ -242,6 +242,31 @@ def remove_ssh_key(name: str):
     os.remove(ssh_key_path)
     log("SSH key is removed.")
 
+def copy_ssh_key(name: str):
+    # ssh-keyのPATHを取得
+    ssh_key_path = get_ssh_key_path(name)
+
+    # symlinkを削除
+    remove_symlink(ssh_key_path)
+
+    # ssh-keyを.sshディレクトリにコピー
+    ssh_dir_path = os.path.join(os.getenv("HOME"), ".ssh")
+    # .sshディレクトリが存在しない場合
+    if not os.path.exists(ssh_dir_path):
+        # .sshディレクトリを作成
+        os.makedirs(ssh_dir_path)
+    # ssh-keyをコピー
+    ssh_path = os.path.join(ssh_dir_path, "id_ed25519")
+    subprocess.run(["cp", ssh_key_path, ssh_path],
+                    stdout=subprocess.DEVNULL, 
+                    stderr=subprocess.STDOUT)
+
+    # 公開鍵
+    ssh_pub_path = os.path.join(ssh_dir_path, "id_ed25519.pub")
+    subprocess.run(["cp", ssh_key_path + ".pub", ssh_pub_path],
+                    stdout=subprocess.DEVNULL, 
+                    stderr=subprocess.STDOUT)
+
 ##############################
 # subcommands
 ##############################
@@ -313,7 +338,10 @@ def subcommand_list(args: argparse.Namespace):
 def subcommand_set(args: argparse.Namespace):
     name = args.name
     # ユーザを設定
+    is_cp = args.copy
     set_user(name)
+    if is_cp:
+        copy_ssh_key(name)
     
 # checkサブコマンド
 def subcommand_check(args: argparse.Namespace):
@@ -380,6 +408,7 @@ def main():
     # setサブコマンド
     parser_set = subparsers.add_parser('set', help='Set user.')
     parser_set.add_argument('name', help='User name.')
+    parser_set.add_argument('-c', '--copy', action='store_true',help='Do not link ssh-key.Copy.', default=False,)
 
     # helpサブコマンド
     parser_help = subparsers.add_parser('help', help='Show help.')
