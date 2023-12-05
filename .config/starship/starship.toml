@@ -1,7 +1,7 @@
 
 format = '''
 [┌───────────────────>](bold green)
-[│](bold green)$sudo$directory$git_branch$git_status$python$rust$golang$deno$package$os
+[│](bold green)$sudo$directory$git_branch$git_status$python$rust$golang$deno$package$os$container
 [└─>](bold green) '''
 
 scan_timeout = 10
