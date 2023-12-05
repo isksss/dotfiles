@@ -26,3 +26,5 @@ alias gpa="git push --all"
 
 alias c.="code ."
 alias vim="nvim"
+
+alias work="cd ~/workspace"
