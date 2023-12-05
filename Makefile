@@ -56,9 +56,8 @@ rye:
 
 .PHONY: docker
 docker:
-	@docker images rm -f $(DOCKER_IMAGE)
 	@docker build --build-arg USER_NAME=$(shell whoami) --build-arg USER_ID=$(shell id -u) -t $(DOCKER_IMAGE) -f docker/Dockerfile . 
 
 .PHONY: arch-install
-install: init git link
+arch-install: init git link
 	@sudo pacman -Syu --noconfirm git zsh unzip starship
