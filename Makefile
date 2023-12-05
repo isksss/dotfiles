@@ -2,6 +2,8 @@ XDG_CONFIG_HOME ?= $(HOME)/.config
 XDG_CACHE_HOME ?= $(HOME)/.cache
 XDG_DATA_HOME ?= $(HOME)/.local/share
 
+DOCKER_IMAGE ?= workspace:latest
+
 .PHONY: help
 help:
 	@echo "Usage: make [target]"
@@ -51,3 +53,12 @@ rust:
 .PHONY: rye
 rye:
 	@curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
+
+.PHONY: docker
+docker:
+	@docker images rm -f $(DOCKER_IMAGE)
+	@docker build --build-arg USER_NAME=$(shell whoami) --build-arg USER_ID=$(shell id -u) -t $(DOCKER_IMAGE) -f docker/Dockerfile . 
+
+.PHONY: arch-install
+install: init git link
+	@sudo pacman -Syu --noconfirm git zsh unzip starship

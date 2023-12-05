@@ -28,3 +28,5 @@ alias c.="code ."
 alias vim="nvim"
 
 alias work="cd ~/workspace"
+
+alias drun="docker run -it --rm workspace:latest"
