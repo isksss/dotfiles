@@ -2,9 +2,8 @@ export GOPATH="$HOME/go"
 export VOLTA_HOME="$HOME/.volta"
 export RYE_HOME="$HOME/.rye"
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
-export PRIVATE_BIN="$XDG_CONFIG_HOME/private_bin"
 
-chmod +x $PRIVATE_BIN/*
+export DENO_INSTALL="$HOME/.deno"
 
 path=(
     $GOPATH/bin
@@ -12,6 +11,7 @@ path=(
     $RYE_HOME/shims
     $HOME/.local/bin
     $HOME/.cargo/bin
-    $PRIVATE_BIN
+    $DENO_INSTALL/bin
+    $HOME/bin
     $path
 )
