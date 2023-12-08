@@ -9,9 +9,7 @@ help:
 	@echo "Usage: make [target]"
 	@echo ""
 	@echo "Targets:"
-	@echo "  init    Create directories"
-	@echo "  git     Configure git"
-	@echo "  link    Create symlinks"
+	@echo "  all     Setup all"
 	@echo "  deno    Install deno"
 	@echo "  rust    Install rust"
 	@echo "  rye     Install rye"
@@ -60,4 +58,9 @@ docker:
 
 .PHONY: arch-install
 arch-install: init git link
-	@sudo pacman -Syu --noconfirm git zsh unzip starship
+	@sudo pacman -Syu --noconfirm git zsh unzip
+
+.PHONY: ubuntu-install
+ubuntu-install: init git link
+	@sudo apt update
+	@sudo apt install -y git zsh unzip
