@@ -18,6 +18,7 @@ help:
 
 .PHONY: all
 all: init git link
+	@touch ./.memo.txt
 
 .PHONY: init
 init:

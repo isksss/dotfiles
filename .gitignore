@@ -3,3 +3,6 @@
 *local.zsh
 .zsh_history
 .zprofile
+
+# memo
+*.memo.*
