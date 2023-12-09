@@ -2,6 +2,8 @@ XDG_CONFIG_HOME ?= $(HOME)/.config
 XDG_CACHE_HOME ?= $(HOME)/.cache
 XDG_DATA_HOME ?= $(HOME)/.local/share
 
+WORKSPACE ?= $(HOME)/workspace
+
 DOCKER_IMAGE ?= workspace:latest
 
 .PHONY: help
@@ -22,6 +24,7 @@ init:
 	@mkdir -p $(XDG_CONFIG_HOME)
 	@mkdir -p $(XDG_CACHE_HOME)
 	@mkdir -p $(XDG_DATA_HOME)
+	@mkdir -p $(WORKSPACE)
 
 .PHONY: git
 git:
@@ -70,3 +73,9 @@ ubuntu-install: init git link
 
 .PHONY: mac-install
 	@brew install --cask wezterm
+	@brew install orbstack
+
+.PHONY: cargo-install
+cargo-install:
+	@cargo install starship
+

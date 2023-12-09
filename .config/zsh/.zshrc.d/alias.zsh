@@ -30,3 +30,5 @@ alias vim="nvim"
 alias work="cd ~/workspace"
 
 alias drun="docker run -it --rm workspace:latest"
+
+alias dot="cd ~/dotfiles"
