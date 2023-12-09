@@ -38,6 +38,8 @@ link: init
 	@ln -sf $(PWD)/.config/nvim $(XDG_CONFIG_HOME)/nvim
 	@ln -sf $(PWD)/.config/starship $(XDG_CONFIG_HOME)/starship
 
+	@ln -sf $(PWD)/.config/wezterm $(XDG_CONFIG_HOME)/wezterm
+
 	@find . -type l -exec rm {} \;
 
 .PHONY: deno
@@ -64,3 +66,7 @@ arch-install: init git link
 ubuntu-install: init git link
 	@sudo apt update
 	@sudo apt install -y git zsh unzip
+	@sudo pacman -Syu --noconfirm git zsh unzip starship
+
+.PHONY: mac-install
+	@brew install --cask wezterm
