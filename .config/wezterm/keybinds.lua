@@ -5,12 +5,13 @@ return {
   keys = {
     { key = 'Tab', mods = 'CTRL', action = act.ActivateTabRelative(1) },
     { key = 'Tab', mods = 'SHIFT|CTRL', action = act.ActivateTabRelative(-1) },
-    { key = 'Enter', mods = 'ALT', action = act.ToggleFullScreen },
+    -- フルスクリーン切り替え
+    { key = 'f', mods = 'LEADER', action = act.ToggleFullScreen },
     { key = '!', mods = 'CTRL', action = act.ActivateTab(0) },
     { key = '!', mods = 'SHIFT|CTRL', action = act.ActivateTab(0) },
     -- 画面分割
-    { key = '\"', mods = 'LEADER', action = act.SplitVertical{ domain =  'CurrentPaneDomain' } },
-    { key = '%', mods = 'LEADER', action = act.SplitHorizontal{ domain =  'CurrentPaneDomain' } },
+    { key = 'd', mods = 'LEADER', action = act.SplitVertical{ domain =  'CurrentPaneDomain' } },
+    { key = 'h', mods = 'LEADER', action = act.SplitHorizontal{ domain =  'CurrentPaneDomain' } },
 
     { key = '#', mods = 'CTRL', action = act.ActivateTab(2) },
     { key = '#', mods = 'SHIFT|CTRL', action = act.ActivateTab(2) },
@@ -117,13 +118,16 @@ return {
     { key = 'q', mods = 'SUPER', action = act.QuitApplication },
     { key = 'r', mods = 'SHIFT|CTRL', action = act.ReloadConfiguration },
     { key = 'r', mods = 'SUPER', action = act.ReloadConfiguration },
+    -- tab
     { key = 't', mods = 'SHIFT|CTRL', action = act.SpawnTab 'CurrentPaneDomain' },
-    { key = 't', mods = 'SUPER', action = act.SpawnTab 'CurrentPaneDomain' },
+    -- { key = 't', mods = 'SUPER', action = act.SpawnTab 'CurrentPaneDomain' },
+    { key = 'w', mods = 'SHIFT|CTRL', action = act.CloseCurrentTab{ confirm = true } },
+    -- { key = 'w', mods = 'SUPER', action = act.CloseCurrentTab{ confirm = true } },
+    
     { key = 'u', mods = 'SHIFT|CTRL', action = act.CharSelect{ copy_on_select = true, copy_to =  'ClipboardAndPrimarySelection' } },
     { key = 'v', mods = 'SHIFT|CTRL', action = act.PasteFrom 'Clipboard' },
     { key = 'v', mods = 'SUPER', action = act.PasteFrom 'Clipboard' },
-    { key = 'w', mods = 'SHIFT|CTRL', action = act.CloseCurrentTab{ confirm = true } },
-    { key = 'w', mods = 'SUPER', action = act.CloseCurrentTab{ confirm = true } },
+
     { key = 'x', mods = 'SHIFT|CTRL', action = act.ActivateCopyMode },
     { key = 'z', mods = 'SHIFT|CTRL', action = act.TogglePaneZoomState },
     { key = '{', mods = 'SUPER', action = act.ActivateTabRelative(-1) },
@@ -146,7 +150,7 @@ return {
     { key = 'K', mods = 'LEADER', action = act.AdjustPaneSize{ 'Up', 1 } },
     { key = 'j', mods = 'LEADER', action = act.ActivatePaneDirection 'Down' },
     { key = 'J', mods = 'LEADER', action = act.AdjustPaneSize{ 'Down', 1 } },
-    
+    -- 画面移動ここまで
     { key = 'Copy', mods = 'NONE', action = act.CopyTo 'Clipboard' },
     { key = 'Paste', mods = 'NONE', action = act.PasteFrom 'Clipboard' },
   },
