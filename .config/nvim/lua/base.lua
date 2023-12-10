@@ -10,3 +10,10 @@ vim.o.hlsearch = true
 vim.opt.showmatch = true
 
 vim.opt.clipboard:append({unnamedeplus = true})
+
+--terminals
+vim.api.nvim_exec([[
+  autocmd TermOpen * startinsert
+  autocmd TermOpen * setlocal norelativenumber
+  autocmd TermOpen * setlocal nonumber
+]], false)
