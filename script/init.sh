@@ -26,14 +26,14 @@ function init(){
     cd $dot_dir/home
     for config_file in .[^.]*; do
         echo "create symlink: home/$config_file"
-        ln -sf "$config_file" "$HOME/$config_file"
+        ln -sf "$dot_dir/home/$config_file" "$HOME/$config_file"
     done
 
     ## .config
     cd $dot_dir/.config
     for config_file in *; do
         echo "create symlink: .config/$config_file"
-        ln -sf "$dot_dir/$config_file" "$XDG_CONFIG_HOME/$config_file"
+        ln -sf "$dot_dir/.config/$config_file" "$XDG_CONFIG_HOME/$config_file"
     done
     cd $current_dir
 
