@@ -119,9 +119,9 @@ return {
     { key = 'r', mods = 'SHIFT|CTRL', action = act.ReloadConfiguration },
     { key = 'r', mods = 'SUPER', action = act.ReloadConfiguration },
     -- tab
-    { key = 't', mods = 'SHIFT|CTRL', action = act.SpawnTab 'CurrentPaneDomain' },
+    { key = 't', mods = 'LEADER', action = act.SpawnTab 'CurrentPaneDomain' },
     -- { key = 't', mods = 'SUPER', action = act.SpawnTab 'CurrentPaneDomain' },
-    { key = 'w', mods = 'SHIFT|CTRL', action = act.CloseCurrentTab{ confirm = true } },
+    { key = 'w', mods = 'LEADER', action = act.CloseCurrentTab{ confirm = true } },
     -- { key = 'w', mods = 'SUPER', action = act.CloseCurrentTab{ confirm = true } },
     
     { key = 'u', mods = 'SHIFT|CTRL', action = act.CharSelect{ copy_on_select = true, copy_to =  'ClipboardAndPrimarySelection' } },
