@@ -1,6 +1,6 @@
 
 alias sudo='sudo '
-alias zs=". $ZDOTDIR/.zshrc"
+alias zs="echo 'reload .zshrc' && . $ZDOTDIR/.zshrc"
 
 alias ls='ls --color=auto'
 alias la="ls -a"
@@ -30,3 +30,5 @@ alias vim="nvim"
 alias work="cd ~/workspace"
 
 alias drun="docker run -it --rm workspace:latest"
+
+alias dot="cd ~/dotfiles"
