@@ -5,8 +5,13 @@ sudo apt install -y \
     git \
     curl \
     zsh \
-    gcc
+    gcc \
+    cmake \
+    make \
+    build-essential \
+
 
 cargo install \
     starship \
+    bat \
     

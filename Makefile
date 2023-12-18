@@ -35,3 +35,7 @@ rust:
 .PHONY: rye
 rye:
 	@curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
+
+.PHONY: debian
+debian:
+	@bash script/debian.sh
