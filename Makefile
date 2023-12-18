@@ -9,13 +9,13 @@ help:
 	@echo "Usage: make [target]"
 	@echo ""
 	@echo "Targets:"
-	@echo "  all     Setup all"
+	@echo "  init     Setup all"
 	@echo "  deno    Install deno"
 	@echo "  rust    Install rust"
 	@echo "  rye     Install rye"
 
-.PHONY: all
-all:
+.PHONY: init
+init:
 	@bash script/init.sh $(PWD)
 
 .PHONY: git
@@ -23,6 +23,7 @@ git:
 	@git config --global user.name isksss
 	@git config --global user.email 104404522+isksss@users.noreply.github.com
 	@git config --global init.defaultBranch main
+	@git config --global fetch.prune true
 
 .PHONY: deno
 deno:
@@ -37,5 +38,5 @@ rye:
 	@curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
 
 .PHONY: debian
-debian:
+debian: init
 	@bash script/debian.sh
