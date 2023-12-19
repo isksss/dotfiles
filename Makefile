@@ -37,6 +37,10 @@ rust:
 rye:
 	@curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
 
+.PHONY: pyenv
+pyenv:
+	@curl https://pyenv.run | bash
+
 .PHONY: debian
 debian: init
 	@bash script/debian.sh

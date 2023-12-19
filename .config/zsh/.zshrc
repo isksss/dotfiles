@@ -35,5 +35,9 @@ for f in $ZDOTDIR/local.d/*.zsh; do
   source $f
 done
 
+# pyenv
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+
 # starship
 eval "$(starship init zsh)"

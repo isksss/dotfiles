@@ -4,6 +4,7 @@ export RYE_HOME="$HOME/.rye"
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
 export DENO_INSTALL="$HOME/.deno"
+export PYENV_ROOT="$HOME/.pyenv"
 
 path=(
     $GOPATH/bin
@@ -12,6 +13,7 @@ path=(
     $HOME/.local/bin
     $HOME/.cargo/bin
     $DENO_INSTALL/bin
+    $PYENV_ROOT/bin
     $HOME/bin
     $path
 )
