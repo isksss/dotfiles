@@ -36,8 +36,10 @@ for f in $ZDOTDIR/local.d/*.zsh; do
 done
 
 # pyenv
-eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init --path)"
+  eval "$(pyenv virtualenv-init -)"
+fi
 
 # starship
 eval "$(starship init zsh)"
