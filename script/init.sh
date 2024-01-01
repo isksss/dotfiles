@@ -11,7 +11,10 @@ function init(){
     echo "dotfiles_dir: $dot_dir"
     echo "current_dir: $current_dir"
     # create .memo.txt
-    touch $dot_dir/.memo.txt
+    local memo_txt="$dot_dir/.memo.txt"
+    if [ ! -e $memo_txt ];then
+        touch $memo_txt
+    fi
 
     # create xdg_dir
     mkdir -p $XDG_CACHE_HOME
@@ -20,6 +23,10 @@ function init(){
 
     # create workspace
     mkdir -p $WORKSPACE
+
+    # _memo
+    local _memo_dir="$WORKSPACE/_memo"
+    mkdir -p $_memo_dir
 
     # link
     ## home

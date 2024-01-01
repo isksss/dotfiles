@@ -9,9 +9,4 @@ sudo apt install -y \
     cmake \
     make \
     build-essential \
-
-
-cargo install \
-    starship \
-    bat \
     

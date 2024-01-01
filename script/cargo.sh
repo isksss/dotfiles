@@ -1,0 +1,3 @@
+cargo install \
+    starship \
+    bat \
