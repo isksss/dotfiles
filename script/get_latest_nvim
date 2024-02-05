@@ -1,0 +1,27 @@
+#!/bin/bash
+#=====#=====#=====#=====#=====#=====#
+# get latest nvim
+# for ubuntu
+#=====#=====#=====#=====#=====#=====#
+
+#  os: ubuntu
+if [ ! -f /etc/lsb-release ]; then
+    echo "This script is for Ubuntu"
+    exit 1
+fi
+
+# uninstall neovim
+sudo apt remove -y neovim
+# remove appimage
+rm -f "$HOME/.local/bin/nvim"
+
+# install dependencies
+sudo add-apt-repository universe
+sudo apt update
+sudo apt install -y wget libfuse2
+# install appimage
+wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+chmod u+x nvim.appimage
+BIN_DIR="$HOME/.local/bin"
+mkdir -p "$BIN_DIR"
+mv nvim.appimage "$BIN_DIR/nvim"

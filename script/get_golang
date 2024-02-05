@@ -1,0 +1,24 @@
+#!/bin/bash
+#=====#=====#=====#=====#=====#=====#
+# get golang
+# for ubuntu
+#=====#=====#=====#=====#=====#=====#
+
+#  os: ubuntu
+if [ ! -f /etc/lsb-release ]; then
+    echo "This script is for Ubuntu"
+    exit 1
+fi
+
+#uninstall golang
+sudo rm -rf $HOME/.local/bin/go
+
+VERSION="1.21.6"
+URL="https://golang.org/dl/go$VERSION.linux-amd64.tar.gz"
+TMP_DIR=$(mktemp -d)
+wget -P $TMP_DIR $URL
+# extract
+tar -C $HOME/.local/bin/ -xzf $TMP_DIR/go1.21.6.linux-amd64.tar.gz
+
+# remove
+rm -rf $TMP_DIR

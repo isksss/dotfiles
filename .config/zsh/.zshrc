@@ -42,4 +42,9 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 # starship
-eval "$(starship init zsh)"
+if command -v starship 1>/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+else
+  echo "starship is not installed"
+  source $ZDOTDIR/prompt.zsh
+fi

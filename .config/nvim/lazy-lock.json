@@ -1,8 +1,5 @@
 {
-  "fern-renderer-nerdfont.vim": { "branch": "master", "commit": "54f360fdd13108ee23e9a0eadc4fde7d9630bac5" },
-  "fern.vim": { "branch": "main", "commit": "56f8e4c79da01eecb0f7f3803c051cd23c803b35" },
-  "glyph-palette.vim": { "branch": "master", "commit": "e9d099dcece92959b737bcf211b47b2dc425a3e4" },
-  "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" },
-  "nerdfont.vim": { "branch": "master", "commit": "cb3691d15050be592de976068f76096e78688da3" },
-  "vimdoc-ja": { "branch": "master", "commit": "13efe3ee316a3aedc6a5b961b281568d10671f6c" }
+  "lazy.nvim": { "branch": "main", "commit": "28126922c9b54e35a192ac415788f202c3944c9f" },
+  "lualine.nvim": { "branch": "master", "commit": "7d131a8d3ba5016229e8a1d08bf8782acea98852" },
+  "nvim-web-devicons": { "branch": "master", "commit": "313d9e7193354c5de7cdb1724f9e2d3f442780b0" }
 }
