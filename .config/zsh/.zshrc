@@ -3,7 +3,7 @@
 #####
 # var
 #####
-export EDITER=code
+export EDITER=nvim
 
 # settings
 setopt no_beep # ベル音を鳴らさない
