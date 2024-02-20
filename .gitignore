@@ -1,8 +1,0 @@
-.config/zsh/.zcompdump
-.zsh_sessions
-*local.zsh
-.zsh_history
-.zprofile
-
-# memo
-*.memo.*
