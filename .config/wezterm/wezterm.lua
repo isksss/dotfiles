@@ -26,5 +26,10 @@ config.keys = {
         mods = "LEADER",
         action = act.SplitHorizontal{ domain = "CurrentPaneDomain" },
     },
+    {
+        key = "-",
+        mods = "LEADER",
+        action = act.SplitVertical { domain = 'CurrentPaneDomain' },
+    }
 }
 return config

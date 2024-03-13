@@ -7,9 +7,9 @@
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
-setopt inc_append_history
+setopt inc_append_history_time
 setopt share_history
-HISTFILE=~/.zsh_history
+HISTFILE=$ZDOTDIR/.zsh_history
 HISTSIZE=10000
 SAVEHIST=1000000
 
@@ -33,6 +33,8 @@ alias ls="exa"
 alias la="exa --all"
 alias ll="exa -l"
 alias lla="exa -al"
+alias lt="exa -T"
+alias llt="exa -alT"
 #cd
 alias ..="cd .."
 #clear
@@ -66,3 +68,4 @@ alias memo="vim $DROPBOX_PATH/workspace/memo.md"
 if [ -x "$(command -v starship)" ]; then
     eval "$(starship init zsh)"
 fi
+

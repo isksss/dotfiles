@@ -17,6 +17,8 @@ export DENO_INSTALL=$HOME/.deno
 export VOLTA_HOME=$HOME/.volta
 ## rye
 export RYE_HOME="$HOME/.rye"
+## proto
+export PROTO_HOME="$HOME/.proto"
 
 ## path
 path=(
@@ -26,5 +28,7 @@ path=(
     $GOBIN
     $VOLTA_HOME/bin
     $RYE_HOME/shims
+    $PROTO_HOME/shims
+    $PROTO_HOME/bin
     $path
 )
