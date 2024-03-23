@@ -39,4 +39,7 @@ create_symlink "$XDG_CONFIG_HOME/wezterm" "$CONFIG_DIR/wezterm"
 # vim
 create_symlink "$HOME/.vimrc" "$SCRIPT_DIR/.vimrc"
 
+# x
+create_symlink "$HOME/.xprofile" "$SCRIPT_DIR/.xprofile"
+
 #----- ----- ----- ----- -----
