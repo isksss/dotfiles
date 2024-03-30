@@ -42,4 +42,8 @@ create_symlink "$HOME/.vimrc" "$SCRIPT_DIR/.vimrc"
 # x
 create_symlink "$HOME/.xprofile" "$SCRIPT_DIR/.xprofile"
 
+# git
+create_symlink "$HOME/.gitignore" "$SCRIPT_DIR/.gitignore"
+create_symlink "$XDG_CONFIG_HOME/git" "$CONFIG_DIR/git"
+
 #----- ----- ----- ----- -----
