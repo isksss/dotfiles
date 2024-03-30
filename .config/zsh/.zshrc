@@ -35,6 +35,7 @@ alias ll="exa -l"
 alias lla="exa -al"
 alias lt="exa -T"
 alias llt="exa -alT"
+alias llg="exa -alT -I .git --git-ignore"
 #cd
 alias ..="cd .."
 #clear
@@ -46,6 +47,8 @@ alias mkdir="mkdir -p"
 alias mk="mkdir"
 # rm
 alias rmm="rm -rf"
+#exit
+alias eq="exit"
 # edit files
 alias reload="source ${ZDOTDIR}/.zshrc"
 alias e-zshrc="vim ${ZDOTDIR}/.zshrc"
