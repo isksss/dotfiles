@@ -54,6 +54,7 @@ alias reload="source ${ZDOTDIR}/.zshrc"
 alias e-zshrc="vim ${ZDOTDIR}/.zshrc"
 alias e-vimrc="vim ${HOME}/.vimrc"
 alias e-wez="vim ${XDG_CONFIG_HOME}/wezterm/wezterm.lua"
+alias e-sway="vim ${XDG_CONFIG_HOME}/sway/config"
 if [ -d $HOME/Dropbox  ]; then
     alias c-ws="cd $DROPBOX_PATH/workspace"
     alias c-dot="cd $DROPBOX_PATH/workspace/dotfiles"
