@@ -5,11 +5,12 @@ export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
 
 ## editor
-export EDITOR=vim
+export EDITOR=nvim
 
 ## Zsh
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 ## go
+export GOROOT=$HOME/.local/bin
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 ## rust
@@ -35,3 +36,4 @@ path=(
     $PROTO_HOME/bin
     $path
 )
+. "$HOME/.cargo/env"

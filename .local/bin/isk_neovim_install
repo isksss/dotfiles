@@ -1,0 +1,11 @@
+#!/bin/bash
+
+INSTALL_DIR=$(cd $(dirname $0); pwd)
+
+APP_NAME="nvim"
+
+rm -rf $INSTALL_DIR/$APP_NAME
+
+curl -fsSL https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -o $INSTALL_DIR/$APP_NAME
+
+chmod u+x $INSTALL_DIR/$APP_NAME

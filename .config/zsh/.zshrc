@@ -42,6 +42,8 @@ alias ..="cd .."
 alias cl='clear'
 # history
 alias h='history'
+# vim
+alias vim=nvim
 # mkdir
 alias mkdir="mkdir -p"
 alias mk="mkdir"
@@ -51,15 +53,10 @@ alias rmm="rm -rf"
 alias eq="exit"
 # edit files
 alias reload="source ${ZDOTDIR}/.zshrc"
-alias e-zshrc="vim ${ZDOTDIR}/.zshrc"
-alias e-vimrc="vim ${HOME}/.vimrc"
-alias e-wez="vim ${XDG_CONFIG_HOME}/wezterm/wezterm.lua"
-alias e-sway="vim ${XDG_CONFIG_HOME}/sway/config"
-if [ -d $HOME/Dropbox  ]; then
-    alias c-ws="cd $DROPBOX_PATH/workspace"
-    alias c-dot="cd $DROPBOX_PATH/workspace/dotfiles"
-fi
-alias memo="vim $DROPBOX_PATH/workspace/memo.md"
+alias e-zshrc="$EDITOR ${ZDOTDIR}/.zshrc"
+alias e-vimrc="$EDITOR ${HOME}/.vimrc"
+alias e-wez="$EDITOR ${XDG_CONFIG_HOME}/wezterm/wezterm.lua"
+alias e-sway="$EDITOR ${XDG_CONFIG_HOME}/sway/config"
 
 #@@@@@ @@@@@ @@@@@ @@@@@ @@@@@ @@@@@
 #@@@@@ functions

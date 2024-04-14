@@ -8,6 +8,7 @@ CONFIG_DIR=$SCRIPT_DIR/.config
 
 #----- ----- ----- ----- -----
 mkdir -p $XDG_CONFIG_HOME
+mkdir -p $HOME/.local/bin
 
 #----- ----- ----- ----- -----
 # シンボリックリンクを削除する関数
@@ -29,6 +30,9 @@ create_symlink() {
 }
 
 #----- ----- ----- ----- -----
+# local_bin
+create_symlink "$HOME/.local/bin" "$SCRIPT_DIR/.local/bin"
+
 # zsh
 create_symlink "$HOME/.zshenv" "$SCRIPT_DIR/.zshenv"
 create_symlink "$XDG_CONFIG_HOME/zsh" "$CONFIG_DIR/zsh"
@@ -46,7 +50,6 @@ create_symlink "$XDG_CONFIG_HOME/nvim" "$CONFIG_DIR/nvim"
 create_symlink "$HOME/.xprofile" "$SCRIPT_DIR/.xprofile"
 
 # git
-create_symlink "$HOME/.gitignore" "$SCRIPT_DIR/.gitignore"
 create_symlink "$XDG_CONFIG_HOME/git" "$CONFIG_DIR/git"
 
 #----- ----- ----- ----- -----
