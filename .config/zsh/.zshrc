@@ -57,6 +57,8 @@ alias e-zshrc="$EDITOR ${ZDOTDIR}/.zshrc"
 alias e-vimrc="$EDITOR ${HOME}/.vimrc"
 alias e-wez="$EDITOR ${XDG_CONFIG_HOME}/wezterm/wezterm.lua"
 alias e-sway="$EDITOR ${XDG_CONFIG_HOME}/sway/config"
+alias c-dotfiles="cd ~/dotfiles"
+alias c-workspace="cd ~/workspace"
 
 #@@@@@ @@@@@ @@@@@ @@@@@ @@@@@ @@@@@
 #@@@@@ functions
