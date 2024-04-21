@@ -1,6 +1,13 @@
 #!/bin/bash
 set -e
 VERSION=$1
+
+if [ -z $VERSION ];then
+    echo "Please version."
+    echo "ex) isk_latest_golang 1.22.2"
+    exit 1
+fi
+
 DIR=$(cd $(dirname $0); pwd)
 cd $DIR
 

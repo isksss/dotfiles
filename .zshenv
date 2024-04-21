@@ -36,4 +36,3 @@ path=(
     $PROTO_HOME/bin
     $path
 )
-. "$HOME/.cargo/env"

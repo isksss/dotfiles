@@ -21,4 +21,3 @@ map("i", "<C-l>", "g<Right>", opt)
 -- idou
 map("n", "j", "gj", opt)
 map("n", "k", "gk", opt)
-
