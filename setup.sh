@@ -40,14 +40,8 @@ create_symlink "$XDG_CONFIG_HOME/zsh" "$CONFIG_DIR/zsh"
 # wezterm
 create_symlink "$XDG_CONFIG_HOME/wezterm" "$CONFIG_DIR/wezterm"
 
-# vim
-create_symlink "$HOME/.vimrc" "$SCRIPT_DIR/.vimrc"
-
 # nvim
 create_symlink "$XDG_CONFIG_HOME/nvim" "$CONFIG_DIR/nvim"
-
-# x
-create_symlink "$HOME/.xprofile" "$SCRIPT_DIR/.xprofile"
 
 # git
 create_symlink "$XDG_CONFIG_HOME/git" "$CONFIG_DIR/git"
