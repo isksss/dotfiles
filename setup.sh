@@ -46,4 +46,7 @@ create_symlink "$XDG_CONFIG_HOME/nvim" "$CONFIG_DIR/nvim"
 # git
 create_symlink "$XDG_CONFIG_HOME/git" "$CONFIG_DIR/git"
 
+# vscode
+create_symlink "$XDG_CONFIG_HOME/Code/User" "$CONFIG_DIR/Code/User"
+
 #----- ----- ----- ----- -----

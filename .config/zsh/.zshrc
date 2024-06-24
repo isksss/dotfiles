@@ -29,13 +29,13 @@ export DROPBOX_PATH="${HOME}/Dropbox"
 #@@@@@ @@@@@ @@@@@ @@@@@ @@@@@ @@@@@
 
 # ls
-alias ls="exa"
-alias la="exa --all"
-alias ll="exa -l"
-alias lla="exa -al"
-alias lt="exa -T"
-alias llt="exa -alT"
-alias llg="exa -alT -I .git --git-ignore"
+alias ls="eza"
+alias la="eza --all"
+alias ll="eza -l"
+alias lla="eza -al"
+alias lt="eza -T"
+alias llt="eza -alT"
+alias llg="eza -alT -I .git --git-ignore"
 #cd
 alias ..="cd .."
 #clear
