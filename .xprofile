@@ -1,3 +1,0 @@
-export LIBSEAT_BACKEND=logind
-
-sleep 5
