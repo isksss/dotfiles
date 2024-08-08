@@ -16,14 +16,11 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_STATE_HOME=$HOME/.local/state
-
-export GOROOT=$SCRIPT_DIR/.dotfiles/tmp/go
-export GOPATH=$XDG_DATA_HOME/go
-export GOBIN=$GOPATH/bin
-
 export WORKSPACE="$HOME/workspace"
 
-export PATH="$GOBIN:$GOROOT/bin:$PATH"
+export AQUA_ROOT_DIR="$XDG_DATA_HOME/aqua"
+
+export PATH="$SCRIPT_DIR/.local/bin:$AQUA_ROOT_DIR/bin:$PATH"
 
 export DOTFILES_REPO_PATH=$SCRIPT_DIR
 
@@ -38,6 +35,7 @@ esac
 
 case "$(uname -m)" in
 x86_64*) arch=amd64 ;;
+# TODO: arm64
 *) echo "not supported arch." && exit 1 ;;
 esac
 
@@ -60,59 +58,41 @@ if !(type "git" > /dev/null 2>&1); then
     exit 1
 fi
 
-# go
-if !(type "go" > /dev/null 2>&1); then
-    echo "=====: warn :====="
-    echo "go is not installed."
-    echo "download go."
-    echo ""
-    rm -rf ./go
-    # TODO: アップデートが来たら変更する
-    go_version="1.22.6"
-    target="${os}-${arch}"
-    if [ $os = "windows" ]; then
-        ext="zip"
-    else
-        ext="tar.gz"
-    fi
-    echo "# download"
-    go_uri="https://go.dev/dl/go${go_version}.${target}.${ext}"
-    curl -fsSL -o "./go.${ext}" $go_uri
-    echo "# extract"
-    if [ $ext = "zip" ]; then
-        unzip -d "./" -o "./go.zip" >/dev/null 2>&1
-    else
-        tar -zxvf "./go.tar.gz" >/dev/null 2>&1
-    fi
-
-    mkdir -p "$SCRIPT_DIR/.dotfiles/tmp"
-    mv "./go" "$SCRIPT_DIR/.dotfiles/tmp/go"
-
-    rm -rf "go.${ext}"
-fi
-
-# dotfiles
-if !(type "dotfiles" > /dev/null 2>&1); then
-    echo "=====: warn :====="
-    echo "dotfiles is not installed."
-    echo "download dotfiles"
-    echo ""
-    echo "# install dotfiles"
-    go install github.com/rhysd/dotfiles@latest
-    dotfiles version
-fi
-
 # aqua
 if !(type "aqua" > /dev/null 2>&1); then
     echo "=====: warn :====="
     echo "aqua is not installed."
     echo "download aqua"
     echo ""
+
+    if [ $os = "windows"] && !(type "unzip" > /dev/null 2>&1); then
+        echo "unzip is not installed."
+        exit 1
+    elif !(type "tar" > /dev/null 2>&1); then
+        echo "unzip is not installed."
+        exit 1
+    fi
+
     echo "# install aqua"
-    go install github.com/aquaproj/aqua/cmd/aqua@latest
-    aqua --version
+    target="${os}_${arch}"
+    if [ $os = "windows" ]; then
+        ext="zip"
+    else
+        ext="tar.gz"
+    fi
+    aqua_uri="https://github.com/aquaproj/aqua/releases/latest/download/aqua_${target}.${ext}"
+    echo $aqua_uri
+    curl -fsSL -o "./aqua.${ext}" $aqua_uri
+    echo "# extract"
+    if [ $ext = "zip" ]; then
+        unzip -d "./" -o "./aqua.zip" >/dev/null 2>&1
+        mv "./aqua.exe" "./.local/bin/"
+    else
+        tar -zxvf "./aqua.tar.gz" >/dev/null 2>&1
+        mv "./aqua" "./.local/bin/"
+    fi
+    rm -rf "aqua.${ext}"
 fi
-
+which aqua
+aqua i
 dotfiles link
-
-aqua i -a

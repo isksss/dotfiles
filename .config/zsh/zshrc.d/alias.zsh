@@ -12,8 +12,13 @@ alias cl="clear"
 
 alias ..="cd .."
 
-alias re="source $ZDOTDIR/.zshrc"
+alias re="source $HOME/.zshenv && source $ZDOTDIR/.zshrc"
 
 # aqua
 alias aq="aqua"
 alias aq-g="AQUA_CONFIG=$AQUA_GLOBAL_CONFIG aqua"
+
+# zoxide
+if (type "zoxide" >/dev/null 2>&1); then
+    eval "$(zoxide init zsh --cmd cd)"
+fi

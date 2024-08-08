@@ -1,5 +1,7 @@
-.dotfiles/tmp/*
 **/local.d/*
 **/git/credentials
+**/*/.zcompdump
+**/*/.zsh_history
+.local/bin/aqua*
 
 !**/*/.gitkeep

@@ -17,5 +17,28 @@ export AQUA_LOG_COLOR=always
 # starship
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 export STARSHIP_CACHE="$XDG_CACHE_HOME/starship/cache"
-#zsh
+# zoxide
+export _ZO_DATA_DIR="$XDG_DATA_HOME/zoxide"
+# ripgrep
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/.ripgreprc"
+# deno
+export DENO_DIR="$XDG_CACHE_HOME/deno"
+export DENO_INSTALL_ROOT="$XDG_DATA_HOME/deno"
+# navi
+export NAVI_CONFIG="$XDG_CONFIG_HOME/navi/config.yaml"
+# TODO: NAI_PATH追加
+
+# zsh
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+# workspace
+export WORKSPACE="$HOME/workspace"
+
+#############################################################
+# path
+#############################################################
+path=(
+    $AQUA_ROOT_DIR/bin(N-/)
+    $GOBIN(N-/)
+    $DENO_INSTALL_ROOT/bin(N-/)
+    $path
+)
