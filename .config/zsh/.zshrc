@@ -13,9 +13,6 @@
 for script in $ZDOTDIR/zshrc.d/*.zsh; do
     source $script
 done
-if [ -z "$(ls $ZDOTDIR/local.d/)" ]; then
-    touch ls $ZDOTDIR/local.d/local.zsh
-fi
 for script in $ZDOTDIR/local.d/*.zsh; do
     source $script
 done
