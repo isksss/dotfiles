@@ -1,1 +1,3 @@
 .dotfiles/tmp/*
+**/local.d/*
+**/git/credentials

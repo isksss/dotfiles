@@ -1,4 +1,10 @@
 {
     ".bashrc": "~/.bashrc",
-    ".config/aqua":"~/.config/aqua"
+    ".config/aqua":"~/.config/aqua",
+    ".config/starship":"~/.config/starship",
+    ".local/bin":"~/.local/bin",
+    ".config/bash":"~/.config/bash",
+    ".config/git":"~/.config/git",
+    ".zshenv":"~/.zshenv",
+    ".config/zsh":"~/.config/zsh"
 }

@@ -1,0 +1,30 @@
+{	
+	//############################################################
+	// 共通設定
+	//############################################################
+	//===== font =====
+	// 等幅フォント優先
+	"editor.fontFamily": "'HackGen Console NF','BIZ UDゴシック','BIZ UD明朝',Consolas, 'Courier New', monospace",
+	// ===== 画像貼り付け =====
+	"markdown.copyFiles.destination": {
+		"**/**/*": "images/${documentFileName}/${documentBaseName}-${fileName}.${fileExtName}"
+	},
+	// ===== 新しいタブで常に開かれる =====
+	"workbench.editor.enablePreview": false,
+	"workbench.colorTheme": "Default Dark+",
+	//############################################################
+	// 言語別設定
+	//############################################################
+	// ===== Deno =====
+	"deno.lint": true,
+	"deno.unstable": true,
+	// ===== markdown =====
+	"[markdown]": {
+		"editor.formatOnSave": true,
+		"editor.formatOnPaste": true,
+		"editor.defaultFormatter": "yzhang.markdown-all-in-one",
+		"editor.codeActionsOnSave": {
+			"source.fixAll.markdownlint": "explicit"
+		},
+	},
+}
