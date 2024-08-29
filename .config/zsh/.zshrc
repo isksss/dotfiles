@@ -1,72 +1,53 @@
-# zshrc
+#############################################################
+# env
+#############################################################
 
-#@@@@@ @@@@@ @@@@@ @@@@@ @@@@@ @@@@@
-#@@@@@ options
-#@@@@@ @@@@@ @@@@@ @@@@@ @@@@@ @@@@@
+#############################################################
+# options
+#############################################################
+
+# general
+export LANG=ja_JP.UTF-8
+setopt nobeep # 音を鳴らさない
+setopt print_eight_bit
+
 # history
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_REDUCE_BLANKS
-setopt inc_append_history_time
+export HISTFILE="${ZDOTDIR}/.zsh_history"
+export HISTSIZE=10000
+export SAVEHIST=100000
+setopt hist_ignore_dups
+setopt extended_history
+setopt bang_hist
 setopt share_history
-HISTFILE=$ZDOTDIR/.zsh_history
-HISTSIZE=10000
-SAVEHIST=1000000
+setopt hist_reduce_blanks
+setopt hist_verify
 
-# completion
-autoload -Uz compinit ; compinit
+# cd
+setopt autopushd
+setopt pushd_ignore_dups
 
-# colors
-autoload -Uz colors && colors
+# 補完
+autoload -U compinit
+compinit
+setopt auto_list
+setopt auto_menu
+setopt list_packed
+setopt list_types
+zstyle ':completion:*:default' menu select=1
+setopt auto_param_slash
 
-#@@@@@ @@@@@ @@@@@ @@@@@ @@@@@ @@@@@
-#@@@@@ env
-#@@@@@ @@@@@ @@@@@ @@@@@ @@@@@ @@@@@
-export DROPBOX_PATH="${HOME}/Dropbox"
+# Color
+autoload -U colors
+colors
+export CLICOLOR=true
 
-#@@@@@ @@@@@ @@@@@ @@@@@ @@@@@ @@@@@
-#@@@@@ alias
-#@@@@@ @@@@@ @@@@@ @@@@@ @@@@@ @@@@@
+#############################################################
+# source
+#############################################################
 
-# ls
-alias ls="exa"
-alias la="exa --all"
-alias ll="exa -l"
-alias lla="exa -al"
-alias lt="exa -T"
-alias llt="exa -alT"
-alias llg="exa -alT -I .git --git-ignore"
-#cd
-alias ..="cd .."
-#clear
-alias cl='clear'
-# history
-alias h='history'
-# vim
-alias vim=nvim
-# mkdir
-alias mkdir="mkdir -p"
-alias mk="mkdir"
-# rm
-alias rmm="rm -rf"
-#exit
-alias eq="exit"
-# edit files
-alias reload="source ${ZDOTDIR}/.zshrc"
-alias e-zshrc="$EDITOR ${ZDOTDIR}/.zshrc"
-alias e-dotfiles="cd ~/dotfiles"
-alias e-workspace="cd ~/workspace"
-
-#@@@@@ @@@@@ @@@@@ @@@@@ @@@@@ @@@@@
-#@@@@@ functions
-#@@@@@ @@@@@ @@@@@ @@@@@ @@@@@ @@@@@
-
-#@@@@@ @@@@@ @@@@@ @@@@@ @@@@@ @@@@@
-#@@@@@ etc
-#@@@@@ @@@@@ @@@@@ @@@@@ @@@@@ @@@@@
-
-# starship
-if [ -x "$(command -v starship)" ]; then
-    eval "$(starship init zsh)"
-fi
-
+for script in $ZDOTDIR/zshrc.d/*.zsh; do
+    source $script
+done
+for script in $ZDOTDIR/local.d/*.zsh; do
+    source $script
+done

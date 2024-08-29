@@ -1,38 +1,44 @@
-
-## XDG Base Directory Specification
+#############################################################
+# environment
+#############################################################
+# xdg
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
-
-## editor
-export EDITOR=nvim
-
-## Zsh
-export ZDOTDIR=$XDG_CONFIG_HOME/zsh
-## go
-export GOROOT=$HOME/.local/bin
-export GOPATH=$HOME/go
+export XDG_STATE_HOME=$HOME/.local/state
+# go
+export GOPATH=$XDG_DATA_HOME/go
 export GOBIN=$GOPATH/bin
-## rust
-export CARGO_HOME=$HOME/.cargo
-## deno
-export DENO_INSTALL=$HOME/.deno
-## volta
-export VOLTA_HOME=$HOME/.volta
-## rye
-export RYE_HOME="$HOME/.rye"
-## proto
-export PROTO_HOME="$HOME/.proto"
+# aqua
+export AQUA_ROOT_DIR="$XDG_DATA_HOME/aqua"
+export AQUA_GLOBAL_CONFIG="$XDG_CONFIG_HOME/aqua/aqua.yaml"
+export AQUA_PROGRESS_BAR=true
+export AQUA_LOG_COLOR=always
+# starship
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+export STARSHIP_CACHE="$XDG_CACHE_HOME/starship/cache"
+# zoxide
+export _ZO_DATA_DIR="$XDG_DATA_HOME/zoxide"
+# ripgrep
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/.ripgreprc"
+# deno
+export DENO_DIR="$XDG_CACHE_HOME/deno"
+export DENO_INSTALL_ROOT="$XDG_DATA_HOME/deno"
+# navi
+export NAVI_CONFIG="$XDG_CONFIG_HOME/navi/config.yaml"
+# TODO: NAI_PATH追加
 
-## path
+# zsh
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+# workspace
+export WORKSPACE="$HOME/workspace"
+
+#############################################################
+# path
+#############################################################
 path=(
-    $HOME/.local/bin
-    $DENO_INSTALL/bin
-    $CARGO_HOME/bin
-    $GOBIN
-    $VOLTA_HOME/bin
-    $RYE_HOME/shims
-    $PROTO_HOME/shims
-    $PROTO_HOME/bin
+    $AQUA_ROOT_DIR/bin(N-/)
+    $GOBIN(N-/)
+    $DENO_INSTALL_ROOT/bin(N-/)
     $path
 )

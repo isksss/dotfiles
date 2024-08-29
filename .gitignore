@@ -1,2 +1,7 @@
-.config/zsh/.zsh_history
-.config/zsh/.zcompdump
+**/local.d/*
+**/git/credentials
+**/*/.zcompdump
+**/*/.zsh_history
+.local/bin/aqua*
+
+!**/*/.gitkeep
