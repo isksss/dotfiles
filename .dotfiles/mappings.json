@@ -1,5 +1,6 @@
 {
     ".bashrc": "~/.bashrc",
+    ".vimrc": "~/.vimrc",
     ".config/mise":"~/.config/mise",
     ".config/aqua":"~/.config/aqua",
     ".config/starship":"~/.config/starship",
