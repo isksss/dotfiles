@@ -1,4 +1,3 @@
-
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -14,11 +13,24 @@ alias ..="cd .."
 
 alias re="source $HOME/.zshenv && source $ZDOTDIR/.zshrc"
 
-# aqua
-alias aq="aqua"
-alias aq-g="AQUA_CONFIG=$AQUA_GLOBAL_CONFIG aqua"
+alias '$'=" "
+
+alias "c-w"="cd ~/workspace"
 
 # zoxide
 if (type "zoxide" >/dev/null 2>&1); then
     eval "$(zoxide init zsh --cmd cd)"
+fi
+
+# eza
+if (type "eza" >/dev/null 2>&1); then
+    alias ls="eza"
+    alias ll="eza --long"
+    alias la="eza --all"
+fi
+
+# mise
+if (type "mise" >/dev/null 2>&1); then
+    eval "$(mise activate zsh)"
+    eval "$(mise completion zsh)"
 fi

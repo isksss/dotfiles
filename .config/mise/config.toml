@@ -1,0 +1,13 @@
+[settings]
+experimental = true
+
+[tools]
+# lang
+java = "openjdk-21"
+go = "1.23.2"
+deno = "latest"
+
+# tool
+neovim = "nightly"
+gradle = "8.10.2"
+

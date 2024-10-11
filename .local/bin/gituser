@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-username=$(git config --get user.name)
-email=$(git config --get user.email)
-echo "username: ${username}"
-echo "email: ${email}"

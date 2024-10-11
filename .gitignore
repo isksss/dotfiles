@@ -2,6 +2,6 @@
 **/git/credentials
 **/*/.zcompdump
 **/*/.zsh_history
-.local/bin/aqua*
+.local/bin/*
 
 !**/*/.gitkeep
