@@ -1,22 +1,12 @@
 # dotfiles
 
-I use [rhysd/dotfiles](https://github.com/rhysd/dotfiles) to manage my dotfiles.
+[mise](https://github.com/jdx/mise)と[dotfiles](https://github.com/rhysd/dotfiles)を利用します。
 
-## How to use
+## setup
 
-Please execute the following command.
-
-Depends on [aquaproj/aqua](https://github.com/aquaproj/aqua).
-
-If you don't have these, use curl, tar (Linux), or unzip (Windows) to download them automatically.
+下記コマンドを実行してください。
 
 ```bash
-git clone git@github.com:isksss/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-bash init.sh
+mise install
+dotfiles link
 ```
-
-## Author
-
-[isksss](https://github.com/isksss)
-> Please let me know if there is any mistranslation.

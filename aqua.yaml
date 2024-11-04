@@ -1,5 +1,0 @@
-registries:
-- type: standard
-  ref: v4.231.0
-packages:
-- name: rhysd/dotfiles@v0.2.3

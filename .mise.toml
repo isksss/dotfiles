@@ -1,2 +1,2 @@
 [tools]
-"go:github.com/aquaproj/aqua/v2/cmd/aqua" = "latest"
+"go:github.com/rhysd/dotfiles" = "latest"
