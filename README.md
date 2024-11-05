@@ -10,3 +10,7 @@
 mise install
 dotfiles link
 ```
+
+## install script
+
+[install script](./install.sh)
