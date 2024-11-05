@@ -45,4 +45,10 @@ path=(
     $VOLTA_HOME/bin(N-/)
     $path
 )
-. "$HOME/.cargo/env"
+
+# mise
+if (type "mise" >/dev/null 2>&1); then
+    eval "$(mise activate zsh)"
+    eval "$(mise completion zsh)"
+fi
+

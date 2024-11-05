@@ -11,6 +11,8 @@ alias cl="clear"
 
 alias ..="cd .."
 
+alias ":q"="exit"
+
 alias re="source $HOME/.zshenv && source $ZDOTDIR/.zshrc"
 
 alias '$'=" "

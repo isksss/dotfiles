@@ -17,5 +17,6 @@ gradle = "8.10.2"
 ## go
 "go:github.com/junegunn/fzf" = "latest"
 "go:github.com/rhysd/dotfiles" = "latest"
+"go:github.com/jesseduffield/lazygit" = "latest"
 ## tools
 neovim = "nightly"
