@@ -14,3 +14,9 @@ dotfiles link
 ## install script
 
 [install script](./install.sh)
+
+### コピー用
+
+```text
+https://isksss.github.io/dotfiles/install.sh
+```
