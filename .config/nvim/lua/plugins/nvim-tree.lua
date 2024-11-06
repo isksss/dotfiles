@@ -1,3 +1,6 @@
+vim.api.nvim_set_var('loaded_netrw', 1)
+vim.api.nvim_set_var('loaded_netrwPlugin', 1)
+
 -- open File Tree when open
 local function open_nvim_tree()
     require("nvim-tree.api").tree.open()
