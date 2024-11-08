@@ -20,3 +20,4 @@ gradle = "8.10.2"
 "go:github.com/jesseduffield/lazygit" = "latest"
 ## tools
 neovim = "nightly"
+gh = { version = "latest", exe = "gh" }

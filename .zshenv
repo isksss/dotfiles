@@ -42,7 +42,7 @@ path=(
     $AQUA_ROOT_DIR/bin(N-/)
     $GOBIN(N-/)
     $DENO_INSTALL_ROOT/bin(N-/)
-    $VOLTA_HOME/bin(N-/)
+    #$VOLTA_HOME/bin(N-/)
     $path
 )
 
