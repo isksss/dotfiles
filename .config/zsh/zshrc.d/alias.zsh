@@ -19,6 +19,8 @@ alias '$'=" "
 
 alias "c-w"="cd ~/workspace"
 
+alias "code-web"="code serve-web --host 0.0.0.0 --port 8006 --accept-server-license-terms --without-connection-token"
+
 # zoxide
 if (type "zoxide" >/dev/null 2>&1); then
     eval "$(zoxide init zsh --cmd cd)"

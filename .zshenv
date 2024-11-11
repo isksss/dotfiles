@@ -12,7 +12,7 @@ export GOBIN="$GOPATH/bin"
 # aqua
 export AQUA_ROOT_DIR="$XDG_DATA_HOME/aqua"
 export AQUA_GLOBAL_CONFIG="$XDG_CONFIG_HOME/aqua/aqua.yaml"
-export AQUA_PROGRESS_BAR=true
+export AQUA_PROGRESS_BAR=true 
 export AQUA_LOG_COLOR=always
 # starship
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
@@ -32,6 +32,8 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export WORKSPACE="$HOME/workspace"
 # dotfiles
 export DOTFILES_REPO_PATH="$HOME/.dotfiles"
+# mise shims
+export MISE_SHIMS="$HOME/.local/share/mise/shims"
 # editor
 export EDITOR=nvim
 
@@ -42,7 +44,8 @@ path=(
     $AQUA_ROOT_DIR/bin(N-/)
     $GOBIN(N-/)
     $DENO_INSTALL_ROOT/bin(N-/)
-    #$VOLTA_HOME/bin(N-/)
+    $VOLTA_HOME/bin(N-/)
+    $MISE_SHIMS(N-/)
     $path
 )
 
