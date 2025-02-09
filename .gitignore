@@ -1,7 +1,0 @@
-**/local.d/*
-**/git/credentials
-**/*/.zcompdump
-**/*/.zsh_history
-.local/bin/*
-
-!**/*/.gitkeep
