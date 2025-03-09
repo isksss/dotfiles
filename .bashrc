@@ -31,6 +31,12 @@ if type -P "eza" >/dev/null; then
 fi
 
 #--------------------
+# mise
+if type -P "mise" >/dev/null; then
+    export PATH="$HOME/.local/share/mise/shims:$PATH"
+fi
+
+#--------------------
 # zoxide
 if type -P "zoxide" >/dev/null; then
     eval "$(zoxide init bash --cmd cd)"
@@ -43,7 +49,7 @@ if type -P "starship" >/dev/null; then
 fi
 
 #--------------------
-# local
+# ローカル用設定の読み込み
 if [ -f "$ISKSSS_HOME/.bash_local" ]; then
     source $ISKSSS_HOME/.bash_local
 fi

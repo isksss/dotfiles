@@ -6,7 +6,7 @@ SCRIPT_DIR=$(
     pwd
 )
 # dotfiles path
-echo "export DOTFILES_PATH=${SCRIPT_DIR}" > "$HOME/.dotfiles_path"
+echo "export DOTFILES_PATH=${SCRIPT_DIR}" >"$HOME/.dotfiles_path"
 
 # 共通環境変数のロード
 source "$SCRIPT_DIR/env.sh"
@@ -124,6 +124,20 @@ link "$SCRIPT_DIR/.fonts" "$HOME/.fonts"
 if type -P "fc-cache" >/dev/null; then
     fc-cache -fv
 fi
+
+#--------------------
+# powershell
+subtitle "powershell"
+# win
+case $(uname -a) in
+Linux*)
+    link "$SCRIPT_DIR/.config/powershell" "$XDG_CONFIG_HOME/powershell"
+    ;;
+MINGW*)
+    link "$SCRIPT_DIR/.config/powershell/Microsoft.PowerShell_profile.ps1" "$HOME/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1"
+    link "$SCRIPT_DIR/.config/powershell/Microsoft.PowerShell_profile.ps1" "$HOME/Documents/WindowsPowerShell/Microsoft.VSCode_profile.ps1"
+    ;;
+esac
 
 #--------------------
 # script and note, etc...

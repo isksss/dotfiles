@@ -1,4 +1,6 @@
 {
+    //------------------------------------------------------------
+    // マークダウン
     "[markdown]": {
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "yzhang.markdown-all-in-one",
@@ -6,6 +8,13 @@
             "source.fixAll.markdownlint": "explicit"
         }
     },
+    //--------------------
+    // 画像貼り付けの際どこに保存するか
+    "markdown.copyFiles.destination": {
+        "**/**/*": "images/${documentFileName}/${documentBaseName}-${fileName}"
+    },
+    //------------------------------------------------------------
+    // json
     "[jsonc]": {
         "editor.quickSuggestions": {
             "strings": true
@@ -40,6 +49,9 @@
     //--------------------
     // フォント
     "editor.fontFamily": "'HackGen Console NF','BIZ UDゴシック','BIZ UD明朝',Consolas, 'Courier New', monospace",
-    "workbench.activityBar.location": "top",
-    "workbench.colorTheme": "Solarized Dark",
+    //--------------------
+    // ワークベンチ設定
+    "workbench.activityBar.location": "top", // テーマ
+    "workbench.editor.wrapTabs": true,
+    "workbench.colorTheme": "Solarized Dark", // タブを複数行で配置
 }
