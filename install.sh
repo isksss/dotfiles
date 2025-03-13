@@ -126,6 +126,19 @@ if type -P "fc-cache" >/dev/null; then
 fi
 
 #--------------------
+# git
+subtitle "git"
+link "$SCRIPT_DIR/.config/git" "$XDG_CONFIG_HOME/git"
+local_git_config="$SCRIPT_DIR/.config/git/local/user.gitconfig"
+if [ ! -f "$local_git_config" ]; then
+    info "user.gitconfigを作成します"
+    touch "$local_git_config"
+    echo "[user]" > $local_git_config
+    echo -e "\tname = isksss"
+    echo -e "\temail = 104404522+isksss@users.noreply.github.com"
+fi
+
+#--------------------
 # powershell
 subtitle "powershell"
 # win

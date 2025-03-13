@@ -1,0 +1,7 @@
+[init]
+	defaultBranch = main
+[core]
+	autocrlf = true
+	quotepath = false
+[include]
+    path = local/user.gitconfig  # user
