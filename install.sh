@@ -77,6 +77,8 @@ if [ ! -f "$bash_local_filename" ]; then
     touch "$bash_local_filename"
 fi
 
+mkdir -p "$XDG_CACHE_HOME/zsh/zcompcache"
+
 #--------------------
 # zsh
 subtitle "zsh"
