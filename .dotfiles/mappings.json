@@ -1,6 +1,7 @@
 {
     "zsh/.zshenv": "~/.zshenv",
     "zsh/zsh.d": "~/.config/zsh",
+    "bash/.bashrc": "~/.bashrc",
     "aqua.yaml": "~/.config/aquaproj-aqua/aqua.yaml",
     "starship/starship.toml": "~/.config/starship.toml"
 }
