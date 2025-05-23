@@ -15,3 +15,4 @@ packages:
 - name: starship/starship@v1.23.0
 - name: ajeetdsouza/zoxide@v0.9.7
 - name: junegunn/fzf@v0.62.0
+- name: jesseduffield/lazygit@v0.51.0
