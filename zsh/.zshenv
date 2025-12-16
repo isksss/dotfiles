@@ -7,13 +7,12 @@ export XDG_STATE_HOME="${HOME}/.local/state"
 # zsh
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 
-# aqua
-export AQUA_ROOT_DIR="${AQUA_ROOT_DIR:-${XDG_DATA_HOME}/aquaproj-aqua}"
-export AQUA_GLOBAL_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml"
-export AQUA_VACUUM_DAYS=30 # 30日以上使用していないツールは削除
+# mise
+export PATH="$HOME/.local/bin:$PATH"
+
+# volta
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
 
 # starship
 export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship.toml"
-
-# path
-export PATH="${AQUA_ROOT_DIR}/bin:$PATH"

@@ -1,0 +1,12 @@
+[tools]
+"github:ajeetdsouza/zoxide" = "latest"
+"github:eza-community/eza" = "latest"
+"github:jesseduffield/lazygit" = "latest"
+"github:junegunn/fzf" = "latest"
+"github:mvdan/sh" = "latest"
+"github:rhysd/dotfiles" = "latest"
+"github:starship/starship" = "latest"
+"github:zellij-org/zellij" = "latest"
+go = "latest"
+node = "24"
+usage = "latest"
