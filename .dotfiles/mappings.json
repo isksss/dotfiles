@@ -1,6 +1,7 @@
 {
     "zsh/.zshenv": "~/.zshenv",
     "zsh/zsh.d": "~/.config/zsh",
+    "nvim": "~/.config/nvim",
     "bash/.bashrc": "~/.bashrc",
     "starship/starship.toml": "~/.config/starship.toml",
     "mise.toml": "~/.config/mise/config.toml"
