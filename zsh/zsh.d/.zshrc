@@ -7,6 +7,12 @@ autoload -Uz compinit
 compinit
 
 # ==========
+# lang
+
+# rust
+. "$HOME/.cargo/env"
+
+# ==========
 # alias
 alias cl="clear"
 alias re="exec ${SHELL} -l"

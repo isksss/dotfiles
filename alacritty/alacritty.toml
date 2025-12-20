@@ -1,0 +1,7 @@
+[font]
+normal = { family = "HackGen Console NF", style = "Regular" }
+bold = { family = "HackGen Console NF", style = "Bold" }
+italic = { family = "HackGen Console NF", style = "Italic" }
+bold_italic = { family = "HackGen Console NF", style = "Bold Italic" }
+size = 12.0
+# offset = { x = 0, y = 2 }

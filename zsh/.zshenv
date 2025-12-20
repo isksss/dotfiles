@@ -16,3 +16,4 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 
 # starship
 export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship.toml"
+. "$HOME/.cargo/env"

@@ -4,5 +4,6 @@
     "nvim": "~/.config/nvim",
     "bash/.bashrc": "~/.bashrc",
     "starship/starship.toml": "~/.config/starship.toml",
-    "mise.toml": "~/.config/mise/config.toml"
+    "mise.toml": "~/.config/mise/config.toml",
+    "alacritty/alacritty.toml": "~/.config/alacritty/alacritty.toml"
 }

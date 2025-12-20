@@ -1,5 +1,4 @@
 {
-  "denops-helloworld.vim": { "branch": "main", "commit": "f975281571191cfd4e3f9e5ba77103932f7dd6e5" },
   "denops.vim": { "branch": "main", "commit": "5cfca39988a36e42d81b925264fc846077a727e3" },
   "lazy.nvim": { "branch": "main", "commit": "85c7ff3711b730b4030d03144f6db6375044ae82" }
 }
