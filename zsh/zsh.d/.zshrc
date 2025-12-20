@@ -10,7 +10,9 @@ compinit
 # lang
 
 # rust
-. "$HOME/.cargo/env"
+if [[ -f "$HOME/.cargo/env" ]]; then
+  . "$HOME/.cargo/env"
+fi
 
 # ==========
 # alias
@@ -18,22 +20,34 @@ alias cl="clear"
 alias re="exec ${SHELL} -l"
 
 # mise
-eval "$(mise activate zsh)"
-eval "$(mise completion zsh)"
-alias mx="mise x -- "
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+  eval "$(mise completion zsh)"
+  alias mx="mise x -- "
+fi
 
 # zoxide
-eval "$(zoxide init zsh --cmd cd)"
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh --cmd cd)"
+fi
 alias ..="cd .."
 
 # ls
-alias ls="eza"
+if command -v eza >/dev/null 2>&1; then
+  alias ls="eza"
+fi
 
 # lazygit
-alias lg="lazygit"
+if command -v lazygit >/dev/null 2>&1; then
+  alias lg="lazygit"
+fi
 
 # zellij
-alias zl="zellij"
+if command -v zellij >/dev/null 2>&1; then
+  alias zl="zellij"
+fi
 
 # starship
-eval "$(starship init zsh)"
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
