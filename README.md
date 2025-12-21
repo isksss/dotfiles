@@ -2,5 +2,5 @@
 
 ## 使用しているツール
 
-- [aqua](https://aquaproj.github.io/)
+- [mise](https://github.com/jdx/mise)
 - [dotfiles](https://github.com/rhysd/dotfiles)
