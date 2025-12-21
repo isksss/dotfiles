@@ -1,4 +1,15 @@
 {
+  "ddc-filter-matcher_head": { "branch": "main", "commit": "7a955d2f6a44e39687459f8f3a22f4daa063a981" },
+  "ddc-filter-sorter_rank": { "branch": "main", "commit": "eed3cb33b3ae3f9128257fcfb95e0511d1b13891" },
+  "ddc-source-around": { "branch": "main", "commit": "68e679ca0b989cfe3300acac9099b893d0675063" },
+  "ddc-source-lsp": { "branch": "main", "commit": "012b42673faaf65c55327d4bd6e38378fcf29030" },
+  "ddc-ui-native": { "branch": "main", "commit": "8c33fb2336a586b33854903e3096095780657ad1" },
+  "ddc.vim": { "branch": "main", "commit": "ef527ad60b199b11d022a648a24ab6d424227943" },
   "denops.vim": { "branch": "main", "commit": "5cfca39988a36e42d81b925264fc846077a727e3" },
-  "lazy.nvim": { "branch": "main", "commit": "85c7ff3711b730b4030d03144f6db6375044ae82" }
+  "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
+  "lualine.nvim": { "branch": "master", "commit": "47f91c416daef12db467145e16bed5bbfe00add8" },
+  "mason-lspconfig.nvim": { "branch": "main", "commit": "8f1a3e6eecb638817e8999aaa16ada27cd54d867" },
+  "mason.nvim": { "branch": "main", "commit": "57e5a8addb8c71fb063ee4acda466c7cf6ad2800" },
+  "nvim-lspconfig": { "branch": "master", "commit": "d20d83b3f24f5884da73a9fc92fdc47e778b8d0d" },
+  "nvim-web-devicons": { "branch": "master", "commit": "6788013bb9cb784e606ada44206b0e755e4323d7" }
 }
