@@ -58,6 +58,7 @@ require("lazy").setup({
                     "jsonls",
                     "yamlls",
                     "bashls",
+                    "gopls"
                 },
             })
         end,

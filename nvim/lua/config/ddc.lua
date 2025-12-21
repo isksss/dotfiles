@@ -6,7 +6,6 @@ vim.fn["ddc#custom#patch_global"]({
     sources = {
         "lsp",
         "around",
-        "file",
     },
     sourceOptions = {
         _ = {
@@ -19,11 +18,6 @@ vim.fn["ddc#custom#patch_global"]({
         },
         around = {
             mark = "[A]",
-        },
-        file = {
-            mark = "[F]",
-            isVolatile = true,
-            forceCompletionPattern = [[\S/\S*]],
         },
     },
 })

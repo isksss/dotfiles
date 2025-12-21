@@ -73,3 +73,21 @@ setup("bashls", {
     on_attach = on_attach,
     capabilities = capabilities,
 })
+
+-----------------------------------------------------------
+-- Go (gopls)
+-----------------------------------------------------------
+setup("gopls", {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        gopls = {
+            gofumpt = true,
+            analyses = {
+                unusedparams = true,
+                shadow = true,
+            },
+            staticcheck = true,
+        },
+    },
+})
