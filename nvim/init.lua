@@ -1,5 +1,2 @@
 require("config.options")
 require("config.lazy")
-require("config.denops")
-require("config.diagnostics")
-require("config.keymaps")
