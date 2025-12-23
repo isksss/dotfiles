@@ -19,4 +19,16 @@ vim.opt.rtp:prepend(lazypath)
 -----------------------------------------------------------
 -- lazy.nvim setup
 -----------------------------------------------------------
-require("lazy").setup({})
+require("lazy").setup({
+    {
+        "lambdalisue/vim-fern",
+        cmd = { "Fern" },
+        dependencies = {
+            "lambdalisue/fern-renderer-devicons.vim",
+            "lambdalisue/nerdfont.vim",
+        },
+        config = function()
+            require("config.file_explorer")
+        end,
+    },
+})
