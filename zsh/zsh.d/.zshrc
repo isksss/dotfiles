@@ -2,6 +2,15 @@
 ZSH_COMPDUMP="${XDG_CACHE_HOME}/zsh/.zcompdump"
 
 # ==========
+# local
+
+if [[ -f "$ZDOTDIR/local.zsh" ]]; then
+  . "$ZDOTDIR/local.zsh"
+else
+  touch "$ZDOTDIR/local.zsh"
+fi
+
+# ==========
 # zshオプション
 autoload -Uz compinit
 compinit
