@@ -5,3 +5,7 @@ local keymap = vim.keymap.set
 
 -- <C-e> でファイラーを起動
 keymap("n", "<C-e>", "<cmd>Fern . -reveal=% -drawer -toggle<CR>", { desc = "ファイラーを開く" })
+
+-- jj でノーマルモードへ
+keymap("i", "jj", "<Esc>", { desc = "ノーマルモードに戻る" })
+

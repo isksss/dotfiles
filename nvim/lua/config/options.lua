@@ -66,3 +66,6 @@ opt.listchars = {
     trail = "·",
     nbsp = "␣",
 }
+
+-- マウス操作
+opt.mouse = ""

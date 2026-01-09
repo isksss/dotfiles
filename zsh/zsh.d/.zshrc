@@ -24,7 +24,7 @@ setopt share_history          # 全セッションで共有
 setopt hist_ignore_all_dups   # 重複を即削除
 setopt hist_reduce_blanks     # 余分な空白を削除
 setopt hist_verify            # 実行前に確認
-setopt extended_history      # タイムスタンプ付き
+setopt extended_history       # タイムスタンプ付き
 
 # ==========
 # lang
@@ -79,6 +79,11 @@ fi
 # fzf
 if command -v fzf >/dev/null 2>&1; then
   . <(fzf --zsh)
+fi
+
+# wtp
+if command -v wtp >/dev/null 2>&1; then
+  eval "$(wtp completion zsh)"
 fi
 
 # starship

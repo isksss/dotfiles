@@ -1,6 +1,8 @@
 {
   "fern-renderer-devicons.vim": { "branch": "master", "commit": "d0f7264494e5764cee785c963b6b2e9105a15b51" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
+  "lualine.nvim": { "branch": "master", "commit": "47f91c416daef12db467145e16bed5bbfe00add8" },
   "nerdfont.vim": { "branch": "master", "commit": "83cec2786e00c0c132a19c2e181fe810a3f99802" },
+  "nvim-web-devicons": { "branch": "master", "commit": "6788013bb9cb784e606ada44206b0e755e4323d7" },
   "vim-fern": { "branch": "main", "commit": "d0b5befc0321126384981d6cf3c1b561014c65a2" }
 }
