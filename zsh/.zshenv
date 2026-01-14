@@ -11,8 +11,8 @@ export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 export PATH="$HOME/.local/bin:$PATH"
 
 # volta
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+# export VOLTA_HOME="$HOME/.volta"
+# export PATH="$VOLTA_HOME/bin:$PATH"
 
 # starship
 export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship.toml"

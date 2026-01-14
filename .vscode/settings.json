@@ -19,5 +19,6 @@
     "git.confirmSync": false,
     "Lua.diagnostics.globals": [
         "vim"
-    ]
+    ],
+    "git.openRepositoryInParentFolders": "always"
 }
