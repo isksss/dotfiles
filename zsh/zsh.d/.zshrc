@@ -52,6 +52,11 @@ if command -v zoxide >/dev/null 2>&1; then
 fi
 alias ..="cd .."
 
+# nvim
+if command -v nvim >/dev/null 2>&1; then
+  alias vim="nvim"
+fi
+
 # ls
 if command -v eza >/dev/null 2>&1; then
   alias ls="eza"
@@ -84,6 +89,7 @@ fi
 # wtp
 if command -v wtp >/dev/null 2>&1; then
   eval "$(wtp completion zsh)"
+  eval "$(wtp hook zsh)"
 fi
 
 # starship
