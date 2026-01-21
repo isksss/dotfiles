@@ -41,9 +41,7 @@ alias re="exec ${SHELL} -l"
 
 # mise
 if command -v mise >/dev/null 2>&1; then
-  eval "$(mise activate zsh)"
   eval "$(mise completion zsh)"
-  alias mx="mise x -- "
 fi
 
 # zoxide
@@ -90,6 +88,16 @@ fi
 if command -v wtp >/dev/null 2>&1; then
   eval "$(wtp completion zsh)"
   eval "$(wtp hook zsh)"
+fi
+
+# gh
+if command -v gh >/dev/null 2>&1; then
+  eval "$(gh completion -s zsh)"
+fi
+
+# glab
+if command -v glab >/dev/null 2>&1; then
+  eval "$(glab completion -s zsh)"
 fi
 
 # starship
