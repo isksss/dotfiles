@@ -6,5 +6,6 @@
     "starship/starship.toml": "~/.config/starship.toml",
     "mise.toml": "~/.config/mise/config.toml",
     "alacritty/alacritty.toml": "~/.config/alacritty/alacritty.toml",
-    "zellij/config.kdl": "~/.config/zellij/config.kdl"
+    "zellij/config.kdl": "~/.config/zellij/config.kdl",
+    "lazygit/config.yml": "~/.config/lazygit/config.yml"
 }
