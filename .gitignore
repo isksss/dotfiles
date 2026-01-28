@@ -1,2 +1,7 @@
 .zcompdump
 local.zsh
+
+# 環境変数
+.env
+.env.local
+.env.*
