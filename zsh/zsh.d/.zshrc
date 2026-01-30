@@ -101,6 +101,11 @@ if command -v glab >/dev/null 2>&1; then
   eval "$(glab completion -s zsh)"
 fi
 
+# op
+if command -v op >/dev/null 2>&1; then
+  eval "$(op completion zsh)"
+fi
+
 # starship
 if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
