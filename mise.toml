@@ -30,6 +30,7 @@ node = "24"
 
 # AI
 "npm:@openai/codex" = "latest"
+ghq = "latest"
 
 [shell_alias]
 # 基本
