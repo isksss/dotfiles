@@ -7,5 +7,6 @@
     "mise.toml": "~/.config/mise/config.toml",
     "alacritty/alacritty.toml": "~/.config/alacritty/alacritty.toml",
     "zellij/config.kdl": "~/.config/zellij/config.kdl",
-    "lazygit/config.yml": "~/.config/lazygit/config.yml"
+    "lazygit/config.yml": "~/.config/lazygit/config.yml",
+    "ghq/config.yml": "~/.config/ghq/config.yml"
 }

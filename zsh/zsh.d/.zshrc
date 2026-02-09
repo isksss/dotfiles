@@ -38,6 +38,7 @@ fi
 # alias
 alias cl="clear"
 alias re="exec ${SHELL} -l"
+alias cdrepo='cd "$(ghq list -p | fzf)"'
 
 # mise
 if command -v mise >/dev/null 2>&1; then
