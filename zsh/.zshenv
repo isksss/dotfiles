@@ -18,5 +18,5 @@ export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship.toml"
 
 # mise
 if command -v mise >/dev/null 2>&1; then
-    eval "$(mise activate zsh)"
+	eval "$(mise activate zsh)"
 fi
