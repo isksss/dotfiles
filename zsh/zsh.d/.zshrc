@@ -103,6 +103,7 @@ if command -v glab >/dev/null 2>&1; then
 fi
 
 # op
+alias op="op.exe"
 if command -v op >/dev/null 2>&1; then
 	eval "$(op completion zsh)"
 fi
