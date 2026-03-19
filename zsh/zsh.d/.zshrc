@@ -5,7 +5,7 @@ ZSH_COMPDUMP="${XDG_CACHE_HOME}/zsh/.zcompdump"
 # local
 
 if [[ -f "$ZDOTDIR/local.zsh" ]]; then
-	. "${ZDOTDIR}/local.zsh"
+	. "$ZDOTDIR/local.zsh"
 else
 	touch "$ZDOTDIR/local.zsh"
 fi
@@ -103,9 +103,9 @@ if command -v glab >/dev/null 2>&1; then
 fi
 
 # op
-alias op="op.exe"
+# alias op="op.exe"
 if command -v op >/dev/null 2>&1; then
-	# eval "$(ssh-agent -s)" >/dev/null
+	eval "$(op completion zsh)"
 fi
 
 # starship
