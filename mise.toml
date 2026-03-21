@@ -32,6 +32,7 @@ node = "24"
 "npm:@openai/codex" = "latest"
 ghq = "latest"
 shfmt = "latest"
+tmux = "latest"
 
 [shell_alias]
 # 基本
