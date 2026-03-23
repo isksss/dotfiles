@@ -18,6 +18,7 @@
 "npm:@antfu/ni" = "latest"
 "github:neovim/neovim" = "latest"
 "aqua:FiloSottile/age" = "latest"
+"cargo:clock-rs" = "latest"
 # 1password-cli = "latest"
 gh = "latest"
 glab = "latest"
