@@ -34,6 +34,9 @@ node = "24"
 ghq = "latest"
 shfmt = "latest"
 tmux = "latest"
+rust = "latest"
+# "cargo:atuin" = "latest"
+atuin = "latest"
 
 [shell_alias]
 # 基本
@@ -54,3 +57,5 @@ EDITOR = "nvim"
 PAGER = "bat"
 
 STARSHIP_CONFIG = "{{env.XDG_CONFIG_HOME}}/starship.toml"
+# DOTFILESのディレクトリ
+DOTFILES_REPO_PATH = "{{env.HOME}}/dotfiles"
