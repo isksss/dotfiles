@@ -19,8 +19,11 @@
 "github:neovim/neovim" = "latest"
 "aqua:FiloSottile/age" = "latest"
 # 1password-cli = "latest"
-gh = "latest"
-glab = "latest"
+# gh = "latest"
+# glab = "latest"
+"aqua:x-motemen/ghq" = "latest"
+"aqua:mvdan/sh" = "latest"
+"aqua:tmux/tmux-builds" = "latest"
 
 # 言語
 go = "latest"
@@ -30,9 +33,6 @@ node = "24"
 
 # AI
 "npm:@openai/codex" = "latest"
-ghq = "latest"
-shfmt = "latest"
-tmux = "latest"
 
 [shell_alias]
 # 基本
