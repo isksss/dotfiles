@@ -11,6 +11,7 @@ conform.setup({
         javascriptreact = { "prettier" },
         typescript = { "prettier" },
         typescriptreact = { "prettier" },
+        vue = { "prettier" },
         java = { "google-java-format" },
     },
     format_on_save = {
