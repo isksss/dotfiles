@@ -7,6 +7,11 @@ conform.setup({
     formatters_by_ft = {
         go = { "gofmt" },
         rust = { "rustfmt" },
+        javascript = { "prettier" },
+        javascriptreact = { "prettier" },
+        typescript = { "prettier" },
+        typescriptreact = { "prettier" },
+        java = { "google-java-format" },
     },
     format_on_save = {
         timeout_ms = 1000,

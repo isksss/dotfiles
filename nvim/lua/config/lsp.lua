@@ -1,5 +1,4 @@
------------------------------------------------------------
--- LSP 設定 (Go / Rust)
+-- LSP 設定
 -----------------------------------------------------------
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local mason_lspconfig = require("mason-lspconfig")
@@ -35,6 +34,8 @@ mason_lspconfig.setup({
     ensure_installed = {
         "gopls",
         "rust_analyzer",
+        "ts_ls",
+        "jdtls",
     },
     automatic_enable = false,
 })
@@ -55,6 +56,12 @@ local servers = {
                 },
             },
         },
+    },
+    ts_ls = {
+        capabilities = capabilities,
+    },
+    jdtls = {
+        capabilities = capabilities,
     },
 }
 

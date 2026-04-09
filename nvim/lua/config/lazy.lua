@@ -65,6 +65,22 @@ require("lazy").setup({
         end,
     },
     {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        dependencies = {
+            "williamboman/mason.nvim",
+        },
+        config = function()
+            require("mason-tool-installer").setup({
+                ensure_installed = {
+                    "prettier",
+                    "eslint_d",
+                    "google-java-format",
+                    "checkstyle",
+                },
+            })
+        end,
+    },
+    {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         dependencies = {
@@ -83,6 +99,23 @@ require("lazy").setup({
         event = { "BufWritePre" },
         config = function()
             require("config.format")
+        end,
+    },
+    {
+        "mfussenegger/nvim-lint",
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            require("config.lint")
+        end,
+    },
+    {
+        "ibhagwan/fzf-lua",
+        cmd = { "FzfLua" },
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+        config = function()
+            require("config.fzf")
         end,
     },
 })
