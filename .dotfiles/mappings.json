@@ -8,5 +8,6 @@
     "alacritty/alacritty.toml": "~/.config/alacritty/alacritty.toml",
     "zellij/config.kdl": "~/.config/zellij/config.kdl",
     "lazygit/config.yml": "~/.config/lazygit/config.yml",
-    "ghq/config.yml": "~/.config/ghq/config.yml"
+    "ghq/config.yml": "~/.config/ghq/config.yml",
+    "atuin/config.toml": "~/.config/atuin/config.toml"
 }

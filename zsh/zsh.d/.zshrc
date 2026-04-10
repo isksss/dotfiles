@@ -36,7 +36,6 @@ fi
 
 # ==========
 # alias
-alias cl="clear"
 alias re="exec ${SHELL} -l"
 alias cdrepo='cd "$(ghq list -p | fzf)"'
 
@@ -84,6 +83,11 @@ fi
 # fzf
 if command -v fzf >/dev/null 2>&1; then
 	. <(fzf --zsh)
+fi
+
+# atuin
+if command -v atuin >/dev/null 2>&1; then
+	eval "$(atuin init zsh)"
 fi
 
 # wtp
