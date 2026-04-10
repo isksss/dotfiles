@@ -6,7 +6,7 @@ require("bufferline").setup({
         diagnostics = "nvim_lsp",
         offsets = {
             {
-                filetype = "fern",
+                filetype = "ddu-filer",
                 text = "Explorer",
                 highlight = "Directory",
                 text_align = "left",

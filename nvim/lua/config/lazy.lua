@@ -21,14 +21,25 @@ vim.opt.rtp:prepend(lazypath)
 -----------------------------------------------------------
 require("lazy").setup({
     {
-        "lambdalisue/vim-fern",
-        cmd = { "Fern" },
+        "vim-denops/denops.vim",
+        lazy = false,
+    },
+    {
+        "Shougo/ddu.vim",
+        cmd = { "DduFiles", "DduBuffers", "DduLiveGrep", "DduExplorer" },
         dependencies = {
-            "lambdalisue/fern-renderer-devicons.vim",
-            "lambdalisue/nerdfont.vim",
+            "Shougo/ddu-ui-ff",
+            "Shougo/ddu-ui-filer",
+            "Shougo/ddu-kind-file",
+            "Shougo/ddu-source-buffer",
+            "Shougo/ddu-source-file",
+            "Shougo/ddu-source-file_rec",
+            "Shougo/ddu-filter-matcher_substring",
+            "Shougo/ddu-filter-sorter_alpha",
+            "shun/ddu-source-rg",
         },
         config = function()
-            require("config.file_explorer")
+            require("config.ddu").setup()
         end,
     },
     -- ステータスライン
@@ -111,17 +122,20 @@ require("lazy").setup({
         end,
     },
     {
-        "hrsh7th/nvim-cmp",
+        "Shougo/ddc.vim",
         event = "InsertEnter",
         dependencies = {
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-path",
-            "L3MON4D3/LuaSnip",
-            "saadparwaiz1/cmp_luasnip",
+            "Shougo/pum.vim",
+            "Shougo/ddc-ui-pum",
+            "Shougo/ddc-source-around",
+            "LumaKernel/ddc-source-file",
+            "Shougo/ddc-source-lsp",
+            "Shougo/ddc-matcher_head",
+            "Shougo/ddc-sorter_rank",
+            "Shougo/ddc-converter_remove_overlap",
         },
         config = function()
-            require("config.completion")
+            require("config.ddc").setup()
         end,
     },
     {
@@ -136,16 +150,6 @@ require("lazy").setup({
         event = { "BufReadPre", "BufNewFile" },
         config = function()
             require("config.lint")
-        end,
-    },
-    {
-        "ibhagwan/fzf-lua",
-        cmd = { "FzfLua" },
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-        },
-        config = function()
-            require("config.fzf")
         end,
     },
 })
