@@ -37,7 +37,7 @@ node = "24"
 ghq = "latest"
 shfmt = "latest"
 tmux = "latest"
-rust = "latest"
+# rust = "latest"
 # "cargo:atuin" = "latest"
 atuin = "latest"
 

@@ -33,6 +33,7 @@ end
 function M.files()
     start("files", {
         ui = "ff",
+        resume = true,
         sources = {
             { name = "file_rec" },
         },
@@ -115,6 +116,17 @@ function M.setup()
             },
             file_rec = {
                 hidden = true,
+                ignoredDirectories = {
+                    ".git",
+                    ".cache",
+                    "node_modules",
+                    "dist",
+                    "build",
+                    "target",
+                    "coverage",
+                    ".next",
+                    ".nuxt",
+                },
             },
             rg = {
                 args = {

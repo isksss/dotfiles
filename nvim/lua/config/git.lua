@@ -13,5 +13,6 @@ require("gitsigns").setup({
     current_line_blame_opts = {
         delay = 300,
     },
+    numhl = true,
     signcolumn = true,
 })

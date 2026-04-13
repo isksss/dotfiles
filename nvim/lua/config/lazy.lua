@@ -26,6 +26,7 @@ require("lazy").setup({
     },
     {
         "Shougo/ddu.vim",
+        event = "VeryLazy",
         cmd = { "DduFiles", "DduBuffers", "DduLiveGrep", "DduExplorer" },
         dependencies = {
             "Shougo/ddu-ui-ff",
@@ -40,6 +41,29 @@ require("lazy").setup({
         },
         config = function()
             require("config.ddu").setup()
+        end,
+    },
+    {
+        "ibhagwan/fzf-lua",
+        cmd = "FzfLua",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+        config = function()
+            require("config.fzf").setup()
+        end,
+    },
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        cmd = "Neotree",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
+            "nvim-tree/nvim-web-devicons",
+        },
+        config = function()
+            require("config.neo-tree").setup()
         end,
     },
     -- ステータスライン
