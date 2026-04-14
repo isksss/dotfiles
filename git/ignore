@@ -1,0 +1,21 @@
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Editor swap and backup files
+*.swp
+*.swo
+*~
+
+# mise
+.mise.local.toml
+
+# env
+.env
+
+# codex
+.codex
+
+# code-workspace
+*.local.code-workspace
+

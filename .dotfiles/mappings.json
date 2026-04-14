@@ -9,5 +9,6 @@
     "zellij/config.kdl": "~/.config/zellij/config.kdl",
     "lazygit/config.yml": "~/.config/lazygit/config.yml",
     "ghq/config.yml": "~/.config/ghq/config.yml",
-    "atuin/config.toml": "~/.config/atuin/config.toml"
+    "atuin/config.toml": "~/.config/atuin/config.toml",
+    "git/ignore": "~/.config/git/ignore"
 }

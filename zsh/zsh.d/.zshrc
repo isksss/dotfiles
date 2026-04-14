@@ -70,6 +70,19 @@ if command -v lazygit >/dev/null 2>&1; then
 	alias lg="lazygit"
 fi
 
+# docker
+if command -v docker >/dev/null 2>&1; then
+	alias d="docker"
+	alias dc="docker compose"
+	alias dce="docker compose exec"
+	alias dps="docker ps"
+	alias di="docker images"
+fi
+
+if command -v lazydocker >/dev/null 2>&1; then
+	alias ld="lazydocker"
+fi
+
 # zellij
 if command -v zellij >/dev/null 2>&1; then
 	alias zl="zellij"

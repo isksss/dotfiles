@@ -40,6 +40,7 @@ tmux = "latest"
 # rust = "latest"
 # "cargo:atuin" = "latest"
 atuin = "latest"
+"npm:@devcontainers/cli" = "latest"
 
 [shell_alias]
 # 基本
