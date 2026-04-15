@@ -41,6 +41,7 @@ tmux = "latest"
 # "cargo:atuin" = "latest"
 atuin = "latest"
 "npm:@devcontainers/cli" = "latest"
+aws-cli = { version = "latest", symlink_bins = "true" }
 
 [shell_alias]
 # 基本

@@ -24,3 +24,5 @@ keymap("i", "jj", "<Esc>", { desc = "ノーマルモードに戻る" })
 keymap("n", "<leader>w", ":w<CR>", { desc = "ファイルを保存する" })
 -- 閉じる
 keymap("n", "<leader>q", ":q<CR>", { desc = "ファイルを閉じる" })
+-- Esc を2回で検索ハイライトを消す
+keymap("n", "<Esc><Esc>", "<cmd>nohlsearch<CR>", { desc = "検索ハイライトを消す" })

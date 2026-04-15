@@ -40,67 +40,43 @@ function M.setup()
 
     vim.fn["ddc#enable"]()
 
-    vim.keymap.set("i", "<Tab>", function()
-        if vim.fn["pum#visible"]() == 1 then
-            return vim.fn["pum#map#insert_relative"](1)
-        end
+    vim.cmd([[
+      function! DdcTabComplete() abort
+        if pum#visible()
+          return "\<Cmd>call pum#map#insert_relative(+1)\<CR>"
+        endif
+        if col('.') <= 1 || getline('.')[col('.') - 2] =~# '\s'
+          return "\<Tab>"
+        endif
+        return ddc#map#manual_complete()
+      endfunction
+    ]])
 
-        local col = vim.fn.col(".")
-        if col <= 1 then
-            return "<Tab>"
-        end
+    vim.cmd([[
+      function! DdcShiftTabComplete() abort
+        if pum#visible()
+          return "\<Cmd>call pum#map#insert_relative(-1)\<CR>"
+        endif
+        return "\<S-Tab>"
+      endfunction
+    ]])
 
-        local line = vim.fn.getline(".")
-        if line:sub(col - 1, col - 1):match("%s") then
-            return "<Tab>"
-        end
+    vim.cmd([[
+      function! DdcEnterComplete() abort
+        if pum#visible()
+          return "\<Cmd>call pum#map#confirm()\<CR>"
+        endif
+        return "\<CR>"
+      endfunction
+    ]])
 
-        return vim.fn["ddc#map#manual_complete"]()
-    end, { desc = "補完候補を選択", expr = true, replace_keycodes = false, silent = true })
-
-    vim.keymap.set("i", "<S-Tab>", function()
-        if vim.fn["pum#visible"]() == 1 then
-            return vim.fn["pum#map#insert_relative"](-1)
-        end
-
-        return "<S-Tab>"
-    end, { desc = "前の補完候補へ", expr = true, replace_keycodes = false, silent = true })
-
-    vim.keymap.set("i", "<C-n>", function()
-        if vim.fn["pum#visible"]() == 1 then
-            return vim.fn["pum#map#select_relative"](1)
-        end
-
-        return vim.fn["ddc#map#manual_complete"]()
-    end, { desc = "次の補完候補へ", expr = true, replace_keycodes = false, silent = true })
-
-    vim.keymap.set("i", "<C-p>", function()
-        if vim.fn["pum#visible"]() == 1 then
-            return vim.fn["pum#map#select_relative"](-1)
-        end
-
-        return "<C-p>"
-    end, { desc = "前の補完候補へ", expr = true, replace_keycodes = false, silent = true })
-
-    vim.keymap.set("i", "<CR>", function()
-        if vim.fn["pum#visible"]() == 1 then
-            return vim.fn["pum#map#confirm"]()
-        end
-
-        return "<CR>"
-    end, { desc = "補完を確定", expr = true, replace_keycodes = false, silent = true })
-
-    vim.keymap.set("i", "<C-e>", function()
-        if vim.fn["pum#visible"]() == 1 then
-            return vim.fn["pum#map#cancel"]()
-        end
-
-        return "<C-e>"
-    end, { desc = "補完を閉じる", expr = true, replace_keycodes = false, silent = true })
-
-    vim.keymap.set("i", "<C-Space>", function()
-        return vim.fn["ddc#map#manual_complete"]()
-    end, { desc = "補完を手動で開く", expr = true, replace_keycodes = false, silent = true })
+    vim.cmd([[inoremap <silent><expr> <Tab> DdcTabComplete()]])
+    vim.cmd([[inoremap <silent><expr> <S-Tab> DdcShiftTabComplete()]])
+    vim.cmd([[inoremap <silent> <C-n> <Cmd>call pum#map#insert_relative(+1)<CR>]])
+    vim.cmd([[inoremap <silent> <C-p> <Cmd>call pum#map#insert_relative(-1)<CR>]])
+    vim.cmd([[inoremap <silent><expr> <CR> DdcEnterComplete()]])
+    vim.cmd([[inoremap <silent> <C-e> <Cmd>call pum#map#cancel()<CR>]])
+    vim.cmd([[inoremap <silent><expr> <C-Space> ddc#map#manual_complete()]])
 end
 
 return M

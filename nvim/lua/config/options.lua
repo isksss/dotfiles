@@ -15,6 +15,10 @@ opt.wrap = false
 opt.scrolloff = 8
 opt.sidescrolloff = 8
 
+-- シンタックスハイライト
+vim.cmd("syntax enable")
+vim.cmd("filetype plugin indent on")
+
 -- インデント
 opt.expandtab = true
 opt.tabstop = 4
@@ -69,3 +73,11 @@ opt.listchars = {
 
 -- マウス操作
 opt.mouse = ""
+
+-- ShellScript の filetype を補助
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = { "*.sh", "*.bash", "*.zsh", ".bashrc", ".bash_profile", ".zshrc", ".zprofile" },
+    callback = function()
+        vim.bo.filetype = "sh"
+    end,
+})
