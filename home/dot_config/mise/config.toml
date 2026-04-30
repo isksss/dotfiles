@@ -1,6 +1,5 @@
 [tools]
 # CLIツール
-"aqua:rhysd/dotfiles" = "latest"
 "aqua:jdx/usage" = "latest"
 "aqua:ajeetdsouza/zoxide" = "latest"
 "aqua:sharkdp/bat" = "latest"
