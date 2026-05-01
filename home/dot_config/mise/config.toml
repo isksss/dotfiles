@@ -14,14 +14,15 @@ chezmoi = "latest"
 zellij = 'latest'
 atuin = "latest"
 shfmt = 'latest'
+op = "latest"
 
 "go:github.com/d-kuro/gwq/cmd/gwq" = "latest"
+"npm:@github/copilot" = "latest"
 
 # runtime
 go = 'latest'
 node = "24"
-"npm:@github/copilot" = "latest"
-op = "latest"
+deno = 'latest'
 
 [shell_alias]
 # 基本

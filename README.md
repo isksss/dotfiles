@@ -17,6 +17,14 @@ chezmoi apply
 mise install
 ```
 
+### 個人使用でOPコマンドが入っていない場合
+
+下記を`"$ZDOTDIR/local.zsh"`に追加する
+
+```sh
+export ISWORK=1
+```
+
 ## 管理している dotfiles
 
 | chezmoi source                             | 適用先                               | 内容                                                                         |

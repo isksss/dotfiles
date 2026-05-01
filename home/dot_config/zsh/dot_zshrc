@@ -9,6 +9,7 @@ if [[ -f "$ZDOTDIR/local.zsh" ]]; then
 else
 	touch "$ZDOTDIR/local.zsh"
 fi
+alias editlocal="nvim $ZDOTDIR/local.zsh"
 
 # ==========
 # zshオプション
@@ -122,8 +123,38 @@ if command -v glab >/dev/null 2>&1; then
 fi
 
 # op
-# alias op="op.exe"
+# 仕事用PCの場合は、sshキーを追加しないようにする
+if [ -z "$ISWORK" ]; then
+	if command -v op >/dev/null 2>&1; then
+
+		if ! op account get >/dev/null 2>&1; then
+			eval "$(op signin)"
+		fi
+		# ssh-agent 起動済み判定
+		if ! ssh-add -l >/dev/null 2>&1; then
+			eval "$(ssh-agent -s)"
+		fi
+
+		KEY_TMP="$(mktemp)"
+		op item get "GitHub_isksss_key" --fields private_key --reveal |
+			tr -d '"' |
+			tr -d '\r' |
+			sed '/^$/d' >"$KEY_TMP"
+
+		chmod 600 "$KEY_TMP"
+		# フィンガープリント取得
+		FP_NEW=$(ssh-keygen -lf "$KEY_TMP" | awk '{print $2}')
+
+		# agent内に存在するか判定
+		if ! ssh-add -l 2>/dev/null | awk '{print $2}' | grep -q "$FP_NEW"; then
+			ssh-add "$KEY_TMP"
+		fi
+
+		rm -f "$KEY_TMP"
+	fi
+fi
 if command -v op >/dev/null 2>&1; then
+
 	if ! op account get >/dev/null 2>&1; then
 		eval "$(op signin)"
 	fi
