@@ -12,6 +12,7 @@ neovim = "latest"
 lazygit = "latest"
 chezmoi = "latest"
 zellij = 'latest'
+atuin = "latest"
 
 "go:github.com/d-kuro/gwq/cmd/gwq" = "latest"
 

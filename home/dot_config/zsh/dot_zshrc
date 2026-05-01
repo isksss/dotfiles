@@ -125,6 +125,19 @@ fi
 # alias op="op.exe"
 if command -v op >/dev/null 2>&1; then
 	eval "$(op completion zsh)"
+	# windowsでssh-agentを動かすための設定
+	# wslで動かすときはsocatを入れる必要がある
+
+	# wslか判定
+	if grep -qEi "(Microsoft|WSL)" /proc/version &>/dev/null; then
+		# wslの場合はsocatを入れる必要がある
+		if ! command -v socat >/dev/null 2>&1; then
+			echo "socat is required for ssh-agent forwarding in WSL. Please install socat."
+			return
+		fi
+		export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
+		socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &
+	fi
 fi
 
 # starship
