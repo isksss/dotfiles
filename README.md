@@ -9,39 +9,32 @@
 
 ## セットアップ
 
-```sh
-curl -fsSL https://raw.githubusercontent.com/isksss/dotfiles/main/install.sh | bash
-```
-
-`install.sh` はリポジトリと `chezmoi`/`mise` の準備を行います。
-`chezmoi` は `pacman` を優先し、`pacman` がない場合は `yay` でインストールします。
-
 適用前に差分を確認してから反映します。
 
 ```sh
-chezmoi --source "$HOME/dotfiles" diff
-chezmoi --source "$HOME/dotfiles" apply
+chezmoi diff
+chezmoi apply
 mise install
 ```
 
 ## 管理している dotfiles
 
-| chezmoi source | 適用先 | 内容 |
-|---|---|---|
-| `home/dot_zshenv` | `~/.zshenv` | XDG 環境変数、`ZDOTDIR`、`PATH`、`EDITOR`、`STARSHIP_CONFIG` |
-| `home/dot_config/zsh/dot_zprofile` | `~/.config/zsh/.zprofile` | zsh profile |
-| `home/dot_config/zsh/dot_zshrc` | `~/.config/zsh/.zshrc` | zsh オプション、履歴設定、alias、mise/zoxide/fzf/atuin/starship などの初期化 |
-| `home/dot_bashrc` | `~/.bashrc` | bash での mise 初期化 |
-| `home/dot_config/mise/config.toml` | `~/.config/mise/config.toml` | CLI ツール、言語ランタイム、shell alias、環境変数 |
-| `home/dot_config/nvim` | `~/.config/nvim` | Neovim 設定 |
-| `home/dot_config/starship.toml` | `~/.config/starship.toml` | Starship prompt 設定 |
-| `home/dot_config/zellij/config.kdl` | `~/.config/zellij/config.kdl` | Zellij 設定 |
-| `home/dot_config/alacritty/alacritty.toml` | `~/.config/alacritty/alacritty.toml` | Alacritty フォント設定 |
-| `home/dot_config/lazygit/config.yml` | `~/.config/lazygit/config.yml` | Lazygit keybinding |
-| `home/dot_config/atuin/config.toml` | `~/.config/atuin/config.toml` | Atuin 設定 |
-| `home/dot_config/ghq/config.yml` | `~/.config/ghq/config.yml` | ghq 設定 |
-| `home/dot_config/git/ignore` | `~/.config/git/ignore` | グローバル gitignore |
-| `home/dot_config/Code/User/settings.json` | `~/.config/Code/User/settings.json` | VS Code user settings |
+| chezmoi source                             | 適用先                               | 内容                                                                         |
+| ------------------------------------------ | ------------------------------------ | ---------------------------------------------------------------------------- |
+| `home/dot_zshenv`                          | `~/.zshenv`                          | XDG 環境変数、`ZDOTDIR`、`PATH`、`EDITOR`、`STARSHIP_CONFIG`                 |
+| `home/dot_config/zsh/dot_zprofile`         | `~/.config/zsh/.zprofile`            | zsh profile                                                                  |
+| `home/dot_config/zsh/dot_zshrc`            | `~/.config/zsh/.zshrc`               | zsh オプション、履歴設定、alias、mise/zoxide/fzf/atuin/starship などの初期化 |
+| `home/dot_bashrc`                          | `~/.bashrc`                          | bash での mise 初期化                                                        |
+| `home/dot_config/mise/config.toml`         | `~/.config/mise/config.toml`         | CLI ツール、言語ランタイム、shell alias、環境変数                            |
+| `home/dot_config/nvim`                     | `~/.config/nvim`                     | Neovim 設定                                                                  |
+| `home/dot_config/starship.toml`            | `~/.config/starship.toml`            | Starship prompt 設定                                                         |
+| `home/dot_config/zellij/config.kdl`        | `~/.config/zellij/config.kdl`        | Zellij 設定                                                                  |
+| `home/dot_config/alacritty/alacritty.toml` | `~/.config/alacritty/alacritty.toml` | Alacritty フォント設定                                                       |
+| `home/dot_config/lazygit/config.yml`       | `~/.config/lazygit/config.yml`       | Lazygit keybinding                                                           |
+| `home/dot_config/atuin/config.toml`        | `~/.config/atuin/config.toml`        | Atuin 設定                                                                   |
+| `home/dot_config/ghq/config.yml`           | `~/.config/ghq/config.yml`           | ghq 設定                                                                     |
+| `home/dot_config/git/ignore`               | `~/.config/git/ignore`               | グローバル gitignore                                                         |
+| `home/dot_config/Code/User/settings.json`  | `~/.config/Code/User/settings.json`  | VS Code user settings                                                        |
 
 ## Neovim 設定
 
@@ -65,9 +58,9 @@ mise install
 ## 日常的な操作
 
 ```sh
-chezmoi --source "$HOME/dotfiles" status
-chezmoi --source "$HOME/dotfiles" diff
-chezmoi --source "$HOME/dotfiles" apply
+chezmoi status
+chezmoi diff
+chezmoi apply
 ```
 
 設定ファイルを追加する場合は、`home/` 配下に chezmoi の source state として配置します。

@@ -2,7 +2,7 @@
 ## All data file paths default to being relative to this directory.
 ## linux/mac: ~/.local/share/atuin (or XDG_DATA_HOME/atuin)
 ## windows: %USERPROFILE%/.local/share/atuin
-# data_dir = "~/.local/share/atuin"
+data_dir = "~/.local/share/atuin"
 
 ## where to store your database, default is your system data directory
 ## linux/mac: ~/.local/share/atuin/history.db
@@ -26,7 +26,7 @@
 ## either "l", "local" to use the system's current local timezone, or an offset
 ## from UTC in the format of "<+|->H[H][:M[M][:S[S]]]"
 ## for example: "+9", "-05", "+03:30", "-01:23:45", etc.
-# timezone = "local"
+timezone = "local"
 
 ## enable or disable automatic sync
 # auto_sync = true
@@ -44,7 +44,7 @@
 
 ## which search mode to use
 ## possible values: prefix, fulltext, fuzzy, skim
-# search_mode = "fuzzy"
+search_mode = "fuzzy"
 
 ## which filter mode to use by default
 ## possible values: "global", "host", "session", "session-preload", "directory", "workspace"

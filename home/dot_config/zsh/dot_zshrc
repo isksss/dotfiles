@@ -43,6 +43,8 @@ alias cdrepo='cd "$(ghq list -p | fzf)"'
 if command -v mise >/dev/null 2>&1; then
 	eval "$(mise activate zsh)"
 	eval "$(mise completion zsh)"
+
+	alias mx="mise x --"
 fi
 
 # zoxide
@@ -128,4 +130,22 @@ fi
 # starship
 if command -v starship >/dev/null 2>&1; then
 	eval "$(starship init zsh)"
+fi
+
+# chezmoi
+if command -v chezmoi >/dev/null 2>&1; then
+	eval "$(chezmoi completion zsh)"
+fi
+
+# fzf+ghq+gwq
+if command -v fzf >/dev/null 2>&1 && command -v ghq >/dev/null 2>&1 && command -v gwq >/dev/null 2>&1; then
+	function ghq-path() {
+		ghq list --full-path | fzf
+	}
+	function dev() {
+		local moveto
+		moveto=$(ghq-path)
+		cd "${moveto}" || exit 1
+	}
+	eval "$(gwq completion zsh)"
 fi

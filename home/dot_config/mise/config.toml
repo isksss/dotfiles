@@ -1,54 +1,35 @@
 [tools]
-# CLIツール
-"aqua:jdx/usage" = "latest"
-"aqua:ajeetdsouza/zoxide" = "latest"
-"aqua:sharkdp/bat" = "latest"
-"aqua:eza-community/eza" = "latest"
-"aqua:BurntSushi/ripgrep" = "latest"
-"aqua:dandavison/delta" = "latest"
-"aqua:satococoa/wtp" = "latest"
-"aqua:junegunn/fzf" = "latest"
-"aqua:sharkdp/fd" = "latest"
-"aqua:starship/starship" = "1.24.2"
-"aqua:jqlang/jq" = "latest"
-"aqua:jesseduffield/lazygit" = "latest"
-"aqua:jesseduffield/lazydocker" = "latest"
-"aqua:zellij-org/zellij" = "latest"
-"npm:@antfu/ni" = "latest"
-"github:neovim/neovim" = "latest"
-"aqua:FiloSottile/age" = "latest"
-"cargo:clock-rs" = "latest"
-# 1password-cli = "latest"
-# gh = "latest"
-# glab = "latest"
-"aqua:x-motemen/ghq" = "latest"
-"aqua:mvdan/sh" = "latest"
-"aqua:tmux/tmux-builds" = "latest"
-
-# 言語
-go = "latest"
-deno = "latest"
-java = "temurin-8"
-node = "24"
-
-# AI
-"npm:@openai/codex" = "latest"
+# tool
+"usage" = "latest"
+"fzf" = "latest"
 ghq = "latest"
-shfmt = "latest"
-tmux = "latest"
-# rust = "latest"
-# "cargo:atuin" = "latest"
-atuin = "latest"
-"npm:@devcontainers/cli" = "latest"
-aws-cli = { version = "latest", symlink_bins = "true" }
+eza = "latest"
+bat = "latest"
+ripgrep = 'latest'
+delta = "latest"
+starship = 'latest'
+neovim = "latest"
+lazygit = "latest"
+chezmoi = "latest"
+
+"go:github.com/d-kuro/gwq/cmd/gwq" = "latest"
+
+# runtime
+go = 'latest'
+node = "24"
+"npm:@github/copilot" = "latest"
 
 [shell_alias]
 # 基本
 cl = "clear"
+l = "ls"
+ll = "ls -la"
+la = "ls -A"
 
 # 追加ツール
 ls = "eza"
 cat = "bat"
+cz = "chezmoi"
 
 [env]
 XDG_CONFIG_HOME = "{{env.HOME}}/.config"
@@ -61,5 +42,3 @@ EDITOR = "nvim"
 PAGER = "bat"
 
 STARSHIP_CONFIG = "{{env.XDG_CONFIG_HOME}}/starship.toml"
-# DOTFILESのディレクトリ
-DOTFILES_REPO_PATH = "{{env.HOME}}/dotfiles"
