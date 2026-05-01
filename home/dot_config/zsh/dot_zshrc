@@ -124,20 +124,30 @@ fi
 # op
 # alias op="op.exe"
 if command -v op >/dev/null 2>&1; then
-	eval "$(op completion zsh)"
-	# windowsでssh-agentを動かすための設定
-	# wslで動かすときはsocatを入れる必要がある
-
-	# wslか判定
-	if grep -qEi "(Microsoft|WSL)" /proc/version &>/dev/null; then
-		# wslの場合はsocatを入れる必要がある
-		if ! command -v socat >/dev/null 2>&1; then
-			echo "socat is required for ssh-agent forwarding in WSL. Please install socat."
-			return
-		fi
-		export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
-		socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &
+	if ! op account get >/dev/null 2>&1; then
+		eval "$(op signin)"
 	fi
+	# ssh-agent 起動済み判定
+	if ! ssh-add -l >/dev/null 2>&1; then
+		eval "$(ssh-agent -s)"
+	fi
+
+	KEY_TMP="$(mktemp)"
+	op item get "GitHub_isksss_key" --fields private_key --reveal |
+		tr -d '"' |
+		tr -d '\r' |
+		sed '/^$/d' >"$KEY_TMP"
+
+	chmod 600 "$KEY_TMP"
+	# フィンガープリント取得
+	FP_NEW=$(ssh-keygen -lf "$KEY_TMP" | awk '{print $2}')
+
+	# agent内に存在するか判定
+	if ! ssh-add -l 2>/dev/null | awk '{print $2}' | grep -q "$FP_NEW"; then
+		ssh-add "$KEY_TMP"
+	fi
+
+	rm -f "$KEY_TMP"
 fi
 
 # starship

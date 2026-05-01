@@ -13,6 +13,7 @@ lazygit = "latest"
 chezmoi = "latest"
 zellij = 'latest'
 atuin = "latest"
+shfmt = 'latest'
 
 "go:github.com/d-kuro/gwq/cmd/gwq" = "latest"
 
@@ -20,6 +21,7 @@ atuin = "latest"
 go = 'latest'
 node = "24"
 "npm:@github/copilot" = "latest"
+op = "latest"
 
 [shell_alias]
 # 基本
