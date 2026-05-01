@@ -11,6 +11,7 @@ starship = 'latest'
 neovim = "latest"
 lazygit = "latest"
 chezmoi = "latest"
+zellij = 'latest'
 
 "go:github.com/d-kuro/gwq/cmd/gwq" = "latest"
 

@@ -1,5 +1,14 @@
 {
     "files.associations": {
         "*.tmpl": "gotemplate",
-    }
+    },
+    "editor.formatOnSave": true,
+    // 言語
+    // markdown
+    "[markdown]": {
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+        "editor.codeActionsOnSave": {
+            "source.fixAll.markdownlint": "always"
+        }
+    },
 }
