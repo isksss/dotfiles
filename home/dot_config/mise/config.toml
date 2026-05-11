@@ -18,6 +18,8 @@ op = "latest"
 
 "go:github.com/d-kuro/gwq/cmd/gwq" = "latest"
 "npm:@github/copilot" = "latest"
+"npm:playwright" = "latest"
+"npm:@antfu/ni" = "latest"
 
 # runtime
 go = 'latest'
