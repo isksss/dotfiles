@@ -74,21 +74,24 @@ STATUSLINE_DIR_SUBSTITUTIONS=(
 )
 
 _statusline_truncate_path() {
-  local raw path
+  local path
   local -a parts tail
 
-  raw=${PWD/#$HOME/~}
-  parts=(${(s:/:)raw})
+  # ホームディレクトリそのものの場合は ~ だけを返す
+  if [[ $PWD == $HOME ]]; then
+    print -r -- "~"
+    return
+  fi
+
+  # ホームディレクトリ以下の場合は ~ に置き換える
+  path=${PWD/#$HOME/~}
+  parts=(${(s:/:)path})
 
   if (( ${#parts} > 3 )); then
     tail=(${parts[-3,-1]})
-    if [[ $parts[1] == '~' ]]; then
-      path="~/${(j:/:)tail}"
-    else
-      path="…/${(j:/:)tail}"
-    fi
+    path="…/${(j:/:)tail}"
   else
-    path=$raw
+    path=$path
   fi
 
   local -a out
@@ -226,8 +229,9 @@ _statusline_precmd() {
     git_user=$(command git config user.name 2>/dev/null)
     git_state=$(_statusline_git_status)
     p+="%K{#394260}%F{#769ff0} "
-    [[ -n $git_user ]] && p+="${git_user} "
-    p+=" ${branch}"
+    # ユーザ名が設定されている場合は表示
+    # [[ -n $git_user ]] && p+="${git_user} "
+    p+="󰊢 ${branch}"
     [[ -n $git_state ]] && p+=" ${git_state}"
     p+=" %f%k"
   fi
