@@ -92,15 +92,22 @@ _statusline_truncate_path() {
   fi
 
   local -a out
-  local part
+  local part part_display
   local sep=''
   out=()
   for part in ${(s:/:)path}; do
+    # Apply directory substitutions first
     if [[ -n ${STATUSLINE_DIR_SUBSTITUTIONS[$part]} ]]; then
-      out+=(${STATUSLINE_DIR_SUBSTITUTIONS[$part]})
+      part_display=${STATUSLINE_DIR_SUBSTITUTIONS[$part]}
     else
-      out+=($part)
+      # Truncate long names to first 6 chars + …
+      if (( ${#part} > 10 )); then
+        part_display="${part[1,6]}…"
+      else
+        part_display=$part
+      fi
     fi
+    out+=($part_display)
   done
 
   local joined=''
@@ -215,8 +222,12 @@ _statusline_precmd() {
 
   p+="%F{#769ff0}%K{#394260}${STATUSLINE_SEPARATOR}%f%k"
   if [[ -n $branch ]]; then
+    local git_user
+    git_user=$(command git config user.name 2>/dev/null)
     git_state=$(_statusline_git_status)
-    p+="%K{#394260}%F{#769ff0}  ${branch}"
+    p+="%K{#394260}%F{#769ff0} "
+    [[ -n $git_user ]] && p+="${git_user} "
+    p+=" ${branch}"
     [[ -n $git_state ]] && p+=" ${git_state}"
     p+=" %f%k"
   fi
