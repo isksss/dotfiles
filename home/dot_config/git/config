@@ -1,5 +1,11 @@
 [ghq]
   root = ~/ghq
+
+# Default: personal user
 [user]
 	name = isksss
 	email = 104404522+isksss@users.noreply.github.com
+
+# Work configuration for ghq directory (only if config.work exists)
+[includeIf "hasconfig:path=~/.config/git/config.work"]
+	path = config.work
