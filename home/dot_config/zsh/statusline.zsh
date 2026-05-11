@@ -1,5 +1,69 @@
 setopt prompt_subst
+_statusline_os_icon() {
+  local os id
+  os=$(uname -s)
+  case $os in
+    Darwin)
+      printf '\xef\x8c\x82'  # U+F302  macOS
+      return
+      ;;
+    FreeBSD)   printf '\xef\x8c\x8c'; return ;;  # U+F30C
+    OpenBSD)   printf '\xef\x8c\xa8'; return ;;  # U+F328
+    NetBSD)    printf '\xef\x80\xa4'; return ;;  # U+F024
+    DragonFly) printf '\xee\x8a\x8e'; return ;;  # U+E28E
+    Linux) ;;
+    *)         printf '\xef\x8c\x9a'; return ;;  # U+F31A  Unknown
+  esac
 
+  # Linux: detect distro via /etc/os-release
+  if [[ -f /etc/os-release ]]; then
+    id=$(. /etc/os-release; echo "$ID")
+  fi
+  case $id in
+    aix)          printf '\xee\xa3\x8c' ;;  # U+E8CC
+    almalinux)    printf '\xef\x8c\x9d' ;;  # U+F31D
+    alpine)       printf '\xef\x8c\x80' ;;  # U+F300
+    altlinux)     printf '\xef\x8c\x9a' ;;  # U+F31A
+    amzn)         printf '\xef\x89\xb0' ;;  # U+F270  Amazon
+    android)      printf '\xef\x85\xbb' ;;  # U+F17B
+    aosc)         printf '\xef\x8c\x81' ;;  # U+F301
+    arch)         printf '\xef\x8c\x83' ;;  # U+F303
+    artix)        printf '\xef\x8c\x9f' ;;  # U+F31F
+    centos)       printf '\xef\x8c\x84' ;;  # U+F304
+    debian)       printf '\xef\x8c\x86' ;;  # U+F306
+    elementary)   printf '\xef\x8c\x89' ;;  # U+F309
+    endeavouros)  printf '\xef\x8c\xa2' ;;  # U+F322
+    fedora)       printf '\xef\x8c\x8a' ;;  # U+F30A
+    garuda)       printf '\xef\x8c\xb7' ;;  # U+F337
+    gentoo)       printf '\xef\x8c\x8d' ;;  # U+F30D
+    hardenedbsd)  printf '\xf3\xb0\x9e\x8c' ;;  # U+F078C
+    illumos)      printf '\xef\x8c\xa6' ;;  # U+F326
+    kali)         printf '\xef\x8c\xa7' ;;  # U+F327
+    linuxmint)    printf '\xef\x8c\x8e' ;;  # U+F30E  Mint
+    manjaro)      printf '\xef\x8c\x92' ;;  # U+F312
+    nixos)        printf '\xef\x8c\x93' ;;  # U+F313
+    nobara)       printf '\xef\x8e\x80' ;;  # U+F380
+    opensuse-leap|opensuse-tumbleweed|opensuse*)
+                  printf '\xef\x8c\x94' ;;  # U+F314
+    ol)           printf '\xf3\xb0\xba\xa1' ;;  # U+F0EA1  OracleLinux
+    pop)          printf '\xef\x8c\xaa' ;;  # U+F32A  Pop!_OS
+    raspbian)     printf '\xef\x8c\x95' ;;  # U+F315
+    rhel)         printf '\xf3\xb1\x84\x9b' ;;  # U+F111B  RedHat
+    rocky)        printf '\xef\x8c\xab' ;;  # U+F32B
+    solus)        printf '\xef\x8c\xad' ;;  # U+F32D
+    suse)         printf '\xef\x8c\x94' ;;  # U+F314
+    ubuntu)       printf '\xef\x8c\x9b' ;;  # U+F31B
+    uos)          printf '\xef\x8c\xa1' ;;  # U+F321
+    void)         printf '\xef\x8c\xae' ;;  # U+F32E
+    zorin)        printf '\xef\x8c\xaf' ;;  # U+F32F
+    *)            printf '\xef\x8c\x9a' ;;  # U+F31A  Linux generic
+  esac
+}
+_statusline_in_docker() {
+  [[ -f /.dockerenv ]] && return 0
+  [[ -r /proc/1/cgroup ]] && grep -q 'docker\|containerd\|kubepods' /proc/1/cgroup 2>/dev/null && return 0
+  return 1
+}
 typeset -g STATUSLINE_SEPARATOR=''
 typeset -gA STATUSLINE_DIR_SUBSTITUTIONS
 STATUSLINE_DIR_SUBSTITUTIONS=(
@@ -145,7 +209,7 @@ _statusline_precmd() {
 
   p=''
   p+="%F{#a3aed2}░▒▓%f"
-  p+="%K{#a3aed2}%F{#090c0c}  %f%k"
+  p+="%K{#a3aed2}%F{#090c0c} $( _statusline_in_docker && printf '\xef\x84\xb8 ' )$(_statusline_os_icon) %f%k"
   p+="%F{#a3aed2}%K{#769ff0}${STATUSLINE_SEPARATOR}%f%k"
   p+="%K{#769ff0}%F{#e3e5e5} ${dir} %f%k"
 

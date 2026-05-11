@@ -1,4 +1,7 @@
 {
+    "editor.fontFamily": "'HackGen Console NF', 'BIZ UDゴシック', 'MS Gothic', monospace",
+    "chat.fontFamily": "'HackGen Console NF', 'BIZ UDゴシック', 'MS Gothic', monospace",
+    "chat.editor.fontFamily": "'HackGen Console NF', 'BIZ UDゴシック', 'MS Gothic', monospace",
     "files.associations": {
         "*.tmpl": "gotemplate",
     },
