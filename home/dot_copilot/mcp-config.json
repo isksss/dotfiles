@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "nuxt": {
+      "type": "http",
+      "url": "https://nuxt.com/mcp"
+    },
+    "nuxt-ui": {
+      "type": "http",
+      "url": "https://ui.nuxt.com/mcp"
+    },
+    "ag-mcp": {
+      "command": "npx",
+      "args": ["ag-mcp"],
+      "type": "stdio"
+    },
+    "playwright": {
+      "type": "local",
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"],
+      "env": {},
+      "tools": ["*"]
+    }
+  }
+}

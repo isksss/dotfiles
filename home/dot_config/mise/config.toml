@@ -14,16 +14,19 @@ chezmoi = "latest"
 zellij = 'latest'
 atuin = "latest"
 shfmt = 'latest'
-op = "latest"
+# OSに1passwordを入れているので、miseで管理する必要はない
+# op = "latest"
 
 "go:github.com/d-kuro/gwq/cmd/gwq" = "latest"
 "npm:@github/copilot" = "latest"
+"npm:@openai/codex" = "latest"
+"npm:playwright" = "latest"
+"npm:@antfu/ni" = "latest"
 
 # runtime
 go = 'latest'
 node = "24"
 deno = 'latest'
-"npm:@openai/codex" = "latest"
 
 [shell_alias]
 # 基本
@@ -48,3 +51,5 @@ EDITOR = "nvim"
 PAGER = "bat"
 
 STARSHIP_CONFIG = "{{env.XDG_CONFIG_HOME}}/starship.toml"
+# miseの設定ファイルは全て信頼するようにする
+MISE_TRUSTED_CONFIG_PATHS = "/"
