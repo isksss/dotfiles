@@ -157,7 +157,12 @@ fi
 
 # starship
 if command -v starship >/dev/null 2>&1; then
-	eval "$(starship init zsh)"
+	# カスタムするためにいったん無効化
+	# eval "$(starship init zsh)"
+fi
+# custom statusline
+if [[ -f "$ZDOTDIR/statusline.zsh" ]]; then
+	. "$ZDOTDIR/statusline.zsh"
 fi
 
 # chezmoi
