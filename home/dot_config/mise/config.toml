@@ -27,6 +27,8 @@ shfmt = 'latest'
 go = 'latest'
 node = "24"
 deno = 'latest'
+"npm:markdownlint-cli2" = "latest"
+glab = { version = "latest", exe = "glab" }
 
 [shell_alias]
 # 基本
@@ -41,6 +43,9 @@ cat = "bat"
 cz = "chezmoi"
 
 [env]
+LANG = "ja_JP.UTF-8"
+LC_ALL = "ja_JP.UTF-8"
+
 XDG_CONFIG_HOME = "{{env.HOME}}/.config"
 XDG_CACHE_HOME = "{{env.HOME}}/.cache"
 XDG_DATA_HOME = "{{env.HOME}}/.local/share"

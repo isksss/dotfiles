@@ -135,13 +135,34 @@ fi
 
 # fzf+ghq+gwq
 if command -v fzf >/dev/null 2>&1 && command -v ghq >/dev/null 2>&1 && command -v gwq >/dev/null 2>&1; then
+	# ghqでリポジトリを選択する関数
 	function ghq-path() {
 		ghq list --full-path | fzf
 	}
+	# ghqで選択したリポジトリに移動する関数
 	function dev() {
 		local moveto
 		moveto=$(ghq-path)
 		cd "${moveto}" || exit 1
+	}
+	# マージ済みブランチを削除する関数
+	function gwq-clean-merged() {
+		local current
+		current=$(git branch --show-current)
+
+		git branch --merged |
+			sed 's/^[*+] //' |
+			grep -v '^main$' |
+			grep -v '^master$' |
+			grep -v '^develop$' |
+			grep -v "^${current}$" |
+			while read -r branch; do
+				[[ -z "$branch" ]] && continue
+
+				echo "remove $branch"
+				gwq remove "$branch"
+				git branch -d "$branch"
+			done
 	}
 	eval "$(gwq completion zsh)"
 fi
