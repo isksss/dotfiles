@@ -161,6 +161,7 @@ if command -v fzf >/dev/null 2>&1 && command -v ghq >/dev/null 2>&1 && command -
 
 				echo "remove $branch"
 				gwq remove "$branch"
+				git branch -d "$branch"
 			done
 	}
 	eval "$(gwq completion zsh)"
