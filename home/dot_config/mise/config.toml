@@ -27,7 +27,8 @@ shfmt = 'latest'
 go = 'latest'
 node = "24"
 deno = 'latest'
-"npm:markdownlint" = "latest"
+"npm:markdownlint-cli2" = "latest"
+glab = { version = "latest", exe = "glab" }
 
 [shell_alias]
 # 基本
