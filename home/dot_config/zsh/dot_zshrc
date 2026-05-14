@@ -93,6 +93,7 @@ if command -v zellij >/dev/null 2>&1; then
 	zla() {
 		local session
 		session="$(zellij ls -s | fzf --reverse --height 40%)" || return
+		[[ -n "$session" ]] || return 0
 		zellij a "$session"
 	}
 fi
@@ -143,7 +144,8 @@ if command -v fzf >/dev/null 2>&1 && command -v ghq >/dev/null 2>&1 && command -
 	function dev() {
 		local moveto
 		moveto=$(ghq-path)
-		cd "${moveto}" || exit 1
+		[[ -n "$moveto" ]] || return 0
+		cd "${moveto}" || return 1
 	}
 	# マージ済みブランチを削除する関数
 	function gwq-clean-merged() {

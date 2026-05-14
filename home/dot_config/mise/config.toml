@@ -29,6 +29,8 @@ node = "24"
 deno = 'latest'
 "npm:markdownlint-cli2" = "latest"
 glab = { version = "latest", exe = "glab" }
+lazydocker = "latest"
+yazi = "latest"
 
 [shell_alias]
 # 基本

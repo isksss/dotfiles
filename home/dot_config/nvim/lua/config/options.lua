@@ -36,7 +36,6 @@ opt.hlsearch = true
 opt.backspace = { "indent", "eol", "start" }
 opt.clipboard = "unnamedplus"
 opt.confirm = true
-opt.mouse = "a"
 
 -- 分割
 opt.splitbelow = true
@@ -71,7 +70,7 @@ opt.listchars = {
     nbsp = "␣",
 }
 
--- マウス操作
+-- マウス操作は無効
 opt.mouse = ""
 
 -- ShellScript の filetype を補助

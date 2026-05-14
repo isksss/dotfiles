@@ -11,7 +11,7 @@
 # miseをinstall
 curl https://mise.run | sh
 # dotfilesをセットアップ
-"$HOME/.local/bin/mise" exec chezmoi@latest -- "chezmoi init --apply isksss && mise up"
+"$HOME/.local/bin/mise" exec chezmoi@latest -- "chezmoi init --apply isksss && mise install"
 ```
 
 ## セットアップ
