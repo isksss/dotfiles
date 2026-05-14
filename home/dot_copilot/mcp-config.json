@@ -19,6 +19,10 @@
       "args": ["@playwright/mcp@latest"],
       "env": {},
       "tools": ["*"]
+    },
+    "excel": {
+      "command": "uvx",
+      "args": ["excel-mcp-server", "stdio"]
     }
   }
 }
