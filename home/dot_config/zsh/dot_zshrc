@@ -125,11 +125,6 @@ if command -v glab >/dev/null 2>&1; then
 	eval "$(glab completion -s zsh)"
 fi
 
-# custom statusline
-if [[ -f "$ZDOTDIR/statusline.zsh" ]]; then
-	. "$ZDOTDIR/statusline.zsh"
-fi
-
 # chezmoi
 if command -v chezmoi >/dev/null 2>&1; then
 	eval "$(chezmoi completion zsh)"
@@ -170,7 +165,9 @@ if command -v fzf >/dev/null 2>&1 && command -v ghq >/dev/null 2>&1 && command -
 	eval "$(gwq completion zsh)"
 fi
 
-# zellijのタブ名を更新する
-if [[ -f "$ZDOTDIR/update_zellij_tabname.zsh" ]]; then
-	. "$ZDOTDIR/update_zellij_tabname.zsh"
+# ZDOTDIR以下のscriptsディレクトリにある.zshファイルを全て読み込む
+if [[ -d "$ZDOTDIR/scripts" ]]; then
+	for script in "$ZDOTDIR"/scripts/*.zsh; do
+		[[ -f "$script" ]] && . "$script"
+	done
 fi

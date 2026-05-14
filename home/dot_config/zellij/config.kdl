@@ -145,10 +145,10 @@ keybinds clear-defaults=true {
         }
     }
     shared_among "normal" "locked" {
-        bind "Alt left" { MoveFocusOrTab "left"; }
-        bind "Alt down" { MoveFocus "down"; }
-        bind "Alt up" { MoveFocus "up"; }
-        bind "Alt right" { MoveFocusOrTab "right"; }
+        // bind "Alt left" { MoveFocusOrTab "left"; }
+        // bind "Alt down" { MoveFocus "down"; }
+        // bind "Alt up" { MoveFocus "up"; }
+        // bind "Alt right" { MoveFocusOrTab "right"; }
         // bind "Alt +" { Resize "Increase"; }
         // bind "Alt -" { Resize "Decrease"; }
         // bind "Alt =" { Resize "Increase"; }
@@ -161,15 +161,16 @@ keybinds clear-defaults=true {
         // タブ移動
         bind "Alt [" { GoToPreviousTab; }
         bind "Alt ]" { GoToNextTab; }
-        bind "Alt {" { MoveTab "left"; }
-        bind "Alt }" { MoveTab "right"; }
+        // bind "Alt {" { MoveTab "left"; }
+        // bind "Alt }" { MoveTab "right"; }
         // パネル移動
         bind "Alt h" { MoveFocusOrTab "left"; }
         bind "Alt j" { MoveFocus "down"; }
         bind "Alt k" { MoveFocus "up"; }
         bind "Alt l" { MoveFocusOrTab "right"; }
         // 新規パネル作成
-        bind "Alt n" { NewPane; }
+        bind "Alt n" { NewPane "right"; }
+        bind "Alt Shift n" { NewPane "down"; }
         bind "Alt x" { CloseFocus; }
         // 新規タブ作成
         bind "Alt t" { NewTab; }
