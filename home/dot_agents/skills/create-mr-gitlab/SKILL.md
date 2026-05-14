@@ -94,11 +94,13 @@ glab auth status
 glab mr create \
   --source-branch "$(git branch --show-current)" \
   --target-branch "${BASE_BRANCH}" \
+  --remove-source-branch=true \
   --title "[update] （要約）" \
   --description "（生成した本文）" \
   --fill=false
 ```
 
+- ソース元ブランチの自動削除を既定で有効にします。必要なら `--remove-source-branch=false` に変更します。
 - ユーザーからマージ先ブランチ指定がある場合は `--target-branch` をその値に変更します。
 
 ### 4. マージリクエストのURLをユーザーに報告する
