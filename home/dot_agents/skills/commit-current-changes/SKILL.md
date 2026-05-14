@@ -43,7 +43,7 @@ description: 現在の Git 作業ツリーを確認し、適切な prefix 付き
    - サンドボックスの制約で Git メタデータが読み取り専用となり `git add` や `git commit` が失敗した場合、必要な承認付きで同じコマンドを再実行する。
    - `git` コマンドが読み取り専用メタデータ以外の理由で失敗した場合は、エラー内容をユーザーに報告し、可能な解決策を提示する。
    - 選んだ prefix 付き日本語メッセージでコミットする。
-   - コミットには必ず `Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>` を付与する。
+   - コミットには絶対 `Co-authored-by: Copilot` は付与しない
 
 5. 確認して報告する。
    - `git status --short` を実行する。
