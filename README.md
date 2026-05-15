@@ -23,3 +23,11 @@ chezmoi diff
 chezmoi apply
 mise install
 ```
+
+## Dockerでの検証手順
+
+Ubuntu 24.04 コンテナ上で Home Manager を適用し、主要コマンド・zsh設定の配置をまとめて検証できます。
+
+```sh
+./scripts/test-ubuntu-docker.sh
+```
