@@ -1,25 +1,29 @@
 # [dotfiles](https://github.com/isksss/dotfiles)
 
-`chezmoi` で管理している個人用 dotfiles です。
+Nix + Home Manager で管理している個人用 dotfiles です。
 
-## 使用ツール
+## 対応OS（優先）
 
-- [chezmoi](https://www.chezmoi.io/): dotfiles の配置と適用
-- [mise](https://github.com/jdx/mise): CLI ツールと言語ランタイムの管理
-
-```sh
-# miseをinstall
-curl https://mise.run | sh
-# dotfilesをセットアップ
-"$HOME/.local/bin/mise" exec chezmoi@latest -- "chezmoi init --apply isksss && mise up"
-```
+- WSL Ubuntu
+- Arch Linux
 
 ## セットアップ
 
-適用前に差分を確認してから反映します。
+### 1. Nix をインストール
+
+- 公式インストーラで `nix` を導入します。
+
+### 2. Home Manager を flake 経由で適用
 
 ```sh
-chezmoi diff
-chezmoi apply
-mise install
+# WSL Ubuntu
+nix run home-manager/master -- switch --flake .#ubuntu
+
+# Arch Linux
+nix run home-manager/master -- switch --flake .#arch
 ```
+
+## 管理方針
+
+- 旧運用の `chezmoi` / `mise` は利用しません。
+- ツールやランタイムは Nix で一元管理します。

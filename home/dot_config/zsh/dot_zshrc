@@ -41,14 +41,6 @@ fi
 alias re="exec ${SHELL} -l"
 alias cdrepo='cd "$(ghq list -p | fzf)"'
 
-# mise
-if command -v mise >/dev/null 2>&1; then
-	eval "$(mise activate zsh)"
-	eval "$(mise completion zsh)"
-
-	alias mx="mise x --"
-fi
-
 # zoxide
 if command -v zoxide >/dev/null 2>&1; then
 	eval "$(zoxide init zsh --cmd cd)"
@@ -126,11 +118,6 @@ fi
 # custom statusline
 if [[ -f "$ZDOTDIR/statusline.zsh" ]]; then
 	. "$ZDOTDIR/statusline.zsh"
-fi
-
-# chezmoi
-if command -v chezmoi >/dev/null 2>&1; then
-	eval "$(chezmoi completion zsh)"
 fi
 
 # fzf+ghq+gwq
