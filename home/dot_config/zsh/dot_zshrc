@@ -42,6 +42,11 @@ fi
 alias re="exec ${SHELL} -l"
 alias cdrepo='cd "$(ghq list -p | fzf)"'
 
+# ssh
+if [[ -r /proc/sys/kernel/osrelease ]] && grep -qi microsoft /proc/sys/kernel/osrelease && command -v ssh.exe >/dev/null 2>&1; then
+	alias ssh="ssh.exe"
+fi
+
 # mise
 if command -v mise >/dev/null 2>&1; then
 	eval "$(mise activate zsh)"
