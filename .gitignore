@@ -9,4 +9,4 @@ local.zsh
 .codex
 
 # 業務用gitconfig
-home/dot_config/git/config.work
+home/dot_config/git/*.gitconfig

@@ -1,0 +1,48 @@
+{
+  "home/.bashrc": "~/.bashrc",
+  "home/.vimrc": "~/.vimrc",
+  "home/.zshenv": "~/.zshenv",
+  ".agents/skills/code-review": [
+    "~/.agents/skills/code-review",
+    "~/.codex/skills/code-review"
+  ],
+  ".agents/skills/commit-current-changes": [
+    "~/.agents/skills/commit-current-changes",
+    "~/.codex/skills/commit-current-changes"
+  ],
+  ".agents/skills/create-logs": [
+    "~/.agents/skills/create-logs",
+    "~/.codex/skills/create-logs"
+  ],
+  ".agents/skills/create-mr-gitlab": [
+    "~/.agents/skills/create-mr-gitlab",
+    "~/.codex/skills/create-mr-gitlab"
+  ],
+  ".agents/skills/playwright-cli": [
+    "~/.agents/skills/playwright-cli",
+    "~/.codex/skills/playwright-cli"
+  ],
+  ".agents/skills/self-format": [
+    "~/.agents/skills/self-format",
+    "~/.codex/skills/self-format"
+  ],
+  ".agents/AGENTS.md": [
+    "~/.agents/AGENTS.md",
+    "~/.codex/AGENTS.md",
+    "~/.copilot/copilot-instructions.md"
+  ],
+  ".mcp.json": "~/.copilot/mcp-config.json",
+  "home/dot_config/Code/User": "~/.config/Code/User",
+  "home/dot_config/alacritty": "~/.config/alacritty",
+  "home/dot_config/atuin": "~/.config/atuin",
+  "home/dot_config/ghq": "~/.config/ghq",
+  "home/dot_config/git": "~/.config/git",
+  "home/dot_config/gwq": "~/.config/gwq",
+  "home/dot_config/lazygit": "~/.config/lazygit",
+  "mise.toml": "~/.config/mise/mise.toml",
+  "home/dot_config/nvim": "~/.config/nvim",
+  "home/dot_config/sheldon": "~/.config/sheldon",
+  "home/dot_config/starship.toml": "~/.config/starship.toml",
+  "home/dot_config/zellij": "~/.config/zellij",
+  "home/dot_config/zsh": "~/.config/zsh"
+}

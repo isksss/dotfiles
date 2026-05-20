@@ -1,0 +1,13 @@
+[init]
+	defaultBranch = main
+
+[ghq]
+  root = ~/ghq
+
+# Default: personal user
+[user]
+	name = isksss
+	email = isksss.dev@gmail.com
+
+[includeIf "gitdir:~/ghq/"]
+	path = work.gitconfig

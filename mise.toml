@@ -1,1 +1,56 @@
-home/dot_config/mise/config.toml
+[tools]
+# tool
+"usage" = "latest"
+"fzf" = "latest"
+ghq = "latest"
+eza = "latest"
+bat = "latest"
+ripgrep = 'latest'
+delta = "latest"
+starship = 'latest'
+neovim = "latest"
+lazygit = "latest"
+zellij = 'latest'
+atuin = "latest"
+shfmt = 'latest'
+# OSに1passwordを入れているので、miseで管理する必要はない
+# op = "latest"
+
+"go:github.com/d-kuro/gwq/cmd/gwq" = "latest"
+"npm:@github/copilot" = "latest"
+"npm:@openai/codex" = "latest"
+"npm:playwright" = "latest"
+"npm:@antfu/ni" = "latest"
+
+# runtime
+go = 'latest'
+node = "24"
+deno = 'latest'
+"npm:markdownlint-cli2" = "latest"
+glab = { version = "latest", exe = "glab" }
+lazydocker = "latest"
+yazi = "latest"
+uv = "latest"
+python = "latest"
+"go:github.com/rhysd/dotfiles" = "latest"
+"npm:@playwright/cli" = "latest"
+sheldon = "latest"
+
+[shell_alias]
+
+[env]
+LANG = "ja_JP.UTF-8"
+LC_ALL = "ja_JP.UTF-8"
+
+XDG_CONFIG_HOME = "{{env.HOME}}/.config"
+XDG_CACHE_HOME = "{{env.HOME}}/.cache"
+XDG_DATA_HOME = "{{env.HOME}}/.local/share"
+XDG_STATE_HOME = "{{env.HOME}}/.local/state"
+
+# LANG = "ja_JP.UTF-8"
+EDITOR = "nvim"
+PAGER = "bat"
+
+STARSHIP_CONFIG = "{{env.XDG_CONFIG_HOME}}/starship.toml"
+# miseの設定ファイルは全て信頼するようにする
+MISE_TRUSTED_CONFIG_PATHS = "/"
