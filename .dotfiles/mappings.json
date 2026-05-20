@@ -18,6 +18,10 @@
     "~/.agents/skills/create-mr-gitlab",
     "~/.codex/skills/create-mr-gitlab"
   ],
+  ".agents/skills/playwright-cli": [
+    "~/.agents/skills/playwright-cli",
+    "~/.codex/skills/playwright-cli"
+  ],
   ".agents/skills/self-format": [
     "~/.agents/skills/self-format",
     "~/.codex/skills/self-format"
@@ -28,6 +32,7 @@
     "~/.copilot/copilot-instructions.md"
   ],
   ".mcp.json": "~/.copilot/mcp-config.json",
+  "home/dot_codex/config.toml": "~/.codex/config.toml",
   "home/dot_config/Code/User": "~/.config/Code/User",
   "home/dot_config/alacritty": "~/.config/alacritty",
   "home/dot_config/atuin": "~/.config/atuin",
