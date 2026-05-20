@@ -133,6 +133,13 @@ fi
 # chezmoi
 if command -v chezmoi >/dev/null 2>&1; then
 	eval "$(chezmoi completion zsh)"
+	# chezmoiの管理下にあるディレクトリに移動する関数
+	ccd() {
+		local target
+		target="$(chezmoi source-path)/.." || return
+		[[ -n "$target" ]] || return 0
+		cd "$target" || return 1
+	}
 fi
 
 # fzf+ghq+gwq

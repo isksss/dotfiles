@@ -3,6 +3,7 @@
         "tamasfe.even-better-toml",
         "yzhang.markdown-all-in-one",
         "davidanson.vscode-markdownlint",
-        "denoland.vscode-deno"
+        "denoland.vscode-deno",
+        "mkhl.shfmt"
     ]
 }
