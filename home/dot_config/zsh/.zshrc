@@ -47,77 +47,68 @@ if command -v sheldon >/dev/null 2>&1; then
 	eval "$(sheldon source)"
 fi
 
-if (($+functions[abbr])); then
-	_zshrc_abbr() {
-		:
-	}
-	_zshrc_session_abbr() {
-		abbr --session --force --quieter "$1=$2"
-	}
-else
-	_zshrc_abbr() {
-		alias "$1=$2"
-	}
-	_zshrc_session_abbr() {
-		alias "$1=$2"
+# abbr
+if command -v abbr >/dev/null 2>&1; then
+	_abbr() {
+		abbr --quiet --force "$@" >/dev/null 2>&1
 	}
 fi
 
 # ==========
 # alias
-_zshrc_abbr re "exec ${SHELL} -l"
+_abbr re="exec ${SHELL} -l"
 
 # ssh
 if [[ -r /proc/sys/kernel/osrelease ]] && grep -qi microsoft /proc/sys/kernel/osrelease && command -v ssh.exe >/dev/null 2>&1; then
-	_zshrc_session_abbr ssh "ssh.exe"
+	alias ssh="ssh.exe"
 fi
 
 # zoxide
 if command -v zoxide >/dev/null 2>&1; then
 	eval "$(zoxide init zsh --cmd cd)"
 fi
-_zshrc_abbr .. "cd .."
+_abbr ..="cd .."
 
 # nvim
 if command -v nvim >/dev/null 2>&1; then
-	_zshrc_abbr vim "nvim"
+	_abbr n="nvim"
 fi
 
 # ls
 if command -v eza >/dev/null 2>&1; then
-	_zshrc_abbr ls "eza"
-	_zshrc_abbr la "eza -a"
-	_zshrc_abbr ll "eza -l"
+	_abbr ls="eza"
+	_abbr la="eza -a"
+	_abbr ll="eza -l"
 fi
 
 if command -v bat >/dev/null 2>&1; then
-	_zshrc_abbr cat "bat"
+	_abbr cat="bat"
 fi
 
 # lazygit
 if command -v lazygit >/dev/null 2>&1; then
-	_zshrc_abbr lg "lazygit"
+	_abbr lg="lazygit"
 fi
 
 # docker
 if command -v docker >/dev/null 2>&1; then
-	_zshrc_abbr d "docker"
-	_zshrc_abbr dc "docker compose"
-	_zshrc_abbr dce "docker compose exec"
-	_zshrc_abbr dps "docker ps"
-	_zshrc_abbr di "docker images"
+	_abbr d="docker"
+	_abbr dc="docker compose"
+	_abbr dce="docker compose exec"
+	_abbr dps="docker ps"
+	_abbr di="docker images"
 
 	# 補完
 	eval "$(docker completion zsh)"
 fi
 
 if command -v lazydocker >/dev/null 2>&1; then
-	_zshrc_abbr ld "lazydocker"
+	_abbr ldc="lazydocker"
 fi
 
 # zellij
 if command -v zellij >/dev/null 2>&1; then
-	_zshrc_abbr zl "zellij"
+	_abbr zl="zellij"
 	zla() {
 		local session
 		session="$(zellij ls -s | fzf --reverse --height 40%)" || return
@@ -194,7 +185,7 @@ fi
 
 # dotfiles
 if command -v dotfiles >/dev/null 2>&1; then
-	_zshrc_abbr dot "dotfiles"
+	_abbr dot="dotfiles"
 	GIT_ROOT=$(git -C "$(dirname "$(realpath "${(%):-%N}")")" rev-parse --show-toplevel)
 	export DOTFILES_REPO_PATH="$GIT_ROOT"
 
@@ -209,6 +200,3 @@ if [[ -d "$ZDOTDIR/scripts" ]]; then
 		[[ -f "$script" ]] && . "$script"
 	done
 fi
-
-unfunction _zshrc_abbr
-unfunction _zshrc_session_abbr
