@@ -36,65 +36,88 @@ if [[ -f "$HOME/.cargo/env" ]]; then
 	. "$HOME/.cargo/env"
 fi
 
-# ==========
-# alias
-alias re="exec ${SHELL} -l"
-alias cdrepo='cd "$(ghq list -p | fzf)"'
-
-# ssh
-if [[ -r /proc/sys/kernel/osrelease ]] && grep -qi microsoft /proc/sys/kernel/osrelease && command -v ssh.exe >/dev/null 2>&1; then
-	alias ssh="ssh.exe"
-fi
-
 # mise
 if command -v mise >/dev/null 2>&1; then
 	eval "$(mise activate zsh)"
 	eval "$(mise completion zsh)"
+fi
 
-	alias mx="mise x --"
+# sheldon
+if command -v sheldon >/dev/null 2>&1; then
+	eval "$(sheldon source)"
+fi
+
+if (($+functions[abbr])); then
+	_zshrc_abbr() {
+		:
+	}
+	_zshrc_session_abbr() {
+		abbr --session --force --quieter "$1=$2"
+	}
+else
+	_zshrc_abbr() {
+		alias "$1=$2"
+	}
+	_zshrc_session_abbr() {
+		alias "$1=$2"
+	}
+fi
+
+# ==========
+# alias
+_zshrc_abbr re "exec ${SHELL} -l"
+
+# ssh
+if [[ -r /proc/sys/kernel/osrelease ]] && grep -qi microsoft /proc/sys/kernel/osrelease && command -v ssh.exe >/dev/null 2>&1; then
+	_zshrc_session_abbr ssh "ssh.exe"
 fi
 
 # zoxide
 if command -v zoxide >/dev/null 2>&1; then
 	eval "$(zoxide init zsh --cmd cd)"
 fi
-alias ..="cd .."
+_zshrc_abbr .. "cd .."
 
 # nvim
 if command -v nvim >/dev/null 2>&1; then
-	alias vim="nvim"
+	_zshrc_abbr vim "nvim"
 fi
 
 # ls
 if command -v eza >/dev/null 2>&1; then
-	alias ls="eza"
+	_zshrc_abbr ls "eza"
+	_zshrc_abbr la "eza -a"
+	_zshrc_abbr ll "eza -l"
 fi
 
 if command -v bat >/dev/null 2>&1; then
-	alias cat="bat"
+	_zshrc_abbr cat "bat"
 fi
 
 # lazygit
 if command -v lazygit >/dev/null 2>&1; then
-	alias lg="lazygit"
+	_zshrc_abbr lg "lazygit"
 fi
 
 # docker
 if command -v docker >/dev/null 2>&1; then
-	alias d="docker"
-	alias dc="docker compose"
-	alias dce="docker compose exec"
-	alias dps="docker ps"
-	alias di="docker images"
+	_zshrc_abbr d "docker"
+	_zshrc_abbr dc "docker compose"
+	_zshrc_abbr dce "docker compose exec"
+	_zshrc_abbr dps "docker ps"
+	_zshrc_abbr di "docker images"
+
+	# 補完
+	eval "$(docker completion zsh)"
 fi
 
 if command -v lazydocker >/dev/null 2>&1; then
-	alias ld="lazydocker"
+	_zshrc_abbr ld "lazydocker"
 fi
 
 # zellij
 if command -v zellij >/dev/null 2>&1; then
-	alias zl="zellij"
+	_zshrc_abbr zl "zellij"
 	zla() {
 		local session
 		session="$(zellij ls -s | fzf --reverse --height 40%)" || return
@@ -132,13 +155,6 @@ fi
 # chezmoi
 if command -v chezmoi >/dev/null 2>&1; then
 	eval "$(chezmoi completion zsh)"
-	# chezmoiの管理下にあるディレクトリに移動する関数
-	ccd() {
-		local target
-		target="$(chezmoi source-path)/.." || return
-		[[ -n "$target" ]] || return 0
-		cd "$target" || return 1
-	}
 fi
 
 # fzf+ghq+gwq
@@ -176,9 +192,23 @@ if command -v fzf >/dev/null 2>&1 && command -v ghq >/dev/null 2>&1 && command -
 	eval "$(gwq completion zsh)"
 fi
 
+# dotfiles
+if command -v dotfiles >/dev/null 2>&1; then
+	_zshrc_abbr dot "dotfiles"
+	GIT_ROOT=$(git -C "$(dirname "$(realpath "${(%):-%N}")")" rev-parse --show-toplevel)
+	export DOTFILES_REPO_PATH="$GIT_ROOT"
+
+	ccd() {
+		cd "$DOTFILES_REPO_PATH" || return 1
+	}
+fi
+
 # ZDOTDIR以下のscriptsディレクトリにある.zshファイルを全て読み込む
 if [[ -d "$ZDOTDIR/scripts" ]]; then
 	for script in "$ZDOTDIR"/scripts/*.zsh; do
 		[[ -f "$script" ]] && . "$script"
 	done
 fi
+
+unfunction _zshrc_abbr
+unfunction _zshrc_session_abbr

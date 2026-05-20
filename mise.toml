@@ -34,19 +34,9 @@ uv = "latest"
 python = "latest"
 "go:github.com/rhysd/dotfiles" = "latest"
 "npm:@playwright/cli" = "latest"
+sheldon = "latest"
 
 [shell_alias]
-# 基本
-cl = "clear"
-l = "ls"
-ll = "ls -la"
-la = "ls -A"
-
-# 追加ツール
-ls = "eza"
-cat = "bat"
-df = "dotfiles"
-python3 = "python"
 
 [env]
 LANG = "ja_JP.UTF-8"

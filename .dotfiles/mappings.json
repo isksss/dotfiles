@@ -32,7 +32,6 @@
     "~/.copilot/copilot-instructions.md"
   ],
   ".mcp.json": "~/.copilot/mcp-config.json",
-  "home/dot_codex/config.toml": "~/.codex/config.toml",
   "home/dot_config/Code/User": "~/.config/Code/User",
   "home/dot_config/alacritty": "~/.config/alacritty",
   "home/dot_config/atuin": "~/.config/atuin",
@@ -42,6 +41,7 @@
   "home/dot_config/lazygit": "~/.config/lazygit",
   "mise.toml": "~/.config/mise/mise.toml",
   "home/dot_config/nvim": "~/.config/nvim",
+  "home/dot_config/sheldon": "~/.config/sheldon",
   "home/dot_config/starship.toml": "~/.config/starship.toml",
   "home/dot_config/zellij": "~/.config/zellij",
   "home/dot_config/zsh": "~/.config/zsh"
