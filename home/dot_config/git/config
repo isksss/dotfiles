@@ -1,3 +1,6 @@
+[init]
+	defaultBranch = main
+
 [ghq]
   root = ~/ghq
 
@@ -6,9 +9,5 @@
 	name = isksss
 	email = isksss.dev@gmail.com
 
-# Work configuration for ghq directory (only if config.work exists)
-[includeIf "hasconfig:path=~/.config/git/config.work"]
-	path = config.work
-
-[core]
-	sshCommand = ssh.exe
+[includeIf "gitdir:~/ghq/"]
+	path = work.gitconfig
