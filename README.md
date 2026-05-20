@@ -20,31 +20,6 @@ mise install
 
 `dotfiles` は `.dotfiles/mappings.json` を読み、`home/` 配下の実ファイルをホームディレクトリへ symlink します。
 
-## 管理している dotfiles
-
-| source | destination | 内容 |
-|---|---|---|
-| `home/.bashrc` | `~/.bashrc` | bash の mise 初期化 |
-| `home/.vimrc` | `~/.vimrc` | Vim の基本設定 |
-| `home/.zshenv` | `~/.zshenv` | XDG 環境変数、`ZDOTDIR`、`PATH`、`EDITOR`、`STARSHIP_CONFIG` |
-| `home/dot_config/nvim` | `~/.config/nvim` | Neovim 設定 |
-| `home/dot_config/zsh` | `~/.config/zsh` | zsh 設定とスクリプト |
-| `mise.toml` | `~/.config/mise/mise.toml` | mise 設定 |
-| `home/dot_config/alacritty` | `~/.config/alacritty` | Alacritty 設定 |
-| `home/dot_config/atuin` | `~/.config/atuin` | Atuin 設定 |
-| `home/dot_config/ghq` | `~/.config/ghq` | ghq 設定 |
-| `home/dot_config/git` | `~/.config/git` | git 設定と global ignore |
-| `home/dot_config/gwq` | `~/.config/gwq` | gwq 設定 |
-| `home/dot_config/lazygit` | `~/.config/lazygit` | Lazygit keybinding |
-| `home/dot_config/zellij` | `~/.config/zellij` | Zellij 設定 |
-| `home/dot_config/Code/User` | `~/.config/Code/User` | VS Code user settings |
-| `home/dot_config/starship.toml` | `~/.config/starship.toml` | Starship prompt 設定 |
-| `.agents/*` | `~/.agents/*` / `~/.codex/*` / `~/.copilot/*` | AGENTS 指示と skills |
-| `.mcp.json` | `~/.copilot/mcp-config.json` | Copilot MCP 設定 |
-
-`.agents/skills/*` は各 skill ディレクトリ単位で symlink します。
-`.agents/AGENTS.md` と `.mcp.json` は複数の destination に symlink します。
-
 ## 日常的な操作
 
 ```sh

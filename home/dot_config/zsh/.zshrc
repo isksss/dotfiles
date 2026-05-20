@@ -9,6 +9,7 @@ if [[ -f "$ZDOTDIR/local.zsh" ]]; then
 else
 	touch "$ZDOTDIR/local.zsh"
 fi
+alias editlocal="nvim $ZDOTDIR/local.zsh"
 
 # ==========
 # zshオプション
@@ -128,13 +129,56 @@ if command -v glab >/dev/null 2>&1; then
 	eval "$(glab completion -s zsh)"
 fi
 
-# op
-# alias op="op.exe"
-if command -v op >/dev/null 2>&1; then
-	eval "$(op completion zsh)"
+# chezmoi
+if command -v chezmoi >/dev/null 2>&1; then
+	eval "$(chezmoi completion zsh)"
+	# chezmoiの管理下にあるディレクトリに移動する関数
+	ccd() {
+		local target
+		target="$(chezmoi source-path)/.." || return
+		[[ -n "$target" ]] || return 0
+		cd "$target" || return 1
+	}
 fi
 
-# starship
-if command -v starship >/dev/null 2>&1; then
-	eval "$(starship init zsh)"
+# fzf+ghq+gwq
+if command -v fzf >/dev/null 2>&1 && command -v ghq >/dev/null 2>&1 && command -v gwq >/dev/null 2>&1; then
+	# ghqでリポジトリを選択する関数
+	function ghq-path() {
+		ghq list --full-path | fzf
+	}
+	# ghqで選択したリポジトリに移動する関数
+	function dev() {
+		local moveto
+		moveto=$(ghq-path)
+		[[ -n "$moveto" ]] || return 0
+		cd "${moveto}" || return 1
+	}
+	# マージ済みブランチを削除する関数
+	function gwq-clean-merged() {
+		local current
+		current=$(git branch --show-current)
+
+		git branch --merged |
+			sed 's/^[*+] //' |
+			grep -v '^main$' |
+			grep -v '^master$' |
+			grep -v '^develop$' |
+			grep -v "^${current}$" |
+			while read -r branch; do
+				[[ -z "$branch" ]] && continue
+
+				echo "remove $branch"
+				gwq remove "$branch"
+				git branch -d "$branch"
+			done
+	}
+	eval "$(gwq completion zsh)"
+fi
+
+# ZDOTDIR以下のscriptsディレクトリにある.zshファイルを全て読み込む
+if [[ -d "$ZDOTDIR/scripts" ]]; then
+	for script in "$ZDOTDIR"/scripts/*.zsh; do
+		[[ -f "$script" ]] && . "$script"
+	done
 fi
