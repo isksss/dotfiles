@@ -1,4 +1,0 @@
-interface:
-  display_name: "現在の変更をコミット"
-  short_description: "Git差分を確認しprefix付き日本語でコミット"
-  default_prompt: "$commit-current-changes を使って現在の変更を確認し、適切な prefix 付き日本語コミットメッセージを作成してコミットして。"

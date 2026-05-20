@@ -4,15 +4,11 @@
 # Default: personal user
 [user]
 	name = isksss
-	email = 104404522+isksss@users.noreply.github.com
+	email = isksss.dev@gmail.com
 
 # Work configuration for ghq directory (only if config.work exists)
 [includeIf "hasconfig:path=~/.config/git/config.work"]
 	path = config.work
 
-{{ if eq .chezmoi.os "linux" }}
-{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 [core]
 	sshCommand = ssh.exe
-{{   end }}
-{{ end }}

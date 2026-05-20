@@ -1,0 +1,34 @@
+{
+  "workbench.colorTheme": "Abyss",
+  "workbench.activityBar.location": "top",
+  "editor.fontFamily": "'HackGen Console NF', 'BIZ UDゴシック', 'MS Gothic', monospace",
+  "editor.fontSize": 14,
+  "chat.fontFamily": "'HackGen Console NF', 'BIZ UDゴシック', 'MS Gothic', monospace",
+  "chat.editor.fontFamily": "'HackGen Console NF', 'BIZ UDゴシック', 'MS Gothic', monospace",
+  "editor.formatOnSave": true,
+  "files.associations": {
+    "*.tmpl": "gotemplate"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.markdownlint": "always"
+    },
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    },
+    "editor.formatOnSave": true
+  },
+  "git.confirmSync": false,
+  "git.openRepositoryInParentFolders": "always",
+  "Lua.diagnostics.globals": [
+    "vim"
+  ],
+  "deno.enable": true
+}
