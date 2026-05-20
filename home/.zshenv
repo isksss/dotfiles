@@ -12,8 +12,6 @@ export XDG_RUNTIME_DIR="/tmp"
 # zsh
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 
-# mise
-export PATH="$HOME/.local/bin:$PATH"
 
 # EDITOR
 export EDITOR="vim"
@@ -21,7 +19,4 @@ export EDITOR="vim"
 # starship
 export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship.toml"
 
-# mise
-if command -v mise >/dev/null 2>&1; then
-	eval "$(mise activate zsh)"
 fi
