@@ -9,5 +9,11 @@
 	name = isksss
 	email = isksss.dev@gmail.com
 
+
+[i18n]
+        commitEncoding = utf-8
+        logOutputEncoding = utf-8
+
+# Work user
 [includeIf "gitdir:~/ghq/"]
 	path = work.gitconfig

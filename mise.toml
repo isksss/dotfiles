@@ -1,9 +1,9 @@
 [tools]
 # tool
+'aqua:eza-community/eza' = 'latest'
 "usage" = "latest"
 "fzf" = "latest"
 ghq = "latest"
-eza = "latest"
 bat = "latest"
 ripgrep = 'latest'
 delta = "latest"
@@ -13,6 +13,7 @@ lazygit = "latest"
 zellij = 'latest'
 atuin = "latest"
 shfmt = 'latest'
+zoxide = "latest"
 # OSに1passwordを入れているので、miseで管理する必要はない
 # op = "latest"
 
@@ -35,6 +36,7 @@ python = "latest"
 "go:github.com/rhysd/dotfiles" = "latest"
 "npm:@playwright/cli" = "latest"
 sheldon = "latest"
+"aqua:nushell/nushell" = "latest"
 
 [shell_alias]
 
