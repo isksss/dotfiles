@@ -28,8 +28,8 @@
     conflictstyle = zdiff3
 
 [include]
-	path = .gitconfig.local
+	path = ~/.config/git/.gitconfig.local
 
 # Work user
 [includeIf "gitdir:~/ghq/"]
-	path = work.gitconfig
+	path = ~/.config/git/work.gitconfig
