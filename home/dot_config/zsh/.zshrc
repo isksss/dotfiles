@@ -79,6 +79,7 @@ if command -v eza >/dev/null 2>&1; then
 	_abbr ls="eza"
 	_abbr la="eza -a"
 	_abbr ll="eza -l"
+	_abbr lla="eza -la"
 fi
 
 if command -v bat >/dev/null 2>&1; then
