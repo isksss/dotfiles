@@ -26,6 +26,10 @@
     "~/.agents/skills/self-format",
     "~/.codex/skills/self-format"
   ],
+  ".agents/skills/create-branch": [
+    "~/.agents/skills/create-branch",
+    "~/.codex/skills/create-branch"
+  ],
   ".agents/AGENTS.md": [
     "~/.agents/AGENTS.md",
     "~/.codex/AGENTS.md",
@@ -44,5 +48,8 @@
   "home/dot_config/sheldon": "~/.config/sheldon",
   "home/dot_config/starship.toml": "~/.config/starship.toml",
   "home/dot_config/zellij": "~/.config/zellij",
-  "home/dot_config/zsh": "~/.config/zsh"
+  "home/dot_config/zsh": "~/.config/zsh",
+  "wallpapers": "~/.wallpapers",
+  "home/dot_config/pwsh": "~/.config/pwsh",
+  ".wezterm.lua": "~/.wezterm.lua"
 }

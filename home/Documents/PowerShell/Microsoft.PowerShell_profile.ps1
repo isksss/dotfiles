@@ -64,6 +64,8 @@ $env:XDG_STATE_HOME = "$env:USERPROFILE\.local\state"
 $env:SHELL = "pwsh"
 $env:ZELLIJ_CONFIG_DIR = "$env:XDG_CONFIG_HOME\zellij"
 
+gwq completion powershell | Out-String | Invoke-Expression
+
 # starship
 Invoke-Expression (&starship init powershell)
 
@@ -71,7 +73,6 @@ Invoke-Expression (&starship init powershell)
 Import-Module DockerCompletion
 
 Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
-
 
 # abbreviation
 Import-Module "$HOME/.config/pwsh/modules/abbr-pwsh"
@@ -87,9 +88,20 @@ Set-Abbr la "eza -a"
 Set-Abbr ll "eza -l"
 Set-Abbr lla "eza -la"
 
+Set-Abbr ".." "cd .."
+
 Set-Abbr cat "bat"
 
 Set-Abbr zl "zellij"
+
+Set-Abbr lg "lazygit"
+
+Set-Abbr winup "sudo winget upgrade --all --accept-source-agreements --accept-package-agreements"
+
+# $HOME\.config\pwsh\{000...999}_{example}.ps1を読み込む
+Get-ChildItem -Path "$HOME\.config\pwsh\*_*.ps1" -File | ForEach-Object {
+    . $_.FullName
+}
 
 # .local.ps1
 if (Test-Path -Path "$HOME\.config\pwsh\.local.ps1") {

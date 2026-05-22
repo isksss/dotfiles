@@ -9,6 +9,39 @@
 
 ## セットアップ
 
+`git` を用意したうえで、外部から bootstrap を実行します。Unix 側は `curl` も使います。既定では `~/dotfiles` に clone し、link の dry-run を表示してから symlink 作成と `mise install` まで実行します。
+
+### Unix
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/isksss/dotfiles/main/bootstrap.sh | sh
+```
+
+### Windows
+
+```powershell
+irm https://raw.githubusercontent.com/isksss/dotfiles/main/bootstrap.ps1 | iex
+```
+
+`bootstrap.sh` は `mise` がなければ `mise.run` から導入します。`bootstrap.ps1` は `mise` がなければ Scoop を優先し、Scoop がない場合は winget を使います。
+
+`mise install` は GitHub API でツール情報を取得します。rate limit の 403 が出る場合は [mise の案内](https://mise.jdx.dev/dev-tools/github-tokens.html) に従い、`MISE_GITHUB_TOKEN` または `GITHUB_TOKEN` を設定して再実行します。
+
+clone 先を変える場合は `DOTFILES_DIR` を指定します。
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/isksss/dotfiles/main/bootstrap.sh | DOTFILES_DIR="$HOME/src/dotfiles" sh
+```
+
+```powershell
+$env:DOTFILES_DIR = "$HOME\src\dotfiles"
+irm https://raw.githubusercontent.com/isksss/dotfiles/main/bootstrap.ps1 | iex
+```
+
+既定の clone 先にこのリポジトリがある場合は再利用します。別のディレクトリや別 origin の checkout がある場合は上書きせず停止します。
+
+手動で進める場合は次の手順です。
+
 ```sh
 go install github.com/rhysd/dotfiles@latest
 dotfiles clone isksss/dotfiles

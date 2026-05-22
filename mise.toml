@@ -37,6 +37,9 @@ python = "latest"
 "npm:@playwright/cli" = "latest"
 sheldon = "latest"
 "aqua:nushell/nushell" = "latest"
+"pipx:sqlfluff" = "latest"
+"npm:pg-formatter" = "latest"
+"npm:sql-formatter" = "latest"
 
 [shell_alias]
 
