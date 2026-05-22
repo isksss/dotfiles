@@ -12,11 +12,8 @@ export XDG_RUNTIME_DIR="/tmp"
 # zsh
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 
-
 # EDITOR
 export EDITOR="vim"
 
 # starship
 export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship.toml"
-
-fi
