@@ -7,7 +7,7 @@
 # Default: personal user
 [user]
 	name = isksss
-	email = isksss.dev@gmail.com
+	email = 104404522+isksss@users.noreply.github.com
 
 [i18n]
         commitEncoding = utf-8
@@ -28,7 +28,7 @@
     conflictstyle = zdiff3
 
 [include]
-	path = ~/.config/git/.gitconfig.local
+	path = ~/.config/git/local.gitconfig
 
 # Work user
 [includeIf "gitdir:~/ghq/"]
