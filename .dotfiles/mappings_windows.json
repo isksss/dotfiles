@@ -4,6 +4,9 @@
     "~/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1",
     "~/Documents/PowerShell/Microsoft.VSCode_profile.ps1"
   ],
+  "home/dot_config/alacritty/alacritty.toml": [
+    "~/AppData/Roaming/alacritty/alacritty.toml"
+  ],
   "home/dot_config/zellij": ["~/AppData/Roaming/Zellij"],
   "home/dot_config/pwsh": ["~/.config/pwsh"]
 }
