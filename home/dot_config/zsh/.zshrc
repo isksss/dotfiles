@@ -2,16 +2,6 @@
 ZSH_COMPDUMP="${XDG_CACHE_HOME}/zsh/.zcompdump"
 
 # ==========
-# local
-
-if [[ -f "$ZDOTDIR/local.zsh" ]]; then
-	. "$ZDOTDIR/local.zsh"
-else
-	touch "$ZDOTDIR/local.zsh"
-fi
-alias editlocal="nvim $ZDOTDIR/local.zsh"
-
-# ==========
 # zshオプション
 autoload -Uz add-zsh-hook
 autoload -Uz compinit
@@ -98,6 +88,8 @@ if command -v docker >/dev/null 2>&1; then
 	_abbr dce="docker compose exec"
 	_abbr dps="docker ps"
 	_abbr di="docker images"
+    _abbr dcd="docker compose down -v"
+    _abbr dcup="docker compose up -d"
 
 	# 補完
 	eval "$(docker completion zsh)"
@@ -200,4 +192,13 @@ if [[ -d "$ZDOTDIR/scripts" ]]; then
 	for script in "$ZDOTDIR"/scripts/*.zsh; do
 		[[ -f "$script" ]] && . "$script"
 	done
+fi
+
+# ==========
+# local
+
+if [[ -f "$ZDOTDIR/local.zsh" ]]; then
+	. "$ZDOTDIR/local.zsh"
+else
+	touch "$ZDOTDIR/local.zsh"
 fi
