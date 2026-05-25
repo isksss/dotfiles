@@ -54,6 +54,30 @@ require("lazy").setup({
         end,
     },
     {
+        "3rd/image.nvim",
+        build = false,
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            require("config.image").setup()
+        end,
+    },
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        keys = {
+            {
+                "<leader>h",
+                function()
+                    require("which-key").show({ keys = "<leader>", mode = "n" })
+                end,
+                desc = "キーマップ一覧を表示",
+            },
+        },
+        config = function()
+            require("config.which-key").setup()
+        end,
+    },
+    {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
         cmd = "Neotree",

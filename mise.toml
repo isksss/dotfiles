@@ -6,6 +6,7 @@ bat = "latest"
 delta = "latest"
 fzf = "latest"
 ghq = "latest"
+"asdf:mise-plugins/mise-imagemagick" = "latest"
 lazydocker = "latest"
 lazygit = "latest"
 neovim = "latest"
@@ -49,6 +50,7 @@ uv = "latest"
 
 # alt shell
 "aqua:nushell/nushell" = "latest"
+rust = "latest"
 
 # OS管理
 # OSに1password導入済み

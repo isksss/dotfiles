@@ -37,7 +37,7 @@ function M.setup()
         },
         files = {
             fd_opts =
-                "--type f --hidden --follow --exclude .git --exclude node_modules --exclude dist --exclude build --exclude target --exclude coverage --color never",
+                "--type f --type d --hidden --follow --exclude .git --exclude node_modules --exclude dist --exclude build --exclude target --exclude coverage --color never",
         },
         grep = {
             rg_opts =
