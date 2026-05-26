@@ -141,6 +141,11 @@ if command -v chezmoi >/dev/null 2>&1; then
 	eval "$(chezmoi completion zsh)"
 fi
 
+# sqio
+if command -v sqio >/dev/null 2>&1; then
+    eval "$(sqio completion zsh)"
+fi
+
 # fzf+ghq+gwq
 if command -v fzf >/dev/null 2>&1 && command -v ghq >/dev/null 2>&1 && command -v gwq >/dev/null 2>&1; then
 	# ghqでリポジトリを選択する関数

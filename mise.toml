@@ -34,6 +34,7 @@ uv = "latest"
 # go tools
 "go:github.com/d-kuro/gwq/cmd/gwq" = "latest"
 "go:github.com/rhysd/dotfiles" = "latest"
+"go:github.com/isksss/sqio/cmd/sqio" = "latest"
 
 # npm tools
 "npm:@antfu/ni" = "latest"
