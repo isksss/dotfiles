@@ -33,3 +33,5 @@
 # Work user
 [includeIf "gitdir:~/ghq/"]
 	path = ~/.config/git/work.gitconfig
+[push]
+	followTags = true

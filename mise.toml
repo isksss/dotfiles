@@ -51,6 +51,7 @@ uv = "latest"
 # alt shell
 "aqua:nushell/nushell" = "latest"
 rust = "latest"
+gh = "latest"
 
 # OS管理
 # OSに1password導入済み
