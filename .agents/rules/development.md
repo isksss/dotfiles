@@ -1,5 +1,10 @@
 # Development Rules
 
+## when to use
+
+- リポジトリ調査、実装、検証、ツール実行を行うとき。
+- 既存規約、lint、formatter、テスト方針を判断するとき。
+
 ## リポジトリ運用
 
 - gitリポジトリルート `AGENTS.local.md` または `.AGENTS.local.md` 存在時:

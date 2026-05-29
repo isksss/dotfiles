@@ -1,0 +1,4 @@
+interface:
+  display_name: "レビュー"
+  short_description: "差分レビューと検証観点整理"
+  default_prompt: "$review を使って現在の差分を確認し、バグ・回帰・検証不足を重大度順にレビューして。"

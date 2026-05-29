@@ -3,7 +3,7 @@
 ## 目的
 
 このドキュメントは、エージェントが最初に読む個人共通ルールを定義する。
-詳細ルールは必要に応じて `.agents/rules/` と `.agents/templates/` を参照する。
+詳細ルールは必要に応じて `.agents/rules/`、`.agents/skills/`、`.agents/templates/` を参照する。
 
 ---
 
@@ -25,6 +25,22 @@
 - 禁止事項・セキュリティ: `~/.agents/rules/safety.md`
 - 開発・検証: `~/.agents/rules/development.md`
 - Git 運用: `~/.agents/rules/git.md`
+- 長時間タスク: `~/.agents/rules/long-running-task.md`
+- 調査・検証: `~/.agents/rules/research.md`
+- テスト・レビュー: `~/.agents/rules/review-test.md`
+- 実装: `~/.agents/rules/implementation.md`
+- エージェント分離: `~/.agents/rules/agent-separation.md`
+
+---
+
+## Codex Skills
+
+Codex で利用する agent 相当の正本は `.agents/skills/` に置く。
+GitHub Copilot 用 agent は `.github/agents/` に置くが、内容が競合する場合は Codex skill を優先する。
+
+- 調査: `~/.codex/skills/research/SKILL.md`
+- 実装: `~/.codex/skills/implementation/SKILL.md`
+- レビュー: `~/.codex/skills/review/SKILL.md`
 
 ---
 

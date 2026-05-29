@@ -30,10 +30,23 @@
     "~/.agents/skills/create-branch",
     "~/.codex/skills/create-branch"
   ],
+  ".agents/skills/research": [
+    "~/.agents/skills/research",
+    "~/.codex/skills/research"
+  ],
+  ".agents/skills/implementation": [
+    "~/.agents/skills/implementation",
+    "~/.codex/skills/implementation"
+  ],
+  ".agents/skills/review": [
+    "~/.agents/skills/review",
+    "~/.codex/skills/review"
+  ],
   ".agents/AGENTS.md": [
     "~/.agents/AGENTS.md",
     "~/.codex/AGENTS.md",
-    "~/.copilot/copilot-instructions.md"
+    "~/.copilot/copilot-instructions.md",
+    "~/.claude/CLAUDE.md"
   ],
   ".agents/rules": [
     "~/.agents/rules",
@@ -46,6 +59,7 @@
     "~/.copilot/templates"
   ],
   ".mcp.json": "~/.copilot/mcp-config.json",
+  ".github/agents": "~/.github/agents",
   "home/dot_config/Code/User": "~/.config/Code/User",
   "home/dot_config/alacritty": "~/.config/alacritty",
   "home/dot_config/atuin": "~/.config/atuin",
