@@ -14,6 +14,10 @@
     "~/.agents/skills/create-logs",
     "~/.codex/skills/create-logs"
   ],
+  ".agents/skills/create-pr-github": [
+    "~/.agents/skills/create-pr-github",
+    "~/.codex/skills/create-pr-github"
+  ],
   ".agents/skills/create-mr-gitlab": [
     "~/.agents/skills/create-mr-gitlab",
     "~/.codex/skills/create-mr-gitlab"
