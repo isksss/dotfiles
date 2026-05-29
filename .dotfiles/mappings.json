@@ -35,6 +35,16 @@
     "~/.codex/AGENTS.md",
     "~/.copilot/copilot-instructions.md"
   ],
+  ".agents/rules": [
+    "~/.agents/rules",
+    "~/.codex/rules",
+    "~/.copilot/rules"
+  ],
+  ".agents/templates": [
+    "~/.agents/templates",
+    "~/.codex/templates",
+    "~/.copilot/templates"
+  ],
   ".mcp.json": "~/.copilot/mcp-config.json",
   "home/dot_config/Code/User": "~/.config/Code/User",
   "home/dot_config/alacritty": "~/.config/alacritty",
