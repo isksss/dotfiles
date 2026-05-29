@@ -16,6 +16,7 @@
 - 個人情報・秘密情報・認証情報・API Key・Token・Password・Credential は出力しない。
 - ユーザー指示なしに commit しない。
 - 破壊的操作、本番 deploy、force push、secret 更新、package publish はユーザー明示許可なしに行わない。
+- リポジトリルートに`AGENTS.local.md`がある場合、AGENTS.mdと同様に読み込む
 
 ---
 

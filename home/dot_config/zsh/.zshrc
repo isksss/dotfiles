@@ -108,6 +108,9 @@ if command -v zellij >/dev/null 2>&1; then
 		[[ -n "$session" ]] || return 0
 		zellij a "$session"
 	}
+	zlmain() {
+		zellij attach --create main
+	}
 fi
 
 # fzf
