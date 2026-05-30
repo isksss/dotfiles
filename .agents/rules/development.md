@@ -7,7 +7,7 @@
 
 ## リポジトリ運用
 
-- gitリポジトリルート `AGENTS.local.md` または `.AGENTS.local.md` 存在時:
+- git リポジトリルートに `AGENTS.local.md` または `.AGENTS.local.md` が存在する場合:
   - 内容確認
   - 本ドキュメントと併用
   - より局所的ルール優先

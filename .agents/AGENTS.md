@@ -16,7 +16,8 @@
 - 個人情報・秘密情報・認証情報・API Key・Token・Password・Credential は出力しない。
 - ユーザー指示なしに commit しない。
 - 破壊的操作、本番 deploy、force push、secret 更新、package publish はユーザー明示許可なしに行わない。
-- リポジトリルートに`AGENTS.local.md`がある場合、AGENTS.mdと同様に読み込む
+- リポジトリルートに `AGENTS.local.md` または `.AGENTS.local.md` がある場合、AGENTS.md と同様に読み込む。
+- 指示が競合する場合は、ユーザー指示、local AGENTS、repo AGENTS、詳細ルール、skill の順に優先する。
 
 ---
 
@@ -36,12 +37,15 @@
 
 ## Codex Skills
 
-Codex で利用する agent 相当の正本は `.agents/skills/` に置く。
+Codex で利用する agent 相当の正本は、このリポジトリの `.agents/skills/` に置く。
 GitHub Copilot 用 agent は `.github/agents/` に置くが、内容が競合する場合は Codex skill を優先する。
 
-- 調査: `~/.codex/skills/research/SKILL.md`
-- 実装: `~/.codex/skills/implementation/SKILL.md`
-- レビュー: `~/.codex/skills/review/SKILL.md`
+- 調査: `.agents/skills/research/SKILL.md`
+  (`~/.codex/skills/research/SKILL.md` に配置)
+- 実装: `.agents/skills/implementation/SKILL.md`
+  (`~/.codex/skills/implementation/SKILL.md` に配置)
+- レビュー: `.agents/skills/review/SKILL.md`
+  (`~/.codex/skills/review/SKILL.md` に配置)
 
 ---
 

@@ -16,4 +16,6 @@ Codex で共通化できない場合は `.agents/skills/implementation/SKILL.md`
 ## Output
 
 - 実装差分、影響範囲、実行した検証、残作業。
-- 必要に応じて `{repo_root}/note.local.dir/agent/` へ記録する。
+- 長時間作業、引き継ぎ、重要判断がある場合は `{repo_root}/note.local.dir/agent/` へ記録する。
+- 軽微な実装では最終回答で代替してよい。
+- 秘密情報、認証情報、個人情報は記録しない。

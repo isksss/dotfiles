@@ -37,7 +37,7 @@ playwright-cli video-start recordings/login-flow-2024-01-15.webm
 playwright-cli video-start recordings/checkout-test-run-42.webm
 ```
 
-### 2. Record entire hero scripts.
+### 2. Record entire hero scripts
 
 When recording a video for the user or as a proof of work, it is best to create a code snippet and execute it with run-code.
 It allows pulling appropriate pauses between the actions and annotating the video. There are new Playwright APIs for that.
@@ -122,7 +122,7 @@ Embrace creativity, overlays are powerful.
 ### Overlay API Summary
 
 | Method | Use Case |
-|--------|----------|
+| --- | --- |
 | `page.screencast.showChapter(title, { description?, duration?, styleSheet? })` | Full-screen chapter card with blurred backdrop — ideal for section transitions |
 | `page.screencast.showOverlay(html, { duration? })` | Custom HTML overlay — use for callouts, labels, highlights |
 | `disposable.dispose()` | Remove a sticky overlay added without duration |
@@ -131,7 +131,7 @@ Embrace creativity, overlays are powerful.
 ## Tracing vs Video
 
 | Feature | Video | Tracing |
-|---------|-------|---------|
+| --- | --- | --- |
 | Output | WebM file | Trace file (viewable in Trace Viewer) |
 | Shows | Visual recording | DOM snapshots, network, console, actions |
 | Use case | Demos, documentation | Debugging, analysis |

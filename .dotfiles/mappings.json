@@ -2,10 +2,6 @@
   "home/.bashrc": "~/.bashrc",
   "home/.vimrc": "~/.vimrc",
   "home/.zshenv": "~/.zshenv",
-  ".agents/skills/code-review": [
-    "~/.agents/skills/code-review",
-    "~/.codex/skills/code-review"
-  ],
   ".agents/skills/commit-current-changes": [
     "~/.agents/skills/commit-current-changes",
     "~/.codex/skills/commit-current-changes"
