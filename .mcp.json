@@ -19,6 +19,18 @@
       "args": ["@playwright/mcp@latest"],
       "env": {},
       "tools": ["*"]
+    },
+    "backlog": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "backlog-mcp-server"
+      ],
+      "env": {
+        "BACKLOG_DOMAIN": "${env:BACKLOG_DOMAIN}",
+        "BACKLOG_API_KEY": "${env:BACKLOG_API_KEY}"
+      }
     }
   }
 }
