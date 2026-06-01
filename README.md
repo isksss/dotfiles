@@ -67,4 +67,5 @@ dotfiles update
 
 - `home/dot_config/git/config.work`: 個人・業務別の追加 gitconfig
 - `home/dot_config/zsh/local.zsh`: ローカル環境ごとの zsh 設定
+- `home/dot_config/nvim/lua/local/`: 個人環境依存の Neovim 設定。Git 管理対象外。`example.lua` を参考に必要な local 設定を配置する
 - `.env` / `.env.*`: 環境変数ファイル

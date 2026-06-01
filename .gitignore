@@ -13,3 +13,7 @@ local.zsh
 
 # 業務用gitconfig
 home/dot_config/git/*.gitconfig
+
+# Neovim local machine-specific config
+home/dot_config/nvim/lua/local/*
+!home/dot_config/nvim/lua/local/example.lua
