@@ -81,6 +81,11 @@ if command -v lazygit >/dev/null 2>&1; then
 	_abbr lg="lazygit"
 fi
 
+# yazi
+if command -v yazi >/dev/null 2>&1; then
+	_abbr yz="yazi"
+fi
+
 # docker
 if command -v docker >/dev/null 2>&1; then
 	_abbr d="docker"
