@@ -47,9 +47,7 @@ description: >-
    - 実行できない検証は理由と影響を記録する。
 
 4. 記録する。
-   - 長時間作業、引き継ぎ、重要判断がある場合は
-     `{repo_root}/note.local.dir/agent/{yyyymmdd-hhmm}_review.md` に記録する。
-   - 軽微なレビューでは最終回答で代替してよい。
+   - `.agents/rules/long-running-task.md` の記録ルールに従い、devlog に記録する。
    - 指摘、検証結果、残リスク、次の対応を書く。
    - 秘密情報、認証情報、個人情報は記録しない。
 

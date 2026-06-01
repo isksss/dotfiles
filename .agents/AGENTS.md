@@ -14,6 +14,7 @@
 - 既存実装・既存規約を尊重し、変更は最小化する。
 - 要求範囲のみ対応し、無関係ファイルは変更しない。
 - 個人情報・秘密情報・認証情報・API Key・Token・Password・Credential は出力しない。
+- リポジトリに対するすべての行動は、行動記録ルールに従って devlog に記録する。
 - ユーザー指示なしに commit しない。
 - 破壊的操作、本番 deploy、force push、secret 更新、package publish はユーザー明示許可なしに行わない。
 - リポジトリルートに `AGENTS.local.md` または `.AGENTS.local.md` がある場合、AGENTS.md と同様に読み込む。
@@ -27,7 +28,7 @@
 - 禁止事項・セキュリティ: `~/.agents/rules/safety.md`
 - 開発・検証: `~/.agents/rules/development.md`
 - Git 運用: `~/.agents/rules/git.md`
-- 長時間タスク: `~/.agents/rules/long-running-task.md`
+- 行動記録・長時間タスク: `~/.agents/rules/long-running-task.md`
 - 調査・検証: `~/.agents/rules/research.md`
 - テスト・レビュー: `~/.agents/rules/review-test.md`
 - 実装: `~/.agents/rules/implementation.md`
@@ -46,6 +47,14 @@ GitHub Copilot 用 agent は `.github/agents/` に置くが、内容が競合す
   (`~/.codex/skills/implementation/SKILL.md` に配置)
 - レビュー: `.agents/skills/review/SKILL.md`
   (`~/.codex/skills/review/SKILL.md` に配置)
+- devlog検索: `.agents/skills/devlog-search/SKILL.md`
+  (`~/.codex/skills/devlog-search/SKILL.md` に配置)
+- devlogまとめ: `.agents/skills/devlog-matome/SKILL.md`
+  (`~/.codex/skills/devlog-matome/SKILL.md` に配置)
+- memo: `.agents/skills/memo/SKILL.md`
+  (`~/.codex/skills/memo/SKILL.md` に配置)
+- wiki整理: `.agents/skills/wiki-organizer/SKILL.md`
+  (`~/.codex/skills/wiki-organizer/SKILL.md` に配置)
 
 ---
 

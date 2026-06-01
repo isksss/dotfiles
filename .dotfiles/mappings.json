@@ -10,6 +10,22 @@
     "~/.agents/skills/create-logs",
     "~/.codex/skills/create-logs"
   ],
+  ".agents/skills/devlog-search": [
+    "~/.agents/skills/devlog-search",
+    "~/.codex/skills/devlog-search"
+  ],
+  ".agents/skills/devlog-matome": [
+    "~/.agents/skills/devlog-matome",
+    "~/.codex/skills/devlog-matome"
+  ],
+  ".agents/skills/memo": [
+    "~/.agents/skills/memo",
+    "~/.codex/skills/memo"
+  ],
+  ".agents/skills/wiki-organizer": [
+    "~/.agents/skills/wiki-organizer",
+    "~/.codex/skills/wiki-organizer"
+  ],
   ".agents/skills/create-pr-github": [
     "~/.agents/skills/create-pr-github",
     "~/.codex/skills/create-pr-github"
