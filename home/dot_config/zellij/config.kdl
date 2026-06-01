@@ -173,7 +173,7 @@ keybinds clear-defaults=true {
         bind "Alt Shift n" { NewPane "down"; }
         bind "Alt x" { CloseFocus; }
         // 新規タブ作成
-        bind "Alt t" { NewTab; }
+        bind "Alt t" { NewTab layout="default"; }
         // bind "Alt p" { TogglePaneInGroup; }
         // bind "Alt Shift p" { ToggleGroupMarking; }
         // エディタで検索など
@@ -302,7 +302,7 @@ default_mode "locked"
 // The name of the default layout to load on startup
 // Default: "default"
 // 
-// default_layout "compact"
+default_layout "default"
  
 // The folder in which Zellij will look for layouts
 // (Requires restart)
