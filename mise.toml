@@ -52,6 +52,8 @@ uv = "latest"
 "aqua:nushell/nushell" = "latest"
 rust = "latest"
 gh = "latest"
+"npm:@marp-team/marp-cli" = "latest"
+terraform = "latest"
 
 # OS管理
 # OSに1password導入済み
