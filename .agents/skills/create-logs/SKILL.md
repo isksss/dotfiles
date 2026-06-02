@@ -16,6 +16,13 @@ description: このセッション内でのやりとりを、`.agents/rules/long
    - `{yyyymm}` と `{yyyymmdd}` は、ログを作成した日付に置き換える。
    - `{summary}` は、内容が分かる短い kebab-case または snake_case にする。
 3. ファイル先頭に YAML front matter を記述し、共有用に整理済みの場合のみ `recorded: true` にする。
+4. 必要に応じて当該記録ファイルの年月ディレクトリ内に `log/` ディレクトリを作成し、変更内容や検証に関係する補助ログを保存する。
+   - 保存先は `$HOME/wiki/raw/devlog/{repo_name}/{branch_name}/{yyyymm}/log/` とする。
+   - ファイル名は devlog 本体の stem を prefix にして、`{yyyymmdd}_{summary}.git-diff.patch` のようにする。
+   - Git 情報は `git status --short --branch`、`git diff --stat`、`git diff`、`git diff --cached --stat`、`git diff --cached`、`git log --oneline -n 20` などを必要に応じて保存する。
+   - `playwright-cli`、テスト、ビルド、lint、typecheck、外部ツール実行など、再現や判断確認に必要なログも必要に応じて保存する。
+   - 秘密情報、認証情報、個人情報、API Key、Token、Password、Credential を含む可能性がある出力は、保存前に除外またはマスクする。
+5. devlog 本体には、保存した補助ログへの相対パスと内容要約を「関連ログ」として記録する。
 
 ## ログの内容
 
@@ -56,9 +63,17 @@ confidence: "medium"
 - コマンド: {実行したコマンド}
 - 結果: {コマンドの実行結果}
 
+## 関連ログ
+
+- `log/{yyyymmdd}_{summary}.git-status.txt`: Git 作業ツリーの状態
+- `log/{yyyymmdd}_{summary}.git-diff.patch`: 変更差分
+- `log/{yyyymmdd}_{summary}.playwright-cli.txt`: ブラウザ検証ログ
+
 ## 留意点
 ```
 
 ## 注意事項
 
 - 日本語で記述すること
+- 補助ログは常に必須ではなく、後から再現、確認、共有するために有用な場合に残すこと
+- 補助ログにも秘密情報、認証情報、個人情報を記録しないこと
