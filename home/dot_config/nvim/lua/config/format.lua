@@ -13,6 +13,7 @@ conform.setup({
         typescriptreact = { "prettier" },
         vue = { "prettier" },
         java = { "google-java-format" },
+        markdown = { "prettier", "markdownlint-cli2" },
     },
     format_on_save = {
         timeout_ms = 1000,

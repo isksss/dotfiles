@@ -165,6 +165,7 @@ require("lazy").setup({
                     "eslint_d",
                     "google-java-format",
                     "checkstyle",
+                    "markdownlint-cli2",
                 },
             })
         end,

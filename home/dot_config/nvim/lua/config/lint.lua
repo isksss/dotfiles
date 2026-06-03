@@ -14,6 +14,7 @@ lint.linters_by_ft = {
     typescriptreact = { "eslint_d" },
     vue = { "eslint_d" },
     java = { "checkstyle" },
+    markdown = { "markdownlint-cli2" },
 }
 
 local lint_group = vim.api.nvim_create_augroup("UserLintConfig", { clear = true })
