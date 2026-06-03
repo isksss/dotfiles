@@ -87,6 +87,8 @@
   "home/dot_config/nvim": "~/.config/nvim",
   "home/dot_config/sheldon": "~/.config/sheldon",
   "home/dot_config/starship.toml": "~/.config/starship.toml",
+  "home/dot_config/tmux": "~/.config/tmux",
+  "home/dot_config/yazi": "~/.config/yazi",
   "home/dot_config/zellij": "~/.config/zellij",
   "home/dot_config/zsh": "~/.config/zsh",
   "wallpapers": "~/.wallpapers",

@@ -1,0 +1,11 @@
+#:schema https://yazi-rs.github.io/schemas/keymap.json
+
+[mgr]
+prepend_keymap = [
+  { on = ["g", "c"], run = "cd ~/.config", desc = "Go to ~/.config" },
+  { on = ["g", "d"], run = "cd ~/dotfiles", desc = "Go to ~/dotfiles" },
+]
+
+append_keymap = [
+  { on = ["g", "w"], run = "cd ~/wiki", desc = "Go to ~/wiki" },
+]
