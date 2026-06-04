@@ -1,0 +1,72 @@
+#!/bin/sh
+
+path=${1:-$PWD}
+repo=$(git -C "$path" rev-parse --show-toplevel 2>/dev/null) || {
+	basename "$path"
+	exit 0
+}
+
+name=$(basename "$repo")
+branch=$(git -C "$path" symbolic-ref --quiet --short HEAD 2>/dev/null || git -C "$path" rev-parse --short HEAD 2>/dev/null)
+
+ahead=
+behind=
+staged=0
+modified=0
+deleted=0
+untracked=0
+conflicted=0
+
+while IFS= read -r line; do
+	case "$line" in
+	'## '*)
+		case "$line" in
+		*'ahead '*)
+			ahead=$(printf '%s\n' "$line" | sed -n 's/.*ahead \([0-9][0-9]*\).*/\1/p')
+			;;
+		esac
+		case "$line" in
+		*'behind '*)
+			behind=$(printf '%s\n' "$line" | sed -n 's/.*behind \([0-9][0-9]*\).*/\1/p')
+			;;
+		esac
+		continue
+		;;
+	'?? '*)
+		untracked=$((untracked + 1))
+		continue
+		;;
+	esac
+
+	x=$(printf '%s' "$line" | cut -c1)
+	y=$(printf '%s' "$line" | cut -c2)
+	xy=$x$y
+
+	case "$xy" in
+	*U* | UU | AA | DD)
+		conflicted=$((conflicted + 1))
+		continue
+		;;
+	esac
+
+	[ "$x" != ' ' ] && staged=$((staged + 1))
+	[ "$y" != ' ' ] && modified=$((modified + 1))
+	case "$xy" in
+	*D*) deleted=$((deleted + 1)) ;;
+	esac
+done <<EOF
+$(git -C "$path" status --porcelain --branch 2>/dev/null)
+EOF
+
+state=
+[ -n "$ahead" ] && state="${state:+$state }⇡$ahead"
+[ -n "$behind" ] && state="${state:+$state }⇣$behind"
+[ "$staged" -gt 0 ] && state="${state:+$state }+$staged"
+[ "$modified" -gt 0 ] && state="${state:+$state }~$modified"
+[ "$deleted" -gt 0 ] && state="${state:+$state }-$deleted"
+[ "$untracked" -gt 0 ] && state="${state:+$state }?$untracked"
+[ "$conflicted" -gt 0 ] && state="${state:+$state }!$conflicted"
+
+printf '%s %s' "$name" "$branch"
+[ -n "$state" ] && printf ' %s' "$state"
+printf '\n'

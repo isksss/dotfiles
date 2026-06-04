@@ -1,0 +1,10 @@
+#!/bin/sh
+
+path=${1:-$PWD}
+
+git -C "$path" rev-parse --is-inside-work-tree >/dev/null 2>&1 || exit 0
+
+user=$(git -C "$path" config user.name 2>/dev/null) || exit 0
+[ -n "$user" ] || exit 0
+
+printf ' %s ' "$user"
