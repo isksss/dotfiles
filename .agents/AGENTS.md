@@ -17,6 +17,7 @@
 - リポジトリに対するすべての行動は、行動記録ルールに従って devlog に記録する。
 - ユーザー指示なしに commit しない。
 - 破壊的操作、本番 deploy、force push、secret 更新、package publish はユーザー明示許可なしに行わない。
+- `npm run dev` などの開発サーバーや継続実行コマンドを起動する場合は、`$ZELLIJ` を優先して確認し、zellij 内では `zellij action new-tab -c "$PWD" -n "dev" -- <command>` で新規タブに起動する。tmux 内では `tmux new-window -c "$PWD" -n "dev" "<command>"` で新規ウィンドウに起動する。zellij/tmux 外では `tmux new-session -d -s "agent-dev" -c "$PWD" -n "dev" "<command>"` で新規 tmux セッションを作成して起動する。
 - リポジトリルートに `AGENTS.local.md` または `.AGENTS.local.md` がある場合、AGENTS.md と同様に読み込む。
 - 指示が競合する場合は、ユーザー指示、local AGENTS、repo AGENTS、詳細ルール、skill の順に優先する。
 

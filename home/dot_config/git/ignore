@@ -28,3 +28,6 @@ Thumbs.db
 **/.note/**
 
 *.local.*
+
+compose.override.yaml
+compose.override.yml
