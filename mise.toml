@@ -26,6 +26,7 @@ glab = { version = "latest", exe = "glab" }
 # runtimes
 deno = "latest"
 go = "latest"
+java = "temurin-25"
 node = "24"
 python = "latest"
 uv = "latest"

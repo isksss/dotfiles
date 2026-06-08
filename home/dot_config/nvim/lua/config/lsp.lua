@@ -4,7 +4,57 @@ local mason_lspconfig = require("mason-lspconfig")
 local vue_language_server_path = vim.fn.expand("$MASON/packages/vue-language-server/node_modules/@vue/language-server")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 local lsp_group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true })
+
+local web_root_markers = {
+    {
+        "nuxt.config.js",
+        "nuxt.config.mjs",
+        "nuxt.config.ts",
+        "nuxt.config.cjs",
+        "package.json",
+        "tsconfig.json",
+        "jsconfig.json",
+    },
+    { ".git" },
+}
+
+local java_root_markers = {
+    {
+        "gradlew",
+        "mvnw",
+        "settings.gradle",
+        "settings.gradle.kts",
+        "build.gradle",
+        "build.gradle.kts",
+        "pom.xml",
+    },
+    { ".git" },
+}
+
+local function root_dir(markers)
+    return function(bufnr, on_dir)
+        local root = vim.fs.root(bufnr, markers)
+        if root then
+            on_dir(root)
+        end
+    end
+end
+
+local function jdtls_cmd(dispatchers, config)
+    local data_dir = vim.fn.stdpath("cache") .. "/jdtls-workspace"
+    if config.root_dir then
+        data_dir = data_dir .. "/" .. vim.fn.fnamemodify(config.root_dir, ":p:h:t")
+    end
+
+    return vim.lsp.rpc.start({ "jdtls", "-data", data_dir }, dispatchers, {
+        cwd = config.cmd_cwd,
+        env = config.cmd_env,
+        detached = config.detached,
+    })
+end
 
 vim.api.nvim_create_autocmd("LspAttach", {
     group = lsp_group,
@@ -19,10 +69,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
         keymap("n", "gi", vim.lsp.buf.implementation, opts)
         keymap("n", "gy", vim.lsp.buf.type_definition, opts)
         keymap("n", "K", vim.lsp.buf.hover, opts)
-        keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
-        keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+        keymap("n", "<leader>lr", vim.lsp.buf.rename, opts)
+        keymap("n", "<leader>la", vim.lsp.buf.code_action, opts)
         keymap("n", "[d", vim.diagnostic.goto_prev, opts)
         keymap("n", "]d", vim.diagnostic.goto_next, opts)
+        keymap("n", "<leader>ld", vim.diagnostic.open_float, opts)
+        keymap("n", "<leader>lq", vim.diagnostic.setqflist, opts)
     end,
 })
 
@@ -64,6 +116,7 @@ local servers = {
     },
     ts_ls = {
         capabilities = capabilities,
+        root_dir = root_dir(web_root_markers),
         init_options = {
             plugins = {
                 {
@@ -83,9 +136,12 @@ local servers = {
     },
     vue_ls = {
         capabilities = capabilities,
+        root_dir = root_dir(web_root_markers),
     },
     jdtls = {
         capabilities = capabilities,
+        cmd = jdtls_cmd,
+        root_dir = root_dir(java_root_markers),
     },
 }
 
