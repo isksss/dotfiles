@@ -1,4 +1,0 @@
-interface:
-  display_name: "Memo"
-  short_description: "質問回答と業務メモをMarkdown形式で補完保存"
-  default_prompt: "$memo を使って、この内容を回答・補完して memo に保存して。"

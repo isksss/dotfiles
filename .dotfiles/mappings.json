@@ -2,61 +2,29 @@
   "home/.bashrc": "~/.bashrc",
   "home/.vimrc": "~/.vimrc",
   "home/.zshenv": "~/.zshenv",
-  ".agents/skills/commit-current-changes": [
-    "~/.agents/skills/commit-current-changes",
-    "~/.codex/skills/commit-current-changes"
+  ".agents/skills/commit": [
+    "~/.agents/skills/commit",
+    "~/.codex/skills/commit"
   ],
-  ".agents/skills/create-logs": [
-    "~/.agents/skills/create-logs",
-    "~/.codex/skills/create-logs"
-  ],
-  ".agents/skills/devlog-search": [
-    "~/.agents/skills/devlog-search",
-    "~/.codex/skills/devlog-search"
-  ],
-  ".agents/skills/devlog-matome": [
-    "~/.agents/skills/devlog-matome",
-    "~/.codex/skills/devlog-matome"
-  ],
-  ".agents/skills/memo": [
-    "~/.agents/skills/memo",
-    "~/.codex/skills/memo"
-  ],
-  ".agents/skills/wiki-organizer": [
-    "~/.agents/skills/wiki-organizer",
-    "~/.codex/skills/wiki-organizer"
-  ],
-  ".agents/skills/create-pr-github": [
-    "~/.agents/skills/create-pr-github",
-    "~/.codex/skills/create-pr-github"
-  ],
-  ".agents/skills/create-mr-gitlab": [
-    "~/.agents/skills/create-mr-gitlab",
-    "~/.codex/skills/create-mr-gitlab"
-  ],
-  ".agents/skills/playwright-cli": [
-    "~/.agents/skills/playwright-cli",
-    "~/.codex/skills/playwright-cli"
-  ],
-  ".agents/skills/self-format": [
-    "~/.agents/skills/self-format",
-    "~/.codex/skills/self-format"
-  ],
-  ".agents/skills/create-branch": [
-    "~/.agents/skills/create-branch",
-    "~/.codex/skills/create-branch"
+  ".agents/skills/branch": [
+    "~/.agents/skills/branch",
+    "~/.codex/skills/branch"
   ],
   ".agents/skills/research": [
     "~/.agents/skills/research",
     "~/.codex/skills/research"
   ],
-  ".agents/skills/implementation": [
-    "~/.agents/skills/implementation",
-    "~/.codex/skills/implementation"
+  ".agents/skills/implement": [
+    "~/.agents/skills/implement",
+    "~/.codex/skills/implement"
   ],
   ".agents/skills/review": [
     "~/.agents/skills/review",
     "~/.codex/skills/review"
+  ],
+  ".agents/skills/merge-request": [
+    "~/.agents/skills/merge-request",
+    "~/.codex/skills/merge-request"
   ],
   ".agents/AGENTS.md": [
     "~/.agents/AGENTS.md",

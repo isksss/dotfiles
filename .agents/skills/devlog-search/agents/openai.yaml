@@ -1,4 +1,0 @@
-interface:
-  display_name: "devlog検索"
-  short_description: "devlog と note から過去情報を検索"
-  default_prompt: "$devlog-search を使って、devlog や note から関連情報を検索し、根拠ファイルと要点を整理して。"

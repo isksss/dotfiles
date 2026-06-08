@@ -1,4 +1,0 @@
-interface:
-  display_name: "Wiki Organizer"
-  short_description: "memoとdevlogを検索性の高いwikiへ整理"
-  default_prompt: "$wiki-organizer を使って、memo と devlog を $HOME/wiki/note/ 配下に整理して。"

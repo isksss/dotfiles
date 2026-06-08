@@ -1,4 +1,4 @@
 interface:
   display_name: "調査"
   short_description: "実装前の事実確認と影響範囲整理"
-  default_prompt: "$research を使って、実装前に関連コードと設定を調査し、事実・未確認事項・推奨方針を記録して。"
+  default_prompt: "$research を使って、関連コードと設定を調査し、事実・未確認事項・推奨方針を整理して。"

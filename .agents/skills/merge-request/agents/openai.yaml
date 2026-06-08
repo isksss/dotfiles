@@ -1,0 +1,4 @@
+interface:
+  display_name: "Merge Request"
+  short_description: "GitHub PRまたはGitLab MRを作成"
+  default_prompt: "$merge-request を使って現在ブランチから GitHub PR または GitLab MR を作成して。"

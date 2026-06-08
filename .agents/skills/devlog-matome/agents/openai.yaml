@@ -1,4 +1,0 @@
-interface:
-  display_name: "devlogまとめ"
-  short_description: "devlog を note に内容別整理"
-  default_prompt: "$devlog-matome を使って、devlog の関連情報を収集し、内容ごとに $HOME/wiki/note/ へまとめて。"

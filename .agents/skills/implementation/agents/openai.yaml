@@ -1,4 +1,0 @@
-interface:
-  display_name: "実装"
-  short_description: "計画に基づく最小実装"
-  default_prompt: "$implementation を使って、調査結果または計画に基づき、既存規約に沿って最小実装して。"

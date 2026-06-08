@@ -1,0 +1,4 @@
+interface:
+  display_name: "ブランチ"
+  short_description: "目的に合う短いGit branchを作成"
+  default_prompt: "$branch を使って作業目的に合う短いブランチ名を作成し、新規ブランチを作って。"
