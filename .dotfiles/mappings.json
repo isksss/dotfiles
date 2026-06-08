@@ -26,6 +26,18 @@
     "~/.agents/skills/merge-request",
     "~/.codex/skills/merge-request"
   ],
+  ".agents/skills/grill-me": [
+    "~/.agents/skills/grill-me",
+    "~/.codex/skills/grill-me"
+  ],
+  ".agents/skills/grill-me-lite": [
+    "~/.agents/skills/grill-me-lite",
+    "~/.codex/skills/grill-me-lite"
+  ],
+  ".agents/skills/grill-me-deep": [
+    "~/.agents/skills/grill-me-deep",
+    "~/.codex/skills/grill-me-deep"
+  ],
   ".agents/AGENTS.md": [
     "~/.agents/AGENTS.md",
     "~/.codex/AGENTS.md",

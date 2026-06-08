@@ -1,0 +1,4 @@
+interface:
+  display_name: "GrillMe Deep"
+  short_description: "大型開発向けに設計ツリーとADR候補を深掘り"
+  default_prompt: "$grill-me-deep を使って、大型開発前に設計ツリー・運用・リリース・ADR候補まで深掘りして。"
