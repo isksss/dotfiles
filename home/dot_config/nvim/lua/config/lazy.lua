@@ -92,8 +92,8 @@ require("lazy").setup({
         end,
     },
     {
-        "tpope/vim-fugitive",
-        cmd = { "Git", "G", "Gdiffsplit", "Gvdiffsplit", "Gwrite", "Gread" },
+        "lambdalisue/vim-gin",
+        cmd = { "Gin", "GinStatus" },
     },
     {
         "lewis6991/gitsigns.nvim",
