@@ -44,16 +44,6 @@ require("lazy").setup({
         end,
     },
     {
-        "ibhagwan/fzf-lua",
-        cmd = "FzfLua",
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-        },
-        config = function()
-            require("config.fzf").setup()
-        end,
-    },
-    {
         "3rd/image.nvim",
         build = false,
         event = { "BufReadPre", "BufNewFile" },
@@ -75,19 +65,6 @@ require("lazy").setup({
         },
         config = function()
             require("config.which-key").setup()
-        end,
-    },
-    {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x",
-        cmd = "Neotree",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "MunifTanjim/nui.nvim",
-            "nvim-tree/nvim-web-devicons",
-        },
-        config = function()
-            require("config.neo-tree").setup()
         end,
     },
     -- ステータスライン

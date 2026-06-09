@@ -7,13 +7,11 @@ local keymap = vim.keymap.set
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
--- <C-e> でファイラーを起動
-keymap("n", "<C-e>", "<cmd>Neotree filesystem reveal left toggle<CR>", { desc = "ファイラーを開く" })
-keymap("n", "<leader>e", "<cmd>Neotree filesystem reveal left toggle<CR>", { desc = "ファイラーを開く" })
-keymap("n", "<leader>f", "<cmd>FzfLua files<CR>", { desc = "ファイル/ディレクトリ名で検索" })
-keymap("n", "<leader>ff", "<cmd>FzfLua files<CR>", { desc = "ファイル名で検索" })
-keymap("n", "<leader>fg", "<cmd>FzfLua live_grep<CR>", { desc = "内容を検索" })
-keymap("n", "<leader>fb", "<cmd>DduBuffers<CR>", { desc = "バッファ一覧を開く" })
+-- ddu
+keymap("n", "<leader>df", "<cmd>DduFiles<CR>", { desc = "ファイル/ディレクトリ名で検索" })
+keymap("n", "<leader>dg", "<cmd>DduLiveGrep<CR>", { desc = "内容を検索" })
+keymap("n", "<leader>db", "<cmd>DduBuffers<CR>", { desc = "バッファ一覧を開く" })
+keymap("n", "<leader>de", "<cmd>DduExplorer<CR>", { desc = "ファイラーを開く" })
 keymap("n", "<leader>gs", "<cmd>Git<CR>", { desc = "Git status を開く" })
 keymap("n", "<leader>gb", "<cmd>Gitsigns blame_line<CR>", { desc = "現在行の Git blame を表示" })
 keymap("n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>", { desc = "前のタブへ移動" })
