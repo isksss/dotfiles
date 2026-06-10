@@ -152,7 +152,6 @@ require("lualine").setup({
         lua_source: 'require("config.tabs")',
       }),
       p("nvim-treesitter/nvim-treesitter", {
-        on_event: ["BufReadPre", "BufNewFile"],
         lua_source: 'require("config.treesitter").setup()',
       }),
       p("stevearc/conform.nvim", {
