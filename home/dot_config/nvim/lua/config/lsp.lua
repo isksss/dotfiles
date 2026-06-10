@@ -1,12 +1,73 @@
 -- LSP 設定
 -----------------------------------------------------------
-local mason_lspconfig = require("mason-lspconfig")
-local vue_language_server_path = vim.fn.expand("$MASON/packages/vue-language-server/node_modules/@vue/language-server")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local lsp_group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true })
+
+local function systemlist(args)
+    local output = vim.fn.systemlist(args)
+    if vim.v.shell_error ~= 0 then
+        return nil
+    end
+    return output
+end
+
+local function mise_where(tool)
+    local output = systemlist({ "mise", "where", tool })
+    if not output or output[1] == nil or output[1] == "" then
+        return nil
+    end
+    return output[1]
+end
+
+local function first_existing(paths)
+    for _, path in ipairs(paths) do
+        if path and vim.uv.fs_stat(path) then
+            return path
+        end
+    end
+    return nil
+end
+
+local function find_file(root, predicate)
+    if not root or not vim.uv.fs_stat(root) then
+        return nil
+    end
+
+    local matches = vim.fs.find(predicate, {
+        path = root,
+        type = "file",
+        limit = 1,
+    })
+    return matches[1]
+end
+
+local function vue_typescript_plugin_path()
+    local root = mise_where("npm:@vue/typescript-plugin")
+    return first_existing({
+        root and vim.fs.joinpath(root, "lib", "node_modules", "@vue", "typescript-plugin"),
+        root and vim.fs.joinpath(root, "node_modules", "@vue", "typescript-plugin"),
+    })
+end
+
+local function ts_ls_init_options()
+    local plugin_path = vue_typescript_plugin_path()
+    if not plugin_path then
+        return {}
+    end
+
+    return {
+        plugins = {
+            {
+                name = "@vue/typescript-plugin",
+                location = plugin_path,
+                languages = { "javascript", "typescript", "vue" },
+            },
+        },
+    }
+end
 
 local web_root_markers = {
     {
@@ -49,7 +110,50 @@ local function jdtls_cmd(dispatchers, config)
         data_dir = data_dir .. "/" .. vim.fn.fnamemodify(config.root_dir, ":p:h:t")
     end
 
-    return vim.lsp.rpc.start({ "jdtls", "-data", data_dir }, dispatchers, {
+    local jdtls = vim.fn.exepath("jdtls")
+    if jdtls ~= "" then
+        return vim.lsp.rpc.start({ jdtls, "-data", data_dir }, dispatchers, {
+            cwd = config.cmd_cwd,
+            env = config.cmd_env,
+            detached = config.detached,
+        })
+    end
+
+    local root = mise_where("ubi:eclipse/eclipse.jdt.ls")
+    local launcher = find_file(root, function(name)
+        return name == "org.eclipse.equinox.launcher.jar"
+            or name:match("^org%.eclipse%.equinox%.launcher_.*%.jar$") ~= nil
+    end)
+    local config_dir = first_existing({
+        root and vim.fs.joinpath(root, "config_linux"),
+        root and vim.fs.joinpath(root, "config"),
+    })
+
+    if not launcher or not config_dir then
+        vim.notify("jdtls not found. Run `mise install`.", vim.log.levels.WARN)
+        return nil
+    end
+
+    return vim.lsp.rpc.start({
+        "java",
+        "-Declipse.application=org.eclipse.jdt.ls.core.id1",
+        "-Dosgi.bundles.defaultStartLevel=4",
+        "-Declipse.product=org.eclipse.jdt.ls.core.product",
+        "-Dlog.protocol=true",
+        "-Dlog.level=ALL",
+        "-Xmx1g",
+        "--add-modules=ALL-SYSTEM",
+        "--add-opens",
+        "java.base/java.util=ALL-UNNAMED",
+        "--add-opens",
+        "java.base/java.lang=ALL-UNNAMED",
+        "-jar",
+        launcher,
+        "-configuration",
+        config_dir,
+        "-data",
+        data_dir,
+    }, dispatchers, {
         cwd = config.cmd_cwd,
         env = config.cmd_env,
         detached = config.detached,
@@ -86,17 +190,6 @@ vim.diagnostic.config({
     severity_sort = true,
 })
 
-mason_lspconfig.setup({
-    ensure_installed = {
-        "gopls",
-        "rust_analyzer",
-        "ts_ls",
-        "vue_ls",
-        "jdtls",
-    },
-    automatic_enable = false,
-})
-
 local servers = {
     gopls = {
         capabilities = capabilities,
@@ -117,15 +210,7 @@ local servers = {
     ts_ls = {
         capabilities = capabilities,
         root_dir = root_dir(web_root_markers),
-        init_options = {
-            plugins = {
-                {
-                    name = "@vue/typescript-plugin",
-                    location = vue_language_server_path,
-                    languages = { "javascript", "typescript", "vue" },
-                },
-            },
-        },
+        init_options = ts_ls_init_options(),
         filetypes = {
             "javascript",
             "javascriptreact",

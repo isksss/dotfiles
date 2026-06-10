@@ -38,6 +38,10 @@
     "~/.agents/skills/grill-me-deep",
     "~/.codex/skills/grill-me-deep"
   ],
+  ".agents/skills/herdr": [
+    "~/.agents/skills/herdr",
+    "~/.codex/skills/herdr"
+  ],
   ".agents/AGENTS.md": [
     "~/.agents/AGENTS.md",
     "~/.codex/AGENTS.md",
@@ -62,6 +66,7 @@
   "home/dot_config/ghq": "~/.config/ghq",
   "home/dot_config/git": "~/.config/git",
   "home/dot_config/gwq": "~/.config/gwq",
+  "home/dot_config/herdr/config.toml": "~/.config/herdr/config.toml",
   "home/dot_config/lazygit": "~/.config/lazygit",
   "mise.toml": "~/.config/mise/config.toml",
   "home/dot_config/nvim": "~/.config/nvim",

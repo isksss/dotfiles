@@ -4,9 +4,43 @@
 local lint = require("lint")
 local project = require("config.project")
 
--- Mason no longer exposes Package:get_install_path().
--- Use Checkstyle's bundled Google config instead of depending on Mason's package layout.
-lint.linters.checkstyle.config_file = "/google_checks.xml"
+local function systemlist(args)
+    local output = vim.fn.systemlist(args)
+    if vim.v.shell_error ~= 0 then
+        return nil
+    end
+    return output
+end
+
+local function mise_where(tool)
+    local output = systemlist({ "mise", "where", tool })
+    if not output or output[1] == nil or output[1] == "" then
+        return nil
+    end
+    return output[1]
+end
+
+local function find_file(root, predicate)
+    if not root or not vim.uv.fs_stat(root) then
+        return nil
+    end
+
+    local matches = vim.fs.find(predicate, {
+        path = root,
+        type = "file",
+        limit = 1,
+    })
+    return matches[1]
+end
+
+local function checkstyle_jar()
+    return find_file(mise_where("github:checkstyle/checkstyle"), function(name)
+        return name:match("%-all%.jar$") ~= nil
+    end)
+end
+
+lint.linters.checkstyle.cmd = "java"
+lint.linters.checkstyle.args = { "-jar", checkstyle_jar, "-f", "sarif", "-c", "/google_checks.xml" }
 
 lint.linters.biomejs.cmd = function()
     return project.node_bin(0, "biome") or "biome"
@@ -45,7 +79,7 @@ local function linters_for_buffer(bufnr)
     end
 
     if ft == "java" then
-        if project.has_root_file(bufnr, project.checkstyle_configs) then
+        if project.has_root_file(bufnr, project.checkstyle_configs) and checkstyle_jar() then
             return { "checkstyle" }
         end
         return {}
