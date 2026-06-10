@@ -56,6 +56,7 @@ rust = "latest"
 gh = "latest"
 "npm:@marp-team/marp-cli" = "latest"
 terraform = "latest"
+"github:ogulcancelik/herdr" = "latest"
 
 # OS管理
 # OSに1password導入済み

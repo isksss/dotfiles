@@ -1,4 +1,5 @@
 require("config.options")
 local ok, _ = pcall(require, "local.clipboard")
+require("config.ime")
 require("config.keymaps")
 require("config.dpp")

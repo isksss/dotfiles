@@ -31,3 +31,5 @@ Thumbs.db
 
 compose.override.yaml
 compose.override.yml
+
+data.local/*
