@@ -61,8 +61,35 @@ export class Config extends BaseConfig {
             p("Shougo/ddc-sorter_rank"),
             p("Shougo/ddc-converter_remove_overlap"),
 
-            p("neovim/nvim-lspconfig", {
+            p("neovim/nvim-lspconfig"),
+            p("williamboman/mason.nvim", {
+                lua_source: 'require("mason").setup()',
+            }),
+            p("williamboman/mason-lspconfig.nvim", {
+                depends: [
+                    "mason.nvim",
+                    "nvim-lspconfig",
+                ],
                 lua_source: 'require("config.lsp")',
+            }),
+            p("WhoIsSethDaniel/mason-tool-installer.nvim", {
+                depends: [
+                    "mason.nvim",
+                ],
+                lua_source: `
+require("mason-tool-installer").setup({
+    ensure_installed = {
+        "prettier",
+        "eslint_d",
+        "google-java-format",
+        "checkstyle",
+        "markdownlint-cli2",
+        "sql-formatter",
+        "pgformatter",
+        "sqlfluff",
+    },
+})
+`,
             }),
 
             p("Shougo/ddu.vim", {

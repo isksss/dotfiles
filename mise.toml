@@ -33,37 +33,20 @@ python = "latest"
 uv = "latest"
 
 # go tools
-"go:golang.org/x/tools/gopls" = "latest"
 "go:github.com/d-kuro/gwq/cmd/gwq" = "latest"
 "go:github.com/rhysd/dotfiles" = "latest"
 "go:github.com/isksss/sqio/cmd/sqio" = "latest"
 
 # npm tools
-"npm:@vue/language-server" = "latest"
-"npm:@vue/typescript-plugin" = "latest"
 "npm:@antfu/ni" = "latest"
 "npm:@github/copilot" = "latest"
 "npm:@openai/codex" = "latest"
 "npm:@playwright/cli" = "latest"
-"npm:eslint_d" = "latest"
-"npm:markdownlint-cli2" = "latest"
-"npm:pg-formatter" = "latest"
 "npm:playwright" = "latest"
-"npm:prettier" = "latest"
-"npm:sql-formatter" = "latest"
-"npm:typescript" = "latest"
-"npm:typescript-language-server" = "latest"
-
-# python tools
-"pipx:sqlfluff" = "latest"
 
 # alt shell
 "aqua:nushell/nushell" = "latest"
 rust = "latest"
-"aqua:rust-lang/rust-analyzer" = "latest"
-"aqua:google/google-java-format" = "latest"
-"github:checkstyle/checkstyle" = "latest"
-"ubi:eclipse/eclipse.jdt.ls" = "latest"
 gh = "latest"
 "npm:@marp-team/marp-cli" = "latest"
 terraform = "latest"

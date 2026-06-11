@@ -27,7 +27,7 @@ irm https://raw.githubusercontent.com/isksss/dotfiles/main/bootstrap.ps1 | iex
 
 `mise install` は GitHub API でツール情報を取得します。rate limit の 403 が出る場合は [mise の案内](https://mise.jdx.dev/dev-tools/github-tokens.html) に従い、`MISE_GITHUB_TOKEN` または `GITHUB_TOKEN` を設定して再実行します。
 
-Neovim の LSP server、formatter、linter も `mise.toml` で管理します。`jdtls` は `ubi:eclipse/eclipse.jdt.ls` を使っていますが、`ubi` backend は mise で deprecated 扱いのため、将来は代替 backend への移行が必要です。
+Neovim の LSP server、formatter、linter は Mason で管理します。dpp は不足プラグインを自動導入し、1日1回プラグイン更新を実行します。直前の更新へ戻す場合は Neovim で `:DppRollbackLatest` を実行します。
 
 clone 先を変える場合は `DOTFILES_DIR` を指定します。
 
