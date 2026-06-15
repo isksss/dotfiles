@@ -5,8 +5,6 @@ local base_path = vim.fn.stdpath("data") .. "/dpp"
 local repos_path = base_path .. "/repos/github.com"
 local config_path = vim.fn.stdpath("config") .. "/dpp.ts"
 local state_name = "default"
-local update_stamp_path = vim.fn.stdpath("state") .. "/dpp-auto-update"
-local pending_auto_update = false
 
 local bootstrap_repos = {
     "Shougo/dpp.vim",
@@ -54,27 +52,6 @@ local function load_state()
     return vim.fn["dpp#min#load_state"](base_path, state_name) == 0
 end
 
-local function today()
-    return os.date("%Y-%m-%d")
-end
-
-local function read_update_stamp()
-    local ok, lines = pcall(vim.fn.readfile, update_stamp_path)
-    if not ok or not lines[1] then
-        return nil
-    end
-    return lines[1]
-end
-
-local function write_update_stamp()
-    vim.fn.mkdir(vim.fn.fnamemodify(update_stamp_path, ":h"), "p")
-    vim.fn.writefile({ today() }, update_stamp_path)
-end
-
-local function auto_update_due()
-    return read_update_stamp() ~= today()
-end
-
 local function dpp_action(action, params)
     if params then
         vim.fn["dpp#async_ext_action"]("installer", action, params)
@@ -83,29 +60,16 @@ local function dpp_action(action, params)
     end
 end
 
-local function run_auto_update()
-    if not auto_update_due() then
-        return
-    end
-
-    write_update_stamp()
-    dpp_action("update")
-end
-
-local function auto_install_and_update()
+local function auto_install()
     local ok, not_installed = pcall(vim.fn["dpp#sync_ext_action"], "installer", "getNotInstalled")
     if ok and type(not_installed) == "table" and #not_installed > 0 then
-        pending_auto_update = auto_update_due()
         dpp_action("install")
-        return
     end
-
-    run_auto_update()
 end
 
-local function schedule_auto_install_and_update()
+local function schedule_auto_install()
     vim.defer_fn(function()
-        pcall(auto_install_and_update)
+        pcall(auto_install)
     end, 1000)
 end
 
@@ -127,7 +91,7 @@ else
     vim.api.nvim_create_autocmd("User", {
         pattern = "DenopsReady",
         once = true,
-        callback = schedule_auto_install_and_update,
+        callback = schedule_auto_install,
     })
 end
 
@@ -136,7 +100,7 @@ vim.api.nvim_create_autocmd("User", {
     callback = function()
         vim.notify("dpp make_state() is done")
         if load_state() then
-            schedule_auto_install_and_update()
+            schedule_auto_install()
         end
     end,
 })
@@ -148,11 +112,6 @@ vim.api.nvim_create_autocmd("User", {
     },
     callback = function()
         make_state()
-
-        if pending_auto_update then
-            pending_auto_update = false
-            run_auto_update()
-        end
     end,
 })
 
