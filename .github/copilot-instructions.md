@@ -1,67 +1,16 @@
 # Copilot Instructions
 
-## リポジトリ概要
+このファイルは GitHub Copilot 向けの薄い参照です。AI エージェント規約の正本は `.agents/` 配下に置き、全体像は `README.md` の「AI エージェント規約」を参照してください。
 
-このリポジトリは [rhysd/dotfiles](https://github.com/rhysd/dotfiles)
-形式で管理される dotfiles リポジトリです。`home/` 配下の実ファイルを
-`.dotfiles/mappings.json` で `~` に symlink します。
+## 正本
 
-## 主要コマンド
+- `.agents/AGENTS.md`: グローバル指示
+- `.agents/rules/`: 共通ルール
+- `.agents/skills/`: Codex 中心の作業 skill
+- `.agents/templates/`: 作業報告テンプレート
 
-```sh
-dotfiles link --dry   # 適用前にリンク内容を確認
-dotfiles link         # symlink を作成
-dotfiles clean        # 作成済みリンクを削除
-dotfiles update       # dotfiles repo を更新
-mise install          # mise.toml で定義されたツールとランタイムをインストール
-```
+## Copilot 側の扱い
 
-## アーキテクチャ
+`.github/agents/*.agent.md` は `.agents/skills/` の wrapper です。詳細な挙動や作業方針は wrapper に重複させず、対応する skill の `SKILL.md` を参照します。
 
-### ツールとランタイム管理
-
-`mise` が CLI ツールと言語ランタイムを管理します。次の 2 つの設定ファイルは同期を保つ必要があります。
-
-- `mise.toml` - リポジトリルート
-- `mise.toml` - `~/.config/mise/mise.toml`
-
-### AI エージェント指示
-
-グローバルな AI アシスタント指示の正本は `.agents/AGENTS.md` です。各 AI ツール向けの設定は実ファイルとして配置します。
-
-- `.agents/AGENTS.md` -> `~/.agents/AGENTS.md`
-- `.agents/AGENTS.md` -> `~/.codex/AGENTS.md`
-- `.agents/AGENTS.md` -> `~/.copilot/copilot-instructions.md`
-- `.agents/skills/...` -> `~/.agents/skills/...`
-- `.agents/skills/...` -> `~/.codex/skills/...`
-- `.github/agents/...` -> `~/.github/agents/...`
-
-グローバルな AI の挙動を変更する場合は、`.agents/AGENTS.md` を編集します。
-Codex skill は `research`、`implement`、`review`、`commit`、`branch`、
-`merge-request` に統一します。GitHub Copilot では `.github/agents/` の
-薄い wrapper を利用します。
-
-### シェル設定
-
-- `home/.zshenv` -> `~/.zshenv`: XDG 変数、`ZDOTDIR`、`PATH`、mise の有効化
-- `home/dot_config/zsh` -> `~/.config/zsh`: エイリアス、補完、各種ツール初期化、scripts
-
-`.zshrc` 内のツール初期化はすべて `command -v <tool> >/dev/null 2>&1` チェックでガードされています。
-
-### 業務用と私用の環境差分
-
-業務向けの挙動は `~/.config/zsh/local.zsh`（dotfiles 管理外）にある `ISWORK` 環境変数で制御します。
-
-### Neovim 設定
-
-エントリポイントは `home/dot_config/nvim/init.lua` で、
-`config.options`、`config.keymaps`、`config.lazy` を読み込みます。
-
-各機能は `lua/config/` 配下のモジュールとして分割されています。
-
-- `lazy.lua` - プラグインマネージャー（lazy.nvim）と全プラグイン定義
-- `lsp.lua` - mason-lspconfig 経由の LSP（gopls, rust_analyzer, ts_ls, vue_ls, jdtls）
-- `format.lua` - conform.nvim（BufWritePre で実行）
-- `lint.lua` - nvim-lint
-- `ddc.lua` - 補完（Shougo/ddc.vim with denops）
-- `ddu.lua` - ファジーファインダー / ファイラー（Shougo/ddu.vim with denops）
+dotfiles の基本操作や配布先は `README.md` と `.dotfiles/mappings.json` を確認してください。

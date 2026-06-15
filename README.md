@@ -65,6 +65,20 @@ dotfiles clean
 dotfiles update
 ```
 
+## AI エージェント規約
+
+このリポジトリの AI エージェント規約は Codex での利用を主軸にし、`.agents/` 配下を正本として管理します。
+
+- `.agents/AGENTS.md`: グローバル指示の正本
+- `.agents/rules/`: 共通ルールと詳細参照
+- `.agents/skills/`: `research`、`implement`、`review`、`commit`、`branch`、`merge-request`、`grill-me`、`herdr` などの作業 skill
+- `.agents/templates/`: 回答や作業報告のテンプレート
+- `.github/agents/`: GitHub Copilot 向けの薄い wrapper
+
+`.dotfiles/mappings.json` では、`.agents/AGENTS.md`、`.agents/rules/`、`.agents/skills/`、`.agents/templates/` を `~/.codex` と `~/.agents` へ配布します。`~/.copilot` や `~/.claude` への配布は既存環境との互換目的で残しています。
+
+AI 規約を変更する場合は、まず `.agents/` 配下の正本を更新し、必要に応じて `.github/agents/` や `.github/copilot-instructions.md` の参照だけを調整します。
+
 ## Herdr
 
 Herdr の設定は `home/dot_config/herdr/config.toml` で管理し、`dotfiles link` で `~/.config/herdr/config.toml` に配置します。稼働中の Herdr に反映する場合は次を実行します。

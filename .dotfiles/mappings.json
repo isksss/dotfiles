@@ -2,13 +2,21 @@
   "home/.bashrc": "~/.bashrc",
   "home/.vimrc": "~/.vimrc",
   "home/.zshenv": "~/.zshenv",
-  ".agents/skills/commit": [
-    "~/.agents/skills/commit",
-    "~/.codex/skills/commit"
+  ".agents/AGENTS.md": [
+    "~/.agents/AGENTS.md",
+    "~/.codex/AGENTS.md",
+    "~/.copilot/copilot-instructions.md",
+    "~/.claude/CLAUDE.md"
   ],
-  ".agents/skills/branch": [
-    "~/.agents/skills/branch",
-    "~/.codex/skills/branch"
+  ".agents/rules": [
+    "~/.agents/rules",
+    "~/.codex/rules",
+    "~/.copilot/rules"
+  ],
+  ".agents/templates": [
+    "~/.agents/templates",
+    "~/.codex/templates",
+    "~/.copilot/templates"
   ],
   ".agents/skills/research": [
     "~/.agents/skills/research",
@@ -21,6 +29,14 @@
   ".agents/skills/review": [
     "~/.agents/skills/review",
     "~/.codex/skills/review"
+  ],
+  ".agents/skills/commit": [
+    "~/.agents/skills/commit",
+    "~/.codex/skills/commit"
+  ],
+  ".agents/skills/branch": [
+    "~/.agents/skills/branch",
+    "~/.codex/skills/branch"
   ],
   ".agents/skills/merge-request": [
     "~/.agents/skills/merge-request",
@@ -41,22 +57,6 @@
   ".agents/skills/herdr": [
     "~/.agents/skills/herdr",
     "~/.codex/skills/herdr"
-  ],
-  ".agents/AGENTS.md": [
-    "~/.agents/AGENTS.md",
-    "~/.codex/AGENTS.md",
-    "~/.copilot/copilot-instructions.md",
-    "~/.claude/CLAUDE.md"
-  ],
-  ".agents/rules": [
-    "~/.agents/rules",
-    "~/.codex/rules",
-    "~/.copilot/rules"
-  ],
-  ".agents/templates": [
-    "~/.agents/templates",
-    "~/.codex/templates",
-    "~/.copilot/templates"
   ],
   ".mcp.json": "~/.copilot/mcp-config.json",
   ".github/agents": "~/.github/agents",
