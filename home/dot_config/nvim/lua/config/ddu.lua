@@ -68,26 +68,6 @@ function M.live_grep()
     })
 end
 
-function M.explorer()
-    local path = vim.fn.expand("%:p:h")
-    if path == "" then
-        path = vim.fn.getcwd()
-    end
-
-    start("explorer", {
-        ui = "filer",
-        searchPath = path,
-        sources = {
-            {
-                name = "file",
-                params = {
-                    path = path,
-                },
-            },
-        },
-    })
-end
-
 function M.setup()
     vim.fn["ddu#custom#patch_global"]({
         sourceOptions = {
@@ -153,11 +133,6 @@ function M.setup()
                 startAutoAction = false,
                 startFilter = true,
             },
-            filer = {
-                split = "floating",
-                toggle = true,
-                width = 40,
-            },
         },
     })
 
@@ -171,10 +146,6 @@ function M.setup()
 
     vim.api.nvim_create_user_command("DduLiveGrep", function()
         M.live_grep()
-    end, {})
-
-    vim.api.nvim_create_user_command("DduExplorer", function()
-        M.explorer()
     end, {})
 
     local ddu_group = vim.api.nvim_create_augroup("DduSettings", { clear = true })
@@ -206,35 +177,6 @@ function M.setup()
             end, opts)
             vim.keymap.set("n", "t", function()
                 ui_action("itemAction", { params = { command = "tabnew" } })
-            end, opts)
-        end,
-    })
-
-    vim.api.nvim_create_autocmd("FileType", {
-        group = ddu_group,
-        pattern = "ddu-filer",
-        callback = function(event)
-            local opts = { buffer = event.buf, silent = true, nowait = true }
-            vim.keymap.set("n", "q", function()
-                ui_action("quit")
-            end, opts)
-            vim.keymap.set("n", "<CR>", function()
-                ui_action("itemAction")
-            end, opts)
-            vim.keymap.set("n", "o", function()
-                ui_action("expandItem", { mode = "toggle" })
-            end, opts)
-            vim.keymap.set("n", "v", function()
-                ui_action("itemAction", { name = "open", params = { command = "vsplit" } })
-            end, opts)
-            vim.keymap.set("n", "s", function()
-                ui_action("itemAction", { name = "open", params = { command = "split" } })
-            end, opts)
-            vim.keymap.set("n", "t", function()
-                ui_action("itemAction", { name = "open", params = { command = "tabnew" } })
-            end, opts)
-            vim.keymap.set("n", ".", function()
-                ui_action("toggleHiddenItems")
             end, opts)
         end,
     })

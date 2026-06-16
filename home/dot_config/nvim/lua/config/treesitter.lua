@@ -6,6 +6,7 @@ local M = {}
 local parser_languages = {
     "bash",
     "css",
+    "go",
     "html",
     "java",
     "javascript",
@@ -14,6 +15,8 @@ local parser_languages = {
     "lua",
     "markdown",
     "markdown_inline",
+    "python",
+    "rust",
     "scss",
     "sql",
     "toml",
@@ -26,6 +29,7 @@ local parser_languages = {
 
 local filetypes = {
     "css",
+    "go",
     "html",
     "java",
     "javascript",
@@ -34,6 +38,8 @@ local filetypes = {
     "jsonc",
     "lua",
     "markdown",
+    "python",
+    "rust",
     "scss",
     "sh",
     "sql",

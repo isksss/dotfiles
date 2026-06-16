@@ -35,6 +35,26 @@ local java_root_markers = {
     { ".git" },
 }
 
+local python_root_markers = {
+    {
+        "pyproject.toml",
+        "setup.py",
+        "setup.cfg",
+        "requirements.txt",
+        "Pipfile",
+        "pyrightconfig.json",
+    },
+    { ".git" },
+}
+
+local shell_root_markers = {
+    {
+        ".shellcheckrc",
+        ".editorconfig",
+    },
+    { ".git" },
+}
+
 local function root_dir(markers)
     return function(bufnr, on_dir)
         local root = vim.fs.root(bufnr, markers)
@@ -61,8 +81,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
     group = lsp_group,
     callback = function(event)
         local bufnr = event.buf
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
         local keymap = vim.keymap.set
         local opts = { buffer = bufnr, silent = true }
+
+        if
+            client
+            and client.supports_method
+            and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint)
+            and vim.lsp.inlay_hint
+        then
+            vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+        end
 
         keymap("n", "gd", vim.lsp.buf.definition, opts)
         keymap("n", "gr", vim.lsp.buf.references, opts)
@@ -70,11 +100,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
         keymap("n", "gi", vim.lsp.buf.implementation, opts)
         keymap("n", "gy", vim.lsp.buf.type_definition, opts)
         keymap("n", "K", vim.lsp.buf.hover, opts)
-        keymap("n", "<leader>lr", vim.lsp.buf.rename, opts)
-        keymap("n", "<leader>la", vim.lsp.buf.code_action, opts)
         keymap("n", "[d", vim.diagnostic.goto_prev, opts)
         keymap("n", "]d", vim.diagnostic.goto_next, opts)
-        keymap("n", "<leader>ld", vim.diagnostic.open_float, opts)
+
+        keymap("n", "<leader>ld", vim.lsp.buf.definition, opts)
+        keymap("n", "<leader>lr", vim.lsp.buf.references, opts)
+        keymap("n", "<leader>lD", vim.diagnostic.open_float, opts)
+        keymap("n", "<leader>lh", vim.lsp.buf.hover, opts)
+        keymap("n", "<leader>li", function()
+            require("config.tasks").toggle_inlay_hints()
+        end, opts)
+        keymap("n", "<leader>lI", vim.lsp.buf.implementation, opts)
+        keymap("n", "<leader>ln", vim.lsp.buf.rename, opts)
+        keymap("n", "<leader>la", vim.lsp.buf.code_action, opts)
         keymap("n", "<leader>lq", vim.diagnostic.setqflist, opts)
     end,
 })
@@ -94,6 +132,8 @@ mason_lspconfig.setup({
         "ts_ls",
         "vue_ls",
         "jdtls",
+        "basedpyright",
+        "bashls",
     },
     automatic_enable = false,
 })
@@ -101,6 +141,12 @@ mason_lspconfig.setup({
 local servers = {
     gopls = {
         capabilities = capabilities,
+        settings = {
+            gopls = {
+                gofumpt = true,
+                staticcheck = true,
+            },
+        },
     },
     rust_analyzer = {
         capabilities = capabilities,
@@ -143,6 +189,30 @@ local servers = {
         capabilities = capabilities,
         cmd = jdtls_cmd,
         root_dir = root_dir(java_root_markers),
+    },
+    basedpyright = {
+        capabilities = capabilities,
+        root_dir = root_dir(python_root_markers),
+        settings = {
+            basedpyright = {
+                analysis = {
+                    autoSearchPaths = true,
+                    diagnosticMode = "workspace",
+                },
+            },
+        },
+    },
+    bashls = {
+        capabilities = capabilities,
+        root_dir = root_dir(shell_root_markers),
+        settings = {
+            bashIde = {
+                shellcheckPath = "shellcheck",
+                shfmt = {
+                    path = "shfmt",
+                },
+            },
+        },
     },
 }
 

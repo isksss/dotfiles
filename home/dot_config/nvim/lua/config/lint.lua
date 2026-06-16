@@ -16,6 +16,8 @@ end
 
 lint.linters_by_ft = {
     markdown = { "markdownlint-cli2" },
+    python = { "ruff" },
+    sh = { "shellcheck" },
 }
 
 local web_filetypes = {
@@ -66,7 +68,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
     end,
 })
 
-vim.keymap.set("n", "<leader>ll", function()
+vim.keymap.set("n", "<leader>cl", function()
     local names = linters_for_buffer(0)
     if names == nil then
         lint.try_lint()

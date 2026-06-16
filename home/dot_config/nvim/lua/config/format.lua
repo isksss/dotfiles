@@ -27,8 +27,10 @@ end
 
 conform.setup({
     formatters_by_ft = {
-        go = { "gofmt" },
+        go = { "goimports", "gofumpt" },
         rust = { "rustfmt" },
+        python = { "ruff_organize_imports", "ruff_format" },
+        sh = { "shfmt" },
         javascript = web_formatters,
         javascriptreact = web_formatters,
         typescript = web_formatters,
@@ -57,7 +59,7 @@ conform.setup({
     },
 })
 
-vim.keymap.set("n", "<leader>lf", function()
+vim.keymap.set("n", "<leader>cf", function()
     conform.format({
         async = false,
         lsp_format = "fallback",
