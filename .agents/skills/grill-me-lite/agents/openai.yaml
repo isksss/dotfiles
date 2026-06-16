@@ -1,4 +1,0 @@
-interface:
-  display_name: "GrillMe Lite"
-  short_description: "5〜10分で主要な仕様と意思決定を深掘り"
-  default_prompt: "$grill-me-lite を使って、実装前に主要な要件・仕様・意思決定を短時間で深掘りして。"
