@@ -10,6 +10,7 @@ local.zsh
 
 # Codex CLI local approval rules
 .agents/rules/default.rules
+.agents/skills/.system
 
 # 業務用gitconfig
 home/dot_config/git/*.gitconfig
