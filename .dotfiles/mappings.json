@@ -18,45 +18,9 @@
     "~/.codex/templates",
     "~/.copilot/templates"
   ],
-  ".agents/skills/research": [
-    "~/.agents/skills/research",
-    "~/.codex/skills/research"
-  ],
-  ".agents/skills/implement": [
-    "~/.agents/skills/implement",
-    "~/.codex/skills/implement"
-  ],
-  ".agents/skills/review": [
-    "~/.agents/skills/review",
-    "~/.codex/skills/review"
-  ],
-  ".agents/skills/commit": [
-    "~/.agents/skills/commit",
-    "~/.codex/skills/commit"
-  ],
-  ".agents/skills/branch": [
-    "~/.agents/skills/branch",
-    "~/.codex/skills/branch"
-  ],
-  ".agents/skills/merge-request": [
-    "~/.agents/skills/merge-request",
-    "~/.codex/skills/merge-request"
-  ],
-  ".agents/skills/grill-me": [
-    "~/.agents/skills/grill-me",
-    "~/.codex/skills/grill-me"
-  ],
-  ".agents/skills/grill-me-lite": [
-    "~/.agents/skills/grill-me-lite",
-    "~/.codex/skills/grill-me-lite"
-  ],
-  ".agents/skills/grill-me-deep": [
-    "~/.agents/skills/grill-me-deep",
-    "~/.codex/skills/grill-me-deep"
-  ],
-  ".agents/skills/herdr": [
-    "~/.agents/skills/herdr",
-    "~/.codex/skills/herdr"
+  ".agents/skills": [
+    "~/.agents/skills",
+    "~/.codex/skills"
   ],
   ".mcp.json": "~/.copilot/mcp-config.json",
   ".github/agents": "~/.github/agents",

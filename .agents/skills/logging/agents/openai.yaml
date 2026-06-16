@@ -1,0 +1,4 @@
+interface:
+  display_name: "Logging"
+  short_description: "作業ログをSQLiteに記録・検索"
+  default_prompt: "$logging を使って、過去ログを確認し、作業後に今回の実行ログを記録して。"
