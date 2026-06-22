@@ -65,6 +65,33 @@ dotfiles clean
 dotfiles update
 ```
 
+## ローカル LLM
+
+opencode は Ollama の OpenAI-compatible API を使う設定を `home/dot_config/opencode/opencode.jsonc` で管理します。このマシンでは WSL2 側のメモリと RTX 4060 Ti 8GB に合わせて、既定を `qwen2.5-coder:7b-opencode`、軽量処理用を `qwen2.5-coder:3b-opencode` にしています。
+
+Ollama server は systemd を使わず、必要なときに Herdr の別パネルで起動します。
+
+```sh
+ollama serve
+```
+
+初回またはモデル更新時は、別のシェルで次を実行します。
+
+```sh
+ollama pull qwen2.5-coder:7b
+ollama pull qwen2.5-coder:3b
+ollama create qwen2.5-coder:7b-opencode -f ~/.config/ollama/Modelfile.qwen2.5-coder-7b-opencode
+ollama create qwen2.5-coder:3b-opencode -f ~/.config/ollama/Modelfile.qwen2.5-coder-3b-opencode
+```
+
+opencode 側の確認は次を使います。
+
+```sh
+opencode debug config
+opencode models ollama
+opencode run -m ollama/qwen2.5-coder:7b-opencode "READMEを要約して"
+```
+
 ## AI エージェント規約
 
 このリポジトリの AI エージェント規約は Codex での利用を主軸にし、`.agents/` 配下を正本として管理します。

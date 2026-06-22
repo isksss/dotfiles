@@ -215,3 +215,9 @@ if [[ -f "$ZDOTDIR/local.zsh" ]]; then
 else
 	touch "$ZDOTDIR/local.zsh"
 fi
+
+# opencode
+if [[ -d "$HOME/.opencode/bin" ]]; then
+	path=(${path:#$HOME/.opencode/bin})
+	export PATH="$PATH:$HOME/.opencode/bin"
+fi

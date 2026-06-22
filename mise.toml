@@ -43,6 +43,7 @@ uv = "latest"
 "npm:@openai/codex" = "latest"
 "npm:@playwright/cli" = "latest"
 "npm:playwright" = "latest"
+"npm:opencode-ai" = { version = "latest", npm_args = "--ignore-scripts=false" }
 
 # alt shell
 "aqua:nushell/nushell" = "latest"
