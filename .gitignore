@@ -23,8 +23,6 @@ local.zsh
 !.agents/skills/herdr/**
 !.agents/skills/implement/
 !.agents/skills/implement/**
-!.agents/skills/logging/
-!.agents/skills/logging/**
 !.agents/skills/merge-request/
 !.agents/skills/merge-request/**
 !.agents/skills/research/
