@@ -75,7 +75,7 @@ dotfiles update
 - `.agents/templates/`: 回答や作業報告のテンプレート
 - `.github/agents/`: GitHub Copilot 向けの薄い wrapper
 
-`.dotfiles/mappings.json` では、`.agents/AGENTS.md`、`.agents/rules/`、`.agents/skills/`、`.agents/templates/` を `~/.codex` と `~/.agents` へ配布します。`~/.copilot` や `~/.claude` への配布は既存環境との互換目的で残しています。
+`.dotfiles/mappings.json` では、`.agents/AGENTS.md`、`.agents/rules/`、`.agents/skills/`、`.agents/templates/` を `~/.codex` と `~/.agents` へ配布します。opencode 向けには `~/.config/opencode/AGENTS.md` と `~/.config/opencode/skills` へも配布します。`~/.copilot` や `~/.claude` への配布は既存環境との互換目的で残しています。
 
 AI 規約を変更する場合は、まず `.agents/` 配下の正本を更新し、必要に応じて `.github/agents/` や `.github/copilot-instructions.md` の参照だけを調整します。
 

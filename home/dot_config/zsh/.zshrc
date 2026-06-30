@@ -215,3 +215,9 @@ if [[ -f "$ZDOTDIR/local.zsh" ]]; then
 else
 	touch "$ZDOTDIR/local.zsh"
 fi
+
+# opencode
+export PATH=/home/isksss/.opencode/bin:$PATH
+if command -v opencode >/dev/null 2>&1; then
+	_abbr oc="opencode"
+fi
