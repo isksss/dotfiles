@@ -5,6 +5,7 @@
   ".agents/AGENTS.md": [
     "~/.agents/AGENTS.md",
     "~/.codex/AGENTS.md",
+    "~/.config/opencode/AGENTS.md",
     "~/.copilot/copilot-instructions.md",
     "~/.claude/CLAUDE.md"
   ],
@@ -20,7 +21,8 @@
   ],
   ".agents/skills": [
     "~/.agents/skills",
-    "~/.codex/skills"
+    "~/.codex/skills",
+    "~/.config/opencode/skills"
   ],
   ".mcp.json": "~/.copilot/mcp-config.json",
   ".github/agents": "~/.github/agents",
@@ -44,5 +46,6 @@
   "home/dot_config/zsh": "~/.config/zsh",
   "wallpapers": "~/.wallpapers",
   "home/dot_config/pwsh": "~/.config/pwsh",
-  ".wezterm.lua": "~/.wezterm.lua"
+  ".wezterm.lua": "~/.wezterm.lua",
+  "home/dot_config/opencode/opencode.jsonc": "~/.config/opencode/opencode.jsonc"
 }

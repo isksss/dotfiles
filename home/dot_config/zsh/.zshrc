@@ -221,3 +221,7 @@ if [[ -d "$HOME/.opencode/bin" ]]; then
 	path=(${path:#$HOME/.opencode/bin})
 	export PATH="$PATH:$HOME/.opencode/bin"
 fi
+
+if command -v opencode >/dev/null 2>&1; then
+	_abbr oc="opencode"
+fi
