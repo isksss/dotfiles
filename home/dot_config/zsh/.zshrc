@@ -48,6 +48,31 @@ fi
 # alias
 _abbr re="exec ${SHELL} -l"
 
+selfupdate() {
+	local os_status=0
+	local mise_status=0
+
+	if command -v yay >/dev/null 2>&1; then
+		yay -Syu --noconfirm || os_status=$?
+	elif command -v pacman >/dev/null 2>&1; then
+		sudo pacman -Syu --noconfirm || os_status=$?
+	elif command -v apt >/dev/null 2>&1; then
+		(sudo apt update && sudo apt upgrade -y) || os_status=$?
+	else
+		print -u2 "selfupdate: supported package manager not found (yay, pacman, apt)"
+		os_status=127
+	fi
+
+	if command -v mise >/dev/null 2>&1; then
+		mise up || mise_status=$?
+	else
+		print -u2 "selfupdate: mise not found"
+		mise_status=127
+	fi
+
+	((os_status == 0 && mise_status == 0))
+}
+
 # ssh
 if [[ -r /proc/sys/kernel/osrelease ]] && grep -qi microsoft /proc/sys/kernel/osrelease && command -v ssh.exe >/dev/null 2>&1; then
 	alias ssh="ssh.exe"
