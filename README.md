@@ -21,7 +21,7 @@ curl -fsSL https://raw.githubusercontent.com/isksss/dotfiles/main/bootstrap.sh |
 
 `mise install` は GitHub API でツール情報を取得します。rate limit の 403 が出る場合は [mise の案内](https://mise.jdx.dev/dev-tools/github-tokens.html) に従い、`MISE_GITHUB_TOKEN` または `GITHUB_TOKEN` を設定して再実行します。
 
-Neovim plugin は lazy.nvim、LSP server、formatter、linter は Mason で管理します。plugin 更新は Neovim で `:Lazy update`、Mason package の更新は `:MasonUpdate` を実行します。
+Neovim plugin は lazy.nvim、LSP server、formatter、linter は Mason で管理します。plugin 更新は Neovim で `:Lazy update`、Mason package の更新は `:MasonUpdate` を実行します。Mason が配布 archive を展開できるよう、ホストには `unzip` も用意します。
 
 clone 先を変える場合は `DOTFILES_DIR` を指定します。
 
@@ -67,6 +67,19 @@ update --dry-run
 ```sh
 cd "$DOTFILES_REPO_PATH"
 mise run check
+```
+
+## Shell と Neovim の設定
+
+zsh は `home/dot_config/zsh/rc/` を起動順の責務別 module として管理します。標準 abbreviation は repo で管理し、対話的に追加した abbreviation と `local.zsh` はローカル設定として併用します。completion と `.zcompdump` は `${XDG_CACHE_HOME}/zsh` に生成されます。
+
+Neovim は `lua/config/` に共通処理、`lua/plugins/` に lazy.nvim の plugin spec を配置します。短い plugin 設定は spec に同居し、LSP、ddc、ddu、task runner などの複雑な処理は `lua/config/` の module に分離します。
+
+リポジトリの `.env` は shell から自動では読み込みません。必要な場合は、信頼するプロジェクトの `mise.toml` に次を追加して `mise trust` を実行します。
+
+```toml
+[env]
+_.file = ".env"
 ```
 
 ## ローカル LLM

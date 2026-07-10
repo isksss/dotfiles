@@ -8,8 +8,15 @@ cd "$repo_root"
 printf '%s\n' '==> shell syntax and formatting'
 sh -n bootstrap.sh home/dot_local/bin/update .mise/tasks/check
 bash -n home/.bashrc
-zsh -n home/.zshenv home/dot_config/zsh/.zshrc home/dot_config/zsh/scripts/*.zsh
+find home/dot_config/zsh -type f \( -name '*.zsh' -o -name '.zshrc' -o -name '.zprofile' \) -exec zsh -n {} +
+zsh -n home/.zshenv
 shfmt -d bootstrap.sh home/dot_local/bin/update .mise/tasks/check
+
+printf '%s\n' '==> Neovim configuration'
+find home/dot_config/nvim -type f -name '*.lua' | while IFS= read -r lua_file; do
+	nvim --headless -u NONE "+lua assert(loadfile([[$lua_file]]))" +qa >/dev/null
+done
+nvim --headless -u "$repo_root/home/dot_config/nvim/init.lua" +qa >/dev/null
 
 printf '%s\n' '==> JSON and mapping sources'
 jq empty .dotfiles/mappings.json .mcp.json

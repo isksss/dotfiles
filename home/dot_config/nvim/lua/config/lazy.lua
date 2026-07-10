@@ -32,4 +32,7 @@ require("lazy").setup({
     checker = {
         enabled = false,
     },
+    rocks = {
+        enabled = false,
+    },
 })

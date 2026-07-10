@@ -15,9 +15,17 @@ return {
                 desc = "キーマップ一覧を表示",
             },
         },
-        config = function()
-            require("config.which-key").setup()
-        end,
+        opts = {
+            preset = "modern",
+            delay = 300,
+            spec = {
+                { "<leader>b", group = "Buffer" },
+                { "<leader>c", group = "Code" },
+                { "<leader>f", group = "Find" },
+                { "<leader>g", group = "Git" },
+                { "<leader>l", group = "LSP" },
+            },
+        },
     },
     {
         "nvim-lualine/lualine.nvim",
@@ -50,13 +58,29 @@ return {
         dependencies = {
             "nvim-tree/nvim-web-devicons",
         },
-        config = function()
-            require("config.tabs")
-        end,
+        opts = {
+            options = {
+                diagnostics = "nvim_lsp",
+                offsets = {
+                    {
+                        filetype = "ddu-filer",
+                        text = "Explorer",
+                        highlight = "Directory",
+                        text_align = "left",
+                    },
+                },
+                show_buffer_close_icons = false,
+                show_close_icon = false,
+                separator_style = "slant",
+            },
+        },
     },
     {
         "3rd/image.nvim",
         build = false,
+        cond = function()
+            return #vim.api.nvim_list_uis() > 0
+        end,
         event = { "BufReadPre", "BufNewFile" },
         config = function()
             require("config.image").setup()

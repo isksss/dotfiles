@@ -2,6 +2,7 @@ return {
     {
         "williamboman/mason.nvim",
         build = ":MasonUpdate",
+        cmd = { "Mason", "MasonInstall", "MasonUpdate" },
         opts = {},
     },
     {
@@ -10,6 +11,7 @@ return {
             "williamboman/mason.nvim",
             "neovim/nvim-lspconfig",
         },
+        event = { "BufReadPre", "BufNewFile" },
         config = function()
             require("config.lsp")
         end,
@@ -19,6 +21,7 @@ return {
         dependencies = {
             "williamboman/mason.nvim",
         },
+        event = "VeryLazy",
         config = function()
             require("mason-tool-installer").setup({
                 ensure_installed = {

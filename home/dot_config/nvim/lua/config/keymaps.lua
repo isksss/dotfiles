@@ -3,10 +3,6 @@
 -----------------------------------------------------------
 local keymap = vim.keymap.set
 
--- LEADERキー
-vim.g.mapleader = " "
-vim.g.maplocalleader = ","
-
 -- find
 keymap("n", "<leader>ff", "<cmd>DduFiles<CR>", { desc = "ファイル/ディレクトリ名で検索" })
 keymap("n", "<leader>fg", "<cmd>DduLiveGrep<CR>", { desc = "内容を検索" })

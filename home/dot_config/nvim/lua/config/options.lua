@@ -15,10 +15,6 @@ opt.wrap = false
 opt.scrolloff = 8
 opt.sidescrolloff = 8
 
--- シンタックスハイライト
-vim.cmd("syntax enable")
-vim.cmd("filetype plugin indent on")
-
 -- インデント
 opt.expandtab = true
 opt.tabstop = 4
@@ -40,6 +36,7 @@ opt.confirm = true
 -- 分割
 opt.splitbelow = true
 opt.splitright = true
+opt.splitkeep = "screen"
 
 -- ファイル関連
 opt.swapfile = false
@@ -61,6 +58,8 @@ opt.laststatus = 3
 -- 補完
 opt.completeopt = { "menu", "menuone", "noselect" }
 opt.pumheight = 10
+opt.inccommand = "split"
+opt.jumpoptions = "view"
 
 -- 不可視文字（必要に応じて）
 opt.list = true
@@ -72,11 +71,3 @@ opt.listchars = {
 
 -- マウス操作は無効
 opt.mouse = ""
-
--- ShellScript の filetype を補助
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = { "*.sh", "*.bash", "*.zsh", ".bashrc", ".bash_profile", ".zshrc", ".zprofile" },
-    callback = function()
-        vim.bo.filetype = "sh"
-    end,
-})
