@@ -1,5 +1,6 @@
 {
   "home/.bashrc": "~/.bashrc",
+  "home/dot_local/bin/update": "~/.local/bin/update",
   "home/.vimrc": "~/.vimrc",
   "home/.zshenv": "~/.zshenv",
   ".agents/AGENTS.md": [
@@ -8,16 +9,6 @@
     "~/.config/opencode/AGENTS.md",
     "~/.copilot/copilot-instructions.md",
     "~/.claude/CLAUDE.md"
-  ],
-  ".agents/rules": [
-    "~/.agents/rules",
-    "~/.codex/rules",
-    "~/.copilot/rules"
-  ],
-  ".agents/templates": [
-    "~/.agents/templates",
-    "~/.codex/templates",
-    "~/.copilot/templates"
   ],
   ".agents/skills": [
     "~/.agents/skills",
@@ -45,7 +36,6 @@
   "home/dot_config/zellij": "~/.config/zellij",
   "home/dot_config/zsh": "~/.config/zsh",
   "wallpapers": "~/.wallpapers",
-  "home/dot_config/pwsh": "~/.config/pwsh",
   ".wezterm.lua": "~/.wezterm.lua",
   "home/dot_config/opencode/opencode.jsonc": "~/.config/opencode/opencode.jsonc"
 }

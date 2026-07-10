@@ -17,6 +17,8 @@ local.zsh
 !.agents/skills/branch/**
 !.agents/skills/commit/
 !.agents/skills/commit/**
+!.agents/skills/develop/
+!.agents/skills/develop/**
 !.agents/skills/grill-me/
 !.agents/skills/grill-me/**
 !.agents/skills/herdr/

@@ -1,18 +1,12 @@
 ---
 name: implement
-description: 合意済み方針の実装時に、最小差分で変更し検証する。
+description: 合意済み方針または明確な変更依頼を、既存規約に沿った最小差分で実装して検証する。コード、設定、ドキュメントの追加・修正・削除を依頼されたときに使う。
 ---
 
 # implement
 
-## when
+必要なファイルだけを変更し、検証結果と残リスクを示す。
 
-合意済み方針を実装するとき。
+## Workflow
 
-## what
-
-既存規約に沿って最小差分で変更し、検証結果と残リスクを示す。
-
-## refs
-
-`references/workflow.md`
+`references/workflow.md` を読む。該当言語がある場合だけ `references/languages.md` も読む。

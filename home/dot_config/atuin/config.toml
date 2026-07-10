@@ -325,6 +325,9 @@ records = true
 # height = "60%"
 
 [ui]
+
+[ai]
+enabled = false
 ## Columns to display in the interactive search, from left to right.
 ## The selection indicator (" > ") is always shown first implicitly.
 ##

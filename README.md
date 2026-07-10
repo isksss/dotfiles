@@ -9,35 +9,24 @@
 
 ## セットアップ
 
-`git` を用意したうえで、外部から bootstrap を実行します。Unix 側は `curl` も使います。既定では `~/dotfiles` に clone し、link の dry-run を表示してから symlink 作成と `mise install` まで実行します。
+Arch Linux を主対象とし、Ubuntu と macOS は best-effort で扱います。Windows と PowerShell は対象外です。
 
-### Unix
+`git` と `curl` を用意したうえで、外部から bootstrap を実行します。既定では `~/dotfiles` に clone し、link の dry-run を表示してから symlink 作成と `mise install` まで実行します。
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/isksss/dotfiles/main/bootstrap.sh | sh
 ```
 
-### Windows
-
-```powershell
-irm https://raw.githubusercontent.com/isksss/dotfiles/main/bootstrap.ps1 | iex
-```
-
-`bootstrap.sh` は `mise` がなければ `mise.run` から導入します。`bootstrap.ps1` は `mise` がなければ Scoop を優先し、Scoop がない場合は winget を使います。
+`bootstrap.sh` は `mise` がなければ `mise.run` から導入します。
 
 `mise install` は GitHub API でツール情報を取得します。rate limit の 403 が出る場合は [mise の案内](https://mise.jdx.dev/dev-tools/github-tokens.html) に従い、`MISE_GITHUB_TOKEN` または `GITHUB_TOKEN` を設定して再実行します。
 
-Neovim の LSP server、formatter、linter は Mason で管理します。dpp は不足プラグインを自動導入します。プラグイン更新は Neovim で `:DppUpdate` を実行します。直前の更新へ戻す場合は `:DppRollbackLatest` を実行します。
+Neovim plugin は lazy.nvim、LSP server、formatter、linter は Mason で管理します。plugin 更新は Neovim で `:Lazy update`、Mason package の更新は `:MasonUpdate` を実行します。
 
 clone 先を変える場合は `DOTFILES_DIR` を指定します。
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/isksss/dotfiles/main/bootstrap.sh | DOTFILES_DIR="$HOME/src/dotfiles" sh
-```
-
-```powershell
-$env:DOTFILES_DIR = "$HOME\src\dotfiles"
-irm https://raw.githubusercontent.com/isksss/dotfiles/main/bootstrap.ps1 | iex
 ```
 
 既定の clone 先にこのリポジトリがある場合は再利用します。別のディレクトリや別 origin の checkout がある場合は上書きせず停止します。
@@ -63,6 +52,21 @@ dotfiles link --dry
 dotfiles link
 dotfiles clean
 dotfiles update
+```
+
+OS package と mise 管理ツールは `update` で更新します。通常は更新だけを行い、不要 package、cache、古い mise tool version も削除する場合は `--cleanup` を付けます。実行内容だけを確認する場合は `--dry-run` を使います。
+
+```sh
+update
+update --cleanup
+update --dry-run
+```
+
+リポジトリの設定と skill は一括検証できます。
+
+```sh
+cd "$DOTFILES_REPO_PATH"
+mise run check
 ```
 
 ## ローカル LLM
@@ -97,12 +101,13 @@ opencode run -m ollama/qwen2.5-coder:7b-opencode "READMEを要約して"
 このリポジトリの AI エージェント規約は Codex での利用を主軸にし、`.agents/` 配下を正本として管理します。
 
 - `.agents/AGENTS.md`: グローバル指示の正本
-- `.agents/rules/`: 共通ルールと詳細参照
-- `.agents/skills/`: `research`、`implement`、`review`、`commit`、`branch`、`merge-request`、`grill-me`、`herdr` などの作業 skill
-- `.agents/templates/`: 回答や作業報告のテンプレート
+- `.agents/skills/`: `develop`、`research`、`implement`、`review`、`commit`、`branch`、`merge-request`、`grill-me`、`herdr` などの作業 skill
 - `.github/agents/`: GitHub Copilot 向けの薄い wrapper
+- `skills-lock.json`: 外部 skill の取得元と version 情報
 
-`.dotfiles/mappings.json` では、`.agents/AGENTS.md`、`.agents/rules/`、`.agents/skills/`、`.agents/templates/` を `~/.codex` と `~/.agents` へ配布します。opencode 向けには `~/.config/opencode/AGENTS.md` と `~/.config/opencode/skills` へも配布します。`~/.copilot` や `~/.claude` への配布は既存環境との互換目的で残しています。
+`.dotfiles/mappings.json` では、`.agents/AGENTS.md` と `.agents/skills/` を `~/.codex` と `~/.agents` へ配布します。opencode 向けには `~/.config/opencode/AGENTS.md` と `~/.config/opencode/skills` へも配布します。`~/.copilot` や `~/.claude` への配布は既存環境との互換目的で残しています。
+
+明確な変更依頼は `develop` が調査、実装、レビュー、検証まで進めます。調査、レビュー、Git 操作など単一目的では対応する個別 skill を使います。自作 skill だけを Git 管理し、外部 skill の本体は `skills-lock.json` を基に導入します。
 
 AI 規約を変更する場合は、まず `.agents/` 配下の正本を更新し、必要に応じて `.github/agents/` や `.github/copilot-instructions.md` の参照だけを調整します。
 

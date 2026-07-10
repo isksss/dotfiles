@@ -1,18 +1,12 @@
 ---
 name: merge-request
-description: 現在 branch から GitHub PR または GitLab MR を作成する。
+description: 現在 branch の差分と履歴を確認し、GitHub PR または GitLab MR を作成する。ユーザーが PR/MR 作成を明示的に依頼したときに使う。
 ---
 
 # merge-request
 
-## when
+ホスティングと派生元を確認し、既存テンプレートに沿って作成する。
 
-現在 branch から PR/MR を作るとき。
+## Workflow
 
-## what
-
-GitHub/GitLab を判定し、差分と履歴を要約して PR/MR を作成する。
-
-## refs
-
-`references/workflow.md`
+`references/workflow.md` を読む。

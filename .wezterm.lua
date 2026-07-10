@@ -9,8 +9,6 @@ local config = {}
 -- 基本設定
 --------------------------------------------------
 
-config.default_prog = { "pwsh.exe", "-NoLogo" }
-
 config.font = wezterm.font("HackGen Console NF")
 config.font_size = 12
 

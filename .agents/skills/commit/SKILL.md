@@ -1,18 +1,12 @@
 ---
 name: commit
-description: 現在の Git 差分を確認し、日本語 prefix 付きで commit する。
+description: 現在の Git 差分を確認して安全な対象だけを stage し、日本語 prefix 付きメッセージで commit する。ユーザーが commit を明示的に依頼したときに使う。
 ---
 
 # commit
 
-## when
+秘密情報、生成物、無関係差分を除外して commit する。
 
-現在の変更を commit するとき。
+## Workflow
 
-## what
-
-差分と秘密情報を確認し、日本語 prefix 付きメッセージで commit する。
-
-## refs
-
-`references/workflow.md`
+`references/workflow.md` を読む。

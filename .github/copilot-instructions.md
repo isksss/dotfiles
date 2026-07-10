@@ -1,13 +1,11 @@
 # Copilot Instructions
 
-このファイルは GitHub Copilot 向けの薄い参照です。AI エージェント規約の正本は `.agents/` 配下に置き、全体像は `README.md` の「AI エージェント規約」を参照してください。
+このファイルは GitHub Copilot 向けの薄い参照です。AI エージェント規約の正本は `.agents/AGENTS.md` とし、全体像は `README.md` の「AI エージェント規約」を参照してください。
 
 ## 正本
 
 - `.agents/AGENTS.md`: グローバル指示
-- `.agents/rules/`: 共通ルール
 - `.agents/skills/`: Codex 中心の作業 skill
-- `.agents/templates/`: 作業報告テンプレート
 
 ## Copilot 側の扱い
 

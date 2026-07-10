@@ -1,0 +1,43 @@
+#!/bin/sh
+
+set -eu
+
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root"
+
+printf '%s\n' '==> shell syntax and formatting'
+sh -n bootstrap.sh home/dot_local/bin/update .mise/tasks/check
+bash -n home/.bashrc
+zsh -n home/.zshenv home/dot_config/zsh/.zshrc home/dot_config/zsh/scripts/*.zsh
+shfmt -d bootstrap.sh home/dot_local/bin/update .mise/tasks/check
+
+printf '%s\n' '==> JSON and mapping sources'
+jq empty .dotfiles/mappings.json .mcp.json
+jq -r 'keys[]' .dotfiles/mappings.json | while IFS= read -r source; do
+	if [ ! -e "$source" ]; then
+		printf 'missing mapping source: %s\n' "$source" >&2
+		exit 1
+	fi
+done
+
+printf '%s\n' '==> mise and dotfiles configuration'
+mise tasks validate
+dotfiles link --dry >/dev/null
+
+printf '%s\n' '==> self-authored skills'
+validator=".agents/skills/.system/skill-creator/scripts/quick_validate.py"
+if [ ! -f "$validator" ]; then
+	validator="${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-creator/scripts/quick_validate.py"
+fi
+if [ ! -f "$validator" ]; then
+	printf 'skill validator not found; install the Codex skill-creator system skill\n' >&2
+	exit 1
+fi
+
+git ls-files --cached --others --exclude-standard '.agents/skills/*/SKILL.md' |
+	while IFS= read -r skill_file; do
+		uv run --quiet --with PyYAML python "$validator" "$(dirname "$skill_file")"
+	done
+
+git diff --check
+printf '%s\n' 'all checks passed'

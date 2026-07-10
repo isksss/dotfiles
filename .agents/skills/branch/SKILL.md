@@ -1,18 +1,12 @@
 ---
 name: branch
-description: 作業目的から短いブランチ名を作り、新規 branch を作成する。
+description: 作業目的と現在の Git 状態から規約に合う短い branch 名を作り、新規 branch を作成する。ユーザーが branch 作成を明示的に依頼したときに使う。
 ---
 
 # branch
 
-## when
+作業ツリーを保ったまま、目的に合う branch を作成する。
 
-新しい作業 branch を作るとき。
+## Workflow
 
-## what
-
-目的を短く要約し、規則に合う branch 名で checkout する。
-
-## refs
-
-`references/workflow.md`
+`references/workflow.md` を読む。

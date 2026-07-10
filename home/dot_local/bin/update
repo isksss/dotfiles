@@ -1,0 +1,140 @@
+#!/bin/sh
+
+set -u
+
+cleanup=false
+dry_run=false
+failed=""
+
+usage() {
+	cat <<'EOF'
+Usage: update [--cleanup] [--dry-run]
+
+Update OS packages and mise-managed tools.
+
+  --cleanup  Remove unused packages, caches, and mise tool versions.
+  --dry-run  Print commands without executing them.
+  -h, --help Show this help.
+EOF
+}
+
+while [ "$#" -gt 0 ]; do
+	case "$1" in
+	--cleanup) cleanup=true ;;
+	--dry-run) dry_run=true ;;
+	-h | --help)
+		usage
+		exit 0
+		;;
+	*)
+		printf 'update: unknown option: %s\n' "$1" >&2
+		usage >&2
+		exit 2
+		;;
+	esac
+	shift
+done
+
+has() {
+	command -v "$1" >/dev/null 2>&1
+}
+
+mark_failed() {
+	if [ -z "$failed" ]; then
+		failed=$1
+	else
+		failed="$failed
+$1"
+	fi
+}
+
+print_command() {
+	printf 'DRY-RUN:'
+	for arg in "$@"; do
+		printf ' %s' "$arg"
+	done
+	printf '\n'
+}
+
+run() {
+	label=$1
+	shift
+
+	printf '\n==> %s\n' "$label"
+	if [ "$dry_run" = true ]; then
+		print_command "$@"
+		return 0
+	fi
+
+	if "$@"; then
+		printf 'OK: %s\n' "$label"
+	else
+		status=$?
+		printf 'FAIL: %s (exit %s)\n' "$label" "$status" >&2
+		mark_failed "$label"
+		return "$status"
+	fi
+}
+
+run_root() {
+	label=$1
+	shift
+
+	if [ "$(id -u)" -eq 0 ]; then
+		run "$label" "$@"
+	elif [ "$dry_run" = true ]; then
+		run "$label" sudo "$@"
+	elif has sudo; then
+		run "$label" sudo "$@"
+	else
+		printf '\n==> %s\n' "$label"
+		printf 'FAIL: %s (sudo not found)\n' "$label" >&2
+		mark_failed "$label"
+		return 127
+	fi
+}
+
+package_manager=""
+if has yay; then
+	package_manager=yay
+	run "yay upgrade" yay -Syu --noconfirm || true
+elif has pacman; then
+	package_manager=pacman
+	run_root "pacman upgrade" pacman -Syu --noconfirm || true
+elif has apt; then
+	package_manager=apt
+	run_root "apt update" apt update || true
+	run_root "apt upgrade" apt upgrade -y || true
+elif has brew; then
+	package_manager=brew
+	run "brew update" brew update || true
+	run "brew upgrade" brew upgrade || true
+else
+	printf 'skip: supported OS package manager not found\n'
+fi
+
+if has mise; then
+	run "mise upgrade" mise upgrade -y || true
+else
+	printf 'skip: mise not found\n'
+fi
+
+if [ "$cleanup" = true ]; then
+	case "$package_manager" in
+	yay) run "yay cache cleanup" yay -Sc --noconfirm || true ;;
+	pacman) run_root "pacman cache cleanup" pacman -Sc --noconfirm || true ;;
+	apt) run_root "apt autoremove" apt autoremove -y || true ;;
+	brew) run "brew cleanup" brew cleanup || true ;;
+	esac
+
+	if has mise; then
+		run "mise prune" mise prune -y || true
+	fi
+fi
+
+if [ -n "$failed" ]; then
+	printf '\nfailed steps:\n%s\n' "$failed" >&2
+	exit 1
+fi
+
+printf '\nall update steps completed\n'

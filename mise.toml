@@ -54,6 +54,9 @@ terraform = "latest"
 "github:ogulcancelik/herdr" = "latest"
 pnpm = "latest"
 cloudflared = "latest"
+"npm:@devcontainers/cli" = "latest"
+"aqua:jorgerojas26/lazysql" = "latest"
+"npm:@officecli/officecli" = "latest"
 
 # OS管理
 # OSに1password導入済み
