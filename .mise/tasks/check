@@ -6,30 +6,24 @@ repo_root=$(git rev-parse --show-toplevel)
 cd "$repo_root"
 
 printf '%s\n' '==> shell syntax and formatting'
-sh -n bootstrap.sh home/dot_local/bin/update .mise/tasks/check
-bash -n home/.bashrc
-find home/dot_config/zsh -type f \( -name '*.zsh' -o -name '.zshrc' -o -name '.zprofile' \) -exec zsh -n {} +
-zsh -n home/.zshenv
-shfmt -d bootstrap.sh home/dot_local/bin/update .mise/tasks/check
+sh -n bootstrap.sh dotfiles/.local/bin/update .mise/tasks/check
+bash -n dotfiles/.bashrc
+find dotfiles/.config/zsh -type f \( -name '*.zsh' -o -name '.zshrc' -o -name '.zprofile' \) -exec zsh -n {} +
+zsh -n dotfiles/.zshenv
+shfmt -d bootstrap.sh dotfiles/.local/bin/update .mise/tasks/check
 
 printf '%s\n' '==> Neovim configuration'
-find home/dot_config/nvim -type f -name '*.lua' | while IFS= read -r lua_file; do
+find dotfiles/.config/nvim -type f -name '*.lua' | while IFS= read -r lua_file; do
 	nvim --headless -u NONE "+lua assert(loadfile([[$lua_file]]))" +qa >/dev/null
 done
-nvim --headless -u "$repo_root/home/dot_config/nvim/init.lua" +qa >/dev/null
+nvim --headless -u "$repo_root/dotfiles/.config/nvim/init.lua" +qa >/dev/null
 
-printf '%s\n' '==> JSON and mapping sources'
-jq empty .dotfiles/mappings.json .mcp.json
-jq -r 'keys[]' .dotfiles/mappings.json | while IFS= read -r source; do
-	if [ ! -e "$source" ]; then
-		printf 'missing mapping source: %s\n' "$source" >&2
-		exit 1
-	fi
-done
+printf '%s\n' '==> JSON configuration'
+jq empty .mcp.json
 
 printf '%s\n' '==> mise and dotfiles configuration'
 mise tasks validate
-dotfiles link --dry >/dev/null
+mise dotfiles status --missing >/dev/null
 
 printf '%s\n' '==> self-authored skills'
 validator=".agents/skills/.system/skill-creator/scripts/quick_validate.py"
@@ -43,6 +37,7 @@ fi
 
 git ls-files --cached --others --exclude-standard '.agents/skills/*/SKILL.md' |
 	while IFS= read -r skill_file; do
+		[ -f "$skill_file" ] || continue
 		uv run --quiet --with PyYAML python "$validator" "$(dirname "$skill_file")"
 	done
 

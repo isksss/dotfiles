@@ -43,15 +43,12 @@ if (( $+commands[fzf] && $+commands[ghq] && $+commands[gwq] )); then
 	}
 fi
 
-if (( $+commands[dotfiles] )); then
-	typeset -g DOTFILES_REPO_PATH
-	DOTFILES_REPO_PATH=$(git -C "$(dirname "$(realpath "${(%):-%N}")")" rev-parse --show-toplevel)
-	export DOTFILES_REPO_PATH
+typeset -g DOTFILES_REPO_PATH="$HOME/dotfiles"
+export DOTFILES_REPO_PATH
 
-	ccd() {
-		cd "$DOTFILES_REPO_PATH" || return 1
-	}
-fi
+ccd() {
+	cd "$DOTFILES_REPO_PATH" || return 1
+}
 
 init_local_settings() {
 	local git_root

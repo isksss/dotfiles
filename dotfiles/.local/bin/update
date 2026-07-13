@@ -114,6 +114,7 @@ else
 fi
 
 if has mise; then
+	run "mise self-update" mise self-update --yes || true
 	run "mise upgrade" mise upgrade -y || true
 else
 	printf 'skip: mise not found\n'

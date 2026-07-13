@@ -21,8 +21,6 @@ local.zsh
 !.agents/skills/develop/**
 !.agents/skills/grill-me/
 !.agents/skills/grill-me/**
-!.agents/skills/herdr/
-!.agents/skills/herdr/**
 !.agents/skills/implement/
 !.agents/skills/implement/**
 !.agents/skills/merge-request/
@@ -34,10 +32,11 @@ local.zsh
 skills-lock.json
 
 # 業務用gitconfig
-home/dot_config/git/*.gitconfig
+dotfiles/.config/git/*.gitconfig
 
 # Neovim local machine-specific config
-home/dot_config/nvim/lua/local/*
-!home/dot_config/nvim/lua/local/example.lua
+dotfiles/.config/nvim/lua/local/*
+!dotfiles/.config/nvim/lua/local/example.lua
 
 registry.json
+dotfiles/.config/herdr/session.json

@@ -35,7 +35,6 @@ fi
 
 (( $+commands[lazydocker] )) && _define_abbr ldc="lazydocker"
 (( $+commands[zellij] )) && _define_abbr zl="zellij"
-(( $+commands[dotfiles] )) && _define_abbr dot="dotfiles"
 (( $+commands[opencode] )) && _define_abbr oc="opencode"
 
 unfunction _define_abbr

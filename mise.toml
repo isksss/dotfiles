@@ -1,3 +1,9 @@
+min_version = "2026.7.5"
+
+[settings]
+dotfiles.root = "~/dotfiles/dotfiles"
+dotfiles.default_mode = "symlink"
+
 [tools]
 # shell / cli
 "aqua:eza-community/eza" = "latest"
@@ -6,6 +12,7 @@ bat = "latest"
 delta = "latest"
 fzf = "latest"
 ghq = "latest"
+jq = "latest"
 lazydocker = "latest"
 lazygit = "latest"
 neovim = "latest"
@@ -34,7 +41,6 @@ uv = "latest"
 
 # go tools
 "go:github.com/d-kuro/gwq/cmd/gwq" = "latest"
-"go:github.com/rhysd/dotfiles" = "latest"
 "go:github.com/isksss/sqio/cmd/sqio" = "latest"
 
 # npm tools
@@ -58,9 +64,40 @@ cloudflared = "latest"
 "aqua:jorgerojas26/lazysql" = "latest"
 "npm:@officecli/officecli" = "latest"
 
-# OS管理
-# OSに1password導入済み
-# op = "latest"
+[dotfiles]
+"~/.bashrc" = {}
+"~/.vimrc" = {}
+"~/.zshenv" = {}
+"~/.local/bin/update" = {}
+"~/.config/Code/User" = {}
+"~/.config/alacritty" = {}
+"~/.config/atuin" = {}
+"~/.config/ghq" = {}
+"~/.config/git" = {}
+"~/.config/gwq" = {}
+"~/.config/herdr" = {}
+"~/.config/lazygit" = {}
+"~/.config/mise/config.toml" = "~/dotfiles/mise.toml"
+"~/.config/nvim" = {}
+"~/.config/ollama" = {}
+"~/.config/opencode" = {}
+"~/.config/sheldon" = {}
+"~/.config/starship.toml" = {}
+"~/.config/tmux" = {}
+"~/.config/yazi" = {}
+"~/.config/zellij" = {}
+"~/.config/zsh" = {}
+"~/.wallpapers" = {}
+"~/.agents/AGENTS.md" = "~/dotfiles/.agents/AGENTS.md"
+"~/.agents/skills/branch" = "~/dotfiles/.agents/skills/branch"
+"~/.agents/skills/commit" = "~/dotfiles/.agents/skills/commit"
+"~/.agents/skills/develop" = "~/dotfiles/.agents/skills/develop"
+"~/.agents/skills/grill-me" = "~/dotfiles/.agents/skills/grill-me"
+"~/.agents/skills/implement" = "~/dotfiles/.agents/skills/implement"
+"~/.agents/skills/merge-request" = "~/dotfiles/.agents/skills/merge-request"
+"~/.agents/skills/research" = "~/dotfiles/.agents/skills/research"
+"~/.agents/skills/review" = "~/dotfiles/.agents/skills/review"
+
 
 [shell_alias]
 
@@ -69,8 +106,6 @@ EDITOR = "nvim"
 LANG = "ja_JP.UTF-8"
 LC_ALL = "ja_JP.UTF-8"
 PAGER = "bat"
-
-MISE_TRUSTED_CONFIG_PATHS = "/"
 
 STARSHIP_CONFIG = "{{env.XDG_CONFIG_HOME}}/starship.toml"
 

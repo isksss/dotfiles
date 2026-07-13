@@ -2,8 +2,8 @@
 set -eu
 
 REPO_URL="${DOTFILES_REPO_URL:-https://github.com/isksss/dotfiles.git}"
-DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
-MISE_BIN="${MISE_BIN:-}"
+DOTFILES_DIR="$HOME/dotfiles"
+MISE_BIN="$HOME/.local/bin/mise"
 
 log() {
 	printf '%s\n' "$*"
@@ -18,43 +18,16 @@ require_command() {
 	command -v "$1" >/dev/null 2>&1 || die "'$1' is required."
 }
 
-find_mise() {
-	if [ -n "$MISE_BIN" ] && [ -x "$MISE_BIN" ]; then
-		add_mise_to_path
-		return 0
-	fi
-
-	if command -v mise >/dev/null 2>&1; then
-		MISE_BIN="$(command -v mise)"
-		add_mise_to_path
-		return 0
-	fi
-
-	if [ -x "$HOME/.local/bin/mise" ]; then
-		MISE_BIN="$HOME/.local/bin/mise"
-		add_mise_to_path
-		return 0
-	fi
-
-	return 1
-}
-
-add_mise_to_path() {
-	mise_dir="$(dirname "$MISE_BIN")"
-	case ":$PATH:" in
-	*":$mise_dir:"*) ;;
-	*) PATH="$mise_dir:$PATH" ;;
-	esac
-	export PATH
-}
-
 install_mise() {
-	find_mise && return 0
+	if [ -x "$MISE_BIN" ] && "$MISE_BIN" dotfiles --help >/dev/null 2>&1; then
+		return
+	fi
 
 	require_command curl
-	log "Installing mise..."
-	curl https://mise.run | sh
-	find_mise || die "mise was installed but could not be found. Check ~/.local/bin/mise."
+	log "Installing mise with the official installer..."
+	curl -fsSL https://mise.run | sh
+	[ -x "$MISE_BIN" ] || die "mise was not installed at $MISE_BIN."
+	"$MISE_BIN" dotfiles --help >/dev/null 2>&1 || die "the installed mise does not support dotfiles."
 }
 
 same_repository() {
@@ -76,14 +49,50 @@ checkout_repository() {
 		return
 	fi
 
-	parent_dir="$(dirname "$DOTFILES_DIR")"
-	mkdir -p "$parent_dir"
 	log "Cloning $REPO_URL into $DOTFILES_DIR..."
 	git clone "$REPO_URL" "$DOTFILES_DIR"
 }
 
-run_dotfiles() {
-	"$MISE_BIN" exec go@latest go:github.com/rhysd/dotfiles@latest -- dotfiles "$@"
+backup_conflicts() {
+	status_file="$(mktemp)"
+	trap 'rm -f "$status_file"' EXIT HUP INT TERM
+
+	"$MISE_BIN" dotfiles status --json >"$status_file" || true
+	if "$MISE_BIN" exec -- jq -e '.files[] | select(.state == "source_missing")' "$status_file" >/dev/null; then
+		"$MISE_BIN" exec -- jq -r '.files[] | select(.state == "source_missing") | "missing source: \(.target)"' "$status_file" >&2
+		die "dotfile source is missing."
+	fi
+
+	backup_root="${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles-backups/$(date '+%Y%m%d-%H%M%S')"
+	conflicts=$("$MISE_BIN" exec -- jq -r '.files[] | select(.state == "differs") | .target' "$status_file")
+	[ -n "$conflicts" ] || return 0
+
+	log "Backing up conflicting dotfiles to $backup_root..."
+	printf '%s\n' "$conflicts" | while IFS= read -r target; do
+		[ -n "$target" ] || continue
+		case "$target" in
+		"~/"*) target="$HOME/${target#\~/}" ;;
+		esac
+		backup_target=$target
+		candidate=$target
+		while [ "$candidate" != "$HOME" ]; do
+			if [ -L "$candidate" ]; then
+				backup_target=$candidate
+			fi
+			candidate=$(dirname "$candidate")
+		done
+		target=$backup_target
+		if [ ! -e "$target" ] && [ ! -L "$target" ]; then
+			continue
+		fi
+		case "$target" in
+		"$HOME"/*) relative=${target#"$HOME"/} ;;
+		*) die "refusing to back up target outside HOME: $target" ;;
+		esac
+		destination="$backup_root/$relative"
+		mkdir -p "$(dirname "$destination")"
+		mv "$target" "$destination"
+	done
 }
 
 main() {
@@ -95,14 +104,15 @@ main() {
 	log "Trusting mise config..."
 	"$MISE_BIN" trust "$DOTFILES_DIR/mise.toml"
 
-	log "Previewing dotfile links..."
-	run_dotfiles link --dry
+	log "Installing bootstrap dependencies..."
+	"$MISE_BIN" install jq
 
-	log "Linking dotfiles..."
-	run_dotfiles link
+	log "Previewing dotfile changes..."
+	"$MISE_BIN" dotfiles apply --dry-run --verbose --force
+	backup_conflicts
 
-	log "Installing tools from mise.toml..."
-	"$MISE_BIN" install
+	log "Applying dotfiles and installing tools..."
+	"$MISE_BIN" bootstrap --yes --force-dotfiles
 
 	log "Bootstrap complete: $DOTFILES_DIR"
 }
