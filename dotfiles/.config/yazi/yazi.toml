@@ -18,6 +18,11 @@ mouse_events = ["click", "scroll", "drag"]
 wrap = "yes"
 tab_size = 2
 
+[plugin]
+prepend_previewers = [
+  { url = "*.md", run = 'piper -- leaf --inline "ansi:$w" "$1"' },
+]
+
 [opener]
 edit = [
   { run = '${EDITOR:-vi} %s', desc = "$EDITOR", for = "unix", block = true },
