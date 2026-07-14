@@ -3,6 +3,10 @@
 -----------------------------------------------------------
 local keymap = vim.keymap.set
 
+-- 表示行単位で移動
+keymap("n", "j", "gj", { desc = "表示上の次の行へ移動" })
+keymap("n", "k", "gk", { desc = "表示上の前の行へ移動" })
+
 -- find
 keymap("n", "<leader>ff", "<cmd>DduFiles<CR>", { desc = "ファイル/ディレクトリ名で検索" })
 keymap("n", "<leader>fg", "<cmd>DduLiveGrep<CR>", { desc = "内容を検索" })
