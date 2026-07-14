@@ -1,4 +1,0 @@
-interface:
-  display_name: "開発"
-  short_description: "変更依頼を調査から実装・検証まで完走"
-  default_prompt: "$develop を使って、変更依頼を調査、最小実装、レビュー、検証まで進めて。"
