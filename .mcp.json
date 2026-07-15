@@ -2,16 +2,19 @@
   "mcpServers": {
     "nuxt": {
       "type": "http",
-      "url": "https://nuxt.com/mcp"
+      "url": "https://nuxt.com/mcp",
+      "tools": ["*"]
     },
     "nuxt-ui": {
       "type": "http",
-      "url": "https://ui.nuxt.com/mcp"
+      "url": "https://ui.nuxt.com/mcp",
+      "tools": ["*"]
     },
     "ag-mcp": {
       "command": "npx",
       "args": ["ag-mcp"],
-      "type": "stdio"
+      "type": "stdio",
+      "tools": ["*"]
     },
     "playwright": {
       "type": "local",
@@ -28,9 +31,10 @@
         "backlog-mcp-server"
       ],
       "env": {
-        "BACKLOG_DOMAIN": "${env:BACKLOG_DOMAIN}",
-        "BACKLOG_API_KEY": "${env:BACKLOG_API_KEY}"
-      }
+        "BACKLOG_DOMAIN": "${BACKLOG_DOMAIN}",
+        "BACKLOG_API_KEY": "${BACKLOG_API_KEY}"
+      },
+      "tools": ["*"]
     }
   }
 }

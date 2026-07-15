@@ -1,4 +1,6 @@
 # Interactive shell entrypoint. Keep the load order explicit.
+autoload -Uz add-zsh-hook
+
 for config in \
 	"$ZDOTDIR/rc/10-options.zsh" \
 	"$ZDOTDIR/rc/20-plugins.zsh" \

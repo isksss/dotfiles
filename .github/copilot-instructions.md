@@ -11,4 +11,4 @@
 
 `.github/agents/*.agent.md` は `.agents/skills/` の wrapper です。詳細な挙動や作業方針は wrapper に重複させず、対応する skill の `SKILL.md` を参照します。
 
-dotfiles の基本操作や配布先は `README.md` と `.dotfiles/mappings.json` を確認してください。
+dotfiles の基本操作や配布先は `README.md` と `mise.toml` を確認してください。
