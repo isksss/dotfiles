@@ -3,6 +3,7 @@ min_version = "2026.7.5"
 [settings]
 dotfiles.root = "~/dotfiles/dotfiles"
 dotfiles.default_mode = "symlink"
+minimum_release_age = "6h"
 
 [tools]
 # shell / cli
