@@ -65,6 +65,7 @@ cloudflared = "latest"
 "aqua:jorgerojas26/lazysql" = "latest"
 "npm:@officecli/officecli" = "latest"
 "npm:@rivolink/leaf" = "latest"
+"cargo:isksss/isksh" = "latest"
 
 [dotfiles]
 "~/.bashrc" = {}
