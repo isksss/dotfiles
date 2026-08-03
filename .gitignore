@@ -41,3 +41,5 @@ dotfiles/.config/herdr/session.json
 dotfiles/.config/herdr/*.log
 dotfiles/.config/herdr/.plugins.lock
 dotfiles/.config/herdr/release-notes.json
+
+plans/**
