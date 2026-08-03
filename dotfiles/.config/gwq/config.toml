@@ -1,5 +1,5 @@
 [naming]
-template = '{{.Host}}/{{.Owner}}/{{.Repository}}={{.Branch}}'
+template = '{{.Host}}/{{.Owner}}/{{.Repository}}.worktrees/{{.Branch}}'
 
 [worktree]
 basedir = '~/ghq'
