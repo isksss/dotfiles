@@ -5,7 +5,7 @@ description: 作業目的と現在の Git 状態から規約に合う短い bran
 
 # branch
 
-作業ツリーを保ったまま、目的に合う branch を作成する。
+目的に合う branch を作成する。
 
 ## Workflow
 
