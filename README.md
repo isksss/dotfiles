@@ -65,6 +65,8 @@ mise run check
 
 zsh は `dotfiles/.config/zsh/rc/` を起動順の責務別 module として管理します。標準 abbreviation は repo で管理し、対話的に追加した abbreviation と `local.zsh` はローカル設定として併用します。completion と `.zcompdump` は `${XDG_CACHE_HOME}/zsh` に生成されます。
 
+Nushell は mise でインストールし、`nu` で起動します。`dotfiles/.config/nushell/` では mise、Starship、zoxide、Atuin の連携と共通 alias を設定します。各ツールが生成する Nushell 用コードは `${XDG_CACHE_HOME}/nushell/integrations/` に保存されます。
+
 Neovim は `lua/config/` に共通処理、`lua/plugins/` に lazy.nvim の plugin spec を配置します。短い plugin 設定は spec に同居し、LSP、ddc、ddu、task runner などの複雑な処理は `lua/config/` の module に分離します。
 
 リポジトリの `.env` は shell から自動では読み込みません。必要な場合は、信頼するプロジェクトの `mise.toml` に次を追加して `mise trust` を実行します。

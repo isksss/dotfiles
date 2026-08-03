@@ -10,6 +10,10 @@ sh -n bootstrap.sh dotfiles/.local/bin/update .mise/tasks/check
 bash -n dotfiles/.bashrc
 find dotfiles/.config/zsh -type f \( -name '*.zsh' -o -name '.zshrc' -o -name '.zprofile' \) -exec zsh -n {} +
 zsh -n dotfiles/.zshenv
+nu --no-history \
+	--env-config dotfiles/.config/nushell/env.nu \
+	--config dotfiles/.config/nushell/config.nu \
+	--commands 'exit 0'
 shfmt -d bootstrap.sh dotfiles/.local/bin/update .mise/tasks/check
 
 printf '%s\n' '==> Neovim configuration'
