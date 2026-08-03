@@ -20,9 +20,6 @@ local function close_preview()
     if current.job and current.job > 0 then
         pcall(vim.fn.jobstop, current.job)
     end
-    if current.win and vim.api.nvim_win_is_valid(current.win) then
-        pcall(vim.api.nvim_win_close, current.win, true)
-    end
     if current.buf and vim.api.nvim_buf_is_valid(current.buf) then
         pcall(vim.api.nvim_buf_delete, current.buf, { force = true })
     end
@@ -56,19 +53,21 @@ local function toggle_preview()
         return
     end
 
-    local source_win = vim.api.nvim_get_current_win()
-    vim.cmd("rightbelow vnew")
+    vim.cmd("enew")
 
     local current = {
         source_buf = source_buf,
         buf = vim.api.nvim_get_current_buf(),
-        win = vim.api.nvim_get_current_win(),
     }
     preview = current
 
-    vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-w>h]], {
+    vim.keymap.set("t", "<C-h>", function()
+        if vim.api.nvim_buf_is_valid(source_buf) then
+            vim.api.nvim_set_current_buf(source_buf)
+        end
+    end, {
         buffer = current.buf,
-        desc = "Markdown 編集ウィンドウへ戻る",
+        desc = "Markdown 編集バッファへ戻る",
     })
     vim.api.nvim_create_autocmd("WinEnter", {
         buffer = current.buf,
@@ -86,9 +85,6 @@ local function toggle_preview()
                     return
                 end
                 preview = nil
-                if vim.api.nvim_win_is_valid(current.win) then
-                    pcall(vim.api.nvim_win_close, current.win, true)
-                end
                 if vim.api.nvim_buf_is_valid(current.buf) then
                     pcall(vim.api.nvim_buf_delete, current.buf, { force = true })
                 end
@@ -98,13 +94,12 @@ local function toggle_preview()
 
     if current.job <= 0 then
         preview = nil
-        pcall(vim.api.nvim_win_close, current.win, true)
         pcall(vim.api.nvim_buf_delete, current.buf, { force = true })
         notify("Leaf を起動できませんでした", vim.log.levels.ERROR)
         return
     end
 
-    vim.api.nvim_set_current_win(source_win)
+    vim.cmd("startinsert")
 end
 
 function M.setup()
