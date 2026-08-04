@@ -23,7 +23,10 @@ done
 nvim --headless -u "$repo_root/dotfiles/.config/nvim/init.lua" +qa >/dev/null
 
 printf '%s\n' '==> JSON configuration'
-jq empty .mcp.json
+jq empty \
+	.mcp.json \
+	dotfiles/.copilot/mcp-config.json \
+	dotfiles/.config/Code/User/mcp.json
 
 printf '%s\n' '==> mise and dotfiles configuration'
 mise tasks validate
