@@ -105,18 +105,47 @@ opencode run -m ollama/qwen2.5-coder:7b-opencode "READMEを要約して"
 
 ## AI エージェント規約
 
-このリポジトリの AI エージェント規約は Codex での利用を主軸にし、`.agents/` 配下を正本として管理します。
+このリポジトリの AI エージェント規約は `.agents/` 配下を正本とし、Codex、GitHub Copilot、Claude Code で共通利用します。
 
 - `.agents/AGENTS.md`: グローバル指示の正本
-- `.agents/skills/`: `research`、`implement`、`review`、`commit`、`branch`、`merge-request`、`grill-me` などの作業 skill
+- `.agents/skills/`: `research`、`implement`、`review`、`commit`、`branch`、`merge-request` などの自作 skill
 - `.github/agents/`: GitHub Copilot 向けの薄い wrapper
 - `skills-lock.json`: 外部 skill の取得元と version 情報
 
-`mise.toml` では `.agents/AGENTS.md` を `~/.agents/AGENTS.md` へ、自作 skill を `~/.agents/skills/<name>` へ個別に配布します。外部 skill は installer 側で管理し、Codex、opencode、Copilot、Claude 向けの複製は作りません。
+`mise.toml` では `.agents/AGENTS.md` を次の各ツールのグローバル指示ファイルへ symlink し、内容を複製せずに共通化します。
+
+- `~/.codex/AGENTS.md`: Codex
+- `~/.copilot/copilot-instructions.md`: GitHub Copilot CLI
+- `~/.claude/CLAUDE.md`: Claude Code と VS Code の Copilot Chat
+- `~/.agents/AGENTS.md`: 共通エージェント規約の互換配置
+
+自作 skill は `~/.agents/skills/<name>` へ個別に配布します。外部 skill は installer 側で管理し、設計の深掘りには共通の `grilling` skill を使います。Codex、opencode、Copilot、Claude 向けの複製は作りません。
 
 作業前に利用可能な skill を確認し、目的に合う skill を使います。自作 skill だけを Git 管理し、外部 skill の本体は `skills-lock.json` を基に導入します。
 
 AI 規約を変更する場合は、まず `.agents/` 配下の正本を更新し、必要に応じて `.github/agents/` や `.github/copilot-instructions.md` の参照だけを調整します。
+
+### GitHub Copilot の Backlog MCP
+
+Copilot CLI と VS Code の Copilot Chat では、ユーザー設定として Backlog MCP を利用できます。CLI の設定は `~/.copilot/mcp-config.json`、native Linux 版 VS Code の設定は `~/.config/Code/User/mcp.json` に配置され、どの workspace からでも有効です。
+
+Backlog の接続情報は設定ファイルへ保存せず、Copilot を起動する process に次の環境変数を設定します。実値は Git 管理対象外の `~/.config/zsh/local.zsh` などで管理してください。
+
+```sh
+export BACKLOG_DOMAIN="your-space.backlog.com"
+export BACKLOG_API_KEY="your-api-key"
+```
+
+設定後は新しい shell で Copilot CLI を起動し、VS Code は window を再読み込みします。CLI は `copilot mcp list`、VS Code は command palette の `MCP: List Servers` で `backlog` が認識されていることを確認できます。初回起動時は、表示される MCP server の trust 確認を行います。
+
+WSL から Windows 版 VS Code を利用する場合、MCP 設定と環境変数は Windows 側のユーザープロファイルにも登録します。次のコマンドは、現在の WSL 環境変数を Windows ユーザー環境へ保存するため、実行後に VS Code を完全に終了して起動し直してください。
+
+```sh
+code --add-mcp '{"name":"backlog","type":"stdio","command":"wsl.exe","args":["-e","sh","-lc","exec \"$HOME/.local/share/mise/installs/node/24/bin/npx\" -y backlog-mcp-server"],"env":{"BACKLOG_DOMAIN":"${env:BACKLOG_DOMAIN}","BACKLOG_API_KEY":"${env:BACKLOG_API_KEY}"}}'
+setx.exe BACKLOG_DOMAIN "$BACKLOG_DOMAIN"
+setx.exe BACKLOG_API_KEY "$BACKLOG_API_KEY"
+powershell.exe -NoProfile -Command '$current = [Environment]::GetEnvironmentVariable("WSLENV", "User"); $items = @($current -split ":" | Where-Object { $_ }); foreach ($name in @("BACKLOG_DOMAIN", "BACKLOG_API_KEY")) { if (-not ($items | Where-Object { ($_ -split "/")[0] -eq $name })) { $items += "$name/u" } }; [Environment]::SetEnvironmentVariable("WSLENV", ($items -join ":"), "User")'
+```
 
 ## Herdr
 
