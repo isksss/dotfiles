@@ -6,7 +6,7 @@ repo_root=$(git rev-parse --show-toplevel)
 cd "$repo_root"
 
 printf '%s\n' '==> shell syntax and formatting'
-sh -n bootstrap.sh dotfiles/.local/bin/update .mise/tasks/check
+sh -n bootstrap.sh dotfiles/.local/bin/update .mise/tasks/check .mise/tasks/init
 bash -n dotfiles/.bashrc
 find dotfiles/.config/zsh -type f \( -name '*.zsh' -o -name '.zshrc' -o -name '.zprofile' \) -exec zsh -n {} +
 zsh -n dotfiles/.zshenv
@@ -14,7 +14,7 @@ nu --no-history \
 	--env-config dotfiles/.config/nushell/env.nu \
 	--config dotfiles/.config/nushell/config.nu \
 	--commands 'exit 0'
-shfmt -d bootstrap.sh dotfiles/.local/bin/update .mise/tasks/check
+shfmt -d bootstrap.sh dotfiles/.local/bin/update .mise/tasks/check .mise/tasks/init
 
 printf '%s\n' '==> Neovim configuration'
 find dotfiles/.config/nvim -type f -name '*.lua' | while IFS= read -r lua_file; do

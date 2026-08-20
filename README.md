@@ -16,7 +16,7 @@ Arch Linux を主対象とし、Ubuntu と macOS は best-effort で扱います
 curl -fsSL https://raw.githubusercontent.com/isksss/dotfiles/main/bootstrap.sh | sh
 ```
 
-`bootstrap.sh` は公式 installer (`mise.run`) 版を `~/.local/bin/mise` に導入します。mise 本体は `mise self-update`、mise 管理 tool は `mise upgrade` で更新します。
+`bootstrap.sh` は公式 installer (`mise.run`) 版を `~/.local/bin/mise` に導入し、`mise run init` に初期化処理を委譲します。mise 本体は `mise self-update`、mise 管理 tool は `mise upgrade` で更新します。
 
 `mise install` は GitHub API でツール情報を取得します。rate limit の 403 が出る場合は [mise の案内](https://mise.jdx.dev/dev-tools/github-tokens.html) に従い、`MISE_GITHUB_TOKEN` または `GITHUB_TOKEN` を設定して再実行します。
 
@@ -30,8 +30,7 @@ clone 先は `~/dotfiles` 固定です。既存 checkout は再利用し、別 o
 git clone https://github.com/isksss/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 mise trust mise.toml
-mise dotfiles apply --dry-run --verbose --force
-mise bootstrap --yes
+mise run init
 ```
 
 mise は `mise.toml` の `[dotfiles]` を読み、`dotfiles/` 配下の実ファイルをホームディレクトリへ symlink します。
