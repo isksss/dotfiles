@@ -39,6 +39,7 @@ java = "temurin-25"
 node = "24"
 python = "latest"
 uv = "latest"
+"pipx:graphifyy" = "0.9.47"
 
 # go tools
 "go:github.com/d-kuro/gwq/cmd/gwq" = "latest"

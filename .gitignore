@@ -25,3 +25,5 @@ dotfiles/.config/herdr/.plugins.lock
 dotfiles/.config/herdr/release-notes.json
 
 plans/**
+
+graphify-out/
