@@ -105,25 +105,14 @@ opencode run -m ollama/qwen2.5-coder:7b-opencode "READMEを要約して"
 
 ## AI エージェント規約
 
-このリポジトリの AI エージェント規約は `.agents/` 配下を正本とし、Codex、GitHub Copilot、Claude Code で共通利用します。
+個人用の AI エージェント規約と skills は、別リポジトリ `dotagents` を `~/.agents` に配置して管理します。
 
-- `.agents/AGENTS.md`: グローバル指示の正本
-- `.agents/skills/`: `research`、`implement`、`review`、`commit`、`branch`、`merge-request` などの自作 skill
-- `.github/agents/`: GitHub Copilot 向けの薄い wrapper
-- `skills-lock.json`: 外部 skill の取得元と version 情報
 
-`mise.toml` では `.agents/AGENTS.md` を次の各ツールのグローバル指示ファイルへ symlink し、内容を複製せずに共通化します。
+個人用規約や skills の配置は `dotagents` の README を確認してください。
 
-- `~/.codex/AGENTS.md`: Codex
-- `~/.copilot/copilot-instructions.md`: GitHub Copilot CLI
-- `~/.claude/CLAUDE.md`: Claude Code と VS Code の Copilot Chat
-- `~/.agents/AGENTS.md`: 共通エージェント規約の互換配置
 
-自作 skill は `~/.agents/skills/<name>` へ個別に配布します。外部 skill は installer 側で管理し、設計の深掘りには共通の `grilling` skill を使います。Codex、opencode、Copilot、Claude 向けの複製は作りません。
 
-作業前に利用可能な skill を確認し、目的に合う skill を使います。自作 skill だけを Git 管理し、外部 skill の本体は `skills-lock.json` を基に導入します。
-
-AI 規約を変更する場合は、まず `.agents/` 配下の正本を更新し、必要に応じて `.github/agents/` や `.github/copilot-instructions.md` の参照だけを調整します。
+このリポジトリでは `AGENTS.md`、自作 skill、外部 skill、skill lock の管理や各ツールへの symlink 作成を行いません。
 
 ### GitHub Copilot の Backlog MCP
 

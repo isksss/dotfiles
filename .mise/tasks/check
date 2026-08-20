@@ -32,21 +32,5 @@ printf '%s\n' '==> mise and dotfiles configuration'
 mise tasks validate
 mise dotfiles status --missing >/dev/null
 
-printf '%s\n' '==> self-authored skills'
-validator=".agents/skills/.system/skill-creator/scripts/quick_validate.py"
-if [ ! -f "$validator" ]; then
-	validator="${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-creator/scripts/quick_validate.py"
-fi
-if [ ! -f "$validator" ]; then
-	printf 'skill validator not found; install the Codex skill-creator system skill\n' >&2
-	exit 1
-fi
-
-git ls-files --cached --others --exclude-standard '.agents/skills/*/SKILL.md' |
-	while IFS= read -r skill_file; do
-		[ -f "$skill_file" ] || continue
-		uv run --quiet --with PyYAML python "$validator" "$(dirname "$skill_file")"
-	done
-
 git diff --check
 printf '%s\n' 'all checks passed'

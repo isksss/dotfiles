@@ -11,22 +11,6 @@ local.zsh
 # Codex CLI local approval rules
 .agents/rules/default.rules
 
-# Codex skills: keep only self-authored skills in Git.
-.agents/skills/*
-!.agents/skills/branch/
-!.agents/skills/branch/**
-!.agents/skills/commit/
-!.agents/skills/commit/**
-!.agents/skills/implement/
-!.agents/skills/implement/**
-!.agents/skills/merge-request/
-!.agents/skills/merge-request/**
-!.agents/skills/research/
-!.agents/skills/research/**
-!.agents/skills/review/
-!.agents/skills/review/**
-skills-lock.json
-
 # 業務用gitconfig
 dotfiles/.config/git/*.gitconfig
 
