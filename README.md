@@ -104,14 +104,24 @@ opencode run -m ollama/qwen2.5-coder:7b-opencode "READMEを要約して"
 
 ## AI エージェント規約
 
-個人用の AI エージェント規約と skills は、別リポジトリ `dotagents` を `~/.agents` に配置して管理します。
+共通の AI エージェント規約は `.agents/AGENTS.md` を正本として、このリポジトリで管理します。
+`mise.toml` で `~/.agents/AGENTS.md`、`~/.claude/CLAUDE.md`、`~/.codex/AGENTS.md`、
+`~/.copilot/copilot-instructions.md` へ symlink を配置します。
 
+自作 skills は別リポジトリ `isksss/skills` から `npx skills add` で導入します。
+`~/.agents/skills` はこのリポジトリや mise の symlink 管理対象ではありません。
 
-個人用規約や skills の配置は `dotagents` の README を確認してください。
+```sh
+npx skills add -g isksss/skills --all
+npx skills add -g anomalyco/opencode --skill effect rtl-aware-development
+npx skills add -g herdrdev/herdr --skill herdr herdr-pre-release-audit herdr-throwaway-repro triage
+npx skills update -g
+```
 
-
-
-このリポジトリでは `AGENTS.md`、自作 skill、外部 skill、skill lock の管理や各ツールへの symlink 作成を行いません。
+導入した skills は `npx skills list -g` で確認します。外部 skill は導入元と内容を確認してから追加し、
+このリポジトリにはコピーしません。
+`graphify-labs/graphify` は現在 `SKILL.md` を配布していないため、Skills CLI の直接取得に対応していません。
+upstream の対応後は `npx skills add -g graphify-labs/graphify --skill graphify` を実行します。
 
 ### GitHub Copilot の Backlog MCP
 

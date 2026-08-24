@@ -95,6 +95,10 @@ cloudflared = "latest"
 "~/.config/zellij" = {}
 "~/.config/zsh" = {}
 "~/.wallpapers" = {}
+"~/.agents/AGENTS.md" = "~/dotfiles/.agents/AGENTS.md"
+"~/.claude/CLAUDE.md" = "~/dotfiles/.agents/AGENTS.md"
+"~/.codex/AGENTS.md" = "~/dotfiles/.agents/AGENTS.md"
+"~/.copilot/copilot-instructions.md" = "~/dotfiles/.agents/AGENTS.md"
 [shell_alias]
 
 [env]
