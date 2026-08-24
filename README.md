@@ -45,7 +45,7 @@ mise dotfiles edit ~/.zshenv
 mise dotfiles add ~/.zshenv
 ```
 
-OS package と mise 管理ツールは `update` で更新します。通常は更新だけを行い、不要 package、cache、古い mise tool version も削除する場合は `--cleanup` を付けます。実行内容だけを確認する場合は `--dry-run` を使います。
+OS package、mise 管理ツール、global skills は `update` で更新します。通常は更新だけを行い、不要 package、cache、古い mise tool version も削除する場合は `--cleanup` を付けます。実行内容だけを確認する場合は `--dry-run` を使います。
 
 ```sh
 update

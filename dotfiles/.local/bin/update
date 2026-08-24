@@ -10,7 +10,7 @@ usage() {
 	cat <<'EOF'
 Usage: update [--cleanup] [--dry-run]
 
-Update OS packages and mise-managed tools.
+Update OS packages, mise-managed tools, and global skills.
 
   --cleanup  Remove unused packages, caches, and mise tool versions.
   --dry-run  Print commands without executing them.
@@ -118,6 +118,12 @@ if has mise; then
 	run "mise upgrade" mise upgrade -y || true
 else
 	printf 'skip: mise not found\n'
+fi
+
+if has npx; then
+	run "npx skills update" npx skills update -g || true
+else
+	printf 'skip: npx not found\n'
 fi
 
 if [ "$cleanup" = true ]; then
