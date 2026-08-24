@@ -35,7 +35,10 @@ if (which zoxide | is-not-empty) {
 }
 
 if (which atuin | is-not-empty) {
-    ^atuin init nu | save --force ($integration_dir | path join "atuin.nu")
+    # Atuin currently gives both Nushell bindings the same name.
+    ^atuin init nu
+    | str replace --regex 'name: atuin\n(\s+modifier: none\n\s+keycode: up)' "name: atuin_up\n$1"
+    | save --force ($integration_dir | path join "atuin.nu")
 } else {
     "" | save --force ($integration_dir | path join "atuin.nu")
 }
