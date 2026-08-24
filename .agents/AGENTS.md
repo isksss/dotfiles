@@ -1,7 +1,6 @@
 # Global AGENTS.md
 
 - 日本語で簡潔に回答する。
-- 作業前に利用可能な skills を確認し、適した skill を使う。
 - 秘密情報や認証情報を出力しない。
 
 ## 開発フロー
@@ -12,7 +11,3 @@
 - `test` は検証コマンドを実行し、`review` はテスト結果と差分を読み取り専用で評価する。
 - test の失敗は `implement → test`、review の指摘は `implement → test → review` に戻る。計画変更が必要なら `plan` に戻す。
 - branch、commit、PR/MR はユーザーが明示的に依頼した場合だけ実行する。
-
-## graphify
-
-- **graphify** (`~/.claude/skills/graphify/SKILL.md`) は、`/graphify` が入力されたときに使用する。

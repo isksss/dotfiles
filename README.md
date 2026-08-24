@@ -45,7 +45,7 @@ mise dotfiles edit ~/.zshenv
 mise dotfiles add ~/.zshenv
 ```
 
-OS package、mise 管理ツール、global skills は `update` で更新します。通常は更新だけを行い、不要 package、cache、古い mise tool version も削除する場合は `--cleanup` を付けます。実行内容だけを確認する場合は `--dry-run` を使います。
+OS package と mise 管理ツールは `update` で更新します。通常は更新だけを行い、不要 package、cache、古い mise tool version も削除する場合は `--cleanup` を付けます。実行内容だけを確認する場合は `--dry-run` を使います。
 
 ```sh
 update
@@ -53,7 +53,7 @@ update --cleanup
 update --dry-run
 ```
 
-リポジトリの設定と skill は一括検証できます。
+リポジトリの設定は一括検証できます。
 
 ```sh
 cd "$DOTFILES_REPO_PATH"
@@ -109,19 +109,12 @@ opencode run -m ollama/qwen2.5-coder:7b-opencode "READMEを要約して"
 `~/.copilot/copilot-instructions.md` へ symlink を配置します。
 
 自作 skills は別リポジトリ `isksss/skills` から `npx skills add` で導入します。
-`~/.agents/skills` はこのリポジトリや mise の symlink 管理対象ではありません。
 
 ```sh
 npx skills add -g isksss/skills --all
-npx skills add -g anomalyco/opencode --skill effect rtl-aware-development
-npx skills add -g herdrdev/herdr --skill herdr herdr-pre-release-audit herdr-throwaway-repro triage
-npx skills update -g
 ```
 
-導入した skills は `npx skills list -g` で確認します。外部 skill は導入元と内容を確認してから追加し、
-このリポジトリにはコピーしません。
-`graphify-labs/graphify` は現在 `SKILL.md` を配布していないため、Skills CLI の直接取得に対応していません。
-upstream の対応後は `npx skills add -g graphify-labs/graphify --skill graphify` を実行します。
+導入した skills は `npx skills list -g` で確認します。
 
 ### GitHub Copilot の Backlog MCP
 

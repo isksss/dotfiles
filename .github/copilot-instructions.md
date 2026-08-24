@@ -2,8 +2,6 @@
 
 このファイルは GitHub Copilot 向けの薄い参照です。
 
-個人用 agent 規約と skills は別リポジトリ `dotagents`（`~/.agents`）で管理します。
-
 ## 正本
 
 
