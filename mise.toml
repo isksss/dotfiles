@@ -67,6 +67,8 @@ cloudflared = "latest"
 "npm:@rivolink/leaf" = "latest"
 "cargo:isksss/isksh" = "latest"
 "github:anomalyco/opencode" = "latest"
+claude = "latest"
+aws = { version = "latest", symlink_bins = "true" }
 
 [dotfiles]
 "~/.bashrc" = {}

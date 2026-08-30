@@ -27,3 +27,6 @@ dotfiles/.config/herdr/release-notes.json
 plans/**
 
 graphify-out/
+
+# OpenCode project-local skills
+dotfiles/.config/opencode/skills/
