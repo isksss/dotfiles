@@ -69,6 +69,7 @@ cloudflared = "latest"
 "github:anomalyco/opencode" = "latest"
 claude = "latest"
 aws = { version = "latest", symlink_bins = "true" }
+rtk = "latest"
 
 [dotfiles]
 "~/.bashrc" = {}

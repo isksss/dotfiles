@@ -3,3 +3,7 @@ template = '{{.Host}}/{{.Owner}}/{{.Repository}}.worktrees/{{.Branch}}'
 
 [worktree]
 basedir = '~/ghq'
+
+[[repository_settings]]
+repository = '**'
+copy_files = ['.env', 'graphify-out/**']

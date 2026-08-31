@@ -30,3 +30,6 @@ graphify-out/
 
 # OpenCode project-local skills
 dotfiles/.config/opencode/skills/
+
+# OpenCode project-local plugins
+dotfiles/.config/opencode/plugins/
