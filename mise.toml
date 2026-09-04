@@ -3,7 +3,7 @@ min_version = "2026.7.5"
 [settings]
 dotfiles.root = "~/dotfiles/dotfiles"
 dotfiles.default_mode = "symlink"
-minimum_release_age = "6h"
+minimum_release_age = "0h"
 
 [tools]
 # shell / cli
@@ -70,6 +70,7 @@ cloudflared = "latest"
 claude = "latest"
 aws = { version = "latest", symlink_bins = "true" }
 rtk = "latest"
+"npm:@nulab/bee" = "latest"
 
 [dotfiles]
 "~/.bashrc" = {}
