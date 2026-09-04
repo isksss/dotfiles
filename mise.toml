@@ -39,7 +39,7 @@ java = "temurin-25"
 node = "24"
 python = "latest"
 uv = "latest"
-"pipx:graphifyy" = "0.9.47"
+"pipx:graphifyy" = { version = "0.9.47", extras = "terraform" }
 
 # go tools
 "go:github.com/d-kuro/gwq/cmd/gwq" = "latest"
@@ -49,7 +49,6 @@ uv = "latest"
 "npm:@antfu/ni" = "latest"
 "npm:@github/copilot" = "latest"
 "npm:@openai/codex" = "latest"
-"npm:@playwright/cli" = "latest"
 "npm:playwright" = "latest"
 
 # alt shell
@@ -71,6 +70,13 @@ claude = "latest"
 aws = { version = "latest", symlink_bins = "true" }
 rtk = "latest"
 "npm:@nulab/bee" = "latest"
+llmfit = "latest"
+"llama.cpp" = { version = "latest", prerelease = true, version_prefix = "b" }
+pi = "latest"
+
+[tasks.llama-pi-server]
+description = "Start the llama.cpp router for pi"
+run = "llama-server --models-dir \"${XDG_CACHE_HOME:-$HOME/.cache}/llmfit/models\" --models-autoload --models-max 1 --jinja --host 127.0.0.1 --port 8080 --ctx-size 32768"
 
 [dotfiles]
 "~/.bashrc" = {}
@@ -92,6 +98,7 @@ rtk = "latest"
 "~/.config/nushell/env.nu" = {}
 "~/.config/ollama" = {}
 "~/.config/opencode" = {}
+"~/.pi/agent/settings.json" = {}
 "~/.config/sheldon" = {}
 "~/.config/starship.toml" = {}
 "~/.config/tmux" = {}
@@ -117,3 +124,5 @@ XDG_CACHE_HOME = "{{env.HOME}}/.cache"
 XDG_CONFIG_HOME = "{{env.HOME}}/.config"
 XDG_DATA_HOME = "{{env.HOME}}/.local/share"
 XDG_STATE_HOME = "{{env.HOME}}/.local/state"
+
+LLAMA_BASE_URL = "http://127.0.0.1:8080"
