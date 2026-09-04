@@ -11,7 +11,6 @@ local parser_languages = {
     "java",
     "javascript",
     "json",
-    "jsonc",
     "lua",
     "markdown",
     "markdown_inline",
@@ -52,11 +51,15 @@ local filetypes = {
 }
 
 function M.setup()
+    vim.cmd("syntax enable")
+
     require("nvim-treesitter").setup({
         install_dir = vim.fn.stdpath("data") .. "/site",
     })
+    require("nvim-treesitter").install(parser_languages)
 
     vim.treesitter.language.register("bash", "sh")
+    vim.treesitter.language.register("json", "jsonc")
 
     vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("UserTreesitterConfig", { clear = true }),
