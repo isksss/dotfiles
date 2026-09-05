@@ -1,16 +1,12 @@
 return {
     {
-        "williamboman/mason.nvim",
-        build = ":MasonUpdate",
+        "mason-org/mason.nvim",
         cmd = { "Mason", "MasonInstall", "MasonUpdate" },
         opts = {},
     },
     {
-        "williamboman/mason-lspconfig.nvim",
-        dependencies = {
-            "williamboman/mason.nvim",
-            "neovim/nvim-lspconfig",
-        },
+        "mason-org/mason-lspconfig.nvim",
+        dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig", "saghen/blink.cmp" },
         event = { "BufReadPre", "BufNewFile" },
         config = function()
             require("config.lsp")
@@ -18,29 +14,18 @@ return {
     },
     {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
-        dependencies = {
-            "williamboman/mason.nvim",
-        },
+        dependencies = { "mason-org/mason.nvim" },
         event = "VeryLazy",
-        config = function()
-            require("mason-tool-installer").setup({
-                ensure_installed = {
-                    "prettier",
-                    "eslint_d",
-                    "ruff",
-                    "shellcheck",
-                    "shfmt",
-                    "gofumpt",
-                    "goimports",
-                    "staticcheck",
-                    "google-java-format",
-                    "checkstyle",
-                    "markdownlint-cli2",
-                    "sql-formatter",
-                    "pgformatter",
-                    "sqlfluff",
-                },
-            })
-        end,
+        opts = {
+            ensure_installed = {
+                "prettier",
+                "eslint_d",
+                "shellcheck",
+                "shfmt",
+                "gofumpt",
+                "goimports",
+                "markdownlint-cli2",
+            },
+        },
     },
 }

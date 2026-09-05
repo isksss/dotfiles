@@ -1,116 +1,163 @@
------------------------------------------------------------
--- Language-specific task handlers
------------------------------------------------------------
 local runner = require("config.tasks.runner")
+local project = require("config.project")
+local ts_efm = "%f(%l\\,%c): %m,%f:%l:%c - %m,%f:%l:%c: %m, %#at %f:%l:%c,%f:%l:%c,%+G%.%#"
+local rust_efm = "%Eerror: %m,%Eerror[E%n]: %m,%Wwarning: %m,%C %#--> %f:%l:%c,"
+    .. "%Ethread %.%# panicked at %f:%l:%c:,%+G%.%#"
 
-local ts_efm = table.concat({
-    "%f(%l\\,%c): %m",
-    "%f:%l:%c - %m",
-    "%f:%l:%c %m",
-}, ",")
-
-local function js_check()
-    local cwd = runner.package_script("typecheck")
-    if cwd then
-        runner.quickfix({ "npm", "run", "typecheck" }, { cwd = cwd, title = "npm run typecheck", efm = ts_efm })
+local function deno_task(kind)
+    local _, root = project.runtime(0)
+    local name = ({ check = "typecheck", test = "test", run = "dev" })[kind]
+    if vim.fn.executable("deno") ~= 1 then
+        runner.notify("deno が見つかりません", vim.log.levels.ERROR)
         return
     end
-    runner.quickfix({ "npx", "--no-install", "tsc", "--noEmit" }, { title = "tsc --noEmit", efm = ts_efm })
-end
-
-local function js_test()
-    local cwd = runner.package_script("test")
-    if cwd then
-        runner.quickfix({ "npm", "test" }, { cwd = cwd, title = "npm test" })
+    -- Let Deno read JSONC/workspace tasks instead of duplicating its config parser.
+    local listing = vim.system({ "deno", "task" }, { cwd = root, text = true, env = { NO_COLOR = "1" } }):wait(1000)
+    if listing.code == 124 then
+        runner.notify("Deno task の取得がタイムアウトしました", vim.log.levels.WARN)
         return
     end
-    runner.notify("package.json に test script がありません", vim.log.levels.WARN)
-end
-
-local function js_run()
-    local cwd = runner.package_script("dev")
-    if cwd then
-        runner.terminal({ "npm", "run", "dev" }, { cwd = cwd })
-        return
+    local output = (listing.stdout or "") .. "\n" .. (listing.stderr or "")
+    local found = false
+    for line in output:gmatch("[^\n]+") do
+        if line:match("^%- ([^%s]+)") == name then
+            found = true
+        end
     end
-
-    local name = runner.file()
-    if not name then
-        return
-    end
-
-    if vim.bo.filetype == "javascript" or vim.bo.filetype == "javascriptreact" then
-        runner.terminal({ "node", name })
+    local cmd
+    if found then
+        cmd = { "deno", "task", name }
+    elseif kind == "check" and runner.file() then
+        cmd = { "deno", "check", runner.file() }
+    elseif kind == "test" then
+        cmd = { "deno", "test" }
     else
-        runner.terminal({ "npx", "--no-install", "tsx", name })
+        runner.notify("Deno の dev task がありません", vim.log.levels.WARN)
+        return
+    end
+    if kind == "run" then
+        runner.terminal(cmd, { cwd = root })
+    else
+        runner.quickfix(cmd, { cwd = root, efm = ts_efm })
     end
 end
 
-return {
+local function web_task(kind)
+    if project.runtime(0) == "deno" then
+        deno_task(kind)
+        return
+    end
+    local pkg, root = project.package(0)
+    if not pkg then
+        runner.notify("有効な package.json がありません", vim.log.levels.WARN)
+        return
+    end
+    local manager, err = project.package_manager(0)
+    if not manager then
+        runner.notify(err, vim.log.levels.WARN)
+        return
+    end
+    local name = ({ check = "typecheck", test = "test", run = "dev" })[kind]
+    local cmd
+    if type(pkg.scripts) == "table" and pkg.scripts[name] then
+        cmd = { manager, "run", name }
+    elseif kind == "check" then
+        local vue = vim.bo.filetype == "vue"
+            or (pkg.dependencies or {}).vue
+            or (pkg.devDependencies or {}).vue
+            or (pkg.dependencies or {}).nuxt
+            or (pkg.devDependencies or {}).nuxt
+        local tool = vue and "vue-tsc" or "tsc"
+        local binary = project.node_bin(0, tool)
+        if not binary then
+            runner.notify(tool .. " が未導入です", vim.log.levels.WARN)
+            return
+        end
+        cmd = { binary, "--noEmit" }
+    else
+        runner.notify("package.json に " .. name .. " script がありません", vim.log.levels.WARN)
+        return
+    end
+    if kind == "run" then
+        runner.terminal(cmd, { cwd = root })
+    else
+        runner.quickfix(cmd, { cwd = root, efm = ts_efm })
+    end
+end
+
+local function shell()
+    if vim.bo.filetype == "zsh" then
+        return "zsh"
+    end
+    local name = runner.file() or ""
+    local first = vim.api.nvim_buf_get_lines(0, 0, 1, false)[1] or ""
+    if first:match("^#!.*bash") or name:match("%.bash$") or name:match("/%.bash") or vim.b.is_bash then
+        return "bash"
+    end
+    return "sh"
+end
+local function shell_task(check)
+    local file = runner.file()
+    if not file then
+        runner.notify("先にファイルを保存してください", vim.log.levels.WARN)
+        return
+    end
+    if check then
+        runner.quickfix({ shell(), "-n", file })
+    else
+        runner.terminal({ shell(), file })
+    end
+end
+
+local M = {
     check = {
-        go = function()
-            runner.quickfix({ "go", "test", "./..." }, { title = "go test ./..." })
-        end,
         rust = function()
-            runner.quickfix({ "cargo", "check" }, { title = "cargo check" })
+            runner.quickfix({ "cargo", "check" }, { efm = rust_efm })
         end,
-        python = function()
-            local name = runner.file()
-            if name then
-                runner.quickfix({ "python3", "-m", "py_compile", name }, { title = "python -m py_compile" })
-            end
+        go = function()
+            runner.quickfix({ "go", "vet", "." })
         end,
         sh = function()
-            local name = runner.file()
-            if name then
-                runner.quickfix({ "bash", "-n", name }, { title = "bash -n" })
-            end
+            shell_task(true)
         end,
-        javascript = js_check,
-        javascriptreact = js_check,
-        typescript = js_check,
-        typescriptreact = js_check,
-        vue = js_check,
+        zsh = function()
+            shell_task(true)
+        end,
+        markdown = function()
+            require("config.lint").run()
+        end,
     },
     test = {
-        go = function()
-            runner.quickfix({ "go", "test", "./..." }, { title = "go test ./..." })
-        end,
         rust = function()
-            runner.quickfix({ "cargo", "test" }, { title = "cargo test" })
+            runner.quickfix({ "cargo", "test" }, { efm = rust_efm })
         end,
-        python = function()
-            runner.quickfix({ "python3", "-m", "pytest" }, { title = "pytest" })
+        go = function()
+            runner.quickfix({ "go", "test", "." }, { efm = "%f:%l:%c: %m,%f:%l: %m, %#%f:%l: %m,%+G%.%#" })
         end,
-        javascript = js_test,
-        javascriptreact = js_test,
-        typescript = js_test,
-        typescriptreact = js_test,
-        vue = js_test,
     },
     run = {
-        go = function()
-            runner.terminal({ "go", "run", "." })
-        end,
         rust = function()
             runner.terminal({ "cargo", "run" })
         end,
-        python = function()
-            local name = runner.file()
-            if name then
-                runner.terminal({ "python3", name })
-            end
+        go = function()
+            runner.terminal({ "go", "run", "." })
         end,
         sh = function()
-            local name = runner.file()
-            if name then
-                runner.terminal({ "bash", name })
-            end
+            shell_task(false)
         end,
-        javascript = js_run,
-        javascriptreact = js_run,
-        typescript = js_run,
-        typescriptreact = js_run,
-        vue = js_run,
+        zsh = function()
+            shell_task(false)
+        end,
+        markdown = function()
+            require("config.markdown_preview").toggle()
+        end,
     },
 }
+for _, ft in ipairs({ "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" }) do
+    for _, kind in ipairs({ "check", "test", "run" }) do
+        M[kind][ft] = function()
+            web_task(kind)
+        end
+    end
+end
+return M

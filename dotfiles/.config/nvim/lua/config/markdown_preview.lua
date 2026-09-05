@@ -109,12 +109,14 @@ function M.setup()
         group = group,
         pattern = "markdown",
         callback = function(event)
-            vim.keymap.set("n", "<leader>p", toggle_preview, {
+            vim.keymap.set("n", "<leader>mp", toggle_preview, {
                 buffer = event.buf,
                 desc = "Markdown プレビューを切り替え",
             })
         end,
     })
 end
+
+M.toggle = toggle_preview
 
 return M
