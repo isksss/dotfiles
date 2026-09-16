@@ -121,3 +121,5 @@ CLI は接続検証済みの `0.1.18` に固定しています。
 - dotfiles: `dotfiles/`
 - mise 設定と管理対象: `mise.toml`
 - セットアップスクリプト: `bootstrap.sh`
+
+Herdr の `prefix+shift+g` は GWQ プラグインに割り当てています。既存ブランチの選択または新規ブランチ名の入力後、`gwq` で作成して Herdr のワークスペースとして開きます。`mise run init` がプラグインを自動リンクします。

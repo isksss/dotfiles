@@ -69,4 +69,9 @@ backup_conflicts
 log 'Applying dotfiles and installing tools...'
 "$mise_bin" bootstrap --yes --force-dotfiles
 
+log 'Linking Herdr GWQ plugin...'
+"$mise_bin" exec -- herdr plugin link \
+	"$repo_root/dotfiles/.config/herdr/plugins/gwq-worktree" \
+	--enabled
+
 log 'Initialization complete.'

@@ -91,6 +91,9 @@ name = "tokyo-night-day"
 # resize_mode = "prefix+r"
 # toggle_sidebar = "prefix+b"
 
+# Use the GWQ-backed plugin instead of Herdr's built-in worktree creation.
+new_worktree = ""
+
 # Navigate-mode movement. These local shortcuts win while navigate mode is open.
 # They are independent from focus_pane_*. Do not include prefix+, esc, enter, tab, or 1..9 here.
 navigate_workspace_up = "k"
@@ -116,6 +119,12 @@ description = "open scratch terminal"
 width = "80%"
 height = "80%"
 
+[[keys.command]]
+key = "prefix+shift+g"
+type = "plugin_action"
+command = "local.gwq-worktree.open"
+description = "create worktree with gwq"
+
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.
 # [keys.indexed]
@@ -123,8 +132,8 @@ height = "80%"
 # workspaces = "" # e.g. "ctrl+shift" makes ctrl+shift+1..9 switch workspaces directly
 # agents = ""     # e.g. "alt" makes alt+1..9 focus agent rows directly
 
-# [worktrees]
-# directory = "~/.herdr/worktrees"
+[worktrees]
+directory = "~/ghq"
 
 [ui]
 # Sidebar width (auto-scaled based on workspace names, this sets the default)
