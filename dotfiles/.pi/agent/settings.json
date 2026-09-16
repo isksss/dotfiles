@@ -1,4 +1,12 @@
 {
   "theme": "dark",
-  "defaultProvider": "llama.cpp"
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-6-astra",
+  "defaultThinkingLevel": "low",
+  "lastChangelogVersion": "0.85.1",
+  "packages": [
+    "npm:pi-mono-ask-user-question",
+    "git:github.com/DietrichGebert/ponytail"
+  ],
+  "hideThinkingBlock": false
 }
