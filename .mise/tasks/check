@@ -26,7 +26,8 @@ printf '%s\n' '==> JSON configuration'
 jq empty \
 	.mcp.json \
 	dotfiles/.copilot/mcp-config.json \
-	dotfiles/.config/Code/User/mcp.json
+	dotfiles/.config/Code/User/mcp.json \
+	dotfiles/.pi/agent/keybindings.json
 
 printf '%s\n' '==> mise and dotfiles configuration'
 mise tasks validate

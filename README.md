@@ -43,7 +43,18 @@ pi install git:github.com/DietrichGebert/ponytail
 pi
 ```
 
-pi内では `/model` で `gpt-6-astra`、`/thinking` で `low` を確認できます。
+pi内では `/model` で `gpt-5.6-luna`、`/thinking` で `xhigh` を確認できます。
+
+WSL の画像貼り付けは `Ctrl+V`、`Alt+V`、`F12` に割り当てています。設定反映後、piを再起動するか `/reload` を実行してください。
+
+`auto-session-name.ts` 拡張機能が、新規セッションの最初のユーザー発言を
+`openai-codex/gpt-5.6-luna` で要約し、日本語30文字以内のセッション名を付けます。
+通常の会話モデルは変更しません。
+要約用にモデルを1回追加呼び出しするため、通常の応答開始前に最大20秒の待ち時間と
+追加の利用量が発生します（要約対象は先頭8000文字、画像は対象外）。
+既存の会話・設定済みの名前は変更せず、失敗しても会話は続行します。
+手動変更は `/name 新しい名前`、拡張機能の読み込みは `/reload` で行えます。
+単体テストは `node --test tests/auto-session-name.test.mjs` で実行します。
 
 ローカルモデルを使う場合だけ、モデルを読み込むサーバーを起動します。
 

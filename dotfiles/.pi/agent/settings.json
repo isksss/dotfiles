@@ -1,8 +1,8 @@
 {
   "theme": "dark",
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-6-astra",
-  "defaultThinkingLevel": "low",
+  "defaultModel": "gpt-5.6-luna",
+  "defaultThinkingLevel": "xhigh",
   "lastChangelogVersion": "0.85.1",
   "packages": [
     "npm:pi-mono-ask-user-question",
