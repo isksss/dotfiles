@@ -67,6 +67,26 @@ OpenCode から使う場合は、同じサーバーを起動した状態でモ�
 opencode -m llama.cpp/Qwen2.5-Coder-7B-Instruct-Q8_0
 ```
 
+## pi用メモskill
+
+`mise dotfiles apply` で `~/.pi/agent/skills/memo-write` と
+`~/.pi/agent/skills/memo-read` への配置を反映してから、piを起動します。
+このskillはpi専用の配置とし、`~/.agents/skills/` には追加しません。
+
+```text
+/skill:memo-write
+/skill:memo-write 次回は異常系テストから再開する
+/skill:memo-read
+/skill:memo-read 異常系テスト
+```
+
+現在の会話の要約・決定事項・未完了事項・追加メモを、日本語Markdownで
+`~/memo/{repository name}/{branchname}/{yyyymmdd-HH}/{summary}.md` に保存します。
+追加メモは省略できます。秘密情報は除外し、既存メモは上書きしません。
+`memo-read` は現在のリポジトリ・ブランチの最新メモを読みます。検索語やファイルパス、
+別ブランチ・全リポジトリの検索範囲も指定できます。メモの変更や記載された作業の自動実行はしません。
+旧 `/memo`・`/skill:memo` は `/skill:memo-write` に置き換えます。互換エイリアスはありません。
+
 ## 設定
 
 - dotfiles: `dotfiles/`
