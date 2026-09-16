@@ -78,6 +78,28 @@ OpenCode から使う場合は、同じサーバーを起動した状態でモ�
 opencode -m llama.cpp/Qwen2.5-Coder-7B-Instruct-Q8_0
 ```
 
+## WSL から Windows Chrome を操作する
+
+Windows Chrome に Playwright 拡張機能を導入した環境では、pi から次のタスクを実行します。
+初回は `mise install npm:@playwright/cli` で CLI を用意してください。
+
+```sh
+mise run playwright-windows -- -s=windows-chrome attach --extension=chrome
+mise run playwright-windows -- -s=windows-chrome snapshot
+mise run playwright-windows -- -s=windows-chrome detach
+```
+
+トークン未設定時は Chrome の許可画面で対象タブを選びます。
+自動認証には `PLAYWRIGHT_MCP_EXTENSION_TOKEN` を実行環境から渡してください。
+zsh では Git 管理外の `~/.config/zsh/local.zsh` に設定できます。
+秘密情報を含むため、このファイルの権限は `600` にしてください。
+設定後は新しい zsh から pi を起動します。
+`detach` は Chrome を終了せず、接続だけを解除します。
+
+このタスクだけ IPv4 を優先し、`C:\Program Files\Google\Chrome\Application\chrome.exe`
+を使います。WSL・Chrome の自動起動やファイアウォールの変更は行いません。
+CLI は接続検証済みの `0.1.18` に固定しています。
+
 ## pi用メモskill
 
 `mise dotfiles apply` で `~/.pi/agent/skills/memo-write` と

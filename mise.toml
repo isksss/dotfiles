@@ -50,6 +50,7 @@ uv = "latest"
 "npm:@github/copilot" = "latest"
 "npm:@openai/codex" = "latest"
 "npm:playwright" = "latest"
+"npm:@playwright/cli" = "0.1.18"
 
 # alt shell
 "aqua:nushell/nushell" = "latest"
@@ -73,6 +74,15 @@ rtk = "latest"
 llmfit = "latest"
 "llama.cpp" = { version = "latest", prerelease = true, version_prefix = "b" }
 pi = "latest"
+
+# WSL から Windows Chrome の Playwright 拡張機能に接続する。
+[tasks.playwright-windows]
+description = "Run Playwright CLI against Windows Chrome from WSL"
+run = "playwright-cli"
+
+[tasks.playwright-windows.env]
+NODE_OPTIONS = "{{ env.NODE_OPTIONS | default(value='') }} --dns-result-order=ipv4first"
+PLAYWRIGHT_MCP_EXECUTABLE_PATH = "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"
 
 [tasks.llama-pi-server]
 description = "Start the llama.cpp router for pi"
