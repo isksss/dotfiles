@@ -35,3 +35,6 @@ compose.override.yml
 data.local/*
 
 graphify-out/
+
+# Playwright CLI output (may contain credentials)
+.playwright-cli/
