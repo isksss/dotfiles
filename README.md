@@ -102,23 +102,19 @@ CLI は接続検証済みの `0.1.18` に固定しています。
 
 ## pi用メモskill
 
-`mise dotfiles apply` で `~/.pi/agent/skills/memo-write` と
-`~/.pi/agent/skills/memo-read` への配置を反映してから、piを起動します。
+`mise dotfiles apply` で `~/.pi/agent/skills/memory` への配置を反映してから、piを起動します。
 このskillはpi専用の配置とし、`~/.agents/skills/` には追加しません。
 
 ```text
-/skill:memo-write
-/skill:memo-write 次回は異常系テストから再開する
-/skill:memo-read
-/skill:memo-read 異常系テスト
+/skill:memory この会話を raw に保存して。次回は異常系テストから再開する
+/skill:memory 異常系テストのメモを検索して
+/skill:memory このプロジェクトの作業メモを保存して
 ```
 
-現在の会話の要約・決定事項・未完了事項・追加メモを、日本語Markdownで
-`~/memo/{repository name}/{branchname}/{yyyymmdd-HH}/{summary}.md` に保存します。
-追加メモは省略できます。秘密情報は除外し、既存メモは上書きしません。
-`memo-read` は現在のリポジトリ・ブランチの最新メモを読みます。検索語やファイルパス、
-別ブランチ・全リポジトリの検索範囲も指定できます。メモの変更や記載された作業の自動実行はしません。
-旧 `/memo`・`/skill:memo` は `/skill:memo-write` に置き換えます。互換エイリアスはありません。
+メモ・知見は `~/memory` に保存します。雑記は `10_raw`、横断的な知見は `20_note`、
+プロジェクト固有の記録は `30_work`、不要になった note / work は `99_archive` で管理します。
+秘密情報は除外し、raw は新規追加のみ。検索ではメモの変更や記載された作業の自動実行はしません。
+`memo-read` / `memo-write` は廃止し、`memory` に統一しました。既存の `~/memo` は自動移行しません。
 
 ## 設定
 
