@@ -121,7 +121,7 @@ else
 fi
 
 if has npx; then
-	run "npx skills update" npx skills update -g || true
+	GIT_SSH_COMMAND='ssh -o BatchMode=yes' run "npx skills update" npx skills update -g || true
 else
 	printf 'skip: npx not found\n'
 fi
