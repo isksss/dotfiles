@@ -103,6 +103,7 @@ run = "llama-server --models-dir \"${XDG_CACHE_HOME:-$HOME/.cache}/llmfit/models
 "~/.pi/agent/settings.json" = {}
 "~/.pi/agent/skills/memo-write" = {}
 "~/.pi/agent/skills/memo-read" = {}
+"~/.pi/agent/skills/powershell-unc" = {}
 "~/.config/sheldon" = {}
 "~/.config/starship.toml" = {}
 "~/.config/tmux" = {}
