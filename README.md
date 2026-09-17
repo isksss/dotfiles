@@ -56,6 +56,11 @@ WSL の画像貼り付けは `Ctrl+V`、`Alt+V`、`F12` に割り当てていま
 手動変更は `/name 新しい名前`、拡張機能の読み込みは `/reload` で行えます。
 単体テストは `node --test tests/auto-session-name.test.mjs` で実行します。
 
+複数タスクに分ける機能開発では、`/skill:harness` を明示的に読み込みます。
+`subagent` ツールが `planner`、`worker`、4観点のレビュアーをセッション分離して起動します。
+進捗ファイルは `plans/pi-harness/` に置かれ、既存の `plans/**` ルールでGit管理外です。
+設定反映後は pi を再起動するか `/reload` を実行してください。
+
 ローカルモデルを使う場合だけ、モデルを読み込むサーバーを起動します。
 
 ```sh
