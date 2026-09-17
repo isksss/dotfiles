@@ -1,58 +1,105 @@
 ---
 name: harness
-description: Run a staged, spec-first workflow with isolated Pi subagents, external progress state, deterministic checks, and a final parallel review. Use for multi-task feature work.
+description: 複数タスクの機能開発を、仕様優先・セッション分離・機械検査・最終並列レビューで進めるPi用ハーネス。大規模タスクで使う。
 ---
 
-# Staged Pi workflow
+# Piハーネス
 
-Use this workflow only when the task is large enough to benefit from explicit stages. Do not impose it on one-file fixes.
+単一ファイルの修正や小さなバグ修正には使わない。複数タスクに分解できる機能開発でだけ使う。
 
-## Sources of truth
+## 情報の優先順位
 
-- The project specification defines what to build.
-- Feature rules define constraints and take precedence over the specification when they conflict.
-- `plans/pi-harness/progress.json` stores the current phase, short completed summaries, unresolved questions, and final review status.
-- `plans/pi-harness/stages.json` stores the task list, acceptance conditions, referenced specification/rule paths, and one-line notes for the next task.
-- Keep the JSON files local and ignored. Do not copy settled decisions into them; write settled specification to the specification and settled invariants to the rules.
+1. プロジェクトの仕様書
+2. 機能固有のrules（仕様書と矛盾した場合はこちら）
+3. `progress.json` と `stages.json`（進捗だけ。確定した仕様を書かない）
+4. 会話履歴
 
-Read the active stage only. Do not load the full specification, all completed stages, or all review output into every worker context.
+グローバルの`AGENTS.md`に機能固有rulesを追加しない。対象タスクに必要な仕様・rulesのパスだけをworkerへ渡し、関係ない文脈を持ち込まない。
 
-## Preparation phase
+## 状態ファイル
 
-Before implementation:
+このリポジトリでは、次のGit管理外パスを使う。
 
-1. Read the relevant specification and rules.
-2. Compare the user's request with those sources.
-3. Record blocking ambiguities as questions and resolve them before task decomposition.
-4. Split the work into the smallest independently verifiable tasks.
-5. Give each task explicit acceptance conditions and exact source paths.
+```text
+plans/pi-harness/progress.json
+plans/pi-harness/stages.json
+```
 
-Do not start implementation while a blocking interpretation question remains unresolved.
+初回は次の最小構造から始める。
 
-## Repeating task phase
+```json
+// progress.json
+{
+  "phase": "preparation",
+  "completed": [],
+  "unresolved": [],
+  "finalReview": null
+}
+```
 
-For each stage:
+```json
+// stages.json
+{
+  "stages": []
+}
+```
 
-1. Update `progress.json` and `stages.json` to identify the active task.
-2. Run one `worker` subagent for that task only. The subagent must use a fresh, sessionless Pi process.
-3. Inspect the worker's first test and output for acceptance-condition drift.
-4. Run the project's deterministic completion check from the main session, not through a reviewer agent.
-5. If the check fails, give the failure to a fresh worker for repair. Stop after three failed attempts and report the blocker.
-6. Record a one-line result and the next-task note, then continue.
+`progress.json`には現在のフェーズ、完了サマリ、未解決事項、最終レビュー結果だけを書く。`stages.json`にはタスク、受け入れ条件、参照する仕様・rules、次タスクへの注意点を書く。完了済みタスクの詳細や仕様本文は毎回読み込まない。
 
-Prefer TDD for non-trivial logic. Do not create commits or branches automatically; repository policy requires explicit user approval for those operations.
+## 準備フェーズ
 
-Use the project's documented check command. In this repository that command is `mise run check`; in other repositories use the repository's own check script when available.
+1. 依頼に関係する仕様書とrulesを読む。
+2. 依頼と仕様の差分を確認する。
+3. ブロッカーとなる不明点を解消する。解消前に実装を始めない。
+4. 最小の独立タスクへ分解する。
+5. 各タスクに受け入れ条件、参照パス、検証コマンドを付ける。
+6. `progress.json` と `stages.json` を初期化する。
 
-## Final review phase
+## タスク実行フェーズ
 
-Only after all stages pass, run these four agents in one parallel subagent call:
+各タスクについて、次の順に行う。
 
-- `reviewer-spec`
-- `reviewer-concurrency`
-- `reviewer-security`
-- `reviewer-completeness`
+1. `stages.json`の現在タスクを1件だけactiveにする。
+2. `subagent`ツールで`worker`を1回起動する。workerには仕様・rules・受け入れ条件・対象タスクだけを渡す。
+3. workerの最初のテストと報告を確認し、受け入れ条件の解釈ずれを早期に止める。
+4. メインセッションでプロジェクトの検査コマンドを実行する。
+5. 失敗時は新しいworkerへ失敗内容だけを渡して修正する。3回失敗したら人へ戻す。
+6. `progress.json`へ短い完了結果を書き、次のタスクへ進む。
 
-The main session deduplicates findings, keeps unresolved findings when evidence is inconclusive, updates `progress.json`, and reports the result for human approval. Reviewers are read-only and must not fix their own findings.
+workerの呼び出しは次の形にする。
 
-Use the active model by default. Select a different configured model only when the task explicitly requires it and the model is available in the current Pi installation.
+```json
+{
+  "agent": "worker",
+  "task": "対象タスク、受け入れ条件、仕様・rulesのパス、検証コマンド"
+}
+```
+
+workerは必ず1タスクだけを担当し、commit・branch作成・後続タスクの実装を行わない。commitやbranchはユーザーが明示的に依頼した場合だけ行う。
+
+非自明なロジックは、可能なら実装前に失敗するテストを書く。検査はagentに自己申告させず、メインセッションで実行する。このリポジトリでは`mise run check`を使う。
+
+## 最終レビュー
+
+全タスクの検査が成功してから、次の4 agentを1回の並列呼び出しで実行する。
+
+```json
+{
+  "tasks": [
+    { "agent": "reviewer-spec", "task": "仕様と受け入れ条件への適合を確認" },
+    { "agent": "reviewer-concurrency", "task": "並行性と状態整合性を確認" },
+    { "agent": "reviewer-security", "task": "セキュリティと認可を確認" },
+    { "agent": "reviewer-completeness", "task": "入口から後処理までの完結性と回帰を確認" }
+  ]
+}
+```
+
+reviewerは読み取り専用とし、自分で修正しない。メインセッションが重複をまとめ、根拠のない反証で指摘を消さず、判断不能な指摘も残して人へ報告する。レビュー結果を`progress.json`へ保存して終了する。
+
+## 完了条件
+
+- 全タスクの受け入れ条件が満たされている
+- プロジェクトの機械検査が成功している
+- 最終4観点レビューが完了している
+- 未解決事項が報告済みである
+- workerの自己申告だけを根拠にしていない

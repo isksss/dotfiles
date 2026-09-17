@@ -38,3 +38,9 @@ test("subagent extension uses isolated sessionless child processes", () => {
 	assert.match(source, /tasks:\s*Type\.Optional\(Type\.Array/);
 	assert.match(source, /chain:\s*Type\.Optional\(Type\.Array/);
 });
+
+test("Pi instructions opt into the harness only for large tasks", () => {
+	const instructions = readFileSync(join(root, "dotfiles/.pi/agent/AGENTS.md"), "utf8");
+	assert.match(instructions, /`\/skill:harness`/);
+	assert.match(instructions, /小さな修正・単一ファイルの変更にはこの手順を強制しない/);
+});
