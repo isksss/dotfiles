@@ -54,17 +54,9 @@ M.oxlint_configs = {
 M.oxfmt_configs = {
     ".oxfmtrc.json",
     ".oxfmtrc.jsonc",
-    "oxfmt.config.ts",
-    "vite.config.ts",
-    "vite.config.js",
 }
 
-M.checkstyle_configs = {
-    "checkstyle.xml",
-    "config/checkstyle/checkstyle.xml",
-    "config/checkstyle/checkstyle-main.xml",
-    "config/checkstyle/google_checks.xml",
-}
+M.node_locks = { "package-lock.json", "pnpm-lock.yaml", "yarn.lock", "bun.lock", "bun.lockb" }
 
 local function start_dir(bufnr)
     local name = vim.api.nvim_buf_get_name(bufnr or 0)
@@ -83,13 +75,89 @@ function M.has_root_file(bufnr, markers)
 end
 
 function M.node_bin(bufnr, command)
-    for dir in vim.fs.parents(start_dir(bufnr)) do
+    local dir = start_dir(bufnr)
+    while dir do
         local path = vim.fs.joinpath(dir, "node_modules", ".bin", command)
-        if vim.uv.fs_stat(path) then
+        if vim.fn.executable(path) == 1 then
             return path
         end
+        local parent = vim.fs.dirname(dir)
+        dir = parent ~= dir and parent or nil
     end
     return nil
+end
+
+-- Share the same runtime boundary between LSP, formatting and tasks.
+function M.runtime(bufnr)
+    if vim.bo[bufnr or 0].filetype == "vue" then
+        return "node", M.root(bufnr, { "package.json" }) or start_dir(bufnr)
+    end
+    local node = M.root(bufnr, M.node_locks)
+    local deno = M.root(bufnr, { "deno.json", "deno.jsonc" })
+    local lock = M.root(bufnr, { "deno.lock" })
+    if deno and (not node or #deno >= #node) then
+        return "deno", deno
+    end
+    if lock and (not node or #lock > #node) then
+        return "deno", lock
+    end
+    return "node", node or M.root(bufnr, { "package.json", "tsconfig.json", ".git" }) or start_dir(bufnr)
+end
+
+function M.package(bufnr)
+    local root = M.root(bufnr, { "package.json" })
+    if not root then
+        return nil, nil
+    end
+    local ok, lines = pcall(vim.fn.readfile, vim.fs.joinpath(root, "package.json"))
+    if not ok then
+        return nil, root
+    end
+    local decoded, value = pcall(vim.json.decode, table.concat(lines, "\n"))
+    return decoded and type(value) == "table" and value or nil, root
+end
+
+function M.package_manager(bufnr)
+    local dir = start_dir(bufnr)
+    while dir do
+        local path = vim.fs.joinpath(dir, "package.json")
+        if vim.uv.fs_stat(path) then
+            local ok, lines = pcall(vim.fn.readfile, path)
+            local parsed, pkg = false, nil
+            if ok then
+                parsed, pkg = pcall(vim.json.decode, table.concat(lines, "\n"))
+            end
+            if parsed and type(pkg) == "table" and type(pkg.packageManager) == "string" then
+                local name = pkg.packageManager:match("^([^@]+)")
+                if vim.tbl_contains({ "npm", "pnpm", "yarn", "bun" }, name) then
+                    return name
+                end
+                return nil, "未対応の packageManager: " .. pkg.packageManager
+            end
+        end
+        local parent = vim.fs.dirname(dir)
+        dir = parent ~= dir and parent or nil
+    end
+    local root = M.root(bufnr, M.node_locks)
+    local found = {}
+    if root then
+        for file, manager in pairs({
+            ["package-lock.json"] = "npm",
+            ["pnpm-lock.yaml"] = "pnpm",
+            ["yarn.lock"] = "yarn",
+            ["bun.lock"] = "bun",
+            ["bun.lockb"] = "bun",
+        }) do
+            if vim.uv.fs_stat(vim.fs.joinpath(root, file)) then
+                found[manager] = true
+            end
+        end
+    end
+    local names = vim.tbl_keys(found)
+    if #names > 1 then
+        return nil, "lockfile が競合しています。packageManager を指定してください"
+    end
+    return names[1] or "npm"
 end
 
 function M.has_package_key(bufnr, key)

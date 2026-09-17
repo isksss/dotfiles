@@ -8,7 +8,7 @@ return {
         event = "VeryLazy",
         keys = {
             {
-                "<leader>h",
+                "<leader>?",
                 function()
                     require("which-key").show({ keys = "<leader>", mode = "n" })
                 end,
@@ -23,7 +23,9 @@ return {
                 { "<leader>c", group = "Code" },
                 { "<leader>f", group = "Find" },
                 { "<leader>g", group = "Git" },
-                { "<leader>l", group = "LSP" },
+                { "<leader>t", group = "Task" },
+                { "<leader>m", group = "Markdown" },
+                { "<leader>u", group = "UI" },
             },
         },
     },
@@ -61,14 +63,6 @@ return {
         opts = {
             options = {
                 diagnostics = "nvim_lsp",
-                offsets = {
-                    {
-                        filetype = "ddu-filer",
-                        text = "Explorer",
-                        highlight = "Directory",
-                        text_align = "left",
-                    },
-                },
                 show_buffer_close_icons = false,
                 show_close_icon = false,
                 separator_style = "slant",

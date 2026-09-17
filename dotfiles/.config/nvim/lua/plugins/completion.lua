@@ -1,20 +1,22 @@
 return {
     {
-        "Shougo/ddc.vim",
-        event = "InsertEnter",
-        dependencies = {
-            "vim-denops/denops.vim",
-            "Shougo/pum.vim",
-            "Shougo/ddc-ui-pum",
-            "Shougo/ddc-source-around",
-            "LumaKernel/ddc-source-file",
-            "Shougo/ddc-source-lsp",
-            "Shougo/ddc-matcher_head",
-            "Shougo/ddc-sorter_rank",
-            "Shougo/ddc-converter_remove_overlap",
+        "saghen/blink.cmp",
+        version = "1.*",
+        dependencies = { "rafamadriz/friendly-snippets" },
+        event = { "InsertEnter", "CmdlineEnter" },
+        opts = {
+            keymap = {
+                preset = "default",
+                ["<Tab>"] = { "snippet_forward", "fallback" },
+                ["<S-Tab>"] = { "snippet_backward", "fallback" },
+            },
+            completion = {
+                list = { selection = { preselect = false, auto_insert = false } },
+                documentation = { auto_show = true, auto_show_delay_ms = 300 },
+            },
+            signature = { enabled = true },
+            sources = { default = { "lsp", "path", "snippets", "buffer" } },
+            fuzzy = { implementation = "prefer_rust_with_warning" },
         },
-        config = function()
-            require("config.ddc").setup()
-        end,
     },
 }

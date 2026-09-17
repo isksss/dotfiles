@@ -38,3 +38,5 @@ graphify-out/
 
 # Playwright CLI output (may contain credentials)
 .playwright-cli/
+
+PLAN.md

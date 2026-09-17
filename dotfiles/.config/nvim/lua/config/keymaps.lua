@@ -1,48 +1,69 @@
------------------------------------------------------------
--- キーマッピング
------------------------------------------------------------
-local keymap = vim.keymap.set
+local map = vim.keymap.set
+local function n(key, action, desc)
+    map("n", key, action, { silent = true, desc = desc })
+end
 
--- 表示行単位で移動
-keymap("n", "j", "gj", { desc = "表示上の次の行へ移動" })
-keymap("n", "k", "gk", { desc = "表示上の前の行へ移動" })
-
--- find
-keymap("n", "<leader>ff", "<cmd>DduFiles<CR>", { desc = "ファイル/ディレクトリ名で検索" })
-keymap("n", "<leader>fg", "<cmd>DduLiveGrep<CR>", { desc = "内容を検索" })
-keymap("n", "<leader>fb", "<cmd>DduBuffers<CR>", { desc = "バッファ一覧を開く" })
-
--- git
-keymap("n", "<leader>gg", "<cmd>GinStatus<CR>", { desc = "Gin status を開く" })
-keymap("n", "<leader>gb", "<cmd>Gitsigns blame_line<CR>", { desc = "現在行の Git blame を表示" })
-
--- buffer
-keymap("n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>", { desc = "前のタブへ移動" })
-keymap("n", "<S-l>", "<cmd>BufferLineCycleNext<CR>", { desc = "次のタブへ移動" })
-keymap("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "現在のタブを閉じる" })
-
--- code tasks
-keymap("n", "<leader>cc", function()
-    require("config.tasks").check()
-end, { desc = "現在の言語で check" })
-keymap("n", "<leader>ct", function()
-    require("config.tasks").test()
-end, { desc = "現在の言語で test" })
-keymap("n", "<leader>cr", function()
-    require("config.tasks").run()
-end, { desc = "現在の言語で run" })
-keymap("n", "<leader>ci", function()
-    require("config.tasks").organize_imports()
-end, { desc = "import を整理" })
-keymap("n", "<leader>cx", function()
+n("<leader>ff", function()
+    Snacks.picker.files()
+end, "ファイル検索")
+n("<leader>fg", function()
+    Snacks.picker.grep()
+end, "全文検索")
+n("<leader>fb", function()
+    Snacks.picker.buffers()
+end, "バッファ検索")
+n("<leader>fs", function()
+    Snacks.picker.lsp_symbols()
+end, "シンボル検索")
+n("<leader>fd", function()
+    Snacks.picker.diagnostics()
+end, "診断検索")
+n("<leader>gg", "<cmd>GinStatus<CR>", "Git status")
+n("<leader>gb", "<cmd>Gitsigns blame_line<CR>", "現在行の blame")
+n("<leader>gp", "<cmd>Gitsigns preview_hunk<CR>", "差分プレビュー")
+n("<S-h>", "<cmd>bprevious<CR>", "前のバッファ")
+n("<S-l>", "<cmd>bnext<CR>", "次のバッファ")
+n("<leader>bd", "<cmd>bdelete<CR>", "バッファを閉じる")
+n("<leader>cf", function()
+    require("config.format").format()
+end, "整形")
+n("<leader>co", function()
+    require("config.format").organize_imports()
+end, "import 整理")
+n("<leader>cx", function()
     require("config.tasks").fix_all()
-end, { desc = "自動修正を実行" })
-
--- jj でノーマルモードへ
-keymap("i", "jj", "<Esc>", { desc = "ノーマルモードに戻る" })
--- 保存
-keymap("n", "<leader>w", ":w<CR>", { desc = "ファイルを保存する" })
--- 閉じる
-keymap("n", "<leader>q", ":q<CR>", { desc = "ファイルを閉じる" })
--- Esc を2回で検索ハイライトを消す
-keymap("n", "<Esc><Esc>", "<cmd>nohlsearch<CR>", { desc = "検索ハイライトを消す" })
+end, "自動修正")
+n("<leader>cl", function()
+    require("config.lint").run()
+end, "lint")
+n("<leader>tc", function()
+    require("config.tasks").check()
+end, "check")
+n("<leader>tt", function()
+    require("config.tasks").test()
+end, "パッケージの test")
+n("<leader>tr", function()
+    require("config.tasks").run()
+end, "run")
+n("<leader>ts", function()
+    require("config.tasks.runner").stop()
+end, "タスク中止")
+n("<leader>tq", "<cmd>copen<CR>", "実行結果を表示")
+n("[q", "<cmd>cprevious<CR>", "前の実行結果")
+n("]q", "<cmd>cnext<CR>", "次の実行結果")
+n("[d", function()
+    vim.diagnostic.jump({ count = -1, float = true })
+end, "前の診断")
+n("]d", function()
+    vim.diagnostic.jump({ count = 1, float = true })
+end, "次の診断")
+n("<leader>uh", function()
+    require("config.tasks").toggle_inlay_hints()
+end, "inlay hints 切替")
+n("<leader>w", "<cmd>write<CR>", "保存")
+n("<leader>q", "<cmd>quit<CR>", "終了")
+n("<Esc>", "<cmd>nohlsearch<CR>", "検索ハイライトを消す")
+map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "ターミナル操作を抜ける" })
+for key, direction in pairs({ h = "h", j = "j", k = "k", l = "l" }) do
+    n("<C-" .. key .. ">", "<C-w>" .. direction, "ウィンドウ移動")
+end
