@@ -1,0 +1,7 @@
+[tools]
+codex = "latest"
+node = "latest"
+oh-my-pi = { version = "latest", rename_exe = "omp" }
+opencode = "latest"
+pnpm = "latest"
+python = "latest"
