@@ -3,8 +3,10 @@
 "~/.config/opencode/opencode.jsonc" = { source = ".config/opencode/opencode.jsonc", mode = "symlink" }
 "~/.config/opencode/package.json" = { source = ".config/opencode/package.json", mode = "symlink" }
 "~/.config/opencode/package-lock.json" = { source = ".config/opencode/package-lock.json", mode = "symlink" }
+"~/.config/opencode/tui.json" = { source = ".config/opencode/tui.json", mode = "symlink" }
 "~/.config/opencode/plugins/orca-opencode-status.js" = { source = ".config/opencode/plugins/orca-opencode-status.js", mode = "symlink" }
 "~/.omp/agent/config.yml" = { source = ".omp/agent/config.yml", mode = "symlink" }
+"~/.omp/agent/keybindings.yml" = { source = ".omp/agent/keybindings.yml", mode = "symlink" }
 "~/.omp/agent/settings.json" = { source = ".omp/agent/settings.json", mode = "symlink" }
 "~/.orca/agent-hooks/codex-hook.cmd" = { source = ".orca/agent-hooks/codex-hook.cmd", mode = "symlink" }
 "~/.agents/AGENTS.md" = { source = ".agents/AGENTS.md", mode = "symlink" }
