@@ -1,6 +1,0 @@
-keybinding:
-  universal:
-    quit: q
-    return: <esc>
-gui:
-  language: 'ja'
