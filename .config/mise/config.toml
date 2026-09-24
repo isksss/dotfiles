@@ -1,7 +1,11 @@
 [tools]
+bat = "latest"
 codex = "latest"
+fd = "latest"
+go = "latest"
 node = "latest"
-oh-my-pi = { version = "latest", rename_exe = "omp" }
-opencode = "latest"
+"npm:@kilocode/cli" = "latest"
 pnpm = "latest"
 python = "latest"
+rg = "latest"
+starship = "latest"

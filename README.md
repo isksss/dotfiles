@@ -6,6 +6,4 @@ miseで管理するdotfilesです。
 
 1. miseを導入します。
 2. このリポジトリのルートで `mise bootstrap dotfiles apply` を実行します。
-3. opencodeの依存関係が必要な場合は `.config/opencode` で `npm install` を実行します。既存のlockfileに対応する標準コマンドでも再生成できます。
-
-`node_modules` や `.omp` のruntimeデータ、キャッシュ、履歴、データベースはコピーしません。
+3. `mise install` で設定されたツールを導入します。Kiloの設定とOrcaのCodexフックは手順2でリンクされます。
